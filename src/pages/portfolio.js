@@ -8,7 +8,12 @@ const Portfolio = () => (
   <Layout>
     <SEO title="narenandu portfolio" />
     <h1>Portfolio</h1>
-    <p><a href="https://sites.google.com/site/narenportfolio/">narenandu portfolio</a></p>
+    <p>
+      <a href="https://sites.google.com/site/narenportfolio/">
+        narenandu portfolio
+      </a>
+    </p>
+    <p>Getting Embedded here soon !</p>
     <hr></hr>
     <Link to="/">Go back to home</Link>
   </Layout>
