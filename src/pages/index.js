@@ -7,8 +7,12 @@ import SEO from "../components/seo"
 
 const IndexPage = () => (
   <Layout>
-    <SEO title="Home" />
+    <SEO title="NarenVadapalliHome" />
     <h1> Hi Peeps </h1> <p> Welcome to the world of NarenVadapalli </p>{" "}
+    <div class="grid-container">
+      <div class="grid-item"><Link to="/portfolio/"> Portfolio </Link>{" "}</div>
+      <div class="grid-item"><Link to="/blog/"> Blog </Link>{" "}</div>
+    </div>
     <div
       style={{
         maxWidth: `500px`,
@@ -17,7 +21,7 @@ const IndexPage = () => (
     >
       <Image />
     </div>{" "}
-    <Link to="/portfolio/"> Check my Portfolio </Link>{" "}
+
   </Layout>
 )
 

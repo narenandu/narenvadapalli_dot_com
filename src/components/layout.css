@@ -621,3 +621,12 @@ pre tt:after {
     font-size: 100%;
   }
 }
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 20px;
+}
+.grid-item {
+  padding: 20px;
+  text-align: center;
+}
