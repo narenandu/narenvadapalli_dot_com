@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 
 export default function Template({
@@ -19,6 +19,7 @@ export default function Template({
         />
       </div>
     </div>
+    <Link to="/blogs">blogs</Link>
     </Layout>
   )
 }

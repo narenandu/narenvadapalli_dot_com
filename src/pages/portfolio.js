@@ -15,7 +15,7 @@ const Portfolio = () => (
     </p>
     <p>Getting Embedded here soon !</p>
     <hr></hr>
-    <Link to="/">Go back to home</Link>
+    <Link to="/">Naren Home</Link>
   </Layout>
 )
 
