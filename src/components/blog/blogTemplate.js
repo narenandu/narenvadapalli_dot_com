@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
-import Layout from "./layout"
+import Layout from "../layout"
 
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.

@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: `Narendra Kumar Vadapalli`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    description: `Webpage of Narendra Kumar Vadapalli (@narenandu).`,
+    author: `@narenandu`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
