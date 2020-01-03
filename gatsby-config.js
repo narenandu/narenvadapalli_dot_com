@@ -16,8 +16,8 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `markdown-pages`, 
-        path: `${__dirname}/src/markdown-pages`,
+        name: `blogs`, 
+        path: `${__dirname}/src/blogs`,
       },
     },
     `gatsby-transformer-remark`,
@@ -35,6 +35,21 @@ module.exports = {
         icon: `src/images/narenvadapalli_logo.png`, // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: `gatsby-theme-blog`,
+      options: {
+        /*
+        - basePath defaults to `/`
+        - contentPath defaults to `content/posts`
+        - assetPath defaults to `content/assets`
+        - mdx defaults to `true`
+        */
+        basePath: `${__dirname}`,
+        contentPath: `src/blogs`,
+        //assetPath: `src/blogAssets`,
+        mdx: false,
+      },
+    },    
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
