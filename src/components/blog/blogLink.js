@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 
-const PostLink = ({ post }) => (
+const BlogLink = ({ post }) => (
   <div>
     <Link to={post.frontmatter.path}>
       {post.frontmatter.title} ({post.frontmatter.date})
@@ -9,4 +9,4 @@ const PostLink = ({ post }) => (
   </div>
 )
 
-export default PostLink
+export default BlogLink

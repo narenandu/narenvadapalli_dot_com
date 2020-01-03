@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -14,8 +13,6 @@ const Portfolio = () => (
       </a>
     </p>
     <p>Getting Embedded here soon !</p>
-    <hr></hr>
-    <Link to="/">Naren Home</Link>
   </Layout>
 )
 
