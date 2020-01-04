@@ -1,57 +1,108 @@
-module.exports = {
-  siteMetadata: {
+let siteMetadata = {
     title: `Narendra Kumar Vadapalli`,
-    description: `Webpage of Narendra Kumar Vadapalli (@narenandu).`,
-    author: `@narenandu`,
-  },
-  plugins: [
-    `gatsby-plugin-react-helmet`,
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `blogs`, 
-        path: `${__dirname}/src/blogs`,
-      },
-    },
-    `gatsby-transformer-remark`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
-        start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/narenvadapalli_logo.png`, // This path is relative to the root of the site.
-      },
-    },
-    {
-      resolve: `gatsby-theme-blog`,
-      options: {
-        /*
-        - basePath defaults to `/`
-        - contentPath defaults to `content/posts`
-        - assetPath defaults to `content/assets`
-        - mdx defaults to `true`
-        */
-        basePath: `${__dirname}`,
-        contentPath: `src/blogs`,
-        //assetPath: `src/blogAssets`,
-        mdx: false,
-      },
-    },    
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
-  ],
-}
+    capitalizeTitleOnHome: true,
+    logo: `/images/logo.png`,
+    icon: `/images/icon.png`,
+    titleImage: `/images/wall.jpg`,
+    introTag: `PROGRAMMER | VISUAL DESIGNER`,
+    description: `Person with a balanced left and right brain`,
+    author: `@_akzhy`,
+    blogItemsPerPage: 10,
+    portfolioItemsPerPage: 10,
+    darkmode: true,
+    switchTheme: true,
+    navLinks: [
+        {
+            name: "HOME",
+            url: "/"
+        },
+        {
+            name: "BLOG",
+            url: "/blog"
+        },
+        {
+            name: "PORTFOLIO",
+            url: "/portfolio"
+        },
+        {
+            name: "ABOUT",
+            url: "/about"
+        },
+        {
+            name: "CONTACT",
+            url: "/contact"
+        }
+    ],
+    footerLinks: [
+        {
+            name: "GitHub",
+            url: "https://github.com/narenandu/narenvadapalli_dot_com"
+        }
+    ],
+    social: [
+        {
+            name: "Twitter",
+            icon: "/images/twitter.svg",
+            url: "https://twitter.com/narenandu"
+        },
+        {
+            name: "LinkedIn",
+            icon: "/images/linkedin.svg",
+            url: "https://www.linkedin.com/in/narenandu/"
+        },
+        {
+            name: "IMDB",
+            icon: "/images/imdb.svg",
+            url: "https://www.imdb.com/name/nm4511578/"
+        },
+        {
+            name: "Github",
+            icon: "/images/github.svg",
+            url: "https://github.com/narenandu"
+        }
+    ],
+    contact: {
+        /* Leave the below value completely empty (no space either) if you don't want a contact form. */
+        api_url: "./test.json",
+        description: `Reach out to me on social media`,
+        mail: "",
+        phone: "",
+        address: ""
+    }
+};
+
+module.exports = {
+    siteMetadata: siteMetadata,
+    plugins: [
+        `gatsby-plugin-sharp`,
+        `gatsby-transformer-sharp`,
+        `gatsby-plugin-react-helmet`,
+        {
+            resolve: `gatsby-transformer-remark`,
+            options: {
+                plugins: [
+                    "gatsby-remark-copy-linked-files",
+                    {
+                        resolve: `gatsby-remark-images`,
+                        options: {
+                            maxWidth: 1280
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                name: `contents`,
+                path: `${__dirname}/contents/`
+            }
+        },
+        {
+            resolve: `gatsby-plugin-less`,
+            options: {
+                strictMath: true
+            }
+        }
+    ]
+};
