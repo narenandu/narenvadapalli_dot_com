@@ -1,45 +1,110 @@
 ---
 title: Credits in Media
 description: Following are the entertainment / media projects I contributed technically
-date: 2020-01-03
+date: 2020-01-06
 template: portfolio
 image: ./image.jpg
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Following are the Media and Entertainment projects in which I was credited for my work
+
+---
+
+#### Feature Films
 
 [row][col]
-![image](./b1.jpg)
+![image](./playmobil.jpg)
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit
+Playmobil The Movie, ON Animation Studios
 
 [/col][col]
-![image](./b2.jpg)
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit
 
 [/col][/row]
 
 [row][col]
-![image](./w1.jpg)
+![image](./peter_rabbit.jpg)
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit
+Peter Rabbit, Animal Logic Studios
+
+[/col][col]
+![image](./lego_ninjago.jpg)
+
+Lego Ninjago, Animal Logic Studios
+
+[/col][col]
+![image](./lego_batman.jpg)
+
+Lego Batman, Animal Logic Studios
 
 [/col][/row]
 
 [row][col]
-![image](./l1.jpg)
+![image](./boss_baby.jpg)
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit
-
-[/col][col]
-![image](./l2.jpg)
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit
+Boss Baby, DreamWorks Animations
 
 [/col][col]
-![image](./l3.jpg)
+![image](./kung_fu_panda_3.jpg)
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit
+Kung Fu Panda 3, DreamWorks Animations
+
+[/col][col]
+![image](./penguins_of_madagascar.jpg)
+
+Penguins of Madagascar, DreamWorks Animations
+
+[/col][col]
+![image](./mr_peabody_and_sherman.jpg)
+
+Mr Peabody & Sherman, DreamWorks Animations
+
+[/col][/row]
+
+---
+
+#### Animated Shorts
+
+[row][col]
+![image](./the_master_short.jpg)
+
+The Master (short), Animal Logic Studios
+
+[/col][col]
+![image](./rocky_and_bullwinkle_short.jpg)
+
+Rocky & Bullwinkle Short, DreamWorks Animations
+
+[/col][col]
+
+[/col][col]
+
+[/col][/row]
+
+---
+
+#### Episodic Content
+
+[row][col]
+![image](./dragons_riders_of_berk.jpg)
+
+Dragons - Riders of Berk, DreamWorks Animations
+
+[/col][col]
+
+[/col][/row]
+
+---
+
+#### Uncredited
+
+[row][col]
+![image](./madagascar_3.jpg)
+
+Madagascar 3, DreamWorks Animations
+_because of the time spent on the project was too short_
+
+[/col][col]
+
+[/col][col]
 
 [/col][/row]
