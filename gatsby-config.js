@@ -4,9 +4,9 @@ let siteMetadata = {
     logo: `/images/logo.png`,
     icon: `/images/icon.png`,
     titleImage: `/images/wall.jpg`,
-    introTag: `PROGRAMMER | VISUAL DESIGNER`,
+    introTag: `PROGRAMMER | VISUAL Design Enthusiast`,
     description: `Person with a balanced left and right brain`,
-    author: `@_akzhy`,
+    author: `@`,
     blogItemsPerPage: 10,
     portfolioItemsPerPage: 10,
     darkmode: true,
@@ -23,6 +23,10 @@ let siteMetadata = {
         {
             name: "PORTFOLIO",
             url: "/portfolio"
+        },
+        {
+            name: "RESUME",
+            url: "/resume"
         },
         {
             name: "ABOUT",

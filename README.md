@@ -146,7 +146,3 @@ The columns will have equal width on wide screens, and will expand on smaller sc
 These posts follow the URL structure of `http://example.com/miscellaneous-post/`. They are useful for creating pages like `privacy-policy`
 
 The "About" page is created as a miscellaneous post.
-
-## Contributing
-
-Any kind of contributions are welcome. Bump the version and create a PR.
