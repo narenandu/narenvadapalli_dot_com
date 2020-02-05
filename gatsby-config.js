@@ -4,9 +4,9 @@ let siteMetadata = {
     logo: `/images/logo.png`,
     icon: `/images/icon.png`,
     titleImage: `/images/wall.jpg`,
-    introTag: `PROGRAMMER | VISUAL DESIGNER`,
+    introTag: `PROGRAMMER | VISUAL Design Enthusiast`,
     description: `Person with a balanced left and right brain`,
-    author: `@_akzhy`,
+    author: `@`,
     blogItemsPerPage: 10,
     portfolioItemsPerPage: 10,
     darkmode: true,
@@ -23,6 +23,10 @@ let siteMetadata = {
         {
             name: "PORTFOLIO",
             url: "/portfolio"
+        },
+        {
+            name: "RESUME",
+            url: "/resume"
         },
         {
             name: "ABOUT",
@@ -59,6 +63,12 @@ let siteMetadata = {
             name: "Github",
             icon: "/images/github.svg",
             url: "https://github.com/narenandu"
+        },
+        {
+            name: "CodeMentor",
+            icon: "https://cdn.codementor.io/badges/i_am_a_codementor_dark.svg",
+            url:
+                "https://www.codementor.io/narenandu?utm_source=github&utm_medium=button&utm_term=narenandu&utm_campaign=github"
         }
     ],
     contact: {
