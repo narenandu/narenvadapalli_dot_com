@@ -26,10 +26,10 @@ This is a requirement for installing [`alien`](http://joeyh.name/code/alien/) pa
 sudo yum install perl-ExtUtils-MakeMaker-7.44-2.fc32.noarch.rpm -y
 ```
 
-#### Install rpm build package
+#### Install rpm build package(s)
 
 ```
-sudo yum install rpm-build -y
+sudo yum install rpm-build rpmrebuild -y
 ```
 
 #### Install [`alien`](http://joeyh.name/code/alien/) package
@@ -96,5 +96,77 @@ Error: Transaction test error:
   file /usr/lib from install of chrome-remote-desktop-81.0.4044.60-2.x86_64 conflicts with file from package filesystem-3.12-2.fc31.x86_64
   file /etc/init.d from install of chrome-remote-desktop-81.0.4044.60-2.x86_64 conflicts with file from package initscripts-10.02-2.fc31.x86_64
   file /etc/init.d from install of chrome-remote-desktop-81.0.4044.60-2.x86_64 conflicts with file from package chkconfig-1.11-5.fc31.x86_64
+
+```
+
+#### Edit the `rpm` file to remove the conflicting dirs
+
+-   Run the following command on the `rpm`, opens up the editor
+
+```
+rpmrebuild -e -p chrome-remote-desktop-81.0.4044.60-2.x86_64.rpm
+```
+
+-   Remove the following lines and save the file.
+
+```
+%dir %attr(0755, root, root) "/"
+%dir %attr(0755, root, root) "/etc/init.d"
+%dir %attr(0755, root, root) "/usr/lib"
+```
+
+-   In the terminal when it prompts, hit `Y`
+
+```
+Do you want to continue ? (y/N)
+```
+
+-   The result is usually written out to a location like the following
+
+```
+result: /home/<username>/rpmbuild/RPMS/x86_64/chrome-remote-desktop-81.0.4044.60-2.x86_64.rpm
+```
+
+#### Finally install the `rpm`
+
+```
+$ sudo yum install /home/narenandu/rpmbuild/RPMS/x86_64/chrome-remote-desktop-81.0.4044.60-2.x86_64.rpm
+[sudo] password for narenandu:
+Last metadata expiration check: 2:29:18 ago on Fri 27 Mar 2020 09:58:57 AM PDT.
+Dependencies resolved.
+================================================================================================================================================================================================================================================================================
+ Package                                                                   Architecture                                               Version                                                            Repository                                                        Size
+================================================================================================================================================================================================================================================================================
+Upgrading:
+ chrome-remote-desktop                                                     x86_64                                                     81.0.4044.60-2                                                     @commandline                                                      28 M
+
+Transaction Summary
+================================================================================================================================================================================================================================================================================
+Upgrade  1 Package
+
+Total size: 28 M
+Is this ok [y/N]: y
+Downloading Packages:
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                                                                                                                                                                                        1/1
+  Running scriptlet: chrome-remote-desktop-81.0.4044.60-2.x86_64                                                                                                                                                                                                            1/1
+  Upgrading        : chrome-remote-desktop-81.0.4044.60-2.x86_64                                                                                                                                                                                                            1/2
+  Running scriptlet: chrome-remote-desktop-80.0.3987.132-1.fc31.x86_64                                                                                                                                                                                                      2/2
+  Cleanup          : chrome-remote-desktop-80.0.3987.132-1.fc31.x86_64                                                                                                                                                                                                      2/2
+  Running scriptlet: chrome-remote-desktop-80.0.3987.132-1.fc31.x86_64                                                                                                                                                                                                      2/2
+Failed to try-restart chrome-remote-desktop@.service: Unit name chrome-remote-desktop@.service is missing the instance name.
+See system logs and 'systemctl status chrome-remote-desktop@.service' for details.
+
+  Verifying        : chrome-remote-desktop-81.0.4044.60-2.x86_64                                                                                                                                                                                                            1/2
+  Verifying        : chrome-remote-desktop-80.0.3987.132-1.fc31.x86_64                                                                                                                                                                                                      2/2
+
+Upgraded:
+  chrome-remote-desktop-81.0.4044.60-2.x86_64
+
+Complete!
 
 ```

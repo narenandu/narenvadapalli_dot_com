@@ -7,6 +7,8 @@ banner: ./banner.jpg
 description: My stuggle with building a grpc python library with Maya 2019 on Windows
 ---
 
+> WORKING ... VERSION... NOT COMPLETE
+
 ## Motivation
 
 -   Internal software component (versioning service) in the studio which was written in `GO`lang had a `python` client.
