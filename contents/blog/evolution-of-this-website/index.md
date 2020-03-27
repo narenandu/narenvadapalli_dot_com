@@ -9,5 +9,4 @@ description: will be capturing the evolution of my website chronologically (late
 
 ![image](./image.jpg)
 
-
->Blockquote
+> Screenshots from Google Pixel 2

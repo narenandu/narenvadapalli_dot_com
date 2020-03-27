@@ -8,6 +8,9 @@ description: Brief about the tech stack used for this website
 ---
 
 ### Components
-- Gatsby Static site generator
-- Code hosted on Github
-- Website built and deployed via AWS Amplify
+
+-   Gatsby Static site generator
+-   Code hosted on Github
+-   Website built and deployed via AWS Amplify
+
+> Details to be expanded soon

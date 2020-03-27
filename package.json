@@ -1,8 +1,8 @@
 {
-    "name": "gatsby-starter-elemental",
+    "name": "naren-vadapalli-dot-com",
     "description": "A simple starter to get up and developing quickly with Gatsby",
     "version": "0.1.0",
-    "author": "Akshay <hi@akzhy.com>",
+    "author": "Narendra Kumar Vadapalli <narenandu@gmail.com>",
     "dependencies": {
         "gatsby": "^2.18.17",
         "gatsby-custom-md": "^1.3.0",
@@ -28,7 +28,10 @@
         "prettier": "^1.18.2"
     },
     "keywords": [
-        "gatsby"
+        "gatsby",
+        "narenandu",
+        "narenvadapalli",
+        "vadapalli"
     ],
     "license": "MIT",
     "scripts": {

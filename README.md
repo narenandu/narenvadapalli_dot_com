@@ -2,7 +2,7 @@
 
 ![](https://img.shields.io/badge/version-1.1.1-green.svg) ![](https://img.shields.io/badge/License-MIT-orange.svg)
 
-This is my personal website that is based off of the [Gatsby Elemental Starter](https://github.com/akzhy/gatsby-theme-elemental)
+This is my personal website that is based off of [Gatsby Elemental Starter](https://github.com/akzhy/gatsby-theme-elemental)
 
 ### Getting Started
 
@@ -21,7 +21,7 @@ Almost all features of this starter are editable. In order to personalize, open 
 // Do not remove any of the properties below.
 
 let siteMetadata = {
-    title: `Narendra Kumar Vadapalli`, // Title of your webpage
+    title: `Narendra Kumar Vadapalli`,
     capitalizeTitleOnHome: true, // Whether to capitalize the letter on homepage
     logo: `/images/logo.png`, // Logo
     icon: `/images/icon.png`, // Favicon, shown in the browsers "tab"
@@ -40,16 +40,20 @@ let siteMetadata = {
             url: "/"
         },
         {
-            name: "ABOUT",
-            url: "/about"
-        },
-        {
             name: "BLOG",
             url: "/blog"
         },
         {
             name: "PORTFOLIO",
             url: "/portfolio"
+        },
+        {
+            name: "RESUME",
+            url: "/resume"
+        },
+        {
+            name: "ABOUT",
+            url: "/about"
         },
         {
             name: "CONTACT",
@@ -61,24 +65,30 @@ let siteMetadata = {
     // Your social profile links. The icons of the given social medias are available in the static folder. If you are adding a new item, include the icon in the static/images folder.
     social: [
         {
-            name: "imdb",
-            icon: "/images/Facebook.svg",
-            url: "#"
-        },
-        {
             name: "Twitter",
-            icon: "/images/Twitter.svg",
-            url: "#"
+            icon: "/images/twitter.svg",
+            url: "https://twitter.com/narenandu"
         },
         {
-            name: "Instagram",
-            icon: "/images/Instagram.svg",
-            url: "#"
+            name: "LinkedIn",
+            icon: "/images/linkedin.svg",
+            url: "https://www.linkedin.com/in/narenandu/"
         },
         {
-            name: "Youtube",
-            icon: "/images/Youtube.svg",
-            url: "#"
+            name: "IMDB",
+            icon: "/images/imdb.svg",
+            url: "https://www.imdb.com/name/nm4511578/"
+        },
+        {
+            name: "Github",
+            icon: "/images/github.svg",
+            url: "https://github.com/narenandu"
+        },
+        {
+            name: "CodeMentor",
+            icon: "https://cdn.codementor.io/badges/i_am_a_codementor_dark.svg",
+            url:
+                "https://www.codementor.io/narenandu?utm_source=github&utm_medium=button&utm_term=narenandu&utm_campaign=github"
         }
     ],
     contact: {
