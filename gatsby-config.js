@@ -113,6 +113,12 @@ module.exports = {
             options: {
                 strictMath: true
             }
+        },
+        {
+            resolve: `gatsby-plugin-google-analytics`,
+            options: {
+                trackingId: process.env.GATSBY_GOOGLE_ANALYTICS_TRACKING_ID || "none"
+            }
         }
     ]
 };
