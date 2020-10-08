@@ -58,11 +58,11 @@ description: How I added google analytics to my personal website
 - Select the app (website deployment) and under `App Settings` check for `Environment Variables`
 ![](./amplify_env_vars.png)
 - Click on `Manage Variables`
-![](./add_tracking_ID_in_env_var_2.png)
-- Click on `Add Variable`. Add `GATSBY_GOOGLE_ANALYTICS_TRACKING_ID` as the `Variable` and under `Value` paste the `Tracking ID` copied from Google Analytics
 ![](./add_tracking_ID_in_env_var_1.png)
-- Once Saved, environment variables list should show the value
+- Click on `Add Variable`. Add `GATSBY_GOOGLE_ANALYTICS_TRACKING_ID` as the `Variable` and under `Value` paste the `Tracking ID` copied from Google Analytics
 ![](./add_tracking_ID_in_env_var_2.png)
+- Once Saved, environment variables list should show the value
+![](./add_tracking_ID_in_env_var_3.png)
 
 > That's it !
 
