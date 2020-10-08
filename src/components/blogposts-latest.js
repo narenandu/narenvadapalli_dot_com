@@ -2,7 +2,7 @@ import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import BlogItems from "./items-blog";
 
-export default function(props) {
+export default function (props) {
     const query = useStaticQuery(graphql`
         query latestBlogList {
             allMarkdownRemark(

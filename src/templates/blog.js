@@ -3,11 +3,12 @@ import { graphql } from "gatsby";
 import Img from "gatsby-image";
 import Layout from "../components/layout";
 import LatestPosts from "../components/blogposts-latest";
+import SocialRibbon from "../templates/social_media_share_ribbon"
 import SEO from "../components/seo";
 import Date from "../components/date";
 import "../style/blog-singlepage.less";
 
-export default function({ data }) {
+export default function ({ data }) {
     return (
         <Layout>
             <SEO
@@ -43,6 +44,7 @@ export default function({ data }) {
                         ></div>
                     </div>
                 </article>
+                <SocialRibbon />
                 <LatestPosts id={data.markdownRemark.id} />
             </div>
         </Layout>
