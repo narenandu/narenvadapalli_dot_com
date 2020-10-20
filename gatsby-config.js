@@ -97,6 +97,13 @@ module.exports = {
                         options: {
                             maxWidth: 1280
                         }
+                    },
+                    {
+                        resolve: "gatsby-remark-embed-youtube",
+                        options: {
+                            width: 800,
+                            height: 400
+                        }
                     }
                 ]
             }
@@ -117,7 +124,8 @@ module.exports = {
         {
             resolve: `gatsby-plugin-google-analytics`,
             options: {
-                trackingId: process.env.GATSBY_GOOGLE_ANALYTICS_TRACKING_ID || "none"
+                trackingId:
+                    process.env.GATSBY_GOOGLE_ANALYTICS_TRACKING_ID || "none"
             }
         }
     ]
