@@ -8,7 +8,7 @@ image: ./image.jpg
 
 ## Demo Reel (Oct 2011)
 
-`youtube:https://www.youtube.com/embed/P3CPDXkTTao`
+`youtube:P3CPDXkTTao`
 
 ---
 
@@ -20,7 +20,7 @@ CIS-660 course, Advanced Topics in Computer Graphics and Animation
 
 Autodesk Maya Plug-in which enables variety of methods for procedurally generating a city
 
-`youtube:https://www.youtube.com/embed/l8vMFpTYzAk`
+`youtube:l8vMFpTYzAk`
 
 #### Physically Based Animation
 
@@ -32,13 +32,13 @@ This is a complete collection of the assignments
 -   Smoke simulation
 -   Rigid bodies
 
-`youtube:https://www.youtube.com/embed/SzqkQPm4n7E`
+`youtube:SzqkQPm4n7E`
 
 ##### DynaMocap
 
 Project on making static Motion Capture to react to dynamic environment
 
-`youtube:https://www.youtube.com/embed/zSrEYbqYXnQ`
+`youtube:zSrEYbqYXnQ`
 
 ---
 

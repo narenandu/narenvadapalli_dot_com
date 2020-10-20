@@ -93,16 +93,25 @@ module.exports = {
                 plugins: [
                     "gatsby-remark-copy-linked-files",
                     {
-                        resolve: `gatsby-remark-images`,
+                        resolve: `gatsby-remark-embed-video`,
                         options: {
-                            maxWidth: 1280
+                            maxWidth: 800,
+                            ratio: 1.77,
+                            height: 400,
+                            related: false,
+                            noIframerder: true
                         }
                     },
                     {
-                        resolve: "gatsby-remark-embed-youtube",
+                        resolve: `gatsby-remark-images`,
                         options: {
-                            width: 800,
-                            height: 400
+                            maxWidth: 590
+                        }
+                    },
+                    {
+                        resolve: `gatsby-remark-responsive-iframe`,
+                        options: {
+                            wrapperStyle: `margin-bottom: 1.0725rem`
                         }
                     }
                 ]
