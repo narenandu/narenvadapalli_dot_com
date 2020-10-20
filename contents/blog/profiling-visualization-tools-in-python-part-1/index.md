@@ -8,6 +8,7 @@ description: Profiling & Visualization Tools in Python using cProfile
 ---
 
 _Original post_: [on medium](https://medium.com/@narenandu/profiling-and-visualization-tools-in-python-89a46f578989)
+_Also posted_: [on dev.to](https://dev.to/narenandu/profiling-and-visualization-tools-in-python-376h)
 
 ## What in my python code is taking time ?
 

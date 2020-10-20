@@ -8,7 +8,7 @@ image: ./image.jpg
 
 Following are the Media and Entertainment projects in which I was credited for my work
 
----
+## [IMDB Profile](https://www.imdb.com/name/nm4511578)
 
 #### Feature Films
 
