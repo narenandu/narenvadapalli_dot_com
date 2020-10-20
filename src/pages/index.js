@@ -25,7 +25,7 @@ class IndexPage extends React.Component {
     componentDidMount() {
         this.setWindowHeight();
         let _this = this;
-        window.addEventListener("resize", function() {
+        window.addEventListener("resize", function () {
             _this.setWindowHeight();
         });
         let sWidth = this.svg.clientWidth,
@@ -36,7 +36,7 @@ class IndexPage extends React.Component {
             let tInnerText = tText.innerHTML;
             if (tInnerText.split(" ").length > 1) {
                 tText.innerHTML = "";
-                tInnerText.split(" ").forEach(function(e, i) {
+                tInnerText.split(" ").forEach(function (e, i) {
                     let tSpan = _this.createSVGElement("tspan", {
                         dy: i === 0 ? "0em" : ".8em",
                         x: "50"
@@ -44,7 +44,7 @@ class IndexPage extends React.Component {
                     tSpan.innerHTML = e;
                     tText.appendChild(tSpan);
                 });
-                setTimeout(function() {
+                setTimeout(function () {
                     _this.svg.style.height =
                         tText.getBoundingClientRect().height + 70;
                     _this.svg.style.margin = "15px auto";
@@ -122,7 +122,7 @@ class IndexPage extends React.Component {
                                         .capitalizeTitleOnHome
                                         ? this.props.data.site.siteMetadata.title.toUpperCase()
                                         : this.props.data.site.siteMetadata
-                                              .title}
+                                            .title}
                                 </text>
                             </svg>
                         </div>
@@ -132,9 +132,18 @@ class IndexPage extends React.Component {
                         <p className="caption text-tertiary">
                             {this.props.data.site.siteMetadata.description}
                         </p>
-                        <a href="#portfolio" className="btn">
-                            Portfolio
-                        </a>
+                        <div>
+                            <p>
+                                <a href="#blog" className="btn">
+                                    Blog
+                                </a>
+                            </p>
+                            <p>
+                                <a href="#portfolio" className="btn">
+                                    Portfolio
+                                </a>
+                            </p>
+                        </div>
                     </div>
                     <div className="social-buttons">
                         <SocialLinks />
