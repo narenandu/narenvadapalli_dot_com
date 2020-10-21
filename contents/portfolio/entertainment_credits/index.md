@@ -1,14 +1,16 @@
 ---
 title: Credits in Media
 description: Following are the entertainment / media projects I contributed technically
-date: 2020-01-06
+date: 2020-10-20
 template: portfolio
 image: ./image.jpg
 ---
 
 Following are the Media and Entertainment projects in which I was credited for my work
 
-## [IMDB Profile](https://www.imdb.com/name/nm4511578)
+<div style="text-align:center">
+    <a href="https://www.imdb.com/name/nm4511578" target="_blank" rel="noopener noreferrer"><h3>IMDB Profile</h3></a>
+</div>
 
 #### Feature Films
 
