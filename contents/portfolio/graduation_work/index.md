@@ -6,11 +6,25 @@ template: portfolio
 image: ./image.jpg
 ---
 
+<a name="index"></a>
+
+-   [Demo Reel](#demo_reel)
+-   [Programming](#programming)
+-   [Game Dev](#gamedev)
+-   [3D Modeling](#3dmodeling)
+-   [Animation](#animation)
+-   [Sketches](#sketches)
+-   [Misc](#misc)
+
+<a name="demo_reel"></a>
+
 ## Demo Reel (Oct 2011)
 
 `youtube:P3CPDXkTTao`
 
 ---
+
+<a name="programming"></a>[Top](#index)
 
 ## Programming
 
@@ -73,6 +87,8 @@ Volumetric Renderer was created for rendering out the clouds with multiple light
 
 ---
 
+<a name="gamedev"></a>[Top](#index)
+
 ## Game Dev
 
 #### Game Design Practicum (CIS 568)
@@ -97,6 +113,8 @@ Reconstructed the Atari Breakout game in unity3D. Added the 3D version too
 `youtube:W3Ww0T0RZUo`
 
 ---
+
+<a name="3dmodeling"></a>[Top](#index)
 
 ## 3D Modeling
 
@@ -185,6 +203,8 @@ How can I forget my first 3D model ever :) ... it is this rustic lantern
 
 ---
 
+<a name="animation"></a>[Top](#index)
+
 ## Animation
 
 #### TreeStory
@@ -201,6 +221,8 @@ To illustrate any 4 out of 8 Laban actions, this short animation was made. The a
 `youtube:HiKGx57oQIc`
 
 ---
+
+<a name="sketches"></a>[Top](#index)
 
 ## Sketches
 
@@ -221,6 +243,8 @@ To illustrate any 4 out of 8 Laban actions, this short animation was made. The a
 <a href="https://lh3.googleusercontent.com/HSNYFhfQYLqmksXB82oAf-kUmuxfIDun5wMpBMiXhNpQ2arXqL4DIIr2n7uznLVULZTZ_au9asaVy_-kQmO6qgnYqa3jM2iZF9vu4Ti50gsWRjkBG1FSsOqE0igVlkBRKwSiYUZ7GbE=w1320-h1600" target="_blank" rel="noopener noreferrer"><img src="https://lh3.googleusercontent.com/HSNYFhfQYLqmksXB82oAf-kUmuxfIDun5wMpBMiXhNpQ2arXqL4DIIr2n7uznLVULZTZ_au9asaVy_-kQmO6qgnYqa3jM2iZF9vu4Ti50gsWRjkBG1FSsOqE0igVlkBRKwSiYUZ7GbE=w200-h150"></a>
 
 ---
+
+<a name="misc"></a>[Top](#index)
 
 ## Misc
 
