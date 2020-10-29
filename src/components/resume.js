@@ -2,8 +2,7 @@ import React from "react";
 import SectionTitle from "./sectiontitle";
 import { StaticQuery, graphql } from "gatsby";
 import SocialLinks from "./sociallinks";
-import "../style/contact.less";
-import { Document, Page } from 'react-pdf';
+import ResumePDF from "./resume-pdf";
 
 class Resume extends React.Component {
     constructor(props) {
@@ -22,39 +21,14 @@ class Resume extends React.Component {
 
     render() {
         return (
-            <section id="contact" className="container">
+            <section id="resume" className="container">
                 <div className="section-title">
                     <SectionTitle title="RESUME" />
                 </div>
-                <div>
-                    <Document
-                        file="../../static/pdf/Narendra_Kumar_Vadapalli_Resume.pdf"
-                    >
-                        <Page pageNumber={1} />
-                    </Document>
+                <ResumePDF />
 
-                </div>
-                <div
-                    className={"row" + (this.showContactForm ? "" : " no-form")}
-                    ref={c => (this.contactArea = c)}
-                >
-                    {this.showContactForm && <div className="col s12 m6"></div>}
-                    <div
-                        className={
-                            this.showContactForm
-                                ? "col s12 m6 details"
-                                : "col s12 details"
-                        }
-                    >
-
-                        <ul>
-                            <li>
-                                <SocialLinks />
-                            </li>
-                        </ul>
-                    </div>
-                </div>
             </section>
+
         );
     }
 }

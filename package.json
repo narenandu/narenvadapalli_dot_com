@@ -28,7 +28,8 @@
         "react-helmet": "^5.2.1",
         "react-pdf": "^5.0.0",
         "react-share": "^4.3.0",
-        "react-sidebar": "^3.0.2"
+        "react-sidebar": "^3.0.2",
+        "react-window": "^1.8.6"
     },
     "devDependencies": {
         "prettier": "^1.18.2"
