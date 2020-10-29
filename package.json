@@ -26,6 +26,7 @@
         "react": "^16.8.6",
         "react-dom": "^16.8.6",
         "react-helmet": "^5.2.1",
+        "react-pdf": "^5.0.0",
         "react-share": "^4.3.0",
         "react-sidebar": "^3.0.2"
     },

@@ -3,8 +3,9 @@ import SectionTitle from "./sectiontitle";
 import { StaticQuery, graphql } from "gatsby";
 import SocialLinks from "./sociallinks";
 import "../style/contact.less";
+import { Document, Page } from 'react-pdf';
 
-class Contact extends React.Component {
+class Resume extends React.Component {
     constructor(props) {
         super(props);
 
@@ -25,6 +26,14 @@ class Contact extends React.Component {
                 <div className="section-title">
                     <SectionTitle title="RESUME" />
                 </div>
+                <div>
+                    <Document
+                        file="../../static/pdf/Narendra_Kumar_Vadapalli_Resume.pdf"
+                    >
+                        <Page pageNumber={1} />
+                    </Document>
+
+                </div>
                 <div
                     className={"row" + (this.showContactForm ? "" : " no-form")}
                     ref={c => (this.contactArea = c)}
@@ -37,6 +46,7 @@ class Contact extends React.Component {
                                 : "col s12 details"
                         }
                     >
+
                         <ul>
                             <li>
                                 <SocialLinks />
@@ -66,6 +76,6 @@ export default () => (
                 }
             }
         `}
-        render={data => <Contact contact={data.site.siteMetadata.contact} />}
+        render={data => <Resume contact={data.site.siteMetadata.contact} />}
     />
 );
