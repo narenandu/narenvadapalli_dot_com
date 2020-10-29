@@ -1,6 +1,6 @@
 
 import React from "react";
-import "./MyPDF.css";
+import "../style/my-pdf.less";
 import resume from "../../public/pdf/Narendra_Kumar_Vadapalli_Resume.pdf"
 import { VariableSizeList as List } from "react-window";
 

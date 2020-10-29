@@ -1,7 +1,6 @@
 import React from "react";
 import SectionTitle from "./sectiontitle";
 import { StaticQuery, graphql } from "gatsby";
-import SocialLinks from "./sociallinks";
 import ResumePDF from "./resume-pdf";
 
 class Resume extends React.Component {
