@@ -2,9 +2,9 @@ import React from "react";
 import SectionTitle from "./sectiontitle";
 import { StaticQuery, graphql } from "gatsby";
 import SocialLinks from "./sociallinks";
-import "../style/contact.less";
+import ResumePDF from "./resume-pdf";
 
-class Contact extends React.Component {
+class Resume extends React.Component {
     constructor(props) {
         super(props);
 
@@ -21,30 +21,14 @@ class Contact extends React.Component {
 
     render() {
         return (
-            <section id="contact" className="container">
+            <section id="resume" className="container">
                 <div className="section-title">
                     <SectionTitle title="RESUME" />
                 </div>
-                <div
-                    className={"row" + (this.showContactForm ? "" : " no-form")}
-                    ref={c => (this.contactArea = c)}
-                >
-                    {this.showContactForm && <div className="col s12 m6"></div>}
-                    <div
-                        className={
-                            this.showContactForm
-                                ? "col s12 m6 details"
-                                : "col s12 details"
-                        }
-                    >
-                        <ul>
-                            <li>
-                                <SocialLinks />
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                <ResumePDF />
+
             </section>
+
         );
     }
 }
@@ -66,6 +50,6 @@ export default () => (
                 }
             }
         `}
-        render={data => <Contact contact={data.site.siteMetadata.contact} />}
+        render={data => <Resume contact={data.site.siteMetadata.contact} />}
     />
 );
