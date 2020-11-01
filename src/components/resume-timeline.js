@@ -1,17 +1,52 @@
 import React from "react";
 import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
-import pdLogo from '../../static/images/pd_logo.png'
-import bardelLogo from '../../static/images/bardel_logo.png'
-import onAnimationLogo from '../../static/images/on_animation_logo.jpg'
-import animalLogicLogo from '../../static/images/animal_logic_logo.jpg'
-import dreamWorksLogo from '../../static/images/dreamworks_logo.jpg'
-import eaSportsLogo from '../../static/images/ea_sports_logo.jpg'
-import samsungLogo from '../../static/images/samsung_logo.jpg'
-import motoLogo from '../../static/images/motorola_logo.jpg'
-import upennLogo from '../../static/images/upenn_logo.jpg'
-import nitwLogo from '../../static/images/nitw_logo.jpg'
 import "../style/resume-timeline.less";
+import pdLogo from '../../static/images/work_edu/pd_logo.png'
+import bardelLogo from '../../static/images/work_edu/bardel_logo.png'
+import onAnimationLogo from '../../static/images/work_edu/on_animation_logo.jpg'
+import animalLogicLogo from '../../static/images/work_edu/animal_logic_logo.jpg'
+import dreamWorksLogo from '../../static/images/work_edu/dreamworks_logo.jpg'
+import eaSportsLogo from '../../static/images/work_edu/ea_sports_logo.jpg'
+import samsungLogo from '../../static/images/work_edu/samsung_logo.jpg'
+import motoLogo from '../../static/images/work_edu/motorola_logo.jpg'
+import upennLogo from '../../static/images/work_edu/upenn_logo.jpg'
+import nitwLogo from '../../static/images/work_edu/nitw_logo.jpg'
+import languagesLogo from '../../static/images/skills/languages.png'
+import pythonLogo from '../../static/images/skills/python.png'
+import jsLogo from '../../static/images/skills/javascript.svg'
+import cLogo from '../../static/images/skills/clang.svg'
+import cppLogo from '../../static/images/skills/cplusplus.png'
+import goLogo from '../../static/images/skills/golang.svg'
+import cloudLogo from '../../static/images/skills/cloud.png'
+import awsLogo from '../../static/images/skills/aws.png'
+import gcpLogo from '../../static/images/skills/gcp.png'
+import osLogo from '../../static/images/skills/os.png'
+import linuxLogo from '../../static/images/skills/linux.svg'
+import windowsLogo from '../../static/images/skills/windows.png'
+import redhatLogo from '../../static/images/skills/redhat.svg'
+import ubuntuLogo from '../../static/images/skills/ubuntu.png'
+import fedoraLogo from '../../static/images/skills/fedora.png'
+import webFrameWorksLogo from '../../static/images/skills/web_frameworks.png'
+import flaskLogo from '../../static/images/skills/flask.png'
+import reactLogo from '../../static/images/skills/react.png'
+import grpcLogo from '../../static/images/skills/grpc.png'
+import jqueryLogo from '../../static/images/skills/jquery.svg'
+import dbLogo from '../../static/images/skills/db.png'
+import pandasLogo from '../../static/images/skills/pandas.png'
+import mysqlLogo from '../../static/images/skills/mysql.svg'
+import devOpsLogo from '../../static/images/skills/devops.png'
+import dockerLogo from '../../static/images/skills/docker.png'
+import jenkinsLogo from '../../static/images/skills/jenkins.svg'
+import versionControlLogo from '../../static/images/skills/version_control.jpg'
+import gitLogo from '../../static/images/skills/git.svg'
+import githubLogo from '../../static/images/skills/github.png'
+import bitbucketLogo from '../../static/images/skills/bitbucket.jpg'
+import gitlabLogo from '../../static/images/skills/gitlab.jpg'
+import perforceLogo from '../../static/images/skills/perforce.png'
+import productivityLogo from '../../static/images/skills/productivity.jpg'
+import confluenceLogo from '../../static/images/skills/confluence.jpg'
+import jiraLogo from '../../static/images/skills/jira.jpg'
 
 export default function(){
     return (
@@ -44,13 +79,13 @@ export default function(){
                     <h6 className="vertical-timeline-element-title">Senior Pipeline Technical Director</h6>
                     <h7 className="vertical-timeline-element-subtitle">Bardel Entertainment Inc, Vancouver, Canada</h7>
                     <p>
-                     Member of the core Pipeline Team, contributing to the Design and Development of next generation
-                     Software Components in the pipeline, such as custom schema based version control system for
-                     data/assets in the Pipeline.
-                     Adding Tests, Refactoring the legacy code to bring it to certain level of stability with a
-                     CI/CD built around the legacy code using JenkinsCI, Docker, helm and RedHat Openshift
-                     Web apps written in python flask and socketio, example an interface between ShotGun and Production
-                     Pipeline (Render farm submitter with status updates on submission)
+                        Member of the core Pipeline Team, contributing to the Design and Development of next generation
+                        Software Components in the pipeline, such as custom schema based version control system for
+                        data/assets in the Pipeline.
+                        Adding Tests, Refactoring the legacy code to bring it to certain level of stability with a
+                        CI/CD built around the legacy code using JenkinsCI, Docker, helm and RedHat Openshift
+                        Web apps written in python flask and socketio, example an interface between ShotGun and Production
+                        Pipeline (Render farm submitter with status updates on submission)
                     </p>
                 </VerticalTimelineElement>
                 <VerticalTimelineElement
@@ -195,6 +230,118 @@ export default function(){
                 </p>
             </VerticalTimelineElement>            
         </VerticalTimeline>
+        </section>
+        <section id="SkillsPage">
+        <h2 class="titles">Skills</h2>
+        <VerticalTimeline>
+            <VerticalTimelineElement
+                className="vertical-timeline-element--education"
+                contentStyle={{ background: 'rgb(26,49,82)', color: '#ffe' }}
+                contentArrowStyle={{ borderRight: '7px solid  rgb(26,49,82)' }}
+                iconStyle={{ background: 'rgb(26,49,82)', color: '#fff' }}
+                icon={<img alt=""  class="logo-size" src={languagesLogo}></img>}>
+                <h6 className="vertical-timeline-element-title">Programming Languages</h6>
+                <p>
+                    <img alt="python" title="python" class="logo-size" src={pythonLogo}></img>
+                    <img alt="javascript" title="javascript" class="logo-size" src={jsLogo}></img>
+                    <img alt="C" title="C" class="logo-size" src={cLogo}></img>
+                    <img alt="C++" title="C++" class="logo-size" src={cppLogo}></img>
+                    <img alt="Go" title="Go" class="logo-size" src={goLogo}></img>
+                </p>
+            </VerticalTimelineElement>
+            <VerticalTimelineElement
+                className="vertical-timeline-element--education"
+                contentStyle={{ background: 'rgb(26,49,82)', color: '#ffe' }}
+                contentArrowStyle={{ borderRight: '7px solid  rgb(26,49,82)' }}
+                iconStyle={{ background: 'rgb(26,49,82)', color: '#fff' }}
+                icon={<img alt=""  class="logo-size" src={cloudLogo}></img>}>
+                <h6 className="vertical-timeline-element-title">Cloud Platforms</h6>
+                <p>
+                    <img alt="Amazon Web Services=" title="Amazon Web Services=" class="logo-size" src={awsLogo}></img>
+                    <img alt="Google Cloud Platform" title="Google Cloud Platform" class="logo-size" src={gcpLogo}></img>
+                </p>
+            </VerticalTimelineElement>            
+            <VerticalTimelineElement
+                className="vertical-timeline-element--education"
+                contentStyle={{ background: 'rgb(26,49,82)', color: '#ffe' }}
+                contentArrowStyle={{ borderRight: '7px solid  rgb(26,49,82)' }}
+                iconStyle={{ background: 'rgb(26,49,82)', color: '#fff' }}
+                icon={<img alt=""  class="logo-size" src={osLogo}></img>}>
+                <h6 className="vertical-timeline-element-title">Operating Systems</h6>
+                <p>
+                    <img alt="linux" title="linux" class="logo-size" src={linuxLogo}></img>
+                    <img alt="windows" title="windows" class="logo-size" src={windowsLogo}></img>
+                    <img alt="redhat" title="redhat" class="logo-size" src={redhatLogo}></img>
+                    <img alt="ubuntu" title="ubuntu" class="logo-size" src={ubuntuLogo}></img>
+                    <img alt="fedora" title="fedora" class="logo-size" src={fedoraLogo}></img>
+                </p>
+            </VerticalTimelineElement> 
+            <VerticalTimelineElement
+                className="vertical-timeline-element--education"
+                contentStyle={{ background: 'rgb(26,49,82)', color: '#ffe' }}
+                contentArrowStyle={{ borderRight: '7px solid  rgb(26,49,82)' }}
+                iconStyle={{ background: 'rgb(26,49,82)', color: '#fff' }}
+                icon={<img alt="" class="logo-size" src={webFrameWorksLogo}></img>}>
+                <h6 className="vertical-timeline-element-title">Web / Networking</h6>
+                <p>
+                    <img alt="flask" title="flask" class="logo-size" src={flaskLogo}></img>
+                    <img alt="react" title="react" class="logo-size" src={reactLogo}></img>
+                    <img alt="grpc" title="grpc" class="logo-size" src={grpcLogo}></img>
+                    <img alt="jquery" title="jquery" class="logo-size" src={jqueryLogo}></img>
+                </p>
+            </VerticalTimelineElement>
+            <VerticalTimelineElement
+                className="vertical-timeline-element--education"
+                contentStyle={{ background: 'rgb(26,49,82)', color: '#ffe' }}
+                contentArrowStyle={{ borderRight: '7px solid  rgb(26,49,82)' }}
+                iconStyle={{ background: 'rgb(26,49,82)', color: '#fff' }}
+                icon={<img alt="" class="logo-size" src={dbLogo}></img>}>
+                <h6 className="vertical-timeline-element-title">Database / DataScience</h6>
+                <p>
+                    <img alt="mysql" title="mysql" class="logo-size" src={mysqlLogo}></img>
+                    <img alt="pandas" title="pandas" class="logo-size" src={pandasLogo}></img>
+                </p>
+            </VerticalTimelineElement>          
+            <VerticalTimelineElement
+                className="vertical-timeline-element--education"
+                contentStyle={{ background: 'rgb(26,49,82)', color: '#ffe' }}
+                contentArrowStyle={{ borderRight: '7px solid  rgb(26,49,82)' }}
+                iconStyle={{ background: 'rgb(26,49,82)', color: '#fff' }}
+                icon={<img alt="" class="logo-size" src={devOpsLogo}></img>}>
+                <h6 className="vertical-timeline-element-title">DevOps</h6>
+                <p>
+                    <img alt="docker" title="docker" class="logo-size" src={dockerLogo}></img>
+                    <img alt="jenkins" title="jenkins" class="logo-size" src={jenkinsLogo}></img>
+                </p>
+            </VerticalTimelineElement>
+            <VerticalTimelineElement
+                className="vertical-timeline-element--education"
+                contentStyle={{ background: 'rgb(26,49,82)', color: '#ffe' }}
+                contentArrowStyle={{ borderRight: '7px solid  rgb(26,49,82)' }}
+                iconStyle={{ background: 'rgb(26,49,82)', color: '#fff' }}
+                icon={<img alt="" class="logo-size" src={versionControlLogo}></img>}>
+                <h6 className="vertical-timeline-element-title">Version Control</h6>
+                <p>
+                    <img alt="git" title="git" class="logo-size" src={gitLogo}></img>
+                    <img alt="github" title="github" class="logo-size" src={githubLogo}></img>                    
+                    <img alt="bitbucket" title="bitbucket" class="logo-size" src={bitbucketLogo}></img>
+                    <img alt="gitlab" title="gitlab" class="logo-size" src={gitlabLogo}></img>
+                    <img alt="perforce" title="perforce" class="logo-size" src={perforceLogo}></img>                                        
+                </p>
+            </VerticalTimelineElement>  
+            <VerticalTimelineElement
+                className="vertical-timeline-element--education"
+                contentStyle={{ background: 'rgb(26,49,82)', color: '#ffe' }}
+                contentArrowStyle={{ borderRight: '7px solid  rgb(26,49,82)' }}
+                iconStyle={{ background: 'rgb(26,49,82)', color: '#fff' }}
+                icon={<img alt="" class="logo-size" src={productivityLogo}></img>}>
+                <h6 className="vertical-timeline-element-title">Productivity / Tracking</h6>
+                <p>
+                    <img alt="jira" title="jira" class="logo-size" src={jiraLogo}></img>
+                    <img alt="confluence" title="confluence" class="logo-size" src={confluenceLogo}></img>                    
+                </p>
+            </VerticalTimelineElement>                                                                 
+        </VerticalTimeline>        
         </section>
     </div>        
     )
