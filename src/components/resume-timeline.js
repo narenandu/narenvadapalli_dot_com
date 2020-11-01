@@ -21,6 +21,18 @@ import goLogo from '../../static/images/skills/golang.svg'
 import cloudLogo from '../../static/images/skills/cloud.png'
 import awsLogo from '../../static/images/skills/aws.png'
 import gcpLogo from '../../static/images/skills/gcp.png'
+import dccLogo from '../../static/images/skills/dcc.jpg'
+import mayaLogo from '../../static/images/skills/maya.jpg'
+import houdiniLogo from '../../static/images/skills/houdini.jpg'
+import katanaLogo from '../../static/images/skills/katana.png'
+import nukeLogo from '../../static/images/skills/nuke.png'
+import oiioLogo from '../../static/images/skills/oiio.png'
+import pyqtLogo from '../../static/images/skills/pyqt.png'
+import guerillaLogo from '../../static/images/skills/guerilla.png'
+import shotgunLogo from '../../static/images/skills/shotgun.png'
+import photoshopLogo from '../../static/images/skills/photoshop.png'
+import aftereffectsLogo from '../../static/images/skills/aftereffects.png'
+import gimpLogo from '../../static/images/skills/gimp.png'
 import osLogo from '../../static/images/skills/os.png'
 import linuxLogo from '../../static/images/skills/linux.svg'
 import windowsLogo from '../../static/images/skills/windows.png'
@@ -34,9 +46,12 @@ import grpcLogo from '../../static/images/skills/grpc.png'
 import jqueryLogo from '../../static/images/skills/jquery.svg'
 import dbLogo from '../../static/images/skills/db.png'
 import pandasLogo from '../../static/images/skills/pandas.png'
-import mysqlLogo from '../../static/images/skills/mysql.svg'
+import numpyLogo from '../../static/images/skills/numpy.png'
+import matplotlibLogo from '../../static/images/skills/matplotlib.png'
+import mysqlLogo from '../../static/images/skills/mysql.png'
 import devOpsLogo from '../../static/images/skills/devops.png'
 import dockerLogo from '../../static/images/skills/docker.png'
+import openshiftLogo from '../../static/images/skills/openshift.png'
 import jenkinsLogo from '../../static/images/skills/jenkins.svg'
 import versionControlLogo from '../../static/images/skills/version_control.jpg'
 import gitLogo from '../../static/images/skills/git.svg'
@@ -51,6 +66,9 @@ import jiraLogo from '../../static/images/skills/jira.jpg'
 export default function(){
     return (
         <div>
+        <p className="titles">
+            I am a Software Developer who believes in SOLID principles and Test Driven Development (TDD)
+        </p>
         <section id="WorkExperiencePage">
             <h2 class="titles">Work Experience</h2>
             <VerticalTimeline>
@@ -143,7 +161,7 @@ export default function(){
 
                     Worked for Animation in CG Animation features like Mr.Peabody and Sherman as an Animation Technical Director.
                     Typical duties involves Animation pipeline maintenance, upgrading/creating new features in the pipeline,
-                    Writing scripts, Helping out artists in debugging on the production issues. Past projects include 
+                    Writing scripts, Helping out artists in debugging on the production issues. Past projects include
                     DreamWorks Dragons Riders of Berk, the TV series for Cartoon Network (Episodes: 2,4,10 and 12)
                     </p>
                 </VerticalTimelineElement>
@@ -173,8 +191,8 @@ export default function(){
                     <h6 className="vertical-timeline-element-title">Lead Software Engineer</h6>
                     <h7 className="vertical-timeline-element-subtitle">Samsung India Software Operations, Bengaluru, India</h7>
                     <p>
-                    Worked in Embedded software team which develops CDMA mobile applications for USA 
-                    Tier-2 CDMA carriers. Responsible for the development and maintainance of MP3 Player 
+                    Worked in Embedded software team which develops CDMA mobile applications for USA
+                    Tier-2 CDMA carriers. Responsible for the development and maintainance of MP3 Player
                     application front end. Performed several IOTs in messaging and browser modules.
                     </p>
                 </VerticalTimelineElement>
@@ -188,11 +206,11 @@ export default function(){
                     <h6 className="vertical-timeline-element-title">Software Engineer</h6>
                     <h7 className="vertical-timeline-element-subtitle">Motorola India Pvt Ltd, Bengaluru, India</h7>
                     <p>
-                    Responsible for the performance and bug fixing of the BREW PEK module. 
-                    Validation and fixing of all the BREW APIs as per the carrier specific requirements 
+                    Responsible for the performance and bug fixing of the BREW PEK module.
+                    Validation and fixing of all the BREW APIs as per the carrier specific requirements
                     and device data sheet submitted to Qualcomm (CDMA mobile phones).
                     </p>
-                </VerticalTimelineElement>                                 
+                </VerticalTimelineElement>
             </VerticalTimeline>
         </section>
         <section id="EducationPage">
@@ -208,9 +226,9 @@ export default function(){
                 <h6 className="vertical-timeline-element-title">Computer Graphics and Game Technology (MSE)</h6>
                 <h7 className="vertical-timeline-element-subtitle">University of Pennsylvania, Philadelphia, PA, USA</h7>
                 <p>
-                State-of-the-art graphics and animation technologies, as well as interactive media design 
+                State-of-the-art graphics and animation technologies, as well as interactive media design
                 principles, product development methodologies and engineering entrepreneurship
-                The CGGT program prepares students for positions requiring multidisciplinary skills such as 
+                The CGGT program prepares students for positions requiring multidisciplinary skills such as
                 designers, technical animators, technical directors and game programmers
                 </p>
             </VerticalTimelineElement>
@@ -224,11 +242,11 @@ export default function(){
                 <h6 className="vertical-timeline-element-title">Electronics and Communcation Engineering (BTech)</h6>
                 <h7 className="vertical-timeline-element-subtitle">National Institute of Technology, Warangal, India</h7>
                 <p>
-                The ECE Department at NITW has been an international reputation of excellence in teaching, 
-                research and service. With excellent laboratory facilities and dedicated faculty, the department 
+                The ECE Department at NITW has been an international reputation of excellence in teaching,
+                research and service. With excellent laboratory facilities and dedicated faculty, the department
                 of ECE offers broad range of programs includes VLSI design.
                 </p>
-            </VerticalTimelineElement>            
+            </VerticalTimelineElement>
         </VerticalTimeline>
         </section>
         <section id="SkillsPage">
@@ -260,7 +278,28 @@ export default function(){
                     <img alt="Amazon Web Services=" title="Amazon Web Services=" class="logo-size" src={awsLogo}></img>
                     <img alt="Google Cloud Platform" title="Google Cloud Platform" class="logo-size" src={gcpLogo}></img>
                 </p>
-            </VerticalTimelineElement>            
+            </VerticalTimelineElement>
+            <VerticalTimelineElement
+                className="vertical-timeline-element--education"
+                contentStyle={{ background: 'rgb(26,49,82)', color: '#ffe' }}
+                contentArrowStyle={{ borderRight: '7px solid  rgb(26,49,82)' }}
+                iconStyle={{ background: 'rgb(26,49,82)', color: '#fff' }}
+                icon={<img alt=""  class="logo-size" src={dccLogo}></img>}>
+                <h6 className="vertical-timeline-element-title">Digital Content Creation (DCC)</h6>
+                <p>
+                    <img alt="maya" title="maya" class="logo-size" src={mayaLogo}></img>
+                    <img alt="houdini" title="houdini" class="logo-size" src={houdiniLogo}></img>
+                    <img alt="katana" title="katana" class="logo-size" src={katanaLogo}></img>
+                    <img alt="guerilla" title="guerilla" class="logo-size" src={guerillaLogo}></img>
+                    <img alt="nuke" title="nuke" class="logo-size" src={nukeLogo}></img>
+                    <img alt="pyqt" title="pyqt" class="logo-size" src={pyqtLogo}></img>
+                    <img alt="OpenImageIO" title="openImageIO" class="logo-size" src={oiioLogo}></img>
+                    <img alt="shotgun" title="shotgun" class="logo-size" src={shotgunLogo}></img>
+                    <img alt="photoshop" title="photoshop" class="logo-size" src={photoshopLogo}></img>
+                    <img alt="aftereffects" title="aftereffects" class="logo-size" src={aftereffectsLogo}></img>
+                    <img alt="gimp" title="gimp" class="logo-size" src={gimpLogo}></img>
+                </p>
+            </VerticalTimelineElement>
             <VerticalTimelineElement
                 className="vertical-timeline-element--education"
                 contentStyle={{ background: 'rgb(26,49,82)', color: '#ffe' }}
@@ -275,7 +314,7 @@ export default function(){
                     <img alt="ubuntu" title="ubuntu" class="logo-size" src={ubuntuLogo}></img>
                     <img alt="fedora" title="fedora" class="logo-size" src={fedoraLogo}></img>
                 </p>
-            </VerticalTimelineElement> 
+            </VerticalTimelineElement>
             <VerticalTimelineElement
                 className="vertical-timeline-element--education"
                 contentStyle={{ background: 'rgb(26,49,82)', color: '#ffe' }}
@@ -300,8 +339,10 @@ export default function(){
                 <p>
                     <img alt="mysql" title="mysql" class="logo-size" src={mysqlLogo}></img>
                     <img alt="pandas" title="pandas" class="logo-size" src={pandasLogo}></img>
+                    <img alt="numpy" title="numpy" class="logo-size" src={numpyLogo}></img>
+                    <img alt="matplotlib" title="matplotlib" class="logo-size" src={matplotlibLogo}></img>
                 </p>
-            </VerticalTimelineElement>          
+            </VerticalTimelineElement>
             <VerticalTimelineElement
                 className="vertical-timeline-element--education"
                 contentStyle={{ background: 'rgb(26,49,82)', color: '#ffe' }}
@@ -311,6 +352,7 @@ export default function(){
                 <h6 className="vertical-timeline-element-title">DevOps</h6>
                 <p>
                     <img alt="docker" title="docker" class="logo-size" src={dockerLogo}></img>
+                    <img alt="openshift" title="openshift" class="logo-size" src={openshiftLogo}></img>
                     <img alt="jenkins" title="jenkins" class="logo-size" src={jenkinsLogo}></img>
                 </p>
             </VerticalTimelineElement>
@@ -323,12 +365,12 @@ export default function(){
                 <h6 className="vertical-timeline-element-title">Version Control</h6>
                 <p>
                     <img alt="git" title="git" class="logo-size" src={gitLogo}></img>
-                    <img alt="github" title="github" class="logo-size" src={githubLogo}></img>                    
+                    <img alt="github" title="github" class="logo-size" src={githubLogo}></img>
                     <img alt="bitbucket" title="bitbucket" class="logo-size" src={bitbucketLogo}></img>
                     <img alt="gitlab" title="gitlab" class="logo-size" src={gitlabLogo}></img>
-                    <img alt="perforce" title="perforce" class="logo-size" src={perforceLogo}></img>                                        
+                    <img alt="perforce" title="perforce" class="logo-size" src={perforceLogo}></img>
                 </p>
-            </VerticalTimelineElement>  
+            </VerticalTimelineElement>
             <VerticalTimelineElement
                 className="vertical-timeline-element--education"
                 contentStyle={{ background: 'rgb(26,49,82)', color: '#ffe' }}
@@ -338,11 +380,11 @@ export default function(){
                 <h6 className="vertical-timeline-element-title">Productivity / Tracking</h6>
                 <p>
                     <img alt="jira" title="jira" class="logo-size" src={jiraLogo}></img>
-                    <img alt="confluence" title="confluence" class="logo-size" src={confluenceLogo}></img>                    
+                    <img alt="confluence" title="confluence" class="logo-size" src={confluenceLogo}></img>
                 </p>
-            </VerticalTimelineElement>                                                                 
-        </VerticalTimeline>        
+            </VerticalTimelineElement>
+        </VerticalTimeline>
         </section>
-    </div>        
+    </div>
     )
 }
