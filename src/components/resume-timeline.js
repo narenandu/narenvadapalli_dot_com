@@ -44,7 +44,7 @@ import flaskLogo from '../../static/images/skills/flask.png'
 import reactLogo from '../../static/images/skills/react.png'
 import grpcLogo from '../../static/images/skills/grpc.png'
 import jqueryLogo from '../../static/images/skills/jquery.svg'
-import dbLogo from '../../static/images/skills/db.png'
+import databaseLogo from '../../static/images/skills/db.png'
 import pandasLogo from '../../static/images/skills/pandas.png'
 import numpyLogo from '../../static/images/skills/numpy.png'
 import matplotlibLogo from '../../static/images/skills/matplotlib.png'
@@ -334,7 +334,7 @@ export default function(){
                 contentStyle={{ background: 'rgb(26,49,82)', color: '#ffe' }}
                 contentArrowStyle={{ borderRight: '7px solid  rgb(26,49,82)' }}
                 iconStyle={{ background: 'rgb(26,49,82)', color: '#fff' }}
-                icon={<img alt="" class="logo-size" src={dbLogo}></img>}>
+                icon={<img alt="" class="logo-size" src={databaseLogo}></img>}>
                 <h6 className="vertical-timeline-element-title">Database / DataScience</h6>
                 <p>
                     <img alt="mysql" title="mysql" class="logo-size" src={mysqlLogo}></img>
