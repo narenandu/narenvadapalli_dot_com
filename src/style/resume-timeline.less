@@ -1,0 +1,60 @@
+#WorkExperiencePage,#EducationPage{
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    /* scroll-snap-align: center;
+  scroll-snap-stop: always; */
+}
+
+.titles {
+    padding: 50px;
+    align-content: center;
+    font-size: 50px;
+}
+
+.vertical-timeline::before {
+    background: #013535 !important;
+    opacity: 0.4;
+    border-radius: 50%;
+}
+/* Icon container's border */
+.vertical-timeline-element-icon {
+    box-shadow: 0 0 0 4px rgb(41, 38, 38), inset 0 2px 0 rgba(0, 0, 0, 0.08),
+        0 3px 0 4px rgba(0, 0, 0, 0.05);
+}
+.vertical-timeline-element {
+    font-family: "Maven Pro", "Work Sans", "Droid Sans";
+    font-size: 20px;
+}
+.vertical-timeline--two-columns .vertical-timeline-element-icon .flag-size {
+    width: 40px;
+    height: 40px;
+}
+
+@media only screen and (min-width: 1170px) {
+    .vertical-timeline--two-columns .vertical-timeline-element-icon .flag-size {
+        width: 60px;
+        height: 60px;
+    }
+    .vertical-timeline--two-columns .vertical-timeline-element-icon .logo-size {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+    }
+}
+
+@media only screen and (max-width: 1169px) {
+    .vertical-timeline--two-columns .vertical-timeline-element-icon .logo-size {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+}
+
+@media only screen and (max-width: 812px) {
+    .vertical-timeline {
+        font-size: 10px !important;
+    }
+}

@@ -136,6 +136,14 @@ module.exports = {
                 trackingId:
                     process.env.GATSBY_GOOGLE_ANALYTICS_TRACKING_ID || "none"
             }
+        },
+        {
+            resolve: 'gatsby-plugin-web-font-loader',
+            options: {
+                    google: {
+                    families: ['Ubuntu', 'Roboto', 'Maven Pro', 'Droid Sans', 'Droid Serif']
+                }
+            }
         }
     ]
 };
