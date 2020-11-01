@@ -1,35 +1,28 @@
 import React from "react";
 import SectionTitle from "./sectiontitle";
 import { StaticQuery, graphql } from "gatsby";
-import ResumePDF from "./resume-pdf";
+import SocialLinks from "./sociallinks";
+import ResumeTimeLine from "./resume-timeline";
 
-class Resume extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            submitDisabled: false
-        };
-
-        this.showContactForm = false;
-
-        if (this.props.contact.api_url === "") {
-            this.showContactForm = false;
-        }
-    }
-
-    render() {
-        return (
-            <section id="resume" className="container">
-                <div className="section-title">
-                    <SectionTitle title="RESUME" />
+const Resume = function() {
+    return (
+        <section id="contact" className="container">
+            <div className="section-title">
+                <SectionTitle title="RESUME" />
+            </div>
+            <ResumeTimeLine />
+            <div className={"row no-form"} >
+                <div className={"col s12 details"} >
+                    <ul>
+                        <li>
+                            <SocialLinks />
+                        </li>
+                    </ul>
                 </div>
-                <ResumePDF />
+            </div>
 
-            </section>
-
-        );
-    }
+        </section>
+    );
 }
 
 export default () => (
@@ -49,6 +42,6 @@ export default () => (
                 }
             }
         `}
-        render={data => <Resume contact={data.site.siteMetadata.contact} />}
+        render={data => <Resume />}
     />
 );
