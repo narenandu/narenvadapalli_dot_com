@@ -42,3 +42,21 @@ https://branch-name.d1m7bkiki6tdw1.amplifyapp.com
 
 This step enables us to connect any custom domain to the deployment process. This step will take time as it has to issue SSL certificates and then verify the ownership, finally propagates the DNS records
 ![](./6_adding_custom_domain.png)
+
+## Domain Activation
+
+If the SSL certificate issued successfully and the ownership is verified, Domain will be activated
+
+![](./7_domain_activation_finished.png)
+
+## Potential Issue
+
+SSL Configuration step could just be not moving forward and stuck for more than 1 hour
+
+![](./8_potential_blockage_ssl_configuration.png)
+
+### Fix
+
+Just delete the custom domain and restart the process
+
+![](./9_fix_ssl_config_block.png)
