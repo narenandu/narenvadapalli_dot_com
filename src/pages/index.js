@@ -6,6 +6,7 @@ import SocialLinks from "../components/sociallinks";
 import PortfolioList from "../components/list-portfolio";
 import BlogList from "../components/list-blog";
 import Contact from "../components/contact";
+import Resume from "../components/resume";
 import "../style/wall.less";
 
 class IndexPage extends React.Component {
@@ -134,13 +135,13 @@ class IndexPage extends React.Component {
                         </p>
                         <div>
                             <p>
-                                <a href="#blog" className="btn">
+                                <a href="https://www.narenvadapalli.com/blog" className="btn">
                                     Blog
                                 </a>
                             </p>
                             <p>
-                                <a href="#portfolio" className="btn">
-                                    Portfolio
+                                <a href="https://www.narenvadapalli.com/resume" className="btn">
+                                    Resume
                                 </a>
                             </p>
                         </div>
@@ -151,6 +152,7 @@ class IndexPage extends React.Component {
                 </div>
                 <PortfolioList />
                 <BlogList />
+                <Resume />
                 <Contact />
             </Layout>
         );
