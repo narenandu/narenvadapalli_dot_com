@@ -34,7 +34,7 @@ import photoshopLogo from '../../static/images/skills/photoshop.png'
 import aftereffectsLogo from '../../static/images/skills/aftereffects.png'
 import gimpLogo from '../../static/images/skills/gimp.png'
 import osLogo from '../../static/images/skills/os.png'
-import linuxLogo from '../../static/images/skills/linux.svg'
+import linuxLogo from '../../static/images/skills/linux.png'
 import windowsLogo from '../../static/images/skills/windows.png'
 import redhatLogo from '../../static/images/skills/redhat.svg'
 import ubuntuLogo from '../../static/images/skills/ubuntu.png'
@@ -78,7 +78,7 @@ export default function(){
                     contentArrowStyle={{ borderRight: '7px solid  rgb(26,49,82)' }}
                     date="2020 (Feb) - Present"
                     iconStyle={{ background: 'rgb(26,49,82)', color: '#fff' }}
-                    icon={<img alt=""  class="logo-size" src={pdLogo}></img>}>
+                    icon={<img alt="Parallel Domain" title="Parallel Domain" class="logo-size" src={pdLogo}></img>}>
                     <h6 className="vertical-timeline-element-title">Software Engineer</h6>
                     <h7 className="vertical-timeline-element-subtitle">Parallel Domain, Vancouver, Canada</h7>
                     <p>
@@ -93,7 +93,7 @@ export default function(){
                     contentArrowStyle={{ borderRight: '7px solid  rgb(26,49,82)' }}
                     date="2018 (Jul) - 2020 (Feb)"
                     iconStyle={{ background: 'rgb(26,49,82)', color: '#fff' }}
-                    icon={<img alt=""  class="logo-size" src={bardelLogo}></img>}>
+                    icon={<img alt="Bardel Entertainment Inc" title="Bardel Entertainment Inc" class="logo-size" src={bardelLogo}></img>}>
                     <h6 className="vertical-timeline-element-title">Senior Pipeline Technical Director</h6>
                     <h7 className="vertical-timeline-element-subtitle">Bardel Entertainment Inc, Vancouver, Canada</h7>
                     <p>
@@ -112,7 +112,7 @@ export default function(){
                     contentArrowStyle={{ borderRight: '7px solid  rgb(26,49,82)' }}
                     date="2017 (Oct) - 2018 (Jun)"
                     iconStyle={{ background: 'rgb(26,49,82)', color: '#fff' }}
-                    icon={<img alt=""  class="logo-size" src={onAnimationLogo}></img>}>
+                    icon={<img alt="On Animation Studios" title="On Animation Studios" class="logo-size" src={onAnimationLogo}></img>}>
                     <h6 className="vertical-timeline-element-title">Chief Pipeline Technical Director</h6>
                     <h7 className="vertical-timeline-element-subtitle">On Animation Studios, Montreal, Canada</h7>
                     <p>
@@ -131,7 +131,7 @@ export default function(){
                     contentArrowStyle={{ borderRight: '7px solid  rgb(26,49,82)' }}
                     date="2016 (Jan) - 2017 (Jul)"
                     iconStyle={{ background: 'rgb(26,49,82)', color: '#fff' }}
-                    icon={<img alt=""  class="logo-size" src={animalLogicLogo}></img>}>
+                    icon={<img alt="Animal Logic" title="Animal Logic" class="logo-size" src={animalLogicLogo}></img>}>
                     <h6 className="vertical-timeline-element-title">Pipeline Technical Director for Lighting</h6>
                     <h7 className="vertical-timeline-element-subtitle">Animal Logic, Sydney, Australia</h7>
                     <p>
@@ -150,7 +150,7 @@ export default function(){
                     contentArrowStyle={{ borderRight: '7px solid  rgb(26,49,82)' }}
                     date="2012 (Feb) - 2015 (Dec)"
                     iconStyle={{ background: 'rgb(26,49,82)', color: '#fff' }}
-                    icon={<img alt=""  class="logo-size" src={dreamWorksLogo}></img>}>
+                    icon={<img alt="DreamWorks Animations" title="DreamWorks Animations" class="logo-size" src={dreamWorksLogo}></img>}>
                     <h6 className="vertical-timeline-element-title">Department Technical Director</h6>
                     <h7 className="vertical-timeline-element-subtitle">DreamWorks Animations, Bengaluru, India</h7>
                     <p>
@@ -171,7 +171,7 @@ export default function(){
                     contentArrowStyle={{ borderRight: '7px solid  rgb(26,49,82)' }}
                     date="2011 (May) - 2011 (Aug)"
                     iconStyle={{ background: 'rgb(26,49,82)', color: '#fff' }}
-                    icon={<img alt=""  class="logo-size" src={eaSportsLogo}></img>}>
+                    icon={<img alt="EA Sports" title="EA Sports" class="logo-size" src={eaSportsLogo}></img>}>
                     <h6 className="vertical-timeline-element-title">CG Software Engineer - Intern</h6>
                     <h7 className="vertical-timeline-element-subtitle">EA Sports Tiburon, Orlando, FL, USA</h7>
                     <p>
@@ -187,7 +187,7 @@ export default function(){
                     contentArrowStyle={{ borderRight: '7px solid  rgb(26,49,82)' }}
                     date="2007 (Sep) - 2010 (Jul)"
                     iconStyle={{ background: 'rgb(26,49,82)', color: '#fff' }}
-                    icon={<img alt=""  class="logo-size" src={samsungLogo}></img>}>
+                    icon={<img alt="Samsung" title="Samsung" class="logo-size" src={samsungLogo}></img>}>
                     <h6 className="vertical-timeline-element-title">Lead Software Engineer</h6>
                     <h7 className="vertical-timeline-element-subtitle">Samsung India Software Operations, Bengaluru, India</h7>
                     <p>
@@ -202,7 +202,7 @@ export default function(){
                     contentArrowStyle={{ borderRight: '7px solid  rgb(26,49,82)' }}
                     date="2006 (May) - 2007 (Sep)"
                     iconStyle={{ background: 'rgb(26,49,82)', color: '#fff' }}
-                    icon={<img alt=""  class="logo-size" src={motoLogo}></img>}>
+                    icon={<img alt="Motorola" title="Motorola" class="logo-size" src={motoLogo}></img>}>
                     <h6 className="vertical-timeline-element-title">Software Engineer</h6>
                     <h7 className="vertical-timeline-element-subtitle">Motorola India Pvt Ltd, Bengaluru, India</h7>
                     <p>
@@ -222,7 +222,7 @@ export default function(){
                 contentArrowStyle={{ borderRight: '7px solid  rgb(26,49,82)' }}
                 date="2010 (Sep) - 2011 (Dec)"
                 iconStyle={{ background: 'rgb(26,49,82)', color: '#fff' }}
-                icon={<img alt=""  class="logo-size" src={upennLogo}></img>}>
+                icon={<img alt="University of Pennsylvania" title="University of Pennsylvania" class="logo-size" src={upennLogo}></img>}>
                 <h6 className="vertical-timeline-element-title">Computer Graphics and Game Technology (MSE)</h6>
                 <h7 className="vertical-timeline-element-subtitle">University of Pennsylvania, Philadelphia, PA, USA</h7>
                 <p>
@@ -238,7 +238,7 @@ export default function(){
                 contentArrowStyle={{ borderRight: '7px solid  rgb(26,49,82)' }}
                 date="2002 (Sep) - 2006 (May)"
                 iconStyle={{ background: 'rgb(26,49,82)', color: '#fff' }}
-                icon={<img alt=""  class="logo-size" src={nitwLogo}></img>}>
+                icon={<img alt="NIT Warangal" title="NIT Warangal" class="logo-size" src={nitwLogo}></img>}>
                 <h6 className="vertical-timeline-element-title">Electronics and Communcation Engineering (BTech)</h6>
                 <h7 className="vertical-timeline-element-subtitle">National Institute of Technology, Warangal, India</h7>
                 <p>
