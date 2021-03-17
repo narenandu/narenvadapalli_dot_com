@@ -135,12 +135,12 @@ class IndexPage extends React.Component {
                         </p>
                         <div>
                             <p>
-                                <a href="https://www.narenvadapalli.com/blog" className="btn">
+                                <a href="/blog" className="btn">
                                     Blog
                                 </a>
                             </p>
                             <p>
-                                <a href="https://www.narenvadapalli.com/resume" className="btn">
+                                <a href="/resume" className="btn">
                                     Resume
                                 </a>
                             </p>
