@@ -86,7 +86,7 @@ yarn add v1.22.4
 
 #### Configure minikube docker local environment
 
-Run the following commadn to set hte local configuration for making the development iteration easier by using the local docker images.
+Run the following command to set the local configuration for making the development iteration easier by using the local docker images.
 
 **NOTE**
 This stays local to your powershell terminal in which we run the following command
@@ -157,9 +157,8 @@ test-react-app   latest    e81a494ead2b   About a minute ago   21.1MB
 
 A `deployment` and `service` resources are required for deploying the react app on to the kubernetes cluster. We can combine both specifications in to single `yaml` file by separating them with `---`
 
--   Observe the imagePullPolicy attribute marked as Never indicating that don’t look at docker registry for pulling the image called pd-dashboard
-
--   Also we will be using the simplest service called NodePort to map the node’s port in k8s cluster to applications port
+-   Observe the `imagePullPolicy` attribute marked as Never indicating that don’t look at docker registry for pulling the `image` called `test-react-app`
+-   Also we will be using the simplest `service` called `NodePort` to map the node’s port in kubernetes cluster to applications port
 
 ![](./deployment_yaml.png)
 
@@ -218,8 +217,8 @@ Sample Output
 
 ```
 ❯ kubectl apply -f .\deployment.yaml
-deployment.apps/pd-dashboard created
-service/pd-dashboard created
+deployment.apps/test-react-app created
+service/test-react-app created
 ```
 
 ##### Check the pods running
