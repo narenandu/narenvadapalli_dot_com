@@ -29,7 +29,7 @@ Calculating upgrade... Done
 After this operation, 0 B of additional disk space will be used.
 Do you want to continue? [Y/n] y
 Setting up postfix (3.5.6-1) ...
-setting myhostname=naren-PC.. in /etc/postfix
+setting myhostname=my-PC.. in /etc/postfix
 
 Postfix (main.cf) is now set up with the changes above.  If you need to make
 changes, edit /etc/postfix/main.cf (and others) as needed.  To view Postfix
@@ -38,7 +38,7 @@ configuration values, see postconf(1).
 After modifying main.cf, be sure to run 'systemctl reload postfix'.
 
 Running newaliases
-newaliases: warning: valid_hostname: misplaced delimiter: naren-PC..
+newaliases: warning: valid_hostname: misplaced delimiter: my-PC..
 newaliases: fatal: file /etc/postfix/main.cf: parameter myhostname: bad parameter value: my-PC..
 dpkg: error processing package postfix (--configure):
  installed postfix package post-installation script subprocess returned error exit status 75
