@@ -101,22 +101,30 @@ export default function() {
                         }
                     >
                         <h6 className="vertical-timeline-element-title">
-                            Software Engineer
+                            Senior Software Engineer
                         </h6>
                         <h7 className="vertical-timeline-element-subtitle">
                             Parallel Domain, Vancouver, Canada
                         </h7>
                         <p>
-                            Python APIs for core modules used in the production
-                            workflows. Building Data Pipeline tools like dataset
-                            converters. Creating internal Web Applications
-                            written in React/Vue as Front end and Flask as
-                            backend. Devops work including setting up CI/CD
-                            pipelines on JenkinsCI and responsible for
-                            deployment of the authored full stack app on
-                            kubernetes production cluster using docker/helm.
-                            Crafting all the components needed for running Argo
-                            container native workflows for kubernetes.
+                            Full stack web app development using Vue/React as
+                            the frontend, with tailwind CSS for styling/theming
+                            and Python flask as backend. Building data
+                            Pipeline(s) around different individual sub
+                            workflows that act as a connecting tissue between
+                            the stream of data from end to end. Writing core
+                            python modules/APIs around the native dataset to be
+                            used as building blocks for different modules/data
+                            converters for customers. Devops work including
+                            setting up CI/CD pipelines on JenkinsCI and
+                            responsible for deployment of the authored full
+                            stack app on kubernetes production cluster using
+                            docker/helm. Crafting all the components needed for
+                            running Argo container native workflows for
+                            kubernetes. Identifying the pain points and
+                            bottlenecks in the Pipeline and optimizing/fixing
+                            them by developing/refactoring the existing code
+                            infrastructure
                         </p>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
