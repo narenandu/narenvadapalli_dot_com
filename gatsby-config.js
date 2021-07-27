@@ -138,10 +138,16 @@ module.exports = {
             }
         },
         {
-            resolve: 'gatsby-plugin-web-font-loader',
+            resolve: "gatsby-plugin-web-font-loader",
             options: {
-                    google: {
-                    families: ['Ubuntu', 'Roboto', 'Maven Pro', 'Droid Sans', 'Droid Serif']
+                google: {
+                    families: [
+                        "Ubuntu",
+                        "Roboto",
+                        "Maven Pro",
+                        "Droid Sans",
+                        "Droid Serif"
+                    ]
                 }
             }
         }

@@ -20,7 +20,7 @@ image: ./image.jpg
 
 ## Demo Reel (Oct 2011)
 
-`youtube:P3CPDXkTTao`
+`youtube: https://www.youtube.com/watch?v=P3CPDXkTTao`
 
 ---
 
@@ -34,7 +34,7 @@ CIS-660 course, Advanced Topics in Computer Graphics and Animation
 
 Autodesk Maya Plug-in which enables variety of methods for procedurally generating a city
 
-`youtube:l8vMFpTYzAk`
+`youtube: https://www.youtube.com/watch?v=l8vMFpTYzAk`
 
 #### Physically Based Animation
 
@@ -46,25 +46,25 @@ This is a complete collection of the assignments
 -   Smoke simulation
 -   Rigid bodies
 
-`youtube:SzqkQPm4n7E`
+`youtube: https://www.youtube.com/watch?v=SzqkQPm4n7E`
 
 ##### DynaMocap
 
 Project on making static Motion Capture to react to dynamic environment
 
-`youtube:zSrEYbqYXnQ`
+`youtube: https://www.youtube.com/watch?v=zSrEYbqYXnQ`
 
 ##### Smoke Simulation
 
 Smoke simulation using a MAC Grid method as specified by Fluid Simulation SIGGRAPH 2007 notes by Robert Bridson and Matthias Muller-Fischer
 
-`youtube:aaTioQtl1Bo`
+`youtube: https://www.youtube.com/watch?v=aaTioQtl1Bo`
 
 ##### Jello Cube Animation
 
 Jello Cube simulation using mass spring damper model
 
-`youtube:mZJAo9SkH2U`
+`youtube: https://www.youtube.com/watch?v=mZJAo9SkH2U`
 
 ##### Volumetric Rendering
 
@@ -99,18 +99,18 @@ Volumetric Renderer was created for rendering out the clouds with multiple light
 
 Art Direction, UI Art, Models, Textures, Animations
 
-`youtube:qwz4z8HUp_M`
+`youtube: https://www.youtube.com/watch?v=qwz4z8HUp_M`
 
 ##### Reconstructed Marble Madness
 
 Reconstructed the Arcade "Marble Madness" game in unity3D
 
-`youtube:5K2QbkEi4co`
+`youtube: https://www.youtube.com/watch?v=5K2QbkEi4co`
 
 ##### Reconstructed Marble Madness
 
 Reconstructed the Atari Breakout game in unity3D. Added the 3D version too
-`youtube:W3Ww0T0RZUo`
+`youtube: https://www.youtube.com/watch?v=W3Ww0T0RZUo`
 
 ---
 
@@ -183,23 +183,23 @@ Reconstructed the Atari Breakout game in unity3D. Added the 3D version too
 #### Only 3D Model of Barrister Parvatheesam
 
 This is the only 3D model available in the world for this character. He is a character described in one of our text books back in school (in INDIA). I always wanted to create his 3D model and here it is :)
-`youtube:UNv_jHoaUc8`
+`youtube: https://www.youtube.com/watch?v=UNv_jHoaUc8`
 
 #### Crustacean modeling: Crab
 
 3D model of the crab was created as a part of the exoskeleton project (3D modeling course)
-`youtube:_0sX_QrDxg0`
+`youtube: https://www.youtube.com/watch?v=_0sX_QrDxg0`
 
 #### Coffee Mug
 
 3D model of the Coffee mug from our Graduate Student Center (UPenn) was created during my spare time just out of curiousity
-`youtube:OrgUtgD2JKk`
+`youtube: https://www.youtube.com/watch?v=OrgUtgD2JKk`
 
 #### Old Lantern (my first ever 3d model)
 
 How can I forget my first 3D model ever :) ... it is this rustic lantern
 
-`youtube:phgMH_kQtrc`
+`youtube: https://www.youtube.com/watch?v=phgMH_kQtrc`
 
 ---
 
@@ -214,13 +214,13 @@ The short film which I loved making. I used real materials, stop motion, Adobe P
 
 ##### [Behind the scenes](https://www.narenvadapalli.com/blog/making-of-tree-story/)
 
-`youtube:Dxs_xPKdr6E`
+`youtube: https://www.youtube.com/watch?v=Dxs_xPKdr6E`
 
 #### Never Give Up
 
 To illustrate any 4 out of 8 Laban actions, this short animation was made. The actions involved were float, thrust, wring and slash
 
-`youtube:HiKGx57oQIc`
+`youtube: https://www.youtube.com/watch?v=HiKGx57oQIc`
 
 ---
 
@@ -254,6 +254,6 @@ To illustrate any 4 out of 8 Laban actions, this short animation was made. The a
 
 Story, Cinematography, Direction, Editing for this video :D
 
-`youtube:kbMGI8ieUEw`
+`youtube: https://www.youtube.com/watch?v=kbMGI8ieUEw`
 
 ---

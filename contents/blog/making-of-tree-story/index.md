@@ -13,7 +13,7 @@ description: Behind the scenes of the Animated Short "Tree Story"
 
 ## Tree Story: Animated Short
 
-`youtube:Dxs_xPKdr6E`
+`youtube: https://www.youtube.com/watch?v=Dxs_xPKdr6E`
 
 ## StoryBoard
 
@@ -125,4 +125,4 @@ Previous materials were used just to show that the tree products are increasing 
 
 ## Final Composition
 
-`youtube:Dxs_xPKdr6E`
+`youtube: https://www.youtube.com/watch?v=Dxs_xPKdr6E`

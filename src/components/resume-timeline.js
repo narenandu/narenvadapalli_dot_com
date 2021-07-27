@@ -201,7 +201,7 @@ export default function() {
                             On Animation Studios, Montreal, Canada
                         </h7>
                         <p>
-                            Supervising the Pipeline Team and Render/Data
+                            Supervised the Pipeline Team and Render/Data
                             Wrangling team at the Studio. Overseeing the
                             Pipeline needs across all the departments in the
                             studio. Developing the Core Pipeline Modules to be
@@ -245,18 +245,14 @@ export default function() {
                             Animal Logic, Sydney, Australia
                         </h7>
                         <p>
-                            Supervising the Pipeline Team and Render/Data
-                            Wrangling team at the Studio. Overseeing the
-                            Pipeline needs across all the departments in the
-                            studio. Developing the Core Pipeline Modules to be
-                            used across the studio. Front end departments
-                            (Previz/Layout/Animation) Toolchain development.
-                            Pipeline development from scratch for FX department.
-                            Pipeline development for Comp and Lighting
-                            departments. Developed Batch Rendering system using
-                            Guerilla Renderer with Data analytics in place for
-                            better prediction of rendering times and also for
-                            future estimation.
+                            Pipeline to report the render statistics which in
+                            turn helped in estimation and optimization of shots.
+                            Developed tools for the Lighting department which
+                            helped in the efficiency of Artist's workflow.
+                            Debugging the Lighting Pipeline issues and fixing
+                            them. Pipeline for automation of projecting live
+                            action plates on to the lidar geo and the
+                            imagePlanes for Peter Rabbit VFX feature.
                         </p>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
