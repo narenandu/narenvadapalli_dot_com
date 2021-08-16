@@ -13,6 +13,30 @@ npm install
 gatsby develop   # this will spin up the webpage at 8080 by default
 ```
 
+## AWS Amplify Build Settings
+[documentation](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/deploying-to-aws-amplify/)
+
+Go to `App Settings: Build Settings` in the AWS Amplify Console
+```
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm install
+    build:
+      commands:
+        - npm run build
+  artifacts:
+    baseDirectory: public
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+```
+
+
 ### Configuring
 
 Almost all features of this starter are editable. In order to personalize, open the `gatsby-config.js` file and start editing the below part.
