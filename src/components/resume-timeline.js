@@ -158,7 +158,7 @@ export default function() {
                         contentArrowStyle={{
                             borderRight: "7px solid  rgb(26,49,82)"
                         }}
-                        date="2020 (Feb) - Present"
+                        date="2020 (Feb) - 2021 (Aug)"
                         iconStyle={{
                             background: "rgb(26,49,82)",
                             color: "#fff"
