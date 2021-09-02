@@ -5,6 +5,8 @@ import {
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import "../style/resume-timeline.less";
+import spireAnimationLogo from "../../static/images/work_edu/spire_animation_logo.jpg";
+import skynetLogo from "../../static/images/work_edu/skynet_tech_ltd_logo.jpg";
 import pdLogo from "../../static/images/work_edu/pd_logo.png";
 import bardelLogo from "../../static/images/work_edu/bardel_logo.png";
 import onAnimationLogo from "../../static/images/work_edu/on_animation_logo.jpg";
@@ -77,6 +79,76 @@ export default function() {
             <section id="WorkExperiencePage">
                 <h2 class="titles">Work Experience</h2>
                 <VerticalTimeline>
+                    <VerticalTimelineElement
+                        className="vertical-timeline-element--work"
+                        contentStyle={{
+                            background: "rgb(26,49,82)",
+                            color: "#ffe"
+                        }}
+                        contentArrowStyle={{
+                            borderRight: "7px solid  rgb(26,49,82)"
+                        }}
+                        date="2021 (Jul) - Present"
+                        iconStyle={{
+                            background: "rgb(26,49,82)",
+                            color: "#fff"
+                        }}
+                        icon={
+                            <img
+                                alt="Spire Animation Studios Inc."
+                                title="Spire Animation Studios Inc."
+                                class="logo-size"
+                                src={spireAnimationLogo}
+                            ></img>
+                        }
+                    >
+                        <h6 className="vertical-timeline-element-title">
+                            Senior Pipeline Software Engineer - Consultant
+                        </h6>
+                        <h7 className="vertical-timeline-element-subtitle">
+                            Spire Animation Studios Inc.
+                        </h7>
+                        <p>
+                            Developing the next generation portable and scalable Pipeline at the
+                            studio that enables the content generation seamlessly and in an efficient
+                            manner. Working as a fulltime contractor for the studio.
+                        </p>
+                    </VerticalTimelineElement>
+                    <VerticalTimelineElement
+                        className="vertical-timeline-element--work"
+                        contentStyle={{
+                            background: "rgb(26,49,82)",
+                            color: "#ffe"
+                        }}
+                        contentArrowStyle={{
+                            borderRight: "7px solid  rgb(26,49,82)"
+                        }}
+                        date="2021 (Jul) - Present"
+                        iconStyle={{
+                            background: "rgb(26,49,82)",
+                            color: "#fff"
+                        }}
+                        icon={
+                            <img
+                                alt="Skynet Technology Ltd"
+                                title="Skynet Technology Ltd"
+                                class="logo-size"
+                                src={skynetLogo}
+                            ></img>
+                        }
+                    >
+                        <h6 className="vertical-timeline-element-title">
+                            Founder / Director
+                        </h6>
+                        <h7 className="vertical-timeline-element-subtitle">
+                            Skynet Technology Ltd, Surrey, Canada
+                        </h7>
+                        <p>
+                            Software Consulting/Contract services with an expertise in Animation/VFX, Automation, Cloud, DevOps, Python, Full-Stack Development
+                            TL;DR Have an idea and don't know how to build software for it, just reach out:
+                            <a href="https://www.skynettechltd.com/services">skynet_technology_ltd_website</a>
+                        </p>
+                    </VerticalTimelineElement>
                     <VerticalTimelineElement
                         className="vertical-timeline-element--work"
                         contentStyle={{
