@@ -7,14 +7,14 @@ banner: ./banner.jpg
 description: Instructions on customizing the terminal in powershell with oh-my-posh and winget
 ---
 
-# Motivation
+## Motivation
 Default terminal in a powershell looks like the following and this blog helps in making the terminal look fancy with features
 
-## Before
+### Before
 ![](./before.jpg)
 
 
-## After
+### After
 ![](powershell_terminal_customized.jpg)
 
 # Nice to have
@@ -23,7 +23,7 @@ Good to have the Windows Terminal (or Preview) app installed from Windows app st
 
 # Steps
 
-## Install Nerdfonts
+### Install Nerdfonts
 Fonts can be previewed using https://www.programmingfonts.org/#agave
 
 - Pick any font available here and install it on the Windows machine by downloading it
@@ -34,9 +34,7 @@ Fonts can be previewed using https://www.programmingfonts.org/#agave
 ![](./font_install.jpg)
 
 
-## Install `winget` on the machine
-
-
+### Install `winget` on the machine
 
 There are multiple ways of installing `winget`on a given windows machine. One easier thing would be to look for `winget` in the Windows Appstore and shows up as `App Installer`.
 ![](https://phoenixnap.com/kb/wp-content/uploads/2022/04/winget-microsoft-store-768x231.png)
@@ -48,7 +46,7 @@ Double click on the `.msixbundle` file and go through the prompts and `Winget` w
 ![](./winget_installed.jpg)
 ![](./winget_installed_.jpg)
 
-## Install `oh-my-posh`
+### Install `oh-my-posh`
 Run the following command
 ```
 winget install JanDeDobbeleer.OhMyPosh
@@ -65,7 +63,7 @@ Starting package install...
 Successfully installed
 ```
 
-## Add the `oh-my-posh` command to Powershell profile file
+### Add the `oh-my-posh` command to Powershell profile file
 - Use your favorite text editor and open `$PROFILE` file, which gets run before the powershell launches, using [VSCode](https://code.visualstudio.com/download#) (`code`) here to launch the profile file
 ```
  code $PROFILE
@@ -76,15 +74,15 @@ oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\paradox.omp.json" | Invoke-
 ```
 Restart Windows Terminal App
 
-## Update the font in the Windows terminal settings app
+### Update the font in the Windows terminal settings app
 - Set the font to the downloaded nerd font type face
 ![](font_change_terminal.jpg)
 
 
-# Result
+## Result
 ![](powershell_terminal_customized.jpg)
 
 
-# References
+## References
 - https://phoenixnap.com/kb/install-winget
 - https://docs.microsoft.com/en-us/windows/terminal/tutorials/custom-prompt-setup
