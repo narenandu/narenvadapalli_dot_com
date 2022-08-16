@@ -103,15 +103,16 @@ export default function() {
                         }
                     >
                         <h6 className="vertical-timeline-element-title">
-                            Senior Pipeline Software Engineer - Consultant
+                            Lead Site Reliability Engineer - Consultant
                         </h6>
                         <h7 className="vertical-timeline-element-subtitle">
                             Spire Animation Studios Inc.
                         </h7>
                         <p>
-                            Developing the next generation portable and scalable Pipeline at the
-                            studio that enables the content generation seamlessly and in an efficient
-                            manner. Working as a fulltime contractor for the studio.
+                            Developing the next generation platform and infrastructure for a portable
+                            and scalable Pipeline at the Startup Animation Studio that enables
+                            the content generation seamlessly and in an efficient manner using
+                            Unreal Engine at its heart. Working in a fulltime contractor capacity for the studio.
                         </p>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
