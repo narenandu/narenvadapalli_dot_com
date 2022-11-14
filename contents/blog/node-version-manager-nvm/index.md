@@ -58,7 +58,7 @@ Usage:
 - Run the installation command
 
 ```
-❯  nvm install 18.12.
+❯  nvm install 18.12.1
 
 Downloading node.js version 18.12.1 (64-bit)...
 Extracting node and npm...
