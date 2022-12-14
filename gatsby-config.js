@@ -113,6 +113,18 @@ module.exports = {
                         options: {
                             wrapperStyle: `margin-bottom: 1.0725rem`
                         }
+                    },
+                    {
+                    resolve: `gatsby-plugin-google-gtag`,
+                    options: {
+                        trackingIds: [
+                        "G-601R9JN9RF", // Google Analytics / GA
+                        ],
+                        pluginConfig: {
+                        // Puts tracking script in the head instead of the body
+                        head: true
+                        },
+                    },
                     }
                 ]
             }
