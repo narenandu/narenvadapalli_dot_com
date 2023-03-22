@@ -42,9 +42,11 @@ Add-Type -AssemblyName System.IO.Compression.FileSystem ; [System.IO.Compression
 ### Pre-requisite
 Generate the `<<TOKEN>>` using Github REST API and replace it in the command shown below
 
-REF: https://docs.github.com/en/rest/actions/self-hosted-runners?apiVersion=2022-11-28#create-a-registration-token-for-an-organization
+Checkout https://www.narenvadapalli.com/blog/generating-token-for-github-runner-registration/ for a way to use Github's REST API to generate the token
 
+Otherway would be to pick it up from the webpage as explained the first section under **`Configure`** section after the `--token` argument to `config.cmd`
 
+![](./1_new_runner_setup_on_windows.jpg)
 
 ### Single Command
 

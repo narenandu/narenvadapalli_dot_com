@@ -1,11 +1,17 @@
 ---
-title: Token generation for Registering Self Hosted Github Runner
+title: Token generation for Registering Self Hosted Github Runner via REST API
 date: 2023-03-21
 template: blog
 image: ./image.jpg
 banner: ./banner.jpg
 description: Explains how to generate a token using github API to be used in turn with Github self hosted runner registration
 ---
+
+## Motivation
+
+w.r.t https://www.narenvadapalli.com/blog/self-hosted-github-runner-registration-process/, while registering a windows host as github self hosted runner, you need to generate a Token for registration.
+
+This blog will take you through the process of generating the token, using Github REST API
 
 ## Github Personal Access token (Classic) Generation
 
