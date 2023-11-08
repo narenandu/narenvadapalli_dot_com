@@ -6,6 +6,12 @@ frontend:
         - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
         - nvm install 16.8.0
         - nvm use 16.8.0
+        - sudo yum install -y zlib-devel
+        - sudo yum install -y glibc-static
+        - sudo yum install -y glibc-devel
+        - sudo yum install -y gcc
+        - sudo yum install -y make
+        - sudo yum install -y nasm
         - npm install
     build:
       commands:
