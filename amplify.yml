@@ -4,8 +4,8 @@ frontend:
     preBuild:
       commands:
         - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-        - nvm install 16.6.0
-        - nvm use 16.6.0
+        - nvm install 16.2.0
+        - nvm use 16.2.0
         - npm install
     build:
       commands:
