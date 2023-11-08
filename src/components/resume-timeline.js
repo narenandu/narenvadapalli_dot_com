@@ -88,42 +88,6 @@ export default function() {
                         contentArrowStyle={{
                             borderRight: "7px solid  rgb(26,49,82)"
                         }}
-                        date="2021 (Sep) - Present"
-                        iconStyle={{
-                            background: "rgb(26,49,82)",
-                            color: "#fff"
-                        }}
-                        icon={
-                            <img
-                                alt="Spire Animation Studios Inc."
-                                title="Spire Animation Studios Inc."
-                                class="logo-size"
-                                src={spireAnimationLogo}
-                            ></img>
-                        }
-                    >
-                        <h6 className="vertical-timeline-element-title">
-                            Lead Site Reliability Engineer - Consultant
-                        </h6>
-                        <h7 className="vertical-timeline-element-subtitle">
-                            Spire Animation Studios Inc.
-                        </h7>
-                        <p>
-                            Developing the next generation platform and infrastructure for a portable
-                            and scalable Pipeline at the Startup Animation Studio that enables
-                            the content generation seamlessly and in an efficient manner using
-                            Unreal Engine at its heart. Working in a fulltime contractor capacity for the studio.
-                        </p>
-                    </VerticalTimelineElement>
-                    <VerticalTimelineElement
-                        className="vertical-timeline-element--work"
-                        contentStyle={{
-                            background: "rgb(26,49,82)",
-                            color: "#ffe"
-                        }}
-                        contentArrowStyle={{
-                            borderRight: "7px solid  rgb(26,49,82)"
-                        }}
                         date="2021 (Jul) - Present"
                         iconStyle={{
                             background: "rgb(26,49,82)",
@@ -148,6 +112,42 @@ export default function() {
                             Software Consulting/Contract services with an expertise in Animation/VFX, Automation, Cloud, DevOps, Python, Full-Stack Development
                             TL;DR Have an idea and don't know how to build software for it, just reach out:
                             <a href="https://www.skynettechltd.com/services">skynet_technology_ltd_website</a>
+                        </p>
+                    </VerticalTimelineElement>
+                    <VerticalTimelineElement
+                        className="vertical-timeline-element--work"
+                        contentStyle={{
+                            background: "rgb(26,49,82)",
+                            color: "#ffe"
+                        }}
+                        contentArrowStyle={{
+                            borderRight: "7px solid  rgb(26,49,82)"
+                        }}
+                        date="2021 (Sep) - 2023 (Aug)"
+                        iconStyle={{
+                            background: "rgb(26,49,82)",
+                            color: "#fff"
+                        }}
+                        icon={
+                            <img
+                                alt="Spire Animation Studios Inc."
+                                title="Spire Animation Studios Inc."
+                                class="logo-size"
+                                src={spireAnimationLogo}
+                            ></img>
+                        }
+                    >
+                        <h6 className="vertical-timeline-element-title">
+                            Lead Site Reliability Engineer - Consultant
+                        </h6>
+                        <h7 className="vertical-timeline-element-subtitle">
+                            Spire Animation Studios Inc.
+                        </h7>
+                        <p>
+                            Developing the next generation platform and infrastructure for a portable
+                            and scalable Pipeline at the Startup Animation Studio that enables
+                            the content generation seamlessly and in an efficient manner using
+                            Unreal Engine at its heart. Working in a fulltime contractor capacity for the studio.
                         </p>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
