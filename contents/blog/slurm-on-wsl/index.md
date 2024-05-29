@@ -1,13 +1,11 @@
 ---
 title: SLURM on WSL
-date: 2024-05-20
+date: 2024-05-24
 template: blog
 image: ./image.jpg
 banner: ./banner.jpg
 description: Setting up SLURM on WSL
 ---
-
-## What is SLURM?
 
 
 ## SLURM installation on WSL
