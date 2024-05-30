@@ -7,20 +7,23 @@ banner: ./banner.jpg
 description: Simple Linux Utility for Resource Management (SLURM)
 ---
 
+
 # What is SLURM?
 [SLURM](https://slurm.schedmd.com/quickstart.html) is an acronym for `S`imple `L`inux `U`tility for `R`esource `M`anagement
 
-# What does it do?
+SLURM is a free and versatile tool that  streamlines job scheduling and resource allocation on Linux-based clusters.  Imagine having dozens or even hundreds of compute nodes –  SLURM ensures efficient utilization by:
+
+- **Resource Allocation**: Granting users exclusive or non-exclusive access to compute nodes for specific durations.
+- **Job Scheduling & Execution**: Providing a framework for launching and monitoring jobs, often involving parallel processing techniques like MPI (Message Passing Interface).
+- **Queue Management**: Maintaining a queue of submitted jobs, prioritizing them based on predefined rules, and ensuring fair access to resources => Resource contention
+
+# Why use SLURM?
 - SLURM is an open-source **Job Scheduler** for small and large linux clusters and unix-like kernels
 - SLURM is fault-tolerant and highly scalable cluster management system
 - SLURM is relatively self-contained with the components it needs to run
 
-## 3 Key functions
-- `Function 1` => `Resource Allocation` (compute / storage)
-- `Function 2` => Framework for monitoring the work along with basic functionlity of start/stop on allocated nodes a.k.a `Accounting`
-- `Function 3` => Orchestrates `Resource Contention` by managing the pending jobs/workloads submitted
 
-# What are the important components of SLURM?
+# What are Important components of SLURM?
 - `slurmctld`, the central controller monitoring all the compute nodes that are registered as part of the cluster. Typically this is run dedicated management node
 - `slurmd`, the daemon that runs on each compute node
 
@@ -29,7 +32,7 @@ Picture Source: https://slurm.schedmd.com/arch.gif
 ![](./arch.gif)
 
 
-# What are different entities in SLURM and How are they managed?
+# What are different entities in SLURM ?
 
 - **Nodes** - Actual Compute nodes
 - **Partitions** - Logical grouping of nodes a.k.a `Job Queues` with an mix of constraints (job size limit / job time limit), priority
@@ -57,3 +60,6 @@ Ordered in the most frequently used or relevant
 - `sattach` - attach stdin / stdout / stderror along with sending signal to an already running job
 - `salloc` - allocate resources in real time to the jobs. This spawns a shell with allocated resources and `srun` commands with in this shell is used to launch parallel task
 - `sacct` - report job or job step information about active/completed jobs
+
+
+Recommended exercise to go through SLURM demo on EC2 instance [SLURM demo on AWS Ubuntu 22.04 EC2 instance](https://www.narenvadapalli.com/blog/slurm-on-aws-ubuntu-ec2/)
