@@ -1,6 +1,6 @@
 ---
 title: SLURM on WSL
-date: 2024-05-24
+date: 2024-05-27
 template: blog
 image: ./image.jpg
 banner: ./banner.jpg
