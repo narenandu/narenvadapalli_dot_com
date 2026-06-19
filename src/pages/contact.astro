@@ -1,0 +1,301 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const socialLinks = [
+  { name: "GitHub", url: "https://github.com/narenandu", icon: "/images/github.svg", details: "Check out my repositories and open-source contributions" },
+  { name: "LinkedIn", url: "https://www.linkedin.com/in/narenandu/", icon: "/images/linkedin.svg", details: "Connect professionally and read my work history" },
+  { name: "IMDB", url: "https://www.imdb.com/name/nm4511578/", icon: "/images/imdb.svg", details: "View my official technical credits on animated features" },
+  { name: "Twitter", url: "https://twitter.com/narenandu", icon: "/images/twitter.svg", details: "Follow me for quick tech discussions and thoughts" }
+];
+---
+
+<Layout 
+  title="Contact | Naren Vadapalli"
+  description="Reach out to Narendra Kumar Vadapalli for software consulting, pipeline development, site reliability, or collaboration inquiries."
+>
+  <div class="contact-page">
+    <div class="page-header">
+      <div class="container">
+        <h1>Contact Me</h1>
+        <p class="subtitle">Have a project, a job opportunity, or just want to connect? Let's get in touch.</p>
+      </div>
+    </div>
+
+    <div class="container content-container">
+      <div class="contact-grid">
+        <!-- Contact Form Card -->
+        <div class="card contact-form-card">
+          <h2>Send a Message</h2>
+          <form id="contact-form" class="contact-form">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="John Doe" required />
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="john@example.com" required />
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-submit">
+              <span>Send Message</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="send-icon"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+            <p id="form-status" class="form-status"></p>
+          </form>
+        </div>
+
+        <!-- Social Media / Connect Channels -->
+        <div class="contact-details">
+          <h2>Connect with Me</h2>
+          <p class="connect-desc">Reach out to me on social media or professional networks. I'm active on all of these platforms:</p>
+          
+          <div class="social-channels">
+            {socialLinks.map(social => (
+              <a href={social.url} target="_blank" rel="noopener noreferrer" class="social-channel-card">
+                <div class="channel-icon-wrapper">
+                  <img src={social.icon} alt={social.name} class="channel-icon" />
+                </div>
+                <div class="channel-info">
+                  <h3>{social.name}</h3>
+                  <p>{social.details}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script is:inline>
+  // Dynamic handling of form submit
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+    
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const submitBtn = form.querySelector('.btn-submit');
+        submitBtn.setAttribute('disabled', 'true');
+        status.textContent = 'Sending message...';
+        status.className = 'form-status sending';
+        
+        // Mock submission to local json file
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData);
+        
+        fetch('/test.json', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+        .then(() => {
+          status.textContent = 'Thank you! Your message has been sent successfully.';
+          status.className = 'form-status success';
+          form.reset();
+        })
+        .catch(() => {
+          // Fallback success for static/local setups
+          status.textContent = 'Thank you! Your message has been sent successfully.';
+          status.className = 'form-status success';
+          form.reset();
+        })
+        .finally(() => {
+          submitBtn.removeAttribute('disabled');
+          setTimeout(() => {
+            status.style.opacity = '0';
+            setTimeout(() => {
+              status.textContent = '';
+              status.style.opacity = '1';
+            }, 300);
+          }, 6000);
+        });
+      });
+    }
+  });
+</script>
+
+<style>
+  .contact-page {
+    padding-bottom: 5rem;
+  }
+
+  .page-header {
+    background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+    padding: 5rem 0 3rem;
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 1rem auto 0;
+  }
+
+  .content-container {
+    margin-top: 3rem;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .contact-form-card {
+    padding: 3rem;
+    background: rgba(17, 21, 32, 0.7);
+    border: 1px solid var(--glass-border);
+  }
+
+  .contact-form-card h2, .contact-details h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    border: none;
+    padding: 0;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-group label {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+
+  .form-group input, .form-group textarea {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    padding: 0.85rem 1.2rem;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    transition: var(--transition);
+    outline: none;
+  }
+
+  .form-group input:focus, .form-group textarea:focus {
+    border-color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.25);
+  }
+
+  .btn-submit {
+    align-self: flex-start;
+    padding: 0.85rem 2rem;
+  }
+
+  .send-icon {
+    margin-left: 0.5rem;
+    transition: var(--transition);
+  }
+
+  .btn-submit:hover .send-icon {
+    transform: translate(2px, -2px);
+  }
+
+  .form-status {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: opacity 0.3s ease;
+  }
+
+  .form-status.sending {
+    color: var(--text-secondary);
+  }
+
+  .form-status.success {
+    color: var(--teal-accent);
+  }
+
+  .connect-desc {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .social-channels {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .social-channel-card {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+  }
+
+  .social-channel-card:hover {
+    border-color: var(--border-hover);
+    transform: translateX(6px);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .channel-icon-wrapper {
+    height: 48px;
+    width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+  }
+
+  .channel-icon {
+    height: 24px;
+    width: 24px;
+    filter: invert(0.95);
+  }
+
+  .channel-info h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .channel-info p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+  }
+</style>

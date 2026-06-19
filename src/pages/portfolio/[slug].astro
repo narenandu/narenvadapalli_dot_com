@@ -1,0 +1,152 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const items = await getCollection('portfolio');
+  return items.map(item => {
+    const slug = item.id.replace('/index.md', '').replace('index.md', '').trim();
+    return {
+      params: { slug },
+      props: { item },
+    };
+  });
+}
+
+const { item } = Astro.props;
+const { Content } = await render(item);
+---
+
+<Layout 
+  title={`${item.data.title} | Portfolio | Naren Vadapalli`}
+  description={item.data.description}
+>
+  <div class="portfolio-item-page">
+    <div class="page-header">
+      <div class="container">
+        <div class="breadcrumbs">
+          <a href="/">Home</a> / <a href="/portfolio">Portfolio</a> / <span class="active">{item.data.title}</span>
+        </div>
+        <h1>{item.data.title}</h1>
+        {item.data.description && <p class="subtitle">{item.data.description}</p>}
+      </div>
+    </div>
+
+    <div class="container content-container">
+      <div class="card portfolio-detail-card">
+        <div class="markdown-body">
+          <Content />
+        </div>
+        
+        <div class="footer-nav">
+          <a href="/portfolio" class="btn btn-secondary">
+            &larr; Back to Portfolio
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style is:global>
+  .portfolio-item-page {
+    padding-bottom: 5rem;
+  }
+
+  .breadcrumbs {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    font-family: var(--font-display);
+  }
+  
+  .breadcrumbs a {
+    color: var(--text-muted);
+  }
+  
+  .breadcrumbs a:hover {
+    color: var(--accent-color);
+  }
+  
+  .breadcrumbs .active {
+    color: var(--text-primary);
+  }
+
+  .portfolio-detail-card {
+    padding: 3.5rem;
+    background: rgba(17, 21, 32, 0.7);
+    border: 1px solid var(--glass-border);
+    margin-top: -2.5rem;
+  }
+
+  .footer-nav {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  /* Grid shortcodes compiled styles */
+  .grid-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin: 2.5rem 0;
+  }
+
+  .portfolio-item-col {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: var(--transition);
+  }
+
+  .portfolio-item-col:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .portfolio-item-col img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-sm);
+    margin-bottom: 1rem !important;
+    border: 1px solid var(--border-color);
+    aspect-ratio: 4/5;
+    object-fit: cover;
+  }
+
+  /* Video wrapper style */
+  .video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    margin: 2rem 0;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  }
+
+  .video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .portfolio-detail-card {
+      padding: 1.5rem;
+    }
+    .grid-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

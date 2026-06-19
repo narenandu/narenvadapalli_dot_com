@@ -1,0 +1,174 @@
+---
+import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+
+const entries = await getCollection('basepages');
+const aboutEntry = entries.find(e => e.id.toLowerCase().includes('about'));
+
+let Content;
+let title = "About Me";
+let image;
+
+if (aboutEntry) {
+  const rendered = await render(aboutEntry);
+  Content = rendered.Content;
+  title = aboutEntry.data.title || title;
+  image = aboutEntry.data.image;
+}
+---
+
+<Layout
+  title={`${title} | Naren Vadapalli`}
+  description="Learn more about Narendra Kumar Vadapalli, AI LEADER & Visual Design Enthusiast"
+>
+  <div class="about-page">
+    <div class="page-header">
+      <div class="container">
+        <h1>{title}</h1>
+      </div>
+    </div>
+
+    <div class="container content-container">
+      <div class="card about-card">
+        <div class="about-layout">
+          {image && (
+            <div class="about-image-wrapper">
+              <Image
+                src={image}
+                alt="Naren Vadapalli"
+                class="about-img"
+              />
+            </div>
+          )}
+          <div class="about-content">
+            <h2>Narendra Kumar Vadapalli</h2>
+            <p class="role-tag">AI LEADER & Visual Design Enthusiast</p>
+
+            <div class="about-markdown">
+              {Content ? <Content /> : <p>Continuous learner who loves exploring new territories in technology.</p>}
+            </div>
+
+            <div class="about-bio">
+              <p>
+                I have a strong background in software engineering, pipeline development, site reliability,
+                and computer graphics. With experience across global production studios (including DreamWorks,
+                Animal Logic, and ON Animation) and deep knowledge in DevOps, Python, fullstack development,
+                and cloud infrastructure, I build scalable solutions that bridge engineering and creative processes.
+              </p>
+              <p>
+                Whether it's designing advanced pipeline plugins, scaling kubernetes clusters,
+                or crafting beautiful user interfaces, I focus on performance, robust architecture, and design aesthetics.
+              </p>
+            </div>
+
+            <div class="about-buttons">
+              <a href="/resume" class="btn btn-primary">View Resume</a>
+              <a href="/contact" class="btn btn-secondary">Get In Touch &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .about-page {
+    padding-bottom: 5rem;
+  }
+
+  .page-header {
+    background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+    padding: 5rem 0 3rem;
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
+  }
+
+  .content-container {
+    margin-top: 3rem;
+  }
+
+  .about-card {
+    padding: 3rem;
+    background: rgba(17, 21, 32, 0.7);
+    border: 1px solid var(--glass-border);
+  }
+
+  .about-layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .about-image-wrapper {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+
+  .about-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  .about-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .about-content h2 {
+    font-size: 2.25rem;
+    margin-bottom: 0.25rem;
+    border: none;
+    padding: 0;
+  }
+
+  .role-tag {
+    font-family: var(--font-display);
+    color: var(--teal-accent);
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  .about-markdown {
+    font-size: 1.15rem;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    font-style: italic;
+    border-left: 3px solid var(--accent-color);
+    padding-left: 1rem;
+  }
+
+  .about-bio p {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .about-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  @media (max-width: 900px) {
+    .about-layout {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .about-image-wrapper {
+      max-width: 320px;
+      margin: 0 auto;
+    }
+  }
+</style>

@@ -3,21 +3,16 @@ frontend:
   phases:
     preBuild:
       commands:
-        - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-        - nvm install 16.8.0
-        - nvm use 16.8.0
-        - yum install -y zlib-devel
-        - yum install -y glibc-static
-        - yum install -y glibc-devel
-        - yum install -y gcc
-        - yum install -y make
-        - yum install -y nasm
-        - npm install
+        # Install nvm and Node.js 23 (Astro 5+ requires Node >= 22.12.0)
+        - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+        - . ~/.nvm/nvm.sh && nvm install 23 && nvm use 23 && npm ci
     build:
       commands:
-        - npm run build
+        # Source nvm and build the project using Node.js 23
+        - . ~/.nvm/nvm.sh && nvm use 23 && npm run build
   artifacts:
-    baseDirectory: public
+    # Astro builds static files to the 'dist' directory
+    baseDirectory: dist
     files:
       - '**/*'
   cache:

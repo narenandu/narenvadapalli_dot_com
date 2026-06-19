@@ -1,0 +1,347 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+
+// Fetch collections
+const posts = await getCollection('blog');
+const portfolioItems = await getCollection('portfolio');
+
+// Sort and slice collections
+const latestPosts = posts
+  .sort((a, b) => {
+    const dateA = a.data.date ? new Date(a.data.date).getTime() : 0;
+    const dateB = b.data.date ? new Date(b.data.date).getTime() : 0;
+    return dateB - dateA;
+  })
+  .slice(0, 3);
+
+const featuredPortfolio = portfolioItems
+  .sort((a, b) => {
+    const dateA = a.data.date ? new Date(a.data.date).getTime() : 0;
+    const dateB = b.data.date ? new Date(b.data.date).getTime() : 0;
+    return dateB - dateA;
+  })
+  .slice(0, 2);
+
+// Clean slug helper
+const cleanSlug = (id: string) => id.replace('/index.md', '').replace('index.md', '').trim();
+---
+
+<Layout>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-glow"></div>
+    <div class="container hero-container">
+      <div class="hero-content">
+        <h1 class="hero-title">NARENDRA KUMAR VADAPALLI</h1>
+        <p class="hero-tag">AI LEADER &bull; VISUAL DESIGN ENTHUSIAST</p>
+        <p class="hero-desc">A software engineer with a balanced left and right brain, specializing in pipeline development, DevOps, graphics tools, and site reliability.</p>
+
+        <div class="hero-ctas">
+          <a href="/blog" class="btn btn-primary">Read My Blog</a>
+          <a href="/portfolio" class="btn btn-secondary">View Portfolio</a>
+          <a href="/resume" class="btn btn-secondary">Resume</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Content -->
+  <div class="container main-content-grid">
+    <!-- Featured Portfolio -->
+    <section class="section-block">
+      <div class="section-header">
+        <h2>Featured Projects</h2>
+        <a href="/portfolio" class="section-link">View All Projects &rarr;</a>
+      </div>
+      <div class="portfolio-grid">
+        {featuredPortfolio.map(item => {
+          const slug = cleanSlug(item.id);
+          return (
+            <div class="card portfolio-card">
+              {item.data.image && (
+                <div class="portfolio-image-wrapper">
+                  <Image
+                    src={item.data.image}
+                    alt={item.data.title}
+                    class="portfolio-img"
+                  />
+                </div>
+              )}
+              <div class="portfolio-content">
+                <h3>{item.data.title}</h3>
+                {item.data.description && <p>{item.data.description}</p>}
+                <a href={`/portfolio/${slug}`} class="btn btn-secondary btn-sm">
+                  Details &rarr;
+                </a>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+
+    <!-- Latest Blog Posts -->
+    <section class="section-block">
+      <div class="section-header">
+        <h2>Latest Blog Posts</h2>
+        <a href="/blog" class="section-link">Read All Posts &rarr;</a>
+      </div>
+      <div class="blog-grid">
+        {latestPosts.map(post => {
+          const slug = cleanSlug(post.id);
+          const dateString = post.data.date
+            ? new Date(post.data.date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+              })
+            : '';
+
+          return (
+            <article class="card blog-card">
+              <span class="blog-date">{dateString}</span>
+              <h3>
+                <a href={`/blog/${slug}`}>{post.data.title}</a>
+              </h3>
+              {post.data.description && <p>{post.data.description}</p>}
+              <a href={`/blog/${slug}`} class="read-more">
+                Read Post &rarr;
+              </a>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  /* Hero Section styling */
+  .hero-section {
+    position: relative;
+    padding: 8rem 0 6rem;
+    overflow: hidden;
+    background: radial-gradient(circle at top, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: -10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+    filter: blur(50px);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .hero-container {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #f8fafc 0%, #cbd5e1 50%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-tag {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+    color: var(--teal-accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-desc {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-ctas {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* Content Sectioning */
+  .main-content-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  .section-block {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.75rem;
+  }
+
+  .section-header h2 {
+    margin: 0;
+    border: none;
+    padding: 0;
+    font-size: 2rem;
+  }
+
+  .section-link {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--accent-color);
+    font-size: 0.95rem;
+  }
+
+  .section-link:hover {
+    color: var(--text-primary);
+  }
+
+  /* Portfolio Grid */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+  }
+
+  .portfolio-card {
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: rgba(17, 21, 32, 0.4);
+    border: 1px solid var(--glass-border);
+  }
+
+  .portfolio-image-wrapper {
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .portfolio-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+  }
+
+  .portfolio-card:hover .portfolio-img {
+    transform: scale(1.03);
+  }
+
+  .portfolio-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .portfolio-content h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.35rem;
+  }
+
+  .portfolio-content p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+
+  .portfolio-content .btn {
+    align-self: flex-start;
+  }
+
+  /* Blog Grid */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .blog-card {
+    background: rgba(17, 21, 32, 0.3);
+    border: 1px solid var(--glass-border);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .blog-date {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--teal-accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .blog-card h3 {
+    font-size: 1.35rem;
+    margin: 0 0 0.75rem;
+  }
+
+  .blog-card h3 a {
+    color: var(--text-primary);
+  }
+
+  .blog-card h3 a:hover {
+    color: var(--accent-color);
+  }
+
+  .blog-card p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+
+  .read-more {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--accent-color);
+  }
+
+  .read-more:hover {
+    color: var(--text-primary);
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2.5rem;
+    }
+    .hero-section {
+      padding: 5rem 0 3rem;
+    }
+  }
+</style>

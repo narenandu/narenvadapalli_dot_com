@@ -1,0 +1,505 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const experience = [
+  {
+    role: "Founder / Director",
+    company: "Skynet Technology Ltd, Surrey, Canada",
+    date: "2021 (Jul) - Present",
+    logo: "/images/work_edu/skynet_tech_ltd_logo.jpg",
+    details: "Software Consulting/Contract services with an expertise in Animation/VFX, Automation, Cloud, DevOps, Python, Full-Stack Development. Working with clients to transition tools to scaling infrastructure."
+  },
+  {
+    role: "Lead Site Reliability Engineer - Consultant",
+    company: "Spire Animation Studios Inc.",
+    date: "2021 (Sep) - 2023 (Aug)",
+    logo: "/images/work_edu/spire_animation_logo.jpg",
+    details: "Developed the next generation platform and infrastructure for a portable and scalable pipeline at the startup animation studio. Enabled seamless and efficient content generation using Unreal Engine at its heart."
+  },
+  {
+    role: "Senior Software Engineer",
+    company: "Parallel Domain, Vancouver, Canada",
+    date: "2020 (Feb) - 2021 (Aug)",
+    logo: "/images/work_edu/pd_logo.png",
+    details: "Full stack web app development using Vue/React frontend (Tailwind CSS) and Python Flask backend. Built data pipelines connecting subworkflows from end to end. Handled DevOps tasks including Jenkins CI/CD automation, Kubernetes production cluster management (Docker/Helm), and designed container-native workflows in Argo."
+  },
+  {
+    role: "Senior Pipeline Technical Director",
+    company: "Bardel Entertainment Inc, Vancouver, Canada",
+    date: "2018 (Jul) - 2020 (Feb)",
+    logo: "/images/work_edu/bardel_logo.png",
+    details: "Member of the core Pipeline Team. Designed and developed custom schema-based version control system for assets. Setup CI/CD automation via Jenkins, Docker, and RedHat OpenShift. Built web applications in Python Flask and Socket.io to connect production pipelines with ShotGrid."
+  },
+  {
+    role: "Chief Pipeline Technical Director",
+    company: "On Animation Studios, Montreal, Canada",
+    date: "2017 (Oct) - 2018 (Jun)",
+    logo: "/images/work_edu/on_animation_logo.jpg",
+    details: "Supervised the Pipeline and Render/Data Wrangling teams. Designed core pipeline modules used across all departments. Built batch rendering configurations on Guerilla Renderer and designed data analytics tools for render-time prediction."
+  },
+  {
+    role: "Pipeline Technical Director for Lighting",
+    company: "Animal Logic, Sydney, Australia",
+    date: "2016 (Jan) - 2017 (Jul)",
+    logo: "/images/work_edu/animal_logic_logo.jpg",
+    details: "Developed render statistics reporting pipelines to track system optimization. Built lighting tools to optimize artist workflow. Created projection automation pipelines mapping live-action plates to LIDAR geometry for 'Peter Rabbit'."
+  },
+  {
+    role: "Department Technical Director",
+    company: "DreamWorks Animations, Bengaluru, India",
+    date: "2012 (Feb) - 2015 (Dec)",
+    logo: "/images/work_edu/dreamworks_logo.jpg",
+    details: "Provided FX pipeline tool development and Houdini support for features: 'Penguins of Madagascar', 'Kung Fu Panda 3', and 'The Boss Baby'. Maintained and upgraded animation pipelines for 'Mr. Peabody & Sherman' and episodic content for Cartoon Network ('Dragons - Riders of Berk')."
+  },
+  {
+    role: "CG Software Engineer - Intern",
+    company: "EA Sports Tiburon, Orlando, FL, USA",
+    date: "2011 (May) - 2011 (Aug)",
+    logo: "/images/work_edu/ea_sports_logo.jpg",
+    details: "Graphics solutions, internal tools, and pipeline optimization for the Core Football Graphics Team, supporting Madden/NCAA 2012."
+  },
+  {
+    role: "Lead Software Engineer",
+    company: "Samsung India Software Operations, Bengaluru, India",
+    date: "2007 (Sep) - 2010 (Jul)",
+    logo: "/images/work_edu/samsung_logo.jpg",
+    details: "Embedded software development for CDMA mobile applications. Developed and maintained the MP3 Player application frontend, and performed messaging/browser validation."
+  },
+  {
+    role: "Software Engineer",
+    company: "Motorola India Pvt Ltd, Bengaluru, India",
+    date: "2006 (May) - 2007 (Sep)",
+    logo: "/images/work_edu/moto_logo.jpg",
+    details: "Responsible for BREW PEK performance optimization, bug fixing, and carrier-specific API validation for CDMA mobile phones."
+  }
+];
+
+const education = [
+  {
+    degree: "MSE in Computer Graphics and Game Technology",
+    school: "University of Pennsylvania, Philadelphia, PA, USA",
+    date: "2010 (Sep) - 2011 (Dec)",
+    logo: "/images/work_edu/upenn_logo.jpg",
+    details: "Coursework covering state-of-the-art computer graphics, animation technologies, interactive media design, product development, and engineering entrepreneurship."
+  },
+  {
+    degree: "BTech in Electronics and Communication Engineering",
+    school: "National Institute of Technology, Warangal, India",
+    date: "2002 (Sep) - 2006 (May)",
+    logo: "/images/work_edu/nitw_logo.jpg",
+    details: "Comprehensive coursework in hardware systems, signal processing, VLSI design, and electronics engineering."
+  }
+];
+
+const skillCategories = [
+  {
+    name: "Programming Languages",
+    icon: "/images/skills/languages.png",
+    items: [
+      { name: "Python", logo: "/images/skills/python.png" },
+      { name: "JavaScript", logo: "/images/skills/javascript.svg" },
+      { name: "C", logo: "/images/skills/clang.svg" },
+      { name: "C++", logo: "/images/skills/cplusplus.png" },
+      { name: "Go", logo: "/images/skills/golang.svg" }
+    ]
+  },
+  {
+    name: "Cloud Platforms",
+    icon: "/images/skills/cloud.png",
+    items: [
+      { name: "AWS", logo: "/images/skills/aws.png" },
+      { name: "GCP", logo: "/images/skills/gcp.png" }
+    ]
+  },
+  {
+    name: "Digital Content Creation (DCC)",
+    icon: "/images/skills/dcc.jpg",
+    items: [
+      { name: "Maya", logo: "/images/skills/maya.jpg" },
+      { name: "Houdini", logo: "/images/skills/houdini.jpg" },
+      { name: "Katana", logo: "/images/skills/katana.png" },
+      { name: "Guerilla", logo: "/images/skills/guerilla.png" },
+      { name: "Nuke", logo: "/images/skills/nuke.png" },
+      { name: "PyQt", logo: "/images/skills/pyqt.png" },
+      { name: "OpenImageIO", logo: "/images/skills/oiio.png" },
+      { name: "ShotGrid", logo: "/images/skills/shotgun.png" },
+      { name: "Photoshop", logo: "/images/skills/photoshop.png" },
+      { name: "AfterEffects", logo: "/images/skills/aftereffects.png" },
+      { name: "GIMP", logo: "/images/skills/gimp.png" }
+    ]
+  },
+  {
+    name: "Operating Systems",
+    icon: "/images/skills/os.png",
+    items: [
+      { name: "Linux", logo: "/images/skills/linux.png" },
+      { name: "Windows", logo: "/images/skills/windows.png" },
+      { name: "RedHat", logo: "/images/skills/redhat.svg" },
+      { name: "Ubuntu", logo: "/images/skills/ubuntu.png" },
+      { name: "Fedora", logo: "/images/skills/fedora.png" }
+    ]
+  },
+  {
+    name: "Web Frameworks & Protocols",
+    icon: "/images/skills/web_frameworks.png",
+    items: [
+      { name: "Flask", logo: "/images/skills/flask.png" },
+      { name: "React", logo: "/images/skills/react.png" },
+      { name: "Vue", logo: "/images/skills/vue.png" },
+      { name: "gRPC", logo: "/images/skills/grpc.png" },
+      { name: "jQuery", logo: "/images/skills/jquery.svg" }
+    ]
+  },
+  {
+    name: "Data Science & Databases",
+    icon: "/images/skills/db.png",
+    items: [
+      { name: "Pandas", logo: "/images/skills/pandas.png" },
+      { name: "NumPy", logo: "/images/skills/numpy.png" },
+      { name: "Matplotlib", logo: "/images/skills/matplotlib.png" },
+      { name: "MySQL", logo: "/images/skills/mysql.png" }
+    ]
+  },
+  {
+    name: "DevOps & Version Control",
+    icon: "/images/skills/devops.png",
+    items: [
+      { name: "Docker", logo: "/images/skills/docker.png" },
+      { name: "OpenShift", logo: "/images/skills/openshift.png" },
+      { name: "Jenkins", logo: "/images/skills/jenkins.svg" },
+      { name: "Git", logo: "/images/skills/git.svg" },
+      { name: "GitHub", logo: "/images/skills/github.png" },
+      { name: "Bitbucket", logo: "/images/skills/bitbucket.jpg" },
+      { name: "GitLab", logo: "/images/skills/gitlab.jpg" },
+      { name: "Perforce", logo: "/images/skills/perforce.png" }
+    ]
+  }
+];
+---
+
+<Layout 
+  title="Resume | Naren Vadapalli"
+  description="Professional Resume of Narendra Kumar Vadapalli - Lead Site Reliability Engineer, Pipeline TD, and Founder of Skynet Technology Ltd."
+>
+  <div class="resume-page">
+    <div class="page-header">
+      <div class="container">
+        <h1>My Resume</h1>
+        <p class="subtitle">A track record of engineering software and reliability pipelines for global media and technology companies.</p>
+      </div>
+    </div>
+
+    <div class="container content-container">
+      <!-- WORK EXPERIENCE -->
+      <section class="resume-section">
+        <h2 class="section-title-bar">Work Experience</h2>
+        <div class="timeline">
+          {experience.map(item => (
+            <div class="timeline-item">
+              <div class="timeline-badge-wrapper">
+                <div class="timeline-badge">
+                  <img src={item.logo} alt={item.company} onerror="this.src='/favicon.svg'" />
+                </div>
+              </div>
+              <div class="card timeline-card">
+                <div class="timeline-header">
+                  <div>
+                    <h3>{item.role}</h3>
+                    <h4>{item.company}</h4>
+                  </div>
+                  <span class="timeline-date">{item.date}</span>
+                </div>
+                <p class="timeline-details">{item.details}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- EDUCATION -->
+      <section class="resume-section">
+        <h2 class="section-title-bar">Education</h2>
+        <div class="timeline">
+          {education.map(item => (
+            <div class="timeline-item">
+              <div class="timeline-badge-wrapper">
+                <div class="timeline-badge">
+                  <img src={item.logo} alt={item.school} onerror="this.src='/favicon.svg'" />
+                </div>
+              </div>
+              <div class="card timeline-card">
+                <div class="timeline-header">
+                  <div>
+                    <h3>{item.degree}</h3>
+                    <h4>{item.school}</h4>
+                  </div>
+                  <span class="timeline-date">{item.date}</span>
+                </div>
+                <p class="timeline-details">{item.details}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- SKILLS GRID -->
+      <section class="resume-section">
+        <h2 class="section-title-bar">Skills</h2>
+        <div class="skills-grid">
+          {skillCategories.map(category => (
+            <div class="card skill-category-card">
+              <div class="skill-category-header">
+                <img src={category.icon} alt={category.name} class="category-icon" onerror="this.style.display='none'" />
+                <h3>{category.name}</h3>
+              </div>
+              <div class="skill-items">
+                {category.items.map(skill => (
+                  <div class="skill-tag">
+                    <img src={skill.logo} alt={skill.name} class="skill-icon" onerror="this.style.display='none'" />
+                    <span>{skill.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .resume-page {
+    padding-bottom: 5rem;
+  }
+
+  .page-header {
+    background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+    padding: 5rem 0 3rem;
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 1rem auto 0;
+  }
+
+  .content-container {
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+  }
+
+  .resume-section {
+    position: relative;
+  }
+
+  .section-title-bar {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    border-bottom: none;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Custom CSS Timeline */
+  .timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 40px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent-color) 0%, var(--teal-accent) 100%);
+    border-radius: 2px;
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    display: flex;
+    gap: 2rem;
+  }
+
+  .timeline-badge-wrapper {
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+
+  .timeline-badge {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--bg-tertiary);
+    border: 2px solid var(--accent-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 2;
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+  }
+
+  .timeline-badge img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .timeline-card {
+    flex-grow: 1;
+    background: rgba(17, 21, 32, 0.5);
+    border: 1px solid var(--glass-border);
+    padding: 2rem;
+  }
+
+  .timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+  }
+
+  .timeline-header h3 {
+    margin: 0 0 0.25rem;
+    font-size: 1.35rem;
+  }
+
+  .timeline-header h4 {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+
+  .timeline-date {
+    font-family: var(--font-display);
+    color: var(--teal-accent);
+    font-weight: 600;
+    font-size: 0.95rem;
+    background: rgba(20, 184, 166, 0.1);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    border: 1px solid rgba(20, 184, 166, 0.2);
+  }
+
+  .timeline-details {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Skills Section */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .skill-category-card {
+    background: rgba(17, 21, 32, 0.4);
+    border: 1px solid var(--glass-border);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .skill-category-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.75rem;
+  }
+
+  .category-icon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+
+  .skill-category-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+  }
+
+  .skill-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .skill-tag {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 0.85rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: var(--transition);
+  }
+
+  .skill-tag:hover {
+    border-color: var(--accent-color);
+    background: rgba(139, 92, 246, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .skill-icon {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+  }
+
+  @media (max-width: 768px) {
+    .timeline::before {
+      left: 20px;
+    }
+    
+    .timeline-item {
+      gap: 1rem;
+    }
+    
+    .timeline-badge-wrapper {
+      width: 40px;
+    }
+    
+    .timeline-badge {
+      width: 36px;
+      height: 36px;
+    }
+    
+    .timeline-card {
+      padding: 1.25rem;
+    }
+    
+    .timeline-header {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+</style>
