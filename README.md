@@ -36,7 +36,7 @@ It is designed to be fully static, fast (zero-JS by default), and deployed conti
 ## 🛠️ Local Development
 
 ### 1. Prerequisites
-Ensure you have **Node.js >= 22.12.0** installed. (Recommended: Node 23).
+Ensure you have **Node.js >= 24.17.0** installed.
 
 ### 2. Install Dependencies
 ```bash
