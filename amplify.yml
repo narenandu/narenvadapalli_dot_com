@@ -3,13 +3,13 @@ frontend:
   phases:
     preBuild:
       commands:
-        # Install nvm and Node.js 23 (Astro 5+ requires Node >= 22.12.0)
+        # Install nvm and Node.js 24.17.0 (Astro 5+ requires Node >= 22.12.0)
         - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-        - . ~/.nvm/nvm.sh && nvm install 23 && nvm use 23 && npm ci
+        - . ~/.nvm/nvm.sh && nvm install 24.17.0 && nvm use 24.17.0 && npm ci
     build:
       commands:
-        # Source nvm and build the project using Node.js 23
-        - . ~/.nvm/nvm.sh && nvm use 23 && npm run build
+        # Source nvm and build the project using Node.js 24.17.0
+        - . ~/.nvm/nvm.sh && nvm use 24.17.0 && npm run build
   artifacts:
     # Astro builds static files to the 'dist' directory
     baseDirectory: dist
