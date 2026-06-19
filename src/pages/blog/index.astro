@@ -1,0 +1,165 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const posts = await getCollection('blog');
+
+// Sort posts by date (descending)
+const sortedPosts = posts.sort((a, b) => {
+  const dateA = a.data.date ? new Date(a.data.date).getTime() : 0;
+  const dateB = b.data.date ? new Date(b.data.date).getTime() : 0;
+  return dateB - dateA;
+});
+
+// Clean slug helper
+const cleanSlug = (id: string) => id.replace('/index.md', '').replace('index.md', '').trim();
+---
+
+<Layout 
+  title="Blog | Naren Vadapalli" 
+  description="Personal blog of Naren Vadapalli covering DevOps, Software Engineering, Python, VFX, and Automation"
+>
+  <div class="blog-index-page">
+    <div class="page-header">
+      <div class="container">
+        <h1>My Blog</h1>
+        <p class="subtitle">Reflections on software engineering, pipeline automation, graphics, and system reliability.</p>
+      </div>
+    </div>
+
+    <div class="container blog-list-container">
+      <div class="blog-grid">
+        {sortedPosts.map(post => {
+          const dateString = post.data.date 
+            ? new Date(post.data.date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+              })
+            : '';
+            
+          const slug = cleanSlug(post.id);
+          
+          return (
+            <article class="card blog-list-card">
+              <div class="card-meta">
+                <span class="card-date">{dateString}</span>
+                <span class="card-badge">Tech</span>
+              </div>
+              <h2>
+                <a href={`/blog/${slug}`}>{post.data.title}</a>
+              </h2>
+              {post.data.description && <p class="card-description">{post.data.description}</p>}
+              <div class="card-footer">
+                <a href={`/blog/${slug}`} class="read-more">
+                  Read Article &rarr;
+                </a>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .blog-index-page {
+    padding-bottom: 5rem;
+  }
+
+  .page-header {
+    background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+    padding: 5rem 0 3rem;
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 1rem auto 0;
+  }
+
+  .blog-list-container {
+    margin-top: 3rem;
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .blog-list-card {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    background: rgba(17, 21, 32, 0.4);
+    border: 1px solid var(--glass-border);
+  }
+
+  .card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+  }
+
+  .card-date {
+    color: var(--teal-accent);
+    font-weight: 500;
+  }
+
+  .card-badge {
+    background: rgba(139, 92, 246, 0.15);
+    color: var(--accent-color);
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    font-weight: 600;
+  }
+
+  .blog-list-card h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .blog-list-card h2 a {
+    color: var(--text-primary);
+  }
+
+  .blog-list-card h2 a:hover {
+    color: var(--accent-color);
+  }
+
+  .card-description {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+    font-size: 1.05rem;
+    line-height: 1.5;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+  }
+
+  .read-more {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--accent-color);
+    transition: var(--transition);
+  }
+
+  .read-more:hover {
+    color: var(--text-primary);
+    transform: translateX(4px);
+  }
+</style>

@@ -1,0 +1,113 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = "Narendra Kumar Vadapalli",
+  description = "AI LEADER & Visual Design Enthusiast - personal website and blog",
+  image = "/images/wall.jpg"
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+const cleanPath = currentPath.endsWith('/') && currentPath.length > 1 ? currentPath.slice(0, -1) : currentPath;
+
+const navLinks = [
+  { name: "HOME", url: "/" },
+  { name: "BLOG", url: "/blog" },
+  { name: "PORTFOLIO", url: "/portfolio" },
+  { name: "ABOUT", url: "/about" },
+  { name: "CONTACT", url: "/contact" }
+];
+
+const socialLinks = [
+  { name: "GitHub", url: "https://github.com/narenandu", icon: "/images/github.svg" },
+  { name: "LinkedIn", url: "https://www.linkedin.com/in/narenandu/", icon: "/images/linkedin.svg" },
+  { name: "IMDB", url: "https://www.imdb.com/name/nm4511578/", icon: "/images/imdb.svg" },
+  { name: "Twitter", url: "https://twitter.com/narenandu", icon: "/images/twitter.svg" }
+];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="/images/icon.png" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
+
+    <!-- Google Analytics (G-601R9JN9RF) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-601R9JN9RF"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-601R9JN9RF');
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="container header-container">
+        <a href="/" class="logo">
+          <img src="/images/logo.png" alt="Logo" onerror="this.style.display='none'" />
+          <span>NAREN VADAPALLI</span>
+        </a>
+        <nav>
+          {navLinks.map(link => {
+            const isActive = cleanPath === link.url || (link.url !== '/' && cleanPath.startsWith(link.url));
+            return (
+              <a
+                href={link.url}
+                class={isActive ? 'active' : ''}
+                id={`nav-${link.name.toLowerCase()}`}
+              >
+                {link.name}
+              </a>
+            );
+          })}
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <div class="container">
+        <div style="display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem;">
+          {socialLinks.map(social => (
+            <a href={social.url} target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.95rem;">
+              <img src={social.icon} alt={social.name} style="height: 18px; width: 18px; filter: invert(0.8);" onerror="this.style.display='none'" />
+              <span>{social.name}</span>
+            </a>
+          ))}
+        </div>
+        <p>&copy; {new Date().getFullYear()} Narendra Kumar Vadapalli. Built with Astro & Vanilla CSS.</p>
+      </div>
+    </footer>
+  </body>
+</html>

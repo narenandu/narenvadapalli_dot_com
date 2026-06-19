@@ -1,0 +1,180 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => {
+    // Clean the slug from the folder name
+    const slug = post.id.replace('/index.md', '').replace('index.md', '').trim();
+    return {
+      params: { slug },
+      props: { post },
+    };
+  });
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+// Format date
+const formattedDate = post.data.date 
+  ? new Date(post.data.date).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    })
+  : '';
+---
+
+<Layout 
+  title={`${post.data.title} | Naren Vadapalli`} 
+  description={post.data.description}
+  image={post.data.image ? post.data.image.src : undefined}
+>
+  <article class="blog-post-page">
+    <div class="blog-hero">
+      <div class="container">
+        <div class="breadcrumbs">
+          <a href="/">Home</a> / <a href="/blog">Blog</a> / <span class="active">{post.data.title}</span>
+        </div>
+        <h1>{post.data.title}</h1>
+        {formattedDate && <div class="blog-date">{formattedDate}</div>}
+        {post.data.description && <p class="blog-description">{post.data.description}</p>}
+      </div>
+    </div>
+
+    <div class="container blog-content-container">
+      <div class="card blog-card">
+        <div class="markdown-body">
+          <Content />
+        </div>
+        
+        <div class="blog-footer">
+          <a href="/blog" class="btn btn-secondary">
+            &larr; Back to Blog
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style is:global>
+  /* Blog Layout Styles */
+  .blog-post-page {
+    padding-bottom: 4rem;
+  }
+  
+  .blog-hero {
+    background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+    padding: 4rem 0 3rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .breadcrumbs {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    font-family: var(--font-display);
+  }
+  
+  .breadcrumbs a {
+    color: var(--text-muted);
+  }
+  
+  .breadcrumbs a:hover {
+    color: var(--accent-color);
+  }
+  
+  .breadcrumbs .active {
+    color: var(--text-primary);
+  }
+  
+  .blog-date {
+    font-family: var(--font-display);
+    color: var(--teal-accent);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .blog-description {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    max-width: 800px;
+    line-height: 1.6;
+  }
+  
+  .blog-content-container {
+    margin-top: -2rem;
+  }
+  
+  .blog-card {
+    padding: 3rem;
+    background: rgba(17, 21, 32, 0.7);
+    border: 1px solid var(--glass-border);
+  }
+  
+  .blog-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+  }
+  
+  /* Markdown Specific overrides */
+  .markdown-body h2 {
+    color: var(--text-primary);
+    font-size: 1.8rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .markdown-body h3 {
+    font-size: 1.4rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .markdown-body ul, .markdown-body ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    color: var(--text-secondary);
+  }
+  
+  .markdown-body li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .markdown-body img {
+    max-width: 100%;
+    border-radius: var(--radius-sm);
+    margin: 1.5rem 0;
+    border: 1px solid var(--border-color);
+  }
+  
+  .markdown-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+  }
+  
+  .markdown-body th, .markdown-body td {
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    text-align: left;
+  }
+  
+  .markdown-body th {
+    background-color: var(--bg-tertiary);
+  }
+
+  @media (max-width: 768px) {
+    .blog-card {
+      padding: 1.5rem;
+    }
+    .blog-hero {
+      padding: 2rem 0;
+    }
+  }
+</style>
