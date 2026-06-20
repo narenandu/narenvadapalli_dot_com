@@ -5,22 +5,25 @@ const experience = [
   {
     role: "Senior Specialist Field Engineer",
     company: "CoreWeave",
+    location: "Brentwood, CA, USA / Remote",
     url: "https://www.coreweave.com",
     date: "2024 (Jun) - Present",
     logo: "/images/work_edu/coreweave.png",
-    details: "Spanning the Kubernetes, HPC/AI/ML, and Storage pillars to support and scale client AI workloads on specialized cloud infrastructure. Act as a primary technical advocate, designing customized architectures, leading proof-of-concept (PoC) initiatives, and collaborating with internal engineering teams to influence product roadmap enhancements."
+    details: "Spanning the Kubernetes, HPC/AI/ML, and Storage pillars to support and scale client AI workloads on The Essential Cloud for AI. Act as a primary technical advocate, designing customized architectures, leading proof-of-concept (PoC) initiatives, and collaborating with internal engineering teams to influence product roadmap enhancements."
   },
   {
     role: "Founder / Director",
-    company: "Skynet Technology Ltd, Surrey, Canada",
+    company: "Skynet Technology Ltd",
+    location: "Surrey, BC, Canada",
     url: "https://skynettechltd.com",
     date: "2021 (Jul) - Present",
     logo: "/images/work_edu/skynet_tech_ltd_logo.jpg",
-    details: "Software Consulting/Contract services with an expertise in Animation/VFX, Automation, Cloud, DevOps, Python, Full-Stack Development. Working with clients to transition tools to scaling infrastructure."
+    details: "AI Native Software Consulting/Contract services with an expertise in Animation/VFX, Automation, Cloud, DevOps, Python, Full-Stack Development. Working with clients to convert their dream projects to reality spanning from software to infrastructure."
   },
   {
     role: "Systems Engineer",
     company: "ScanlineVFX / Eyeline Studios (Netflix)",
+    location: "Vancouver, BC, Canada",
     url: "https://www.scanlinevfx.com",
     date: "2023 (Oct) - 2024 (Jun)",
     logo: "/images/work_edu/netflix.jpg",
@@ -29,22 +32,25 @@ const experience = [
   {
     role: "Lead Site Reliability Engineer - Consultant",
     company: "Spire Animation Studios Inc.",
+    location: "Remote",
     url: "https://spirestudios.com",
     date: "2021 (Sep) - 2023 (Aug)",
     logo: "/images/work_edu/spire_animation_logo.jpg",
     details: "Developed the next generation platform and infrastructure for a portable and scalable pipeline at the startup animation studio. Enabled seamless and efficient content generation using Unreal Engine at its heart."
   },
   {
-    role: "Senior Software Engineer",
-    company: "Parallel Domain, Vancouver, Canada",
+    role: "Senior Software Engineer - Data Pipeline",
+    company: "Parallel Domain",
+    location: "Vancouver, BC, Canada",
     url: "https://paralleldomain.com",
     date: "2020 (Feb) - 2021 (Aug)",
     logo: "/images/work_edu/pd_logo.png",
-    details: "Full stack web app development using Vue/React frontend (Tailwind CSS) and Python Flask backend. Built data pipelines connecting subworkflows from end to end. Handled DevOps tasks including Jenkins CI/CD automation, Kubernetes production cluster management (Docker/Helm), and designed container-native workflows in Argo."
+    details: "Designed and developed Synthetic Data Pipelines based on the AV companies spec. Full stack web app development using Vue/React frontend (Tailwind CSS) and Python Flask backend. DevOps tasks including Jenkins CI/CD automation, Kubernetes production cluster management (Docker/Helm), and designed container-native workflows in Argo."
   },
   {
     role: "Senior Pipeline Technical Director",
-    company: "Bardel Entertainment Inc, Vancouver, Canada",
+    company: "Bardel Entertainment Inc",
+    location: "Vancouver, BC, Canada",
     url: "https://bardel.ca",
     date: "2018 (Jul) - 2020 (Feb)",
     logo: "/images/work_edu/bardel_logo.png",
@@ -52,7 +58,8 @@ const experience = [
   },
   {
     role: "Chief Pipeline Technical Director",
-    company: "On Animation Studios, Montreal, Canada",
+    company: "On Animation Studios",
+    location: "Montreal, QC, Canada",
     url: "https://www.onanimationstudios.com",
     date: "2017 (Oct) - 2018 (Jun)",
     logo: "/images/work_edu/on_animation_logo.jpg",
@@ -60,7 +67,8 @@ const experience = [
   },
   {
     role: "Pipeline Technical Director for Lighting",
-    company: "Animal Logic, Sydney, Australia",
+    company: "Animal Logic (Netflix)",
+    location: "Sydney, Australia",
     url: "https://www.animallogic.com",
     date: "2016 (Jan) - 2017 (Jul)",
     logo: "/images/work_edu/animal_logic_logo.jpg",
@@ -68,7 +76,8 @@ const experience = [
   },
   {
     role: "Department Technical Director",
-    company: "DreamWorks Animations, Bengaluru, India",
+    company: "DreamWorks Animations",
+    location: "Bengaluru, India",
     url: "https://www.dreamworks.com",
     date: "2012 (Feb) - 2015 (Dec)",
     logo: "/images/work_edu/dreamworks_logo.jpg",
@@ -76,7 +85,8 @@ const experience = [
   },
   {
     role: "CG Software Engineer - Intern",
-    company: "EA Sports Tiburon, Orlando, FL, USA",
+    company: "EA Sports Tiburon",
+    location: "Orlando, FL, USA",
     url: "https://www.easports.com",
     date: "2011 (May) - 2011 (Aug)",
     logo: "/images/work_edu/ea_sports_logo.jpg",
@@ -84,7 +94,8 @@ const experience = [
   },
   {
     role: "Lead Software Engineer",
-    company: "Samsung India Software Operations, Bengaluru, India",
+    company: "Samsung India Software Operations",
+    location: "Bengaluru, India",
     url: "https://www.samsung.com",
     date: "2007 (Sep) - 2010 (Jul)",
     logo: "/images/work_edu/samsung_logo.jpg",
@@ -92,7 +103,8 @@ const experience = [
   },
   {
     role: "Software Engineer",
-    company: "Motorola India Pvt Ltd, Bengaluru, India",
+    company: "Motorola India Pvt Ltd",
+    location: "Bengaluru, India",
     url: "https://www.motorola.com",
     date: "2006 (May) - 2007 (Sep)",
     logo: "/images/work_edu/motorola_logo.jpg",
@@ -238,6 +250,12 @@ const skillCategories = [
                         </a>
                       ) : (
                         item.company
+                      )}
+                      {item.location && (
+                        <>
+                          <span class="location-separator"> &bull; </span>
+                          <span class="location-text">{item.location}</span>
+                        </>
                       )}
                     </h4>
                   </div>
@@ -434,6 +452,19 @@ const skillCategories = [
   .company-link:hover {
     color: var(--teal-accent);
     text-decoration: underline;
+  }
+
+  .location-separator {
+    color: var(--border-color);
+    margin: 0 0.25rem;
+    font-weight: 300;
+  }
+
+  .location-text {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    opacity: 0.85;
   }
 
   .timeline-date {
