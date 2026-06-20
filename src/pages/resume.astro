@@ -5,6 +5,7 @@ const experience = [
   {
     role: "Senior Specialist Field Engineer",
     company: "CoreWeave",
+    url: "https://www.coreweave.com",
     date: "2024 (Jun) - Present",
     logo: "/images/work_edu/coreweave.png",
     details: "Spanning the Kubernetes, HPC/AI/ML, and Storage pillars to support and scale client AI workloads on specialized cloud infrastructure. Act as a primary technical advocate, designing customized architectures, leading proof-of-concept (PoC) initiatives, and collaborating with internal engineering teams to influence product roadmap enhancements."
@@ -12,6 +13,7 @@ const experience = [
   {
     role: "Founder / Director",
     company: "Skynet Technology Ltd, Surrey, Canada",
+    url: "https://skynettechltd.com",
     date: "2021 (Jul) - Present",
     logo: "/images/work_edu/skynet_tech_ltd_logo.jpg",
     details: "Software Consulting/Contract services with an expertise in Animation/VFX, Automation, Cloud, DevOps, Python, Full-Stack Development. Working with clients to transition tools to scaling infrastructure."
@@ -19,6 +21,7 @@ const experience = [
   {
     role: "Systems Engineer",
     company: "ScanlineVFX (Netflix)",
+    url: "https://www.scanlinevfx.com",
     date: "2023 (Oct) - 2024 (Jun)",
     logo: "/images/work_edu/netflix.jpg",
     details: "Led requirements gathering and technical spec evaluations for studio-wide Generative AI use-cases. Deployed on-premises Kubernetes clusters using Kubespray to support AI workloads in media and virtual production workflows. Assisted in LA to EAT datacenter migration, writing a custom web application for rack/node visualization with a SnipeIT backend. Conducted internal IT system optimizations, including bottleneck troubleshooting, DNS caching, and licensing setup."
@@ -26,6 +29,7 @@ const experience = [
   {
     role: "Lead Site Reliability Engineer - Consultant",
     company: "Spire Animation Studios Inc.",
+    url: "https://spirestudios.com",
     date: "2021 (Sep) - 2023 (Aug)",
     logo: "/images/work_edu/spire_animation_logo.jpg",
     details: "Developed the next generation platform and infrastructure for a portable and scalable pipeline at the startup animation studio. Enabled seamless and efficient content generation using Unreal Engine at its heart."
@@ -33,6 +37,7 @@ const experience = [
   {
     role: "Senior Software Engineer",
     company: "Parallel Domain, Vancouver, Canada",
+    url: "https://paralleldomain.com",
     date: "2020 (Feb) - 2021 (Aug)",
     logo: "/images/work_edu/pd_logo.png",
     details: "Full stack web app development using Vue/React frontend (Tailwind CSS) and Python Flask backend. Built data pipelines connecting subworkflows from end to end. Handled DevOps tasks including Jenkins CI/CD automation, Kubernetes production cluster management (Docker/Helm), and designed container-native workflows in Argo."
@@ -40,6 +45,7 @@ const experience = [
   {
     role: "Senior Pipeline Technical Director",
     company: "Bardel Entertainment Inc, Vancouver, Canada",
+    url: "https://bardel.ca",
     date: "2018 (Jul) - 2020 (Feb)",
     logo: "/images/work_edu/bardel_logo.png",
     details: "Member of the core Pipeline Team. Designed and developed custom schema-based version control system for assets. Setup CI/CD automation via Jenkins, Docker, and RedHat OpenShift. Built web applications in Python Flask and Socket.io to connect production pipelines with ShotGrid."
@@ -47,6 +53,7 @@ const experience = [
   {
     role: "Chief Pipeline Technical Director",
     company: "On Animation Studios, Montreal, Canada",
+    url: "https://www.onanimationstudios.com",
     date: "2017 (Oct) - 2018 (Jun)",
     logo: "/images/work_edu/on_animation_logo.jpg",
     details: "Supervised the Pipeline and Render/Data Wrangling teams. Designed core pipeline modules used across all departments. Built batch rendering configurations on Guerilla Renderer and designed data analytics tools for render-time prediction."
@@ -54,6 +61,7 @@ const experience = [
   {
     role: "Pipeline Technical Director for Lighting",
     company: "Animal Logic, Sydney, Australia",
+    url: "https://www.animallogic.com",
     date: "2016 (Jan) - 2017 (Jul)",
     logo: "/images/work_edu/animal_logic_logo.jpg",
     details: "Developed render statistics reporting pipelines to track system optimization. Built lighting tools to optimize artist workflow. Created projection automation pipelines mapping live-action plates to LIDAR geometry for 'Peter Rabbit'."
@@ -61,6 +69,7 @@ const experience = [
   {
     role: "Department Technical Director",
     company: "DreamWorks Animations, Bengaluru, India",
+    url: "https://www.dreamworks.com",
     date: "2012 (Feb) - 2015 (Dec)",
     logo: "/images/work_edu/dreamworks_logo.jpg",
     details: "Provided FX pipeline tool development and Houdini support for features: 'Penguins of Madagascar', 'Kung Fu Panda 3', and 'The Boss Baby'. Maintained and upgraded animation pipelines for 'Mr. Peabody & Sherman' and episodic content for Cartoon Network ('Dragons - Riders of Berk')."
@@ -68,6 +77,7 @@ const experience = [
   {
     role: "CG Software Engineer - Intern",
     company: "EA Sports Tiburon, Orlando, FL, USA",
+    url: "https://www.easports.com",
     date: "2011 (May) - 2011 (Aug)",
     logo: "/images/work_edu/ea_sports_logo.jpg",
     details: "Graphics solutions, internal tools, and pipeline optimization for the Core Football Graphics Team, supporting Madden/NCAA 2012."
@@ -75,6 +85,7 @@ const experience = [
   {
     role: "Lead Software Engineer",
     company: "Samsung India Software Operations, Bengaluru, India",
+    url: "https://www.samsung.com",
     date: "2007 (Sep) - 2010 (Jul)",
     logo: "/images/work_edu/samsung_logo.jpg",
     details: "Embedded software development for CDMA mobile applications. Developed and maintained the MP3 Player application frontend, and performed messaging/browser validation."
@@ -82,6 +93,7 @@ const experience = [
   {
     role: "Software Engineer",
     company: "Motorola India Pvt Ltd, Bengaluru, India",
+    url: "https://www.motorola.com",
     date: "2006 (May) - 2007 (Sep)",
     logo: "/images/work_edu/motorola_logo.jpg",
     details: "Responsible for BREW PEK performance optimization, bug fixing, and carrier-specific API validation for CDMA mobile phones."
@@ -219,7 +231,15 @@ const skillCategories = [
                 <div class="timeline-header">
                   <div>
                     <h3>{item.role}</h3>
-                    <h4>{item.company}</h4>
+                    <h4>
+                      {item.url ? (
+                        <a href={item.url} target="_blank" rel="noopener noreferrer" class="company-link">
+                          {item.company}
+                        </a>
+                      ) : (
+                        item.company
+                      )}
+                    </h4>
                   </div>
                   <span class="timeline-date">{item.date}</span>
                 </div>
@@ -403,6 +423,17 @@ const skillCategories = [
     font-size: 1.05rem;
     font-weight: 500;
     color: var(--text-secondary);
+  }
+
+  .company-link {
+    color: inherit;
+    text-decoration: none;
+    transition: var(--transition);
+  }
+
+  .company-link:hover {
+    color: var(--teal-accent);
+    text-decoration: underline;
   }
 
   .timeline-date {
