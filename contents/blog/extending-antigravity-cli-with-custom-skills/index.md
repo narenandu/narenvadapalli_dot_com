@@ -2,6 +2,7 @@
 title: "Extending Antigravity CLI: Building Custom Skills and Project Rules"
 date: 2026-06-21
 template: blog
+image: "./agy_custom_skills.jpg"
 description: "Learn how to supercharge the Google Antigravity CLI (agy) by building custom agent skills, project-scoped rules, and custom scripts to automate repository-specific workflows."
 ---
 

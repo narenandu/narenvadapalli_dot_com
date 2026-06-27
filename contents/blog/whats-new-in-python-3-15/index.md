@@ -2,6 +2,7 @@
 title: "Python 3.15: A First Look at the Coolest New Features"
 date: 2026-06-19
 template: blog
+image: "./whats_new_python_3_15.jpg"
 description: "A deep dive into the most exciting developer features in the Python 3.15 pre-release, including explicit lazy imports, frozendict, built-in sentinels, unpacking in comprehensions, and the Tachyon profiler."
 ---
 
