@@ -2,6 +2,7 @@
 title: "Going Async: Background Tasks, Timers, and Scheduling in Antigravity CLI"
 date: 2026-06-23
 template: blog
+image: "./agy_background_tasks.jpg"
 description: "A deep dive into managing long-running tasks, using asynchronous tools, setting timers, and configuring recurring jobs with the Google Antigravity CLI."
 ---
 

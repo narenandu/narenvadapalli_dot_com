@@ -2,6 +2,7 @@
 title: "Custom Model Endpoints: Hooking up Local & Enterprise Models with Antigravity CLI"
 date: 2026-06-24
 template: blog
+image: "./agy_custom_endpoints.jpg"
 description: "Learn how to configure the Google Antigravity CLI (agy) to run with local LLMs (Ollama, vLLM) or private enterprise endpoints for maximum privacy and cost efficiency."
 ---
 
