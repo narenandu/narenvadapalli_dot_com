@@ -19,7 +19,8 @@ const { Content } = await render(post);
 
 // Format date
 const formattedDate = post.data.date 
-  ? new Date(post.data.date).toLocaleDateString('en-US', {
+  ? post.data.date.toLocaleDateString('en-US', {
+      timeZone: 'UTC',
       year: 'numeric',
       month: 'long',
       day: 'numeric'
@@ -148,6 +149,8 @@ const formattedDate = post.data.date
   
   .markdown-body img {
     max-width: 100%;
+    width: 100% !important;
+    height: auto !important;
     border-radius: var(--radius-sm);
     margin: 1.5rem 0;
     border: 1px solid var(--border-color);
