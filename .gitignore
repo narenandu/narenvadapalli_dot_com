@@ -91,3 +91,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Local custom rules for AI agent
+.agents/
