@@ -40,7 +40,8 @@ const cleanSlug = (id: string) => id.replace('/index.md', '').replace('index.md'
       <div class="blog-grid">
         {sortedPosts.map(post => {
           const dateString = post.data.date 
-            ? new Date(post.data.date).toLocaleDateString('en-US', {
+            ? post.data.date.toLocaleDateString('en-US', {
+                timeZone: 'UTC',
                 year: 'numeric',
                 month: 'short',
                 day: 'numeric'
