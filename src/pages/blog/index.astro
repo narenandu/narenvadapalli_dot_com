@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 
 const posts = await getCollection('blog');
@@ -42,18 +43,31 @@ const cleanSlug = (id: string) => id.replace('/index.md', '').replace('index.md'
           
           return (
             <article class="card blog-list-card">
-              <div class="card-meta">
-                <span class="card-date">{dateString}</span>
-                <span class="card-badge">Tech</span>
-              </div>
-              <h2>
-                <a href={`/blog/${slug}`}>{post.data.title}</a>
-              </h2>
-              {post.data.description && <p class="card-description">{post.data.description}</p>}
-              <div class="card-footer">
-                <a href={`/blog/${slug}`} class="read-more">
-                  Read Article &rarr;
-                </a>
+              {post.data.image && (
+                <div class="card-thumbnail">
+                  <a href={`/blog/${slug}`}>
+                    <Image 
+                      src={post.data.image} 
+                      alt={post.data.title}
+                      class="thumbnail-img"
+                    />
+                  </a>
+                </div>
+              )}
+              <div class="card-content">
+                <div class="card-meta">
+                  <span class="card-date">{dateString}</span>
+                  <span class="card-badge">Tech</span>
+                </div>
+                <h2>
+                  <a href={`/blog/${slug}`}>{post.data.title}</a>
+                </h2>
+                {post.data.description && <p class="card-description">{post.data.description}</p>}
+                <div class="card-footer">
+                  <a href={`/blog/${slug}`} class="read-more">
+                    Read Article &rarr;
+                  </a>
+                </div>
               </div>
             </article>
           );
@@ -97,9 +111,37 @@ const cleanSlug = (id: string) => id.replace('/index.md', '').replace('index.md'
   .blog-list-card {
     padding: 2rem;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    gap: 2rem;
     background: rgba(17, 21, 32, 0.4);
     border: 1px solid var(--glass-border);
+    align-items: flex-start;
+  }
+
+  .card-thumbnail {
+    width: 200px;
+    height: 133px;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: var(--radius-sm, 6px);
+    border: 1px solid var(--glass-border);
+  }
+
+  .thumbnail-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition);
+  }
+
+  .blog-list-card:hover .thumbnail-img {
+    transform: scale(1.05);
+  }
+
+  .card-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
   }
 
   .card-meta {
@@ -161,5 +203,17 @@ const cleanSlug = (id: string) => id.replace('/index.md', '').replace('index.md'
   .read-more:hover {
     color: var(--text-primary);
     transform: translateX(4px);
+  }
+
+  @media (max-width: 768px) {
+    .blog-list-card {
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+    .card-thumbnail {
+      width: 100%;
+      height: 200px;
+    }
   }
 </style>
