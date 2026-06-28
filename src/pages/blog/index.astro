@@ -5,16 +5,8 @@ import Layout from '../../layouts/Layout.astro';
 
 const posts = await getCollection('blog');
 
-// Filter out future posts (scheduling support)
-const today = new Date();
-const publishedPosts = posts.filter(post => {
-  if (!post.data.date) return true;
-  const postDate = new Date(post.data.date);
-  return postDate.getTime() <= today.getTime();
-});
-
 // Sort posts by date (descending)
-const sortedPosts = publishedPosts.sort((a, b) => {
+const sortedPosts = posts.sort((a, b) => {
   const dateA = a.data.date ? new Date(a.data.date).getTime() : 0;
   const dateB = b.data.date ? new Date(b.data.date).getTime() : 0;
   return dateB - dateA;
