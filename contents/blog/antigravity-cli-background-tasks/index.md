@@ -4,7 +4,10 @@ date: 2026-06-23
 template: blog
 image: "./agy_background_tasks.jpg"
 description: "A deep dive into managing long-running tasks, using asynchronous tools, setting timers, and configuring recurring jobs with the Google Antigravity CLI."
+tags: ["ai", "agentic", "antigravity"]
 ---
+
+*This is Part 3 of a 4-part series on the Google Antigravity CLI. Read: [Part 1 (Setup)](/blog/setting-up-antigravity-cli/) | [Part 2 (Custom Skills)](/blog/extending-antigravity-cli-with-custom-skills/) | [Part 4 (Custom Endpoints)](/blog/antigravity-cli-custom-endpoints/)*
 
 When paired with a terminal AI agent, not all tasks are quick one-liners. If you ask an agent to run a full test suite, bundle a production build, or perform a complete security scan of your codebase, you don't want your shell to lock up while waiting for the command to finish. 
 

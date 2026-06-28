@@ -4,9 +4,12 @@ date: 2026-06-28
 template: blog
 image: "./claude_code_setup.jpg"
 description: "A step-by-step setup guide for installing, configuring, and authenticating Anthropic's Claude Code CLI across macOS, Windows, and Linux."
+tags: ["ai", "agentic", "claude", "claude-code"]
 ---
 
-Terminal-based AI assistants are rapidly changing how developers build software. By placing an AI directly in your shell, you bypass the friction of copying and pasting code between a web browser and your IDE. In our previous post, we looked at the [architectural concepts behind agentic systems](../intro-to-claude-code/). Now, it’s time to get hands-on.
+*Claude Code Series: &larr; [LLMs, Agents, and Harnesses](/blog/intro-to-claude-code/) (Previous)*
+
+Terminal-based AI assistants are rapidly changing how developers build software. By placing an AI directly in your shell, you bypass the friction of copying and pasting code between a web browser and your IDE. In our previous post, we looked at the [architectural concepts behind agentic systems](/blog/intro-to-claude-code/). Now, it’s time to get hands-on.
 
 In this guide, we will walk through setting up **Claude Code**—Anthropic’s agentic CLI tool—on **macOS**, **Windows**, and **Linux**, and cover the essential commands you need to know to get started.
 

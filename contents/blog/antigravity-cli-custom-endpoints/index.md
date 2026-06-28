@@ -4,7 +4,10 @@ date: 2026-06-24
 template: blog
 image: "./agy_custom_endpoints.jpg"
 description: "Learn how to configure the Google Antigravity CLI (agy) to run with local LLMs (Ollama, vLLM) or private enterprise endpoints for maximum privacy and cost efficiency."
+tags: ["ai", "agentic", "antigravity"]
 ---
+
+*This is Part 4 of a 4-part series on the Google Antigravity CLI. Read: [Part 1 (Setup)](/blog/setting-up-antigravity-cli/) | [Part 2 (Custom Skills)](/blog/extending-antigravity-cli-with-custom-skills/) | [Part 3 (Background Tasks)](/blog/antigravity-cli-background-tasks/)*
 
 While the Google Antigravity CLI (`agy`) runs incredibly fast using Gemini public API endpoints, many teams and developers have strict privacy requirements or prefer utilizing local computing resources. Whether you want to avoid sending code to external servers, minimize API costs, or leverage custom-tuned local models, Antigravity CLI offers first-class support for custom model endpoints.
 

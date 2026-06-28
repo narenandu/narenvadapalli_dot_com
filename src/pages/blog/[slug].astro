@@ -147,6 +147,21 @@ const formattedDate = post.data.date
     margin-bottom: 0.5rem;
   }
   
+  .markdown-body a {
+    color: var(--accent-color);
+    text-decoration: underline;
+    background: rgba(0, 242, 254, 0.08);
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+    transition: var(--transition);
+  }
+
+  .markdown-body a:hover {
+    background: rgba(0, 242, 254, 0.18);
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
   .markdown-body img {
     max-width: 100%;
     width: 100% !important;
