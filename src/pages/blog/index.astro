@@ -29,6 +29,11 @@ const cleanSlug = (id: string) => id.replace('/index.md', '').replace('index.md'
     </div>
 
     <div class="container blog-list-container">
+      <div class="filter-status" id="filterStatus" style="display: none;">
+        <span class="filter-text">Showing articles tagged with: <strong id="activeTagName"></strong></span>
+        <button id="clearFilterBtn" class="clear-filter-btn">Clear Filter</button>
+      </div>
+
       <div class="blog-grid">
         {sortedPosts.map(post => {
           const dateString = post.data.date 
@@ -41,9 +46,10 @@ const cleanSlug = (id: string) => id.replace('/index.md', '').replace('index.md'
             : '';
             
           const slug = cleanSlug(post.id);
+          const tagsList = post.data.tags ? post.data.tags.join(',') : 'tech';
           
           return (
-            <article class="card blog-list-card">
+            <article class="card blog-list-card" data-tags={tagsList}>
               {post.data.image && (
                 <div class="card-thumbnail">
                   <a href={`/blog/${slug}`}>
@@ -58,7 +64,14 @@ const cleanSlug = (id: string) => id.replace('/index.md', '').replace('index.md'
               <div class="card-content">
                 <div class="card-meta">
                   <span class="card-date">{dateString}</span>
-                  <span class="card-badge">Tech</span>
+                  <div class="card-badges">
+                    {post.data.tags && post.data.tags.map(tag => (
+                      <button class="card-badge tag-button" data-tag={tag}>{tag}</button>
+                    ))}
+                    {(!post.data.tags || post.data.tags.length === 0) && (
+                      <button class="card-badge tag-button" data-tag="tech">Tech</button>
+                    )}
+                  </div>
                 </div>
                 <h2>
                   <a href={`/blog/${slug}`}>{post.data.title}</a>
@@ -169,6 +182,12 @@ const cleanSlug = (id: string) => id.replace('/index.md', '').replace('index.md'
     font-weight: 500;
   }
 
+  .card-badges {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
   .card-badge {
     background: rgba(139, 92, 246, 0.15);
     color: var(--accent-color);
@@ -234,4 +253,136 @@ const cleanSlug = (id: string) => id.replace('/index.md', '').replace('index.md'
       margin-bottom: 1rem;
     }
   }
+
+  /* Filter Status Header */
+  .filter-status {
+    background: rgba(0, 242, 254, 0.06);
+    border: 1px solid rgba(0, 242, 254, 0.15);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 0 auto 3rem; /* Centered horizontally with 3rem bottom margin to push cards down */
+    max-width: 800px;
+    font-family: var(--font-display);
+    color: var(--text-primary);
+  }
+
+  .clear-filter-btn {
+    background: none;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: var(--transition);
+  }
+
+  .clear-filter-btn:hover {
+    background: var(--accent-color);
+    color: var(--bg-primary);
+  }
+
+  /* Hidden Card Styles */
+  .blog-list-card {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .blog-list-card.hidden-card {
+    display: none !important; /* Force complete removal from grid to resolve min-height and overflow layout issues */
+  }
+
+  /* Active tag button styling */
+  .tag-button.active-tag {
+    background: var(--accent-color);
+    color: var(--bg-primary);
+    border-color: var(--accent-color);
+  }
 </style>
+
+<script>
+  // Client-side tag filtering
+  const filterStatus = document.getElementById('filterStatus');
+  const activeTagName = document.getElementById('activeTagName');
+  const clearFilterBtn = document.getElementById('clearFilterBtn');
+  const cards = document.querySelectorAll('.blog-list-card');
+  const tagButtons = document.querySelectorAll('.tag-button');
+
+  let activeTag = null;
+
+  function setFilter(tag) {
+    activeTag = tag ? tag.toLowerCase().trim() : null;
+
+    if (activeTag) {
+      // Show active filter bar
+      if (activeTagName) activeTagName.textContent = `#${activeTag}`;
+      if (filterStatus) filterStatus.style.display = 'flex';
+
+      // Update URL query parameter without page reload
+      const url = new URL(window.location.href);
+      url.searchParams.set('tag', activeTag);
+      window.history.replaceState({}, '', url.toString());
+
+      // Filter cards
+      cards.forEach(card => {
+        const tagsAttr = card.getAttribute('data-tags');
+        const tags = tagsAttr ? tagsAttr.split(',').map(t => t.trim().toLowerCase()) : [];
+        if (tags.includes(activeTag)) {
+          card.classList.remove('hidden-card');
+        } else {
+          card.classList.add('hidden-card');
+        }
+      });
+    } else {
+      // Clear filter bar
+      if (filterStatus) filterStatus.style.display = 'none';
+
+      // Remove URL query parameter
+      const url = new URL(window.location.href);
+      url.searchParams.delete('tag');
+      window.history.replaceState({}, '', url.toString());
+
+      // Show all cards
+      cards.forEach(card => {
+        card.classList.remove('hidden-card');
+      });
+    }
+
+    // Highlight currently active tag buttons
+    tagButtons.forEach(btn => {
+      const btnTag = btn.getAttribute('data-tag');
+      if (activeTag && btnTag && btnTag.toLowerCase().trim() === activeTag) {
+        btn.classList.add('active-tag');
+      } else {
+        btn.classList.remove('active-tag');
+      }
+    });
+  }
+
+  // Handle clicking tag buttons
+  tagButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const tag = btn.getAttribute('data-tag');
+      setFilter(tag === activeTag ? null : tag);
+    });
+  });
+
+  // Handle clear filter button
+  if (clearFilterBtn) {
+    clearFilterBtn.addEventListener('click', () => {
+      setFilter(null);
+    });
+  }
+
+  // Check URL parameters on load
+  const params = new URLSearchParams(window.location.search);
+  const tagParam = params.get('tag');
+  if (tagParam) {
+    setFilter(tagParam);
+  }
+</script>

@@ -4,7 +4,10 @@ date: 2026-06-27
 template: blog
 image: "./agent_architecture.jpg"
 description: "Confused about the difference between Claude Code and Claude Opus? A deep dive into the architecture of modern agentic coding tools—from Large Language Models (LLMs) to Autonomous Agents and Execution Harnesses."
+tags: ["ai", "agentic", "claude", "claude-code"]
 ---
+
+*Claude Code Series: [Setting up Claude Code](/blog/setting-up-claude-code/) (Next) &rarr;*
 
 If you have been keeping up with the rapid pace of AI development, you’ve likely heard of **Claude Code**—Anthropic’s agentic command-line tool that can navigate your codebase, run tests, fix bugs, and execute terminal commands. 
 

@@ -4,9 +4,12 @@ date: 2026-06-21
 template: blog
 image: "./agy_custom_skills.jpg"
 description: "Learn how to supercharge the Google Antigravity CLI (agy) by building custom agent skills, project-scoped rules, and custom scripts to automate repository-specific workflows."
+tags: ["ai", "agentic", "antigravity"]
 ---
 
-In our previous post, we walked through setting up the **Google Antigravity CLI** (`agy`) and running your first pair-programming sessions. Out of the box, the CLI is incredibly smart. It understands modern programming patterns, tests, and basic refactoring. 
+*This is Part 2 of a 4-part series on the Google Antigravity CLI. Read: [Part 1 (Setup)](/blog/setting-up-antigravity-cli/) | [Part 3 (Background Tasks)](/blog/antigravity-cli-background-tasks/) | [Part 4 (Custom Endpoints)](/blog/antigravity-cli-custom-endpoints/)*
+
+In our [previous post](/blog/setting-up-antigravity-cli/), we walked through setting up the **Google Antigravity CLI** (`agy`) and running your first pair-programming sessions. Out of the box, the CLI is incredibly smart. It understands modern programming patterns, tests, and basic refactoring. 
 
 But where the Antigravity CLI truly becomes a 10x multiplier is when you teach it the specific patterns, standards, and domain knowledge of **your** project.
 

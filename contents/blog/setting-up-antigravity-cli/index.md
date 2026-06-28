@@ -4,7 +4,10 @@ date: 2026-06-20
 template: blog
 image: "./setting_up_agy.jpg"
 description: "A comprehensive guide on installing and configuring Google Antigravity CLI (agy) on Mac, Windows, and Linux, complete with TUI commands, settings.json customization, and real-world usage examples."
+tags: ["ai", "agentic", "antigravity"]
 ---
+
+*This is Part 1 of a 4-part series on the Google Antigravity CLI. Keep reading: [Part 2 (Custom Skills)](/blog/extending-antigravity-cli-with-custom-skills/) | [Part 3 (Background Tasks)](/blog/antigravity-cli-background-tasks/) | [Part 4 (Custom Endpoints)](/blog/antigravity-cli-custom-endpoints/)*
 
 Terminal-based AI coders are completely changing how we write, test, and debug code. Following the wave of tools like Claude Code, Google's **Antigravity CLI** (`agy`) brings an AI-first agentic experience directly to your command line. Powered by Gemini, it can search your codebase, edit files, execute commands (with sandbox safety), manage background tasks, and even pair-program with you interactively.
 
