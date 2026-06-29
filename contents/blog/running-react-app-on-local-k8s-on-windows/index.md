@@ -5,6 +5,7 @@ template: blog
 image: ./image.png
 banner: ./banner.jpg
 description: Process and steps for running react app on local k8s cluster using minikube on windows 10
+tags: ["react", "k8s", "windows", "docker", "tech"]
 ---
 
 #### Prerequisites

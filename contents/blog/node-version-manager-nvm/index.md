@@ -5,6 +5,7 @@ template: blog
 image: ./image.png
 banner: ./banner.jpg
 description: Node Version Manager (nvm) helps in managing multiple NodeJS versions
+tags: ["nodejs", "nvm", "javascript", "tech"]
 ---
 
 ## Node Version Manager (nvm)

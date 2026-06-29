@@ -5,6 +5,7 @@ template: blog
 image: ./image.jpg
 banner: ./banner.jpg
 description: Logging in using github access token (no more passwords)
+tags: ["github", "git", "cli", "tech"]
 ---
 
 

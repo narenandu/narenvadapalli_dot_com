@@ -5,6 +5,7 @@ template: blog
 image: ./image.jpg
 banner: ./banner.jpg
 description: Setting up SLURM on WSL
+tags: ["hpc", "slurm", "wsl", "windows", "tech"]
 ---
 
 

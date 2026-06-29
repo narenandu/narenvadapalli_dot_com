@@ -5,6 +5,7 @@ template: blog
 image: ./image.png
 banner: ./banner.jpg
 description: Using the rewrites and redirects on AWS Amplify for the depolyed personal website
+tags: ["gatsby", "aws", "amplify", "tech"]
 ---
 
 ## Problem Statement

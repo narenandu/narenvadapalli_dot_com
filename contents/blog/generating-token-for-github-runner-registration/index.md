@@ -5,6 +5,7 @@ template: blog
 image: ./image.jpg
 banner: ./banner.jpg
 description: Explains how to generate a token using github API to be used in turn with Github self hosted runner registration
+tags: ["github", "ci/cd", "devops", "tech"]
 ---
 
 ## Motivation

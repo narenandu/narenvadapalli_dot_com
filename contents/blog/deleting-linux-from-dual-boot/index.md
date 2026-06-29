@@ -5,6 +5,7 @@ template: blog
 image: ./image.jpg
 banner: ./banner.jpg
 description: Steps for safely removing linux from dual boot.
+tags: ["linux", "windows", "dual-boot", "tech"]
 ---
 
 #### Fixing bootrec before deleting linux partitions

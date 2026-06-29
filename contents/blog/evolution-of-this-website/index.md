@@ -5,6 +5,7 @@ template: blog
 image: ./image.jpg
 banner: ./banner.jpg
 description: will be capturing the evolution of my website chronologically (latest first)
+tags: ["webdev", "website", "tech"]
 ---
 
 > Screenshots from Google Pixel 2

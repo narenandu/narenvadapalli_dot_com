@@ -5,6 +5,7 @@ template: blog
 image: ./image.jpg
 banner: ./banner.jpg
 description: Powershell equivalent of chmod 400 for Windows files
+tags: ["windows", "powershell", "security", "tech"]
 ---
 
 ## Problem Statement

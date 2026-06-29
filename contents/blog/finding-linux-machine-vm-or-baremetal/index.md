@@ -5,6 +5,7 @@ template: blog
 image: ./image.jpg
 banner: ./banner.jpg
 description: If you can SSH into a linux machine and want to find out if its baremetal or Virtual Machine
+tags: ["linux", "vm", "sysadmin", "tech"]
 ---
 
 

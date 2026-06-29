@@ -5,6 +5,7 @@ template: blog
 image: ./image.png
 banner: ./banner.jpg
 description: Steps to fix the postfix error happening during apt upgrade ubuntu.
+tags: ["linux", "ubuntu", "postfix", "tech"]
 ---
 
 #### Problem Statement

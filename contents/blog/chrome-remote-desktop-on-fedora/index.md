@@ -5,6 +5,7 @@ template: blog
 image: ./chrome_deb_download_button.jpg
 banner: ./banner.jpg
 description: How to install Chrome Remote Desktop on Fedora
+tags: ["linux", "fedora", "remote-desktop", "tech"]
 ---
 
 ### Problem Statement

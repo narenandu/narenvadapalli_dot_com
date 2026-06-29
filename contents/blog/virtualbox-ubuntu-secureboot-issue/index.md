@@ -5,6 +5,7 @@ template: blog
 image: ./image.png
 banner: ./banner.jpg
 description: Set of steps required for dealing with secureboot on Ubuntu where VirutalBox service has issues
+tags: ["virtualbox", "ubuntu", "secureboot", "tech"]
 ---
 
 ### Motivation

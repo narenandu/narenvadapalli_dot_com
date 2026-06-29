@@ -5,6 +5,7 @@ template: blog
 image: ./image.jpg
 banner: ./banner.jpg
 description: Adding Google Analytics GA4 property to NuxtJS App
+tags: ["nuxtjs", "analytics", "seo", "tech"]
 ---
 
 ### Setting up Google Analytics Account
