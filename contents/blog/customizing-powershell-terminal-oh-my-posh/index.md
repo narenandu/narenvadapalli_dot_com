@@ -5,6 +5,7 @@ template: blog
 image: ./image.png
 banner: ./banner.jpg
 description: Instructions on customizing the terminal in powershell with oh-my-posh and winget
+tags: ["powershell", "terminal", "tech"]
 ---
 
 ## Motivation

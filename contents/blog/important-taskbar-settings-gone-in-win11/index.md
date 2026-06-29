@@ -5,6 +5,7 @@ template: blog
 image: ./image.jpg
 banner: ./banner.jpg
 description: Very useful Taskbar Settings goes missing in Windows 11.
+tags: ["windows", "win11", "tech"]
 ---
 
 ## Ungroup the Icons in Taskbar

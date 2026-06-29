@@ -5,6 +5,7 @@ template: blog
 image: ./image.jpg
 banner: ./banner.jpg
 description: Brief about the tech stack used for this website
+tags: ["webdev", "website", "tech"]
 ---
 
 ### Components

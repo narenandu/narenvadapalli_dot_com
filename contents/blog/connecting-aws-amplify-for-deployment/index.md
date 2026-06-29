@@ -5,6 +5,7 @@ template: blog
 image: ./image.jpg
 banner: ./banner.jpg
 description: Explains how to connect the gatsby website hosted on github to AWS Amplify for deployment
+tags: ["aws", "amplify", "deployment", "tech"]
 ---
 
 ## AWS Amplify Console

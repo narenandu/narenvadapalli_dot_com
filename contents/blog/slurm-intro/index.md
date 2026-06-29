@@ -5,6 +5,7 @@ template: blog
 image: ./image.jpg
 banner: ./banner.jpg
 description: Simple Linux Utility for Resource Management (SLURM)
+tags: ["hpc", "slurm", "linux", "tech"]
 ---
 
 

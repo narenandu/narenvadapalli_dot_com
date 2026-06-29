@@ -5,6 +5,7 @@ template: blog
 image: ./image.png
 banner: ./banner.jpg
 description: Problem of linking google analytics and adsense
+tags: ["analytics", "adsense", "tech"]
 ---
 
 ## Problem

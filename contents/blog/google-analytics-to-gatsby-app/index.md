@@ -5,6 +5,7 @@ template: blog
 image: ./image.png
 banner: ./banner.jpg
 description: How I added google analytics to my personal website written in Gatsby
+tags: ["gatsby", "analytics", "seo", "tech"]
 ---
 
 ### Setting up Google Analytics Account

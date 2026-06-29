@@ -5,6 +5,7 @@ template: blog
 image: ./image.jpg
 banner: ./banner.jpg
 description: Demo of slurm usage on a single instance of Ubuntu 24.04 EC2 instances on AWS
+tags: ["hpc", "slurm", "aws", "ubuntu", "tech"]
 ---
 
 It is recommended to go through [Introduction to SLURM](https://www.narenvadapalli.com/blog/slurm-intro/) before going through this post

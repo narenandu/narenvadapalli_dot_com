@@ -5,6 +5,7 @@ template: blog
 image: ./image.jpg
 banner: ./banner.jpg
 description: Behind the scenes of the Animated Short "Tree Story"
+tags: ["cg", "art", "tech"]
 ---
 
 <div style="text-align:center">

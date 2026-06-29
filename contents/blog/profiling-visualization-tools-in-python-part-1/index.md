@@ -5,6 +5,7 @@ template: blog
 image: ./image.png
 banner: ./banner.jpg
 description: Profiling & Visualization Tools in Python using cProfile
+tags: ["python", "profiling", "tech"]
 ---
 
 _Original post_: [on medium](https://medium.com/@narenandu/profiling-and-visualization-tools-in-python-89a46f578989)

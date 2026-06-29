@@ -5,6 +5,7 @@ template: blog
 image: ./image.jpg
 banner: ./banner.jpg
 description: Using git credentials store the github access token to avoid the re-prompting of username and pwd
+tags: ["github", "git", "security", "tech"]
 ---
 
 

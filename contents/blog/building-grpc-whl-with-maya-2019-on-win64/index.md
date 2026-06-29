@@ -5,6 +5,7 @@ template: blog
 image: ./image.jpg
 banner: ./banner.jpg
 description: My stuggle with building a grpc python library with Maya 2019 on Windows
+tags: ["maya", "grpc", "c++", "tech"]
 ---
 
 > WORKING ... VERSION... NOT COMPLETE

@@ -4,6 +4,7 @@ date: 2026-06-19
 template: blog
 image: "./whats_new_python_3_15.jpg"
 description: "A deep dive into the most exciting developer features in the Python 3.15 pre-release, including explicit lazy imports, frozendict, built-in sentinels, unpacking in comprehensions, and the Tachyon profiler."
+tags: ["python", "programming", "tech"]
 ---
 
 Python 3.15.0b2 (the pre-release) is officially out, and it is shaping up to be one of the most exciting releases in recent years for developer experience. Beyond the usual under-the-hood optimization sweeps, this release brings some of the most requested syntax enhancements, brand-new built-in data types, and production observability tools we’ve been waiting for.

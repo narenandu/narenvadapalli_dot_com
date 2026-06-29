@@ -5,6 +5,7 @@ template: blog
 image: ./image.jpg
 banner: ./banner.jpg
 description: Explains how to setup a Github self hosted runner and register
+tags: ["github", "ci/cd", "devops", "tech"]
 ---
 
 ## Adding a Windows Self hosted Github Runner
