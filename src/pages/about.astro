@@ -20,86 +20,226 @@ if (aboutEntry) {
 
 <Layout
   title={`${title} | Naren Vadapalli`}
-  description="Learn more about Narendra Kumar Vadapalli, AI LEADER & Visual Design Enthusiast"
+  description="Learn more about Narendra Kumar Vadapalli, AI Leader, Systems Architect & Visual Computing Specialist"
 >
   <div class="about-page">
     <div class="page-header">
-      <div class="container">
-        <h1>{title}</h1>
+      <div class="container header-content-wrapper">
+        <span class="eyebrow">ABOUT ME</span>
+        <h1>Engineering the Future of AI & Infrastructure</h1>
+        <p class="subtitle">Scaling GPU clouds, designing agentic systems, and bridging high-performance computing with visual engineering.</p>
       </div>
     </div>
 
     <div class="container content-container">
-      <div class="card about-card">
+      <div class="card about-main-card">
         <div class="about-layout">
           {image && (
-            <div class="about-image-wrapper">
-              <Image
-                src={image}
-                alt="Naren Vadapalli"
-                class="about-img"
-              />
+            <div class="about-sidebar">
+              <div class="about-image-wrapper">
+                <Image
+                  src={image}
+                  alt="Naren Vadapalli"
+                  class="about-img"
+                />
+                <div class="pulse-badge">
+                  <span class="pulse-dot"></span>
+                  <span class="badge-text">AI & Infrastructure Specialist</span>
+                </div>
+              </div>
+              <div class="quick-facts card">
+                <h3>Quick Stats</h3>
+                <ul class="stats-list">
+                  <li><strong>Focus:</strong> AI/ML Cloud, SRE, Graphics</li>
+                  <li><strong>Location:</strong>California, USA</li>
+                  <li><strong>Current Role:</strong> Sr. Specialist Field Engineer @ CoreWeave</li>
+                  <li><strong>Alumni:</strong> UPenn (MSE), NIT Warangal (BTech)</li>
+                </ul>
+              </div>
             </div>
           )}
           <div class="about-content">
-            <h2>Narendra Kumar Vadapalli</h2>
-            <p class="role-tag">AI LEADER & Visual Design Enthusiast</p>
+            <div class="narrative-section">
+              <span class="section-tag">THE MISSION</span>
+              <h2>Bridging Raw Compute with Intelligent Workloads</h2>
 
-            <div class="about-markdown">
-              {Content ? <Content /> : <p>Continuous learner who loves exploring new territories in technology.</p>}
-            </div>
+              <div class="about-markdown">
+                {Content ? <Content /> : <p>Continuous learner who loves exploring new territories in technology.</p>}
+              </div>
 
-            <div class="about-bio">
-              <p>
-                I have a strong background in software engineering, pipeline development, site reliability,
-                and computer graphics. With experience across global production studios (including DreamWorks,
-                Animal Logic, and ON Animation) and deep knowledge in DevOps, Python, fullstack development,
-                and cloud infrastructure, I build scalable solutions that bridge engineering and creative processes.
-              </p>
-              <p>
-                Whether it's designing advanced pipeline plugins, scaling kubernetes clusters,
-                or crafting beautiful user interfaces, I focus on performance, robust architecture, and design aesthetics.
-              </p>
-            </div>
+              <div class="about-bio">
+                <p>
+                  I operate at the intersection of extreme scale and complex workloads. As a <strong>Senior Specialist Field Engineer at CoreWeave</strong> (The Essential Cloud for AI), I design, scale, and optimize the distributed Kubernetes and GPU infrastructures that power the world’s most advanced AI models, LLM training pipelines, and high-performance inference workloads.
+                </p>
+                <p>
+                  My engineering journey spans over a decade, crossing the boundaries of <strong>High-Performance Cloud Architecture</strong>, <strong>Site Reliability (SRE)</strong>, and <strong>Computer Graphics</strong>. I've scaled compute footprints for global media giants, built synthetic data pipelines for autonomous driving, and led AI initiative evaluations for Netflix/ScanlineVFX.
+                </p>
+                <p>
+                  With an MSE in Computer Graphics & Game Technology from the <strong>University of Pennsylvania</strong>, I bring a rare synthesis of deep-systems engineering and visual design aesthetics. I don't just orchestrate massive multi-tenant GPU clusters; I build the tools and workflows that developers and creators use to shape the future.
+                </p>
+              </div>
 
-            <div class="about-buttons">
-              <a href="/resume" class="btn btn-primary">View Resume</a>
-              <a href="/contact" class="btn btn-secondary">Get In Touch &rarr;</a>
+              <div class="about-buttons">
+                <a href="/resume" class="btn btn-primary">Explore My Resume</a>
+                <a href="/contact" class="btn btn-secondary">Discuss a Project &rarr;</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- Core Pillars Section -->
+      <section class="expertise-section">
+        <div class="section-heading-centered">
+          <span class="eyebrow">CORE FOCUS</span>
+          <h2>My Architectural Pillars</h2>
+          <p class="section-desc">Practical expertise designed for high-availability, compute-heavy, and intelligent applications.</p>
+        </div>
+
+        <div class="pillars-grid">
+          <!-- Pillar 1 -->
+          <div class="pillar-card card">
+            <div class="pillar-icon">
+              <!-- AI/ML Icon -->
+              <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon-teal"><circle cx="12" cy="12" r="4"></circle><line x1="1.05" y1="12" x2="7" y2="12"></line><line x1="17.01" y1="12" x2="22.95" y2="12"></line><line x1="8.5" y1="2" x2="8.5" y2="5.5"></line><line x1="15.5" y1="2" x2="15.5" y2="5.5"></line><line x1="8.5" y1="18.5" x2="8.5" y2="22"></line><line x1="15.5" y1="18.5" x2="15.5" y2="22"></line></svg>
+            </div>
+            <h3>AI, LLMs & Agentic Systems</h3>
+            <p>Architecting production platforms for distributed model training and high-speed LLM inference. Designing cognitive agentic pipelines to automate development lifecycle and media engineering operations.</p>
+          </div>
+
+          <!-- Pillar 2 -->
+          <div class="pillar-card card">
+            <div class="pillar-icon">
+              <!-- Kubernetes/HPC Icon -->
+              <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon-purple"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line><line x1="20" y1="6" x2="20.01" y2="6"></line><line x1="20" y1="18" x2="20.01" y2="18"></line></svg>
+            </div>
+            <h3>HPC & GPU Orchestration</h3>
+            <p>Deploying specialized Kubernetes systems on multi-node NVIDIA HGX architectures. Fine-tuning container runtime performance, networking interfaces (InfiniBand/RoCE), and high-throughput parallel filesystems.</p>
+          </div>
+
+          <!-- Pillar 3 -->
+          <div class="pillar-card card">
+            <div class="pillar-icon">
+              <!-- Graphics/Media Icon -->
+              <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon-orange"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            </div>
+            <h3>Visual Computing & Graphics</h3>
+            <p>Pioneering automation and rendering pipelines for studio giants (DreamWorks, Animal Logic, Netflix). Custom plugin design for Unreal Engine, Houdini, and Maya, linking creative vision with cloud-native SRE paradigms.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Current Exploration -->
+      <section class="exploration-section card">
+        <div class="exploration-layout">
+          <div class="exploration-text">
+            <span class="eyebrow">WHAT I'M UP TO</span>
+            <h2>Active Technological Frontiers</h2>
+            <p>I believe in constant iteration. These are the domains where I am currently pushing commits, deploying configurations, and researching:</p>
+            <ul class="exploration-list">
+              <li>
+                <strong>Multi-Agent Systems:</strong> Creating autonomous developer platforms that diagnose kubernetes cluster states and self-heal workloads.
+              </li>
+              <li>
+                <strong>Generative Media Workflows:</strong> Streamlining GenAI workloads inside virtual production stages using containerized pipelines.
+              </li>
+              <li>
+                <strong>Bare-Metal K8s Optimization:</strong> Streamlining direct GPU pass-through latency for high-frequency serving and ultra-low-latency LLM workloads.
+              </li>
+            </ul>
+          </div>
+          <div class="exploration-quote">
+            <div class="quote-content">
+              <span class="quote-mark">“</span>
+              <p>The boundary between engineering and imagination is shrinking. As AI moves from static models to agentic, autonomous execution, the bottleneck is no longer code—it's the platform architecture that supports it.</p>
+              <span class="quote-author">— Naren Vadapalli</span>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </div>
 </Layout>
 
 <style>
   .about-page {
-    padding-bottom: 5rem;
+    padding-bottom: 6rem;
   }
 
   .page-header {
-    background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
-    padding: 5rem 0 3rem;
+    background: radial-gradient(circle at top, rgba(139, 92, 246, 0.12) 0%, var(--bg-primary) 70%);
+    padding: 6rem 0 4rem;
     border-bottom: 1px solid var(--border-color);
     text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+  }
+
+  .eyebrow {
+    font-family: var(--font-display);
+    color: var(--teal-accent);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .page-header h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
+    background: linear-gradient(135deg, #f8fafc 10%, #cbd5e1 50%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    max-width: 680px;
+    margin: 0 auto;
+    line-height: 1.6;
   }
 
   .content-container {
-    margin-top: 3rem;
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
   }
 
-  .about-card {
-    padding: 3rem;
-    background: rgba(17, 21, 32, 0.7);
+  .about-main-card {
+    padding: 3.5rem;
+    background: rgba(17, 21, 32, 0.4);
     border: 1px solid var(--glass-border);
   }
 
   .about-layout {
     display: grid;
     grid-template-columns: 320px 1fr;
-    gap: 3rem;
+    gap: 4rem;
     align-items: start;
+  }
+
+  .about-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
   }
 
   .about-image-wrapper {
@@ -107,7 +247,7 @@ if (aboutEntry) {
     border-radius: var(--radius-md);
     overflow: hidden;
     border: 1px solid var(--border-color);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
   }
 
   .about-img {
@@ -115,27 +255,125 @@ if (aboutEntry) {
     height: auto;
     display: block;
     object-fit: cover;
+    transition: var(--transition);
+  }
+
+  .about-image-wrapper:hover .about-img {
+    transform: scale(1.03);
+  }
+
+  .pulse-badge {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(10, 13, 20, 0.85);
+    backdrop-filter: blur(8px);
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .pulse-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--teal-accent);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.7);
+    animation: pulse 1.8s infinite;
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.7);
+    }
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 6px rgba(20, 184, 166, 0);
+    }
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(20, 184, 166, 0);
+    }
+  }
+
+  .badge-text {
+    color: var(--text-primary);
+  }
+
+  .quick-facts {
+    padding: 1.5rem;
+    background: rgba(10, 13, 20, 0.5);
+    border: 1px solid var(--glass-border);
+  }
+
+  .quick-facts h3 {
+    font-size: 1.1rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--teal-accent);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .stats-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .stats-list li {
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  .stats-list li strong {
+    color: var(--text-primary);
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 0.15rem;
   }
 
   .about-content {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+  }
+
+  .section-tag {
+    font-family: var(--font-display);
+    color: var(--accent-color);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    display: inline-block;
   }
 
   .about-content h2 {
     font-size: 2.25rem;
-    margin-bottom: 0.25rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
     border: none;
     padding: 0;
-  }
-
-  .role-tag {
-    font-family: var(--font-display);
-    color: var(--teal-accent);
-    font-weight: 600;
-    font-size: 1.1rem;
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.05em;
+    background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .about-markdown {
@@ -148,27 +386,238 @@ if (aboutEntry) {
   }
 
   .about-bio p {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     color: var(--text-secondary);
-    line-height: 1.7;
-    margin-bottom: 1.25rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-bio p strong {
+    color: var(--text-primary);
+    font-weight: 600;
   }
 
   .about-buttons {
     display: flex;
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  /* Expertise Section */
+  .expertise-section {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .section-heading-centered {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .section-heading-centered h2 {
+    border: none;
+    padding: 0;
+    font-size: 2.25rem;
+    margin-top: 0;
+  }
+
+  .section-desc {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+  }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .pillar-card {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    background: rgba(17, 21, 32, 0.2);
+    border: 1px solid var(--glass-border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pillar-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: transparent;
+    transition: var(--transition);
+  }
+
+  .pillar-card:hover::before {
+    background: var(--accent-gradient);
+  }
+
+  .pillar-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+  }
+
+  .icon-teal { color: var(--teal-accent); }
+  .icon-purple { color: var(--accent-color); }
+  .icon-orange { color: #f97316; }
+
+  .pillar-card h3 {
+    font-size: 1.35rem;
+    margin: 0;
+  }
+
+  .pillar-card p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Exploration Section */
+  .exploration-section {
+    padding: 3.5rem;
+    background: linear-gradient(135deg, rgba(17, 21, 32, 0.6) 0%, rgba(139, 92, 246, 0.05) 100%);
+  }
+
+  .exploration-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .exploration-text h2 {
+    border: none;
+    font-size: 2.25rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  .exploration-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .exploration-list li {
+    position: relative;
+    padding-left: 1.75rem;
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .exploration-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--teal-accent);
+    font-weight: 700;
+  }
+
+  .exploration-list li strong {
+    color: var(--text-primary);
+  }
+
+  .exploration-quote {
+    background: rgba(10, 13, 20, 0.4);
+    border: 1px solid var(--glass-border);
+    padding: 2.5rem;
+    border-radius: var(--radius-md);
+    position: relative;
+  }
+
+  .quote-content {
+    display: flex;
+    flex-direction: column;
     gap: 1rem;
-    margin-top: 1.5rem;
+    position: relative;
+  }
+
+  .quote-mark {
+    font-family: var(--font-display);
+    font-size: 5rem;
+    color: rgba(139, 92, 246, 0.15);
+    line-height: 1;
+    position: absolute;
+    top: -2.5rem;
+    left: -1rem;
+    pointer-events: none;
+  }
+
+  .quote-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-primary);
+    font-style: italic;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .quote-author {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--teal-accent);
+    align-self: flex-end;
+  }
+
+  @media (max-width: 1024px) {
+    .pillars-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .exploration-layout {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
   }
 
   @media (max-width: 900px) {
     .about-layout {
       grid-template-columns: 1fr;
-      gap: 2rem;
+      gap: 3rem;
     }
 
-    .about-image-wrapper {
-      max-width: 320px;
+    .about-sidebar {
+      max-width: 400px;
       margin: 0 auto;
+      width: 100%;
+    }
+
+    .about-main-card {
+      padding: 2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .page-header h1 {
+      font-size: 2.25rem;
+    }
+
+    .about-buttons {
+      flex-direction: column;
+      gap: 1rem;
     }
   }
 </style>
