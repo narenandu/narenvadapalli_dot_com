@@ -7,7 +7,7 @@ description: "Master project-level customization for Anthropic's Claude Code by 
 tags: ["ai", "agentic", "claude", "claude-code", "customization"]
 ---
 
-*Claude Code Series: &larr; [Setting up Claude Code](/blog/setting-up-claude-code/) (Previous)*
+*Claude Code Series: &larr; [Setting up Claude Code](/blog/setting-up-claude-code/) (Previous) | [Claude Code Basics: Commands, Subagents, and Memory Layers](/blog/claude-code-commands-agents-memory/) (Next) &rarr;*
 
 Once you have [installed and configured Claude Code](/blog/setting-up-claude-code/), the CLI is ready to execute shell commands, fix errors, and refactor files. However, by default, the agent is operating on generic assumptions. It doesn't know your codebase's architecture, your team's style guide, or what specific build and test commands to run.
 
@@ -167,4 +167,4 @@ When customizing terminal AI pairs, keep this hierarchy in mind:
 
 By tailoring these files, you transform your terminal AI pair programmer from a general assistant into a context-aware specialist that follows your team's exact engineering standards. 
 
-In the next post, we will explore **Model Context Protocol (MCP)** and how to connect Claude Code to external tools and APIs!
+In the next post, we will explore [Claude Code Basics: Commands, Subagents, and Memory Layers](/blog/claude-code-commands-agents-memory/)!
