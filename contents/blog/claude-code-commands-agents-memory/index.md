@@ -7,7 +7,7 @@ description: "Learn the difference between slash commands and file context menti
 tags: ["ai", "agentic", "claude", "claude-code", "customization"]
 ---
 
-*Claude Code Series: &larr; [Claude Code Customization: CLAUDE.md, AGENTS.md, and SKILLS.md](/blog/claude-code-special-files/) (Previous)*
+*Claude Code Series: &larr; [Claude Code Customization: CLAUDE.md, AGENTS.md, and SKILLS.md](/blog/claude-code-special-files/) (Previous) | [Claude Code Custom Skills: Design Methodology and Workspace Personas](/blog/claude-code-custom-skills/) (Next) &rarr;*
 
 Once you have customized your codebase rules using special files like `CLAUDE.md` and `.claudeignore`, the next step is mastering how you interact with the agent during an active command-line session. 
 
@@ -114,4 +114,4 @@ Local memory is sandboxed to the active workspace. It is used to keep sessions s
 
 By understanding these interfaces and memory systems, you can orchestrate complex workflows, manage token consumption, and leverage specialized subagents to refactor your codebases safely.
 
-In the next post, we will explore **Model Context Protocol (MCP)** and how to connect Claude Code to external tools and APIs!
+In the next post, we will explore [Claude Code Custom Skills: Design Methodology and Workspace Personas](/blog/claude-code-custom-skills/)!
