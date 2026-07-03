@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import mdx from '@astrojs/mdx';
+import sitemap from '@astrojs/sitemap';
 
 // A simple Remark plugin to handle youtube embeds and custom shortcodes
 function remarkCustomFeatures() {
@@ -43,9 +44,9 @@ function remarkCustomFeatures() {
   };
 }
 
-// https://astro.build/config
 export default defineConfig({
-  integrations: [react(), mdx()],
+  site: 'https://www.narenvadapalli.com',
+  integrations: [react(), mdx(), sitemap()],
   markdown: {
     remarkPlugins: [remarkCustomFeatures]
   }
