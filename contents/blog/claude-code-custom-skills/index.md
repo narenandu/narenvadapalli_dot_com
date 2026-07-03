@@ -7,7 +7,7 @@ description: "Learn how to design, structure, and implement persistent, context-
 tags: ["ai", "agentic", "claude", "claude-code", "customization"]
 ---
 
-*Claude Code Series: &larr; [Claude Code Basics: Commands, Subagents, and Memory Layers](/blog/claude-code-commands-agents-memory/) (Previous)*
+*Claude Code Series: &larr; [Claude Code Basics: Commands, Subagents, and Memory Layers](/blog/claude-code-commands-agents-memory/) (Previous) | [Anthropic's Mid-2026 Wave: Claude Sonnet 5, Claude Science, and Fable 5 Redeployment](/blog/claude-sonnet-5-science-workbench-fable-redeployed/) (Next) &rarr;*
 
 While AI pair programmers are incredibly powerful out of the box, they operate on general assumptions. They don't naturally know your team's code review checklist, your specific staging environments, or how you partition work across branches. 
 
@@ -83,4 +83,4 @@ When crafting your own custom agent skills, keep these design patterns in mind:
 3.  **Local Isolation**: Placing the skill folder in a gitignored workspace directory like `.agents/` lets you keep custom rules and private scripts local to your workstation. They never get pushed to public repositories, preventing configuration bloat.
 4.  **CLI Command Integration**: Integrate standard tools (like the GitHub CLI `gh` or Python script generators) into the rules so the agent performs actions programmatically rather than outputting raw instructions for you to copy-paste.
 
-In the next post, we will explore **Model Context Protocol (MCP)** and how to connect Claude Code to external tools and APIs!
+In the next post, we will explore [Anthropic's Mid-2026 Wave: Claude Sonnet 5, Claude Science, and Fable 5 Redeployment](/blog/claude-sonnet-5-science-workbench-fable-redeployed/)!
