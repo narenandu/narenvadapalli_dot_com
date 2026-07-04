@@ -167,13 +167,30 @@ Select your model based on your system hardware capacity:
 #### For Coding & Development
 *   **Qwen 2.5 Coder (7B or 14B)**: Currently the state-of-the-art open-weight coding model. Outstanding at multi-file logic and debugging.
 *   **DeepSeek Coder (6.7B)**: Extremely lightweight, highly performant code generator.
+*   **Kimi K2.7-Code**: Moonshot AI's massive open-weight coding model. Offers outstanding coding capabilities, but requires hundreds of gigabytes of RAM/VRAM due to its parameter size, typically serving on specialized high-end workstations using vLLM or KTransformers.
 
 #### For General Chat & Reasoning
 *   **Llama 3.1 (8B)**: Anthropic-grade general reasoning and instruction-following. Perfect for daily workspace agents.
 *   **Gemma 2 (9B)**: Google's open-weight model, delivering high performance on reasoning benchmarks.
+*   **GLM-4 (9B) & GLM-4.7**: Highly capable multi-lingual open-weight models from Zhipu AI, optimized for agentic reasoning and tool-calling.
 
 #### For Ultra-Lightweight Systems (Laptops / No Dedicated GPU)
 *   **Llama 3.2 (3B) / Qwen 2.5 (1.5B)**: Small models that run incredibly fast on standard laptop CPUs. Perfect for simple lint checks and summaries.
+
+---
+
+### Running GLM Models Locally
+
+Can you run GLM models on Ollama and vLLM? **Yes, both engines fully support the GLM family.**
+
+*   **For Ollama**: You can pull and run pre-compiled GGUF models directly:
+    ```bash
+    ollama run glm4
+    ```
+*   **For vLLM**: You can host the model natively using the standard API server command:
+    ```bash
+    vllm serve THUDM/glm-4-9b-chat
+    ```
 
 ---
 
