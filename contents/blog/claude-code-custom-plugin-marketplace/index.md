@@ -1,6 +1,6 @@
 ---
 title: "Claude Code Custom Plugins: Build and Host Your Own Marketplace"
-date: 2026-07-04
+date: 2026-07-05
 template: blog
 image: "./claude_code_custom_plugin_marketplace.jpg"
 description: "Learn how to build, structure, and host a custom, decentralized Claude Code plugin marketplace using a simple GitHub repository."
