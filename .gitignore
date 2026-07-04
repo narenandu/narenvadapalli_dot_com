@@ -93,4 +93,4 @@ pnpm-debug.log*
 .idea/
 
 # Local custom rules for AI agent
-.agents/
+.agents

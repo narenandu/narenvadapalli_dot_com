@@ -1,0 +1,3 @@
+[submodule ".agent-configs"]
+	path = .agent-configs
+	url = git@github.com:narenandu/agent-configs-private.git
