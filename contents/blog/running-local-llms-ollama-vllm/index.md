@@ -1,6 +1,6 @@
 ---
 title: "Running Local LLMs: Ollama vs. vLLM"
-date: 2026-07-05
+date: 2026-07-04
 template: blog
 image: "./running_local_llms_ollama_vllm.jpg"
 description: "A comprehensive guide to running Large Language Models locally on Windows, macOS, and Linux using Ollama and vLLM, including pros, cons, and performance tuning."
