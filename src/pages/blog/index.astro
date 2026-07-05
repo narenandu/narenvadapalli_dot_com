@@ -101,6 +101,13 @@ const allTags = Array.from(
         <button id="clearFilterBtn" class="clear-all-btn">Clear All</button>
       </div>
 
+      <!-- Top Pagination Controls -->
+      <div class="pagination-container pagination-top" id="paginationContainerTop" style="display: none;">
+        <button id="prevPageBtnTop" class="pagination-btn" aria-label="Previous Page">&larr; Previous</button>
+        <div id="pageNumbersContainerTop" class="page-numbers"></div>
+        <button id="nextPageBtnTop" class="pagination-btn" aria-label="Next Page">Next &rarr;</button>
+      </div>
+
       <div class="blog-grid">
         {sortedPosts.map(post => {
           const dateString = post.data.date 
@@ -514,6 +521,11 @@ const allTags = Array.from(
     font-family: var(--font-display);
   }
 
+  .pagination-top {
+    margin-top: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
   .pagination-btn, :global(.page-number-btn) {
     background: rgba(17, 21, 32, 0.4);
     border: 1px solid var(--glass-border);
@@ -584,11 +596,17 @@ const allTags = Array.from(
   const yearFilter = document.getElementById('yearFilter') as HTMLSelectElement;
   const monthFilter = document.getElementById('monthFilter') as HTMLSelectElement;
   
-  // Pagination
+  // Pagination (Bottom)
   const paginationContainer = document.getElementById('paginationContainer');
   const pageNumbersContainer = document.getElementById('pageNumbersContainer');
   const prevPageBtn = document.getElementById('prevPageBtn') as HTMLButtonElement;
   const nextPageBtn = document.getElementById('nextPageBtn') as HTMLButtonElement;
+  
+  // Pagination (Top)
+  const paginationContainerTop = document.getElementById('paginationContainerTop');
+  const pageNumbersContainerTop = document.getElementById('pageNumbersContainerTop');
+  const prevPageBtnTop = document.getElementById('prevPageBtnTop') as HTMLButtonElement;
+  const nextPageBtnTop = document.getElementById('nextPageBtnTop') as HTMLButtonElement;
 
   // Retrieve archive structure from DOM
   const archiveDataEl = document.getElementById('archiveData');
@@ -713,32 +731,41 @@ const allTags = Array.from(
     // 6. Update Pagination UI
     if (totalPages <= 1) {
       if (paginationContainer) paginationContainer.style.display = 'none';
+      if (paginationContainerTop) paginationContainerTop.style.display = 'none';
     } else {
       if (paginationContainer) paginationContainer.style.display = 'flex';
+      if (paginationContainerTop) paginationContainerTop.style.display = 'flex';
       
       // Update buttons disabled status
       if (prevPageBtn) prevPageBtn.disabled = currentPage === 1;
+      if (prevPageBtnTop) prevPageBtnTop.disabled = currentPage === 1;
       if (nextPageBtn) nextPageBtn.disabled = currentPage === totalPages;
+      if (nextPageBtnTop) nextPageBtnTop.disabled = currentPage === totalPages;
 
-      // Render page numbers
-      if (pageNumbersContainer) {
-        pageNumbersContainer.innerHTML = '';
-        for (let i = 1; i <= totalPages; i++) {
-          const btn = document.createElement('button');
-          btn.className = `page-number-btn ${i === currentPage ? 'active-page' : ''}`;
-          btn.textContent = i.toString();
-          btn.addEventListener('click', () => {
-            currentPage = i;
-            updateURL();
-            updateView();
-            const container = document.querySelector('.blog-list-container');
-            if (container) {
-              container.scrollIntoView({ behavior: 'smooth' });
-            }
-          });
-          pageNumbersContainer.appendChild(btn);
+      // Render page numbers for both containers
+      [
+        { container: pageNumbersContainer },
+        { container: pageNumbersContainerTop }
+      ].forEach(({ container }) => {
+        if (container) {
+          container.innerHTML = '';
+          for (let i = 1; i <= totalPages; i++) {
+            const btn = document.createElement('button');
+            btn.className = `page-number-btn ${i === currentPage ? 'active-page' : ''}`;
+            btn.textContent = i.toString();
+            btn.addEventListener('click', () => {
+              currentPage = i;
+              updateURL();
+              updateView();
+              const scrollTarget = document.querySelector('.blog-list-container');
+              if (scrollTarget) {
+                scrollTarget.scrollIntoView({ behavior: 'smooth' });
+              }
+            });
+            container.appendChild(btn);
+          }
         }
-      }
+      });
     }
   }
 
@@ -832,49 +859,51 @@ const allTags = Array.from(
     });
   }
 
-  if (prevPageBtn) {
-    prevPageBtn.addEventListener('click', () => {
-      if (currentPage > 1) {
-        currentPage--;
-        updateURL();
-        updateView();
-        const container = document.querySelector('.blog-list-container');
-        if (container) container.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
-  }
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      currentPage--;
+      updateURL();
+      updateView();
+      const container = document.querySelector('.blog-list-container');
+      if (container) container.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
-  if (nextPageBtn) {
-    nextPageBtn.addEventListener('click', () => {
-      const matchingCards = cards.filter(card => {
-        if (activeTag) {
-          const tagsAttr = card.getAttribute('data-tags');
-          const tags = tagsAttr ? tagsAttr.split(',').map(t => t.trim().toLowerCase()) : [];
-          if (!tags.includes(activeTag.toLowerCase())) return false;
-        }
-        if (activeYear) {
-          const dateAttr = card.getAttribute('data-date');
-          if (dateAttr) {
-            const date = new Date(dateAttr);
-            if (date.getUTCFullYear() !== parseInt(activeYear)) return false;
-            if (activeMonth !== null && date.getUTCMonth() !== activeMonth) return false;
-          } else {
-            return false;
-          }
-        }
-        return true;
-      });
-      const totalPages = Math.ceil(matchingCards.length / ITEMS_PER_PAGE) || 1;
-      
-      if (currentPage < totalPages) {
-        currentPage++;
-        updateURL();
-        updateView();
-        const container = document.querySelector('.blog-list-container');
-        if (container) container.scrollIntoView({ behavior: 'smooth' });
+  const handleNextPage = () => {
+    const matchingCards = cards.filter(card => {
+      if (activeTag) {
+        const tagsAttr = card.getAttribute('data-tags');
+        const tags = tagsAttr ? tagsAttr.split(',').map(t => t.trim().toLowerCase()) : [];
+        if (!tags.includes(activeTag.toLowerCase())) return false;
       }
+      if (activeYear) {
+        const dateAttr = card.getAttribute('data-date');
+        if (dateAttr) {
+          const date = new Date(dateAttr);
+          if (date.getUTCFullYear() !== parseInt(activeYear)) return false;
+          if (activeMonth !== null && date.getUTCMonth() !== activeMonth) return false;
+        } else {
+          return false;
+        }
+      }
+      return true;
     });
-  }
+    const totalPages = Math.ceil(matchingCards.length / ITEMS_PER_PAGE) || 1;
+    
+    if (currentPage < totalPages) {
+      currentPage++;
+      updateURL();
+      updateView();
+      const container = document.querySelector('.blog-list-container');
+      if (container) container.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  if (prevPageBtn) prevPageBtn.addEventListener('click', handlePrevPage);
+  if (prevPageBtnTop) prevPageBtnTop.addEventListener('click', handlePrevPage);
+
+  if (nextPageBtn) nextPageBtn.addEventListener('click', handleNextPage);
+  if (nextPageBtnTop) nextPageBtnTop.addEventListener('click', handleNextPage);
 
   // Load state from URL parameters
   const params = new URLSearchParams(window.location.search);
