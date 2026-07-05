@@ -23,11 +23,14 @@ Custom skills are saved locally in your repository configuration directory. They
 
 ```
 [project-root]/
-  └── .agents/
+  └── .claude/
        └── skills/
             └── code-auditor/
                  └── SKILL.md   <-- Skill instructions
 ```
+
+> [!NOTE]
+> While Claude Code natively looks for custom skills in the `.claude/skills/` directory, the Antigravity CLI uses the `.agents/skills/` directory for its custom skills. Keep this distinction in mind depending on which tool you are configuring.
 
 *   **YAML Frontmatter**: Contains a `name` and a `description`. Claude Code automatically scans these descriptions. When a user prompt matches the description, the CLI loads the skill.
 *   **Markdown Body**: Defines the rules, style guides, scripts, and workflows the agent must follow.
@@ -38,7 +41,7 @@ Custom skills are saved locally in your repository configuration directory. They
 
 Let's build a persistent **`code-auditor`** agent designed to check code formatting, run lint tests, and enforce git branching hygiene. 
 
-We structure its configuration file under `.agents/skills/code-auditor/SKILL.md` using five key sections:
+We structure its configuration file under `.claude/skills/code-auditor/SKILL.md` using five key sections:
 
 ```markdown
 ---
@@ -69,7 +72,7 @@ You are an automated quality-assurance and deployment assistant. Your job is to 
 
 ## 5. Cadence & Task Selection
 - **Cadence**: Perform audit scans almost daily.
-- **Task Tracking**: Inspect `.agents/AUDIT_LOG.md` to identify files that are pending verification. Mark files as "Audited" once checks are completed.
+- **Task Tracking**: Inspect `.claude/AUDIT_LOG.md` to identify files that are pending verification. Mark files as "Audited" once checks are completed.
 ```
 
 ---
@@ -80,7 +83,7 @@ When crafting your own custom agent skills, keep these design patterns in mind:
 
 1.  **Trigger Accuracy**: The skill description in the frontmatter must be clear and focus on the action verbs (e.g. *automates, builds, audits*) that describe what tasks the agent should take over.
 2.  **Explicit File Context**: Force the agent to specify exact files and locations (e.g., `scripts/qa_verify.sh`) to eliminate ambiguous placeholders in code examples.
-3.  **Local Isolation**: Placing the skill folder in a gitignored workspace directory like `.agents/` lets you keep custom rules and private scripts local to your workstation. They never get pushed to public repositories, preventing configuration bloat.
+3.  **Local Isolation**: Placing the skill folder in a gitignored workspace directory like `.claude/` lets you keep custom rules and private scripts local to your workstation. They never get pushed to public repositories, preventing configuration bloat.
 4.  **CLI Command Integration**: Integrate standard tools (like the GitHub CLI `gh` or Python script generators) into the rules so the agent performs actions programmatically rather than outputting raw instructions for you to copy-paste.
 
 In the next post, we will explore [Anthropic's Mid-2026 Wave: Claude Sonnet 5, Claude Science, and Fable 5 Redeployment](/blog/claude-sonnet-5-science-workbench-fable-redeployed/)!
