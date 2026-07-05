@@ -5,8 +5,8 @@ import Layout from '../../layouts/Layout.astro';
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
   return posts.map(post => {
-    // Clean the slug from the folder name
-    const slug = post.id.replace('/index.md', '').replace('index.md', '').trim();
+    // Clean the slug from the folder name and strip 4-digit prefix
+    const slug = post.id.replace('/index.md', '').replace('index.md', '').trim().replace(/^\d{4}-/, '');
     return {
       params: { slug },
       props: { post },

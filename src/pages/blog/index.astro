@@ -12,8 +12,8 @@ const sortedPosts = posts.sort((a, b) => {
   return dateB - dateA;
 });
 
-// Clean slug helper
-const cleanSlug = (id: string) => id.replace('/index.md', '').replace('index.md', '').trim();
+// Clean slug helper and strip 4-digit prefix
+const cleanSlug = (id: string) => id.replace('/index.md', '').replace('index.md', '').trim().replace(/^\d{4}-/, '');
 ---
 
 <Layout 

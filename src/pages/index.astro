@@ -24,8 +24,8 @@ const featuredPortfolio = portfolioItems
   })
   .slice(0, 2);
 
-// Clean slug helper
-const cleanSlug = (id: string) => id.replace('/index.md', '').replace('index.md', '').trim();
+// Clean slug helper and strip 4-digit prefix
+const cleanSlug = (id: string) => id.replace('/index.md', '').replace('index.md', '').trim().replace(/^\d{4}-/, '');
 ---
 
 <Layout>
