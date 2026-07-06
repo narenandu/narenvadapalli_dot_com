@@ -9,6 +9,10 @@ tags: ["ai", "agentic", "claude", "llm"]
 
 *Claude Code Series: &larr; [Anthropic's Mid-2026 Wave: Claude Sonnet 5, Claude Science, and Fable 5 Redeployment](/blog/claude-sonnet-5-science-workbench-fable-redeployed/) (Previous) | [Claude Code Custom Plugins: Build and Host Your Own Marketplace](/blog/claude-code-custom-plugin-marketplace/) (Next) &rarr;*
 
+### Recommended Background Reading
+Before diving into this comprehensive model comparison, consider checking out our recent coverage of Anthropic's ecosystem:
+*   [Anthropic's Mid-2026 Wave: Claude Sonnet 5, Claude Science, and Fable 5 Redeployment](/blog/claude-sonnet-5-science-workbench-fable-redeployed/) — Overview of the mid-2026 releases and model deployments.
+
 Anthropic's Claude model family has become one of the premier choices for software engineers and AI developers. From driving terminal-based agentic workflows to powers in-IDE autocompletion, these models excel in reasoning, code generation, and complex instruction following.
 
 However, as the lineup has evolved with the 5-series (such as Fable 5 and Sonnet 5) and late 4-series (Opus 4.8 and Haiku 4.5), selecting the right model for the right task is critical to balancing intelligence, latency, and cost.

@@ -9,6 +9,11 @@ tags: ["ai", "agentic", "claude", "claude-code", "customization"]
 
 *Claude Code Series: &larr; [Setting up Claude Code](/blog/setting-up-claude-code/) (Previous) | [Claude Code Basics: Commands, Subagents, and Memory Layers](/blog/claude-code-commands-agents-memory/) (Next) &rarr;*
 
+### Recommended Background Reading
+Before diving into this guide, it is recommended to read the previous posts in the series:
+*   [LLMs, Agents, and Harnesses: Demystifying Claude Code](/blog/intro-to-claude-code/) — A conceptual introduction to terminal agent architecture.
+*   [Setting up Claude Code: The Ultimate Terminal AI Pair Programmer](/blog/setting-up-claude-code/) — A step-by-step installation, authentication, and CLI usage guide.
+
 Once you have [installed and configured Claude Code](/blog/setting-up-claude-code/), the CLI is ready to execute shell commands, fix errors, and refactor files. However, by default, the agent is operating on generic assumptions. It doesn't know your codebase's architecture, your team's style guide, or what specific build and test commands to run.
 
 To bridge this gap, modern agentic frameworks look for **special configuration files** in the root of your project or globally in your user configuration folder. 

@@ -8,6 +8,9 @@ description: Setting up SLURM on WSL
 tags: ["hpc", "slurm", "wsl", "windows", "tech"]
 ---
 
+### Recommended Background Reading
+Before diving into this guide, it is recommended to read the previous post:
+*   [Introduction to SLURM](/blog/slurm-intro/) — A beginner's guide to understanding SLURM, resource allocation, and basic workload scheduling.
 
 ## SLURM installation on WSL
 

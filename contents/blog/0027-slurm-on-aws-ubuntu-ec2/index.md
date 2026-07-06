@@ -8,7 +8,10 @@ description: Demo of slurm usage on a single instance of Ubuntu 24.04 EC2 instan
 tags: ["hpc", "slurm", "aws", "ubuntu", "tech"]
 ---
 
-It is recommended to go through [Introduction to SLURM](https://www.narenvadapalli.com/blog/slurm-intro/) before going through this post
+### Recommended Background Reading
+Before diving into this guide, it is recommended to read the previous posts in the series:
+*   [Introduction to SLURM](/blog/slurm-intro/) — Conceptual overview of SLURM workloads and scheduler concepts.
+*   [SLURM on WSL](/blog/slurm-on-wsl/) — Step-by-step setup of a local single-node cluster on Windows Subsystem for Linux.
 
 # Steps for Spinning up EC2 instance
 - Either do it via AWS Console interactively via Browser or

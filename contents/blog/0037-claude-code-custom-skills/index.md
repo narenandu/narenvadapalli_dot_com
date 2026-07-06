@@ -9,6 +9,11 @@ tags: ["ai", "agentic", "claude", "claude-code", "customization"]
 
 *Claude Code Series: &larr; [Claude Code Basics: Commands, Subagents, and Memory Layers](/blog/claude-code-commands-agents-memory/) (Previous) | [Anthropic's Mid-2026 Wave: Claude Sonnet 5, Claude Science, and Fable 5 Redeployment](/blog/claude-sonnet-5-science-workbench-fable-redeployed/) (Next) &rarr;*
 
+### Recommended Background Reading
+Before diving into this guide, it is recommended to read the previous posts in the series:
+*   [Claude Code Customization: CLAUDE.md, AGENTS.md, and SKILLS.md](/blog/claude-code-special-files/) — Introduction to the special configuration files in the `.agents/skills` framework.
+*   [Claude Code Basics: Commands, Subagents, and Memory Layers](/blog/claude-code-commands-agents-memory/) — Detailed breakdown of interactive sessions, slash commands, and memory layers.
+
 While AI pair programmers are incredibly powerful out of the box, they operate on general assumptions. They don't naturally know your team's code review checklist, your specific staging environments, or how you partition work across branches. 
 
 To bridge this gap, you can create **custom agent skills**. These are persistent, local profiles that define specific rules, styles, and workflows for Claude to follow whenever it tackles designated tasks.

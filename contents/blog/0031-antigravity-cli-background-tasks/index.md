@@ -9,6 +9,11 @@ tags: ["ai", "agentic", "antigravity"]
 
 *This is Part 3 of a 4-part series on the Google Antigravity CLI. Read: [Part 1 (Setup)](/blog/setting-up-antigravity-cli/) | [Part 2 (Custom Skills)](/blog/extending-antigravity-cli-with-custom-skills/) | [Part 4 (Custom Endpoints)](/blog/antigravity-cli-custom-endpoints/)*
 
+### Recommended Background Reading
+Before diving into this guide, it is recommended to read the previous posts in this series:
+*   [Setting up Google Antigravity CLI: The AI-First Terminal Assistant](/blog/setting-up-antigravity-cli/) — Installation and core command overview.
+*   [Extending Antigravity CLI: Building Custom Skills and Project Rules](/blog/extending-antigravity-cli-with-custom-skills/) — How to customize agent behavior and package reusable scripts.
+
 When paired with a terminal AI agent, not all tasks are quick one-liners. If you ask an agent to run a full test suite, bundle a production build, or perform a complete security scan of your codebase, you don't want your shell to lock up while waiting for the command to finish. 
 
 The **Google Antigravity CLI** (`agy`) has built-in support for asynchronous background tasks, custom timers, and recurring scheduler events. 

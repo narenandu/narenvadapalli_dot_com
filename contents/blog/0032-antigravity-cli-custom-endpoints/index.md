@@ -9,6 +9,12 @@ tags: ["ai", "agentic", "antigravity"]
 
 *This is Part 4 of a 4-part series on the Google Antigravity CLI. Read: [Part 1 (Setup)](/blog/setting-up-antigravity-cli/) | [Part 2 (Custom Skills)](/blog/extending-antigravity-cli-with-custom-skills/) | [Part 3 (Background Tasks)](/blog/antigravity-cli-background-tasks/)*
 
+### Recommended Background Reading
+Before diving into this guide, it is recommended to read the previous posts in this series:
+*   [Setting up Google Antigravity CLI: The AI-First Terminal Assistant](/blog/setting-up-antigravity-cli/) — Basic installation and settings.
+*   [Extending Antigravity CLI: Building Custom Skills and Project Rules](/blog/extending-antigravity-cli-with-custom-skills/) — Understanding how to extend the agent's logic.
+*   [Going Async: Background Tasks, Timers, and Scheduling in Antigravity CLI](/blog/antigravity-cli-background-tasks/) — Managing long-running terminal executions asynchronously.
+
 While the Google Antigravity CLI (`agy`) runs incredibly fast using Gemini public API endpoints, many teams and developers have strict privacy requirements or prefer utilizing local computing resources. Whether you want to avoid sending code to external servers, minimize API costs, or leverage custom-tuned local models, Antigravity CLI offers first-class support for custom model endpoints.
 
 In this guide, we'll walk through configuring the CLI to point to local LLM runners (like **Ollama** or **vLLM**) and private enterprise API gateways.

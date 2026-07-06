@@ -9,6 +9,10 @@ tags: ["ai", "agentic", "claude", "claude-code"]
 
 *Claude Code Series: &larr; [LLMs, Agents, and Harnesses](/blog/intro-to-claude-code/) (Previous) | [Claude Code Customization: CLAUDE.md, AGENTS.md, and SKILLS.md](/blog/claude-code-special-files/) (Next) &rarr;*
 
+### Recommended Background Reading
+Before diving into this guide, it is recommended to read the previous post in the series:
+*   [LLMs, Agents, and Harnesses: Demystifying Claude Code](/blog/intro-to-claude-code/) — A conceptual look at model layers, agent decision loops, and execution harnesses.
+
 Terminal-based AI assistants are rapidly changing how developers build software. By placing an AI directly in your shell, you bypass the friction of copying and pasting code between a web browser and your IDE. In our previous post, we looked at the [architectural concepts behind agentic systems](/blog/intro-to-claude-code/). Now, it’s time to get hands-on.
 
 In this guide, we will walk through setting up **Claude Code**—Anthropic’s agentic CLI tool—on **macOS**, **Windows**, and **Linux**, and cover the essential commands you need to know to get started.
