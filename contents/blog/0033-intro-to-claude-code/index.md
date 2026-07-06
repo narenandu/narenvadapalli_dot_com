@@ -9,6 +9,10 @@ tags: ["ai", "agentic", "claude", "claude-code"]
 
 *Claude Code Series: [Setting up Claude Code](/blog/setting-up-claude-code/) (Next) &rarr;*
 
+### Recommended Background Reading
+If you are new to agentic terminal coding tools, you might want to read our series on Google's Antigravity CLI:
+*   [Setting up Google Antigravity CLI: The AI-First Terminal Assistant](/blog/setting-up-antigravity-cli/) — Installation and configuration guide for `agy`.
+
 If you have been keeping up with the rapid pace of AI development, you’ve likely heard of **Claude Code**—Anthropic’s agentic command-line tool that can navigate your codebase, run tests, fix bugs, and execute terminal commands. 
 
 However, as tools like Claude Code gain traction, terminology is becoming increasingly blurred. Developers and tech enthusiasts frequently ask questions like:

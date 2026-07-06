@@ -9,6 +9,11 @@ tags: ["ai", "agentic", "claude", "claude-code", "customization"]
 
 *Claude Code Series: &larr; [Anthropic's Claude Model Family: Specs, Pros, Cons, and Use Cases](/blog/claude-models-comparison-guide/) (Previous)*
 
+### Recommended Background Reading
+Before diving into building a custom marketplace, make sure you are familiar with the foundations of Claude Code's capabilities and models:
+*   [Claude Code Custom Skills: Design Methodology and Workspace Personas](/blog/claude-code-custom-skills/) — Key patterns for local skill scripting and agent configuration.
+*   [Anthropic's Claude Model Family: Specs, Pros, Cons, and Use Cases](/blog/claude-models-comparison-guide/) — Overview of models driving your agentic integrations.
+
 Claude Code’s modular architecture is designed to be highly extensible. Through its plugin system, you can package custom skills, automated shell hooks, specialized agent personas, and Model Context Protocol (MCP) servers.
 
 While Anthropic provides an official marketplace by default, the CLI is built with decentralized distribution in mind. You can create, host, and share your own internal or community-driven **Claude Plugin Marketplace** using a standard GitHub repository.

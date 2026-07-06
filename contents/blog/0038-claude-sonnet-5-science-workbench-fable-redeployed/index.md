@@ -9,6 +9,11 @@ tags: ["ai", "agentic", "claude", "announcement"]
 
 *Claude Code Series: &larr; [Claude Code Custom Skills: Design Methodology and Workspace Personas](/blog/claude-code-custom-skills/) (Previous) | [Anthropic's Claude Model Family: Specs, Pros, Cons, and Use Cases](/blog/claude-models-comparison-guide/) (Next) &rarr;*
 
+### Recommended Background Reading
+Before reading this post, it is recommended to catch up with our previous guides on Claude Code:
+*   [Claude Code Basics: Commands, Subagents, and Memory Layers](/blog/claude-code-commands-agents-memory/) — Core operational paradigms of Anthropic's agentic CLI tool.
+*   [Claude Code Custom Skills: Design Methodology and Workspace Personas](/blog/claude-code-custom-skills/) — Deep dive into building custom instructions and skills for local workspace tailoring.
+
 The end of June 2026 has been one of the most eventful weeks in generative AI history. Anthropic released three major announcements in rapid succession: the launch of **Claude Sonnet 5**, the introduction of a specialized research platform named **Claude Science**, and the global **redeployment of Fable 5** following the lifting of short-lived export controls.
 
 These updates signal a clear shift in how Anthropic designs and deploys frontier AI—focusing heavily on autonomous agentic execution, domain-specific scientific workbenches, and collaborative security frameworks.

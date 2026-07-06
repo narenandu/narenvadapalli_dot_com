@@ -9,6 +9,11 @@ tags: ["ai", "agentic", "claude", "claude-code", "customization"]
 
 *Claude Code Series: &larr; [Claude Code Customization: CLAUDE.md, AGENTS.md, and SKILLS.md](/blog/claude-code-special-files/) (Previous) | [Claude Code Custom Skills: Design Methodology and Workspace Personas](/blog/claude-code-custom-skills/) (Next) &rarr;*
 
+### Recommended Background Reading
+Before diving into this guide, it is recommended to read the previous posts in the series:
+*   [Setting up Claude Code: The Ultimate Terminal AI Pair Programmer](/blog/setting-up-claude-code/) — Base environment installation and authentication guide.
+*   [Claude Code Customization: CLAUDE.md, AGENTS.md, and SKILLS.md](/blog/claude-code-special-files/) — Detailed explanation of configuring project-specific styles, rules, and memory layers.
+
 Once you have customized your codebase rules using special files like `CLAUDE.md` and `.claudeignore`, the next step is mastering how you interact with the agent during an active command-line session. 
 
 To use Claude Code effectively, you need to understand the core interactive systems: **Slash Commands (`/`)**, **File Mentions (`@`)**, **Skills**, **Subagents**, and **Memory Layers**.
