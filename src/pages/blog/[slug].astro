@@ -46,6 +46,11 @@ const formattedDate = post.data.date
     </div>
 
     <div class="container blog-content-container">
+      {post.data.image && (
+        <div class="blog-cover-container">
+          <img src={post.data.image.src} alt={post.data.title} class="blog-cover-image" />
+        </div>
+      )}
       <div class="card blog-card">
         <div class="markdown-body">
           <Content />
@@ -124,6 +129,26 @@ const formattedDate = post.data.date
   
   .blog-content-container {
     margin-top: -2rem;
+  }
+  
+  .blog-cover-container {
+    width: 100%;
+    height: 380px;
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--glass-border);
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-md);
+  }
+  
+  .blog-cover-image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    object-position: center;
+    border: none !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
   }
   
   .blog-card {
@@ -214,6 +239,10 @@ const formattedDate = post.data.date
   }
 
   @media (max-width: 768px) {
+    .blog-cover-container {
+      height: 220px;
+      margin-bottom: 1.5rem;
+    }
     .blog-card {
       padding: 1.5rem;
     }
