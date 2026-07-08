@@ -105,10 +105,9 @@ const socialLinks = [
             if (typeof mermaid !== 'undefined') {
               clearInterval(checkMermaid);
               
-              const codeBlocks = document.querySelectorAll("pre code.language-mermaid");
-              codeBlocks.forEach(function(code) {
-                const pre = code.parentElement;
-                const codeText = code.textContent;
+              const codeBlocks = document.querySelectorAll("pre[data-language='mermaid']");
+              codeBlocks.forEach(function(pre) {
+                const codeText = pre.textContent;
                 const div = document.createElement("div");
                 div.className = "mermaid";
                 div.textContent = codeText;
