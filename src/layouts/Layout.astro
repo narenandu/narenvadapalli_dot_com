@@ -95,6 +95,42 @@ const socialLinks = [
         }, 50);
       });
     </script>
+
+    <!-- Mermaid Diagram Rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js"></script>
+    <script is:inline>
+      (function() {
+        function initMermaid() {
+          const checkMermaid = setInterval(function() {
+            if (typeof mermaid !== 'undefined') {
+              clearInterval(checkMermaid);
+              
+              const codeBlocks = document.querySelectorAll("pre[data-language='mermaid']");
+              codeBlocks.forEach(function(pre) {
+                const codeText = pre.textContent;
+                const div = document.createElement("div");
+                div.className = "mermaid";
+                div.textContent = codeText;
+                pre.replaceWith(div);
+              });
+
+              mermaid.initialize({ 
+                startOnLoad: false, 
+                theme: 'dark',
+                securityLevel: 'loose'
+              });
+              mermaid.run();
+            }
+          }, 50);
+        }
+
+        if (document.readyState === "complete" || document.readyState === "interactive") {
+          initMermaid();
+        } else {
+          document.addEventListener("DOMContentLoaded", initMermaid);
+        }
+      })();
+    </script>
   </head>
   <body>
     <header>

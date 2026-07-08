@@ -7,7 +7,7 @@ description: "A step-by-step developer's view of the AI model lifecycle—from r
 tags: ["ai", "machine-learning", "engineering", "architecture"]
 ---
 
-*AI/ML Basics Series: &larr; [What is a Model Weight? Demystifying Tensors, Matrices, and File Formats](/blog/what-is-a-model-weight/) (Previous)*
+*AI/ML Basics Series: &larr; [What is a Model Weight? Demystifying Tensors, Matrices, and File Formats](/blog/what-is-a-model-weight/) (Previous) | [The Model Taxonomy: LLMs, Vision Models, VLAs, and Diffusion](/blog/model-taxonomy/) (Next) &rarr;*
 
 ### Recommended Background Reading
 Before diving into the lifecycle, make sure you understand the foundational data structures and formats of model weights:
