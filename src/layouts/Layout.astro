@@ -73,6 +73,11 @@ const socialLinks = [
       gtag('config', 'G-601R9JN9RF');
     </script>
 
+    <!-- Google AdSense -->
+    {import.meta.env.PROD && (
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1520134626921920" crossorigin="anonymous"></script>
+    )}
+
     <!-- KaTeX Math Rendering -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
