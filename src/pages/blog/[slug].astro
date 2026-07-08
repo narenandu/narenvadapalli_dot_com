@@ -51,6 +51,21 @@ const formattedDate = post.data.date
           <Content />
         </div>
         
+        <!-- Google AdSense Manual Ad Unit -->
+        {import.meta.env.PROD && (
+          <div class="ad-container" style="margin-top: 2.5rem; min-height: 90px; text-align: center; border-top: 1px solid var(--border-color); padding-top: 2rem;">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-1520134626921920"
+                 data-ad-slot="YOUR_AD_SLOT_ID"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script is:inline>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+          </div>
+        )}
+        
         <div class="blog-footer">
           <a href="/blog" class="btn btn-secondary">
             &larr; Back to Blog
