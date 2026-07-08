@@ -99,31 +99,38 @@ const socialLinks = [
     <!-- Mermaid Diagram Rendering -->
     <script defer src="https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js"></script>
     <script is:inline>
-      document.addEventListener("DOMContentLoaded", function() {
-        const checkMermaid = setInterval(function() {
-          if (typeof mermaid !== 'undefined') {
-            clearInterval(checkMermaid);
-            
-            // Find all code blocks with language-mermaid
-            const codeBlocks = document.querySelectorAll("pre code.language-mermaid");
-            codeBlocks.forEach(function(code) {
-              const pre = code.parentElement;
-              const codeText = code.textContent;
-              const div = document.createElement("div");
-              div.className = "mermaid";
-              div.textContent = codeText;
-              pre.replaceWith(div);
-            });
+      (function() {
+        function initMermaid() {
+          const checkMermaid = setInterval(function() {
+            if (typeof mermaid !== 'undefined') {
+              clearInterval(checkMermaid);
+              
+              const codeBlocks = document.querySelectorAll("pre code.language-mermaid");
+              codeBlocks.forEach(function(code) {
+                const pre = code.parentElement;
+                const codeText = code.textContent;
+                const div = document.createElement("div");
+                div.className = "mermaid";
+                div.textContent = codeText;
+                pre.replaceWith(div);
+              });
 
-            mermaid.initialize({ 
-              startOnLoad: false, 
-              theme: 'dark',
-              securityLevel: 'loose'
-            });
-            mermaid.run();
-          }
-        }, 50);
-      });
+              mermaid.initialize({ 
+                startOnLoad: false, 
+                theme: 'dark',
+                securityLevel: 'loose'
+              });
+              mermaid.run();
+            }
+          }, 50);
+        }
+
+        if (document.readyState === "complete" || document.readyState === "interactive") {
+          initMermaid();
+        } else {
+          document.addEventListener("DOMContentLoaded", initMermaid);
+        }
+      })();
     </script>
   </head>
   <body>
