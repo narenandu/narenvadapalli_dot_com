@@ -168,6 +168,21 @@ const allTags = Array.from(
         <div id="pageNumbersContainer" class="page-numbers"></div>
         <button id="nextPageBtn" class="pagination-btn next-btn" aria-label="Next page">Next &rarr;</button>
       </div>
+      
+      <!-- Google AdSense Manual Ad Unit -->
+      {import.meta.env.PROD && (
+        <div class="ad-container" style="margin-top: 2.5rem; min-height: 90px; text-align: center; border-top: 1px solid var(--border-color); padding-top: 2rem;">
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-1520134626921920"
+               data-ad-slot="4095570942"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+          <script is:inline>
+               (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+      )}
     </div>
   </div>
 </Layout>
