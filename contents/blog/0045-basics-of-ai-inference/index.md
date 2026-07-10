@@ -51,16 +51,19 @@ graph TD
         T3[Activation Cache for Backpropagation]
     end
 
+    classDef training fill:#2a1f3d,stroke:#a15eff,stroke-width:2px;
+    class T1,T2,T3 training;
+```
+
+```mermaid
+graph TD
     subgraph InferenceStack ["🚀 Inference Environment"]
         I1[Static Read-Only Weights]
         I2[Stateless Execution Pipeline]
         I3[Zero-Copy Memory Mapping - mmap]
     end
 
-    classDef training fill:#2a1f3d,stroke:#a15eff,stroke-width:2px;
     classDef inference fill:#1a3d3c,stroke:#00f2fe,stroke-width:2px;
-    
-    class T1,T2,T3 training;
     class I1,I2,I3 inference;
 ```
 
