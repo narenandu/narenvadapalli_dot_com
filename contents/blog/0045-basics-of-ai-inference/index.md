@@ -7,7 +7,7 @@ description: "Start the AI Inference Deep-Dive Series. Learn the fundamentals of
 tags: ["ai", "machine-learning", "engineering", "architecture"]
 ---
 
-*AI Inference Deep-Dive Series: Part 1*
+*AI Inference Deep-Dive Series: Part 1 | [The Two Pillars of LLM Inference: Prefill vs. Decode](/blog/prefill-vs-decode/) (Next) &rarr;*
 
 ### Prior Reading Material
 Before diving into the mechanics of inference, make sure you understand the foundational data structures and model lifecycles:
