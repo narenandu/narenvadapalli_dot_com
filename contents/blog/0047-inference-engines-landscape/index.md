@@ -1,16 +1,17 @@
 ---
 title: "The Landscape of LLM Inference Engines: Open Source vs. Enterprise"
-date: 2026-07-11
+date: 2026-07-12
 template: blog
 image: "./cover_image.jpg"
 description: "A comprehensive developer guide comparing vLLM, TensorRT-LLM, TGI, and SGLang. Learn about PagedAttention, RadixAttention, and disaggregated serving."
 tags: ["ai", "machine-learning", "cloud-computing", "infrastructure"]
 ---
 
-*AI Inference Deep-Dive Series: &larr; [The Two Pillars of LLM Inference: Prefill vs. Decode](/blog/prefill-vs-decode/) (Previous)*
+*AI Inference Deep-Dive Series: &larr; [Understanding the KV Cache: The VRAM Bottleneck of LLM Serving](/blog/understanding-kv-cache/) (Previous)*
 
 ### Prior Reading Material
 Before exploring self-hosted inference engines, ensure you understand the core mechanics and execution phases of LLMs:
+*   [Understanding the KV Cache: The VRAM Bottleneck of LLM Serving](/blog/understanding-kv-cache/) — Deep-dive into the VRAM memory footprint, calculation formulas, and how context length limits throughput.
 *   [The Two Pillars of LLM Inference: Prefill vs. Decode](/blog/prefill-vs-decode/) — Deep-dive into compute-bound prefill vs. memory-bandwidth-bound decode phases, and the theoretical limits of Arithmetic Intensity.
 *   [Basics of AI Inference: Demystifying Latency, Throughput, and Serving](/blog/basics-of-ai-inference/) — Tracing the core performance metrics (TTFT, throughput, inter-token latency) and introductory OS-level optimizations.
 
