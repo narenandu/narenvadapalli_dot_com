@@ -7,7 +7,7 @@ description: "Explore the two execution phases of LLM inference: compute-bound p
 tags: ["ai", "machine-learning", "systems-engineering", "performance"]
 ---
 
-*AI Inference Deep-Dive Series: &larr; [Basics of AI Inference: Demystifying Latency, Throughput, and Serving](/blog/basics-of-ai-inference/) (Previous)*
+*AI Inference Deep-Dive Series: &larr; [Basics of AI Inference: Demystifying Latency, Throughput, and Serving](/blog/basics-of-ai-inference/) (Previous) | [Understanding the KV Cache: The VRAM Bottleneck of LLM Serving](/blog/understanding-kv-cache/) (Next) &rarr;*
 
 ### Prior Reading Material
 Before diving into the execution phases of inference, make sure you understand the baseline systems metrics and training vs. inference differences:
