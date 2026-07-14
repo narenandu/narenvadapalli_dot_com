@@ -12,7 +12,7 @@ tags: ["ai", "agents", "openclaw", "whatsapp", "notion", "automation"]
 ### Prior Reading Material
 Before exploring gateway integrations and automated backend workflows, ensure you have configured your local OpenClaw workspace:
 *   [The Self-Hosted AI Butler: Modular Assistance with OpenClaw](/blog/openclaw-self-hosted-ai-butler/) — Detailed guide on global installation, initializing configuration parameters, and configuring basic skills.
-*   [Nous Research's Hermes Agent: Self-Improving Autonomous Systems](/blog/hermes-agent-self-improving-systems/) — Deep-dive into sandboxed compilation, persistent skill stores, and self-correcting code generation loops.
+*   [Nous Research's Hermes Agent: Under the Hood](/blog/hermes-agent-self-improving-systems/) — Deep-dive into sandboxed compilation, persistent skill stores, and self-correcting code generation loops.
 *   [The Landscape of Agentic AI: From Single-Agent Scripts to Multi-Agent Networks](/blog/landscape-of-agentic-ai/) — Analyzing the ReAct pattern, context windows, and multi-agent coordination graphs.
 
 ---
