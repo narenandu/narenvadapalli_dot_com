@@ -24,6 +24,37 @@ In this second installment of the **Autonomous AI Agents & Frameworks Series**, 
 
 ---
 
+### Setting Up Hermes Agent Locally
+
+Hermes Agent is designed to be installed quickly on local workstations:
+
+#### 1. Quick Installation
+Choose the command that matches your operating system:
+
+*   **Linux / macOS / WSL2:** Run the following command in your terminal:
+    ```bash
+    curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+    ```
+*   **Windows (PowerShell):** Run this in your native PowerShell:
+    ```powershell
+    iex (irm https://hermes-agent.nousresearch.com/install.ps1)
+    ```
+
+#### 2. Initial Configuration
+Once installed, authenticate and initialize the tool gateway:
+```bash
+# Initialize zero-config authentication and link capabilities
+hermes setup --portal
+```
+
+For developers looking to inspect or customize the engine itself, you can clone the repository from source:
+```bash
+git clone https://github.com/NousResearch/hermes-agent.git
+cd hermes-agent
+```
+
+---
+
 ### The Architecture of a Self-Improving Loop
 
 A self-improving loop shifts the responsibility of tool creation from the human developer to the agent itself. Instead of failing when a tool is missing, the agent initiates a sub-routine: **Create, Test, and Catalog**.
