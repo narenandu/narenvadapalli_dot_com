@@ -3,7 +3,7 @@ title: "Nous Research's Hermes Agent: Self-Improving Autonomous Systems"
 date: 2026-07-14
 template: blog
 image: "./cover_image.jpg"
-description: "Deep-dive into the architecture of self-improving agents. Learn about Nous Research's Hermes Agent, persistent skill stores, sandbox compilers, and reflection loops."
+description: "Deep-dive into the configuration, CLI commands, and skill architecture of Nous Research's Hermes Agent. Learn to manage tool gateways and design custom skills."
 tags: ["ai", "agents", "hermes-agent", "software-engineering"]
 ---
 
@@ -16,17 +16,17 @@ Before exploring self-improving code loops, we recommend reading the prerequisit
 
 ---
 
-In the landscape of AI assistant systems, most terminal agents (like basic ReAct scripts or pre-configured chat agents) are **static**. They operate with a fixed list of tools programmed in Python or JavaScript. If a user asks a static agent to perform a task outside its direct API scope—such as converting a proprietary raw video codec or parsing an obscure XML format—the agent fails because it doesn't have the necessary function registered in its context.
+In the landscape of AI assistant systems, most terminal agents operate with a fixed list of pre-configured tools. If a user asks a static agent to perform a task outside its direct scope—such as converting a proprietary raw video codec or parsing an obscure XML format—the agent fails because it doesn't have the necessary functions registered in its system context.
 
-To solve this, Nous Research introduced the concept of **[Hermes Agent](https://github.com/NousResearch/Hermes-Agent)**: a self-improving, autonomous agent loop designed to run locally, inspect its own tool deficits, write custom tool modules on-the-fly, compile/test them in a sandbox, and save them to a persistent **Skill Library** for future runs.
+To solve this, Nous Research introduced **[Hermes Agent](https://github.com/NousResearch/Hermes-Agent)**: a self-improving, autonomous terminal assistant designed to run locally, inspect its own tool deficits, write custom skill modules on-the-fly, test them in a sandbox, and save them to a persistent **Skill Library** for future runs.
 
-In this second installment of the **Autonomous AI Agents & Frameworks Series**, we'll dive deep under the hood of self-improving systems, inspect the architecture of the Hermes Agent loop, and build a localized Python simulation of a skill compiler.
+In this second installment of the **Autonomous AI Agents & Frameworks Series**, we'll go under the hood of Hermes Agent. We will inspect its file system layout, walk through its CLI config interface, and build a custom compiled skill from scratch.
 
 ---
 
 ### Setting Up Hermes Agent Locally
 
-Hermes Agent is designed to be installed quickly on local workstations:
+Hermes Agent is designed to be installed quickly on local developer workstations:
 
 #### 1. Quick Installation
 Choose the command that matches your operating system:
@@ -47,160 +47,137 @@ Once installed, authenticate and initialize the tool gateway:
 hermes setup --portal
 ```
 
-For developers looking to inspect or customize the engine itself, you can clone the repository from source:
+---
+
+### The Hermes Agent Directory Structure
+
+On installation, Hermes Agent initializes a configuration and workspace directory under your home folder (`~/.hermes/`). This acts as the runtime environment for the agent:
+
+```
+~/.hermes/
+├── config.yaml          # Main configuration file (models, paths, interval behaviors)
+├── .env                 # API keys and secret variables (takes precedence over config.yaml)
+└── skills/              # The default local Skill Library folder
+    ├── web-search/      # Bundled core skills
+    └── git-manager/
+```
+
+#### Main Configuration: `config.yaml`
+
+The main configuration file controls where the agent looks for custom skills and how it nudges the user to save newly generated skills. Let's look at a typical `~/.hermes/config.yaml` profile:
+
+```yaml
+# ~/.hermes/config.yaml
+model: "hermes-3-llama-3.1-70b"
+provider: "nous-portal"
+
+skills:
+  # Paths to scan for custom, user-defined skill directories
+  external_dirs:
+    - ~/.agents/skills
+    - ~/work/my-custom-skills
+  
+  # How many turns before the agent prompts you to compile a successful script into a permanent skill
+  creation_nudge_interval: 15
+```
+
+---
+
+### Managing Configurations via the CLI
+
+Instead of editing `config.yaml` manually, you can manage the agent's parameters directly using the built-in `hermes config` CLI commands:
+
 ```bash
-git clone https://github.com/NousResearch/hermes-agent.git
-cd hermes-agent
+# View the current active configuration
+hermes config show
+
+# Open config.yaml in your terminal's default editor (e.g. nano or vim)
+hermes config edit
+
+# Set a specific configuration parameter
+hermes config set skills.creation_nudge_interval 20
 ```
 
 ---
 
-### The Architecture of a Self-Improving Loop
+### Designing Custom Skills in Hermes
 
-A self-improving loop shifts the responsibility of tool creation from the human developer to the agent itself. Instead of failing when a tool is missing, the agent initiates a sub-routine: **Create, Test, and Catalog**.
+In Hermes Agent, a **Skill** is structured as a directory containing a `SKILL.md` markdown file. This file provides the agent's planner with both metadata (YAML frontmatter) and execution steps (Markdown instructions).
 
-```mermaid
-graph TD
-    UserGoal([User Goal]) --> ToolCheck{Has Suitable Tool?}
-    ToolCheck -- Yes --> Exec[Execute Tool & Return Output]
-    ToolCheck -- No --> Draft[Draft New Python Tool Code]
-    Draft --> Sandbox[Execute Tool in Isolated Sandbox]
-    Sandbox --> Verify{Does Code Pass Tests?}
-    Verify -- No (Error) --> FeedBack[Feed Stacktrace back to LLM]
-    FeedBack --> Draft
-    Verify -- Yes --> Save[Register tool in Skill Library & save to disk]
-    Save --> Exec
-    
-    style ToolCheck fill:#1a3d3c,stroke:#00f2fe,stroke-width:2px;
-    style Sandbox fill:#2a1f3d,stroke:#a15eff,stroke-width:2px;
-    style Verify fill:#1d2b3a,stroke:#3b82f6,stroke-width:2px;
-```
+Let's build a custom skill that parses hex strings, runs mathematical checks on them, and saves the output.
 
-#### The Four Core Layers
-
-1.  **The Orchestrator**: Manages the outer execution state. It receives the high-level goal and evaluates whether the current toolbox is sufficient.
-2.  **The Code/Skill Sandbox**: An isolated runtime environment. Because the agent is generating arbitrary Python code, running it directly on the host machine is dangerous. The sandbox executes code in a restricted container or subprocess, capturing `stdout`, `stderr`, and return codes.
-3.  **The Compilation & Test Harness**: Automatically writes and executes test suites (assertions) against the new tool code. If the test fails, the error output is parsed and fed back into the agent's context window as a reflection prompt.
-4.  **The Skill Library (Vector Store / Disk Index)**: When a tool is compiled successfully, it is stored alongside its metadata (docstrings, input/output schemas). The orchestrator queries this library using semantic search at the beginning of each turn to fetch relevant tools.
-
----
-
-### Static vs. Self-Improving Agents: A Technical Comparison
-
-| Feature | Static Agents (e.g., standard ReAct) | Self-Improving Agents (e.g., Hermes Agent) |
-| :--- | :--- | :--- |
-| **Tool Availability** | Hardcoded by developers at start time | Dynamically generated on demand |
-| **Failure Resolution** | Retries the same prompt or returns an error | Writes a new script to resolve missing capabilities |
-| **Execution Cost** | Flat per-turn cost | Higher initial prefill cost during skill compilation |
-| **Safety Profile** | Low risk (restricted tool access) | High risk (requires sandboxing to run generated code) |
-| **Persistence** | Session-based memory | Cross-session tool repository growth |
-
----
-
-### Hands-On: Simulating a Hermes Skill Builder
-
-To understand how an agent tests and compiles its own skills, we can inspect a script that simulates this workflow. Let's look at `scripts/hermes_skill_builder.py`, a headless simulator that attempts to build a specific mathematical parsing tool, runs assertions on it, catches errors, and "refines" it until it compiles.
-
-Create and run this simulation script in your workspace using the command:
+#### Step 1: Create the Skill Directory
+Create a folder inside your Skill Library:
 ```bash
-python scripts/hermes_skill_builder.py
+mkdir -p ~/.hermes/skills/hex-parser
 ```
 
-Here is the source code of the simulator:
+#### Step 2: Write the `SKILL.md` File
+Create `~/.hermes/skills/hex-parser/SKILL.md` and define the tool metadata:
+
+```markdown
+---
+name: hex-parser
+description: Parses comma-separated hex strings, converts them to integers, and sums the results.
+---
+# Task Instructions
+When the user asks to sum, parse, or evaluate a string containing hexadecimal values (e.g., '0x0A, 0x14'):
+1. Parse the comma-separated hex values from the input.
+2. Execute the python helper script using the local terminal command:
+   `python scripts/hex_parser.py --hex [input_string]`
+3. Report the result back to the user.
+```
+
+#### Step 3: Write the Helper Python Script
+Create a helper script at `scripts/hex_parser.py` that is executed by the agent's shell execution tool:
 
 ```python
-# scripts/hermes_skill_builder.py
-import sys
-import subprocess
-import os
-
-# Simulated draft code generated by the agent (first attempt contains a bug)
-FAILED_DRAFT = """
-def parse_and_sum_hex(hex_string: str) -> int:
-    # BUG: Forgot to split by comma, and didn't strip whitespace
-    numbers = hex_string.strip()
-    return sum(int(n, 16) for n in numbers)
-"""
-
-# Simulated corrected draft code generated by the agent (second attempt)
-SUCCESS_DRAFT = """
-def parse_and_sum_hex(hex_string: str) -> int:
-    # Corrected: Splits by comma and handles hex conversions safely
-    parts = [p.strip() for p in hex_string.split(",") if p.strip()]
-    return sum(int(p, 16) for p in parts)
-"""
-
-TEST_SUITE = """
-# Test assertions
-def test_tool():
-    result = parse_and_sum_hex("0x0A, 0x14, 0x05")
-    assert result == 35, f"Expected 35, got {result}"
-    print("ALL TESTS PASSED SUCCESSFULLY!")
-
-if __name__ == "__main__":
-    test_tool()
-"""
-
-def run_sandbox_test(code: str, test_assertions: str) -> tuple[bool, str]:
-    sandbox_file = "scratch/temp_sandbox_tool.py"
-    os.makedirs("scratch", exist_ok=True)
-    
-    with open(sandbox_file, "w") as f:
-        f.write(code + "\n" + test_assertions)
-        
-    try:
-        # Run in a separate headless process to simulate an isolated sandbox
-        res = subprocess.run([sys.executable, sandbox_file], capture_output=True, text=True, timeout=5)
-        if res.returncode == 0:
-            return True, res.stdout
-        else:
-            return False, res.stderr
-    finally:
-        if os.path.exists(sandbox_file):
-            os.remove(sandbox_file)
+# scripts/hex_parser.py
+import argparse
 
 def main():
-    print("=== STARTING HERMES SKILL BUILDER SIMULATION ===")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--hex", required=True, help="Comma-separated hex string")
+    args = parser.parse_args()
     
-    print("\n[CYCLE 1] Compiling initial agent draft (with known syntax/logic bug)...")
-    success, output = run_sandbox_test(FAILED_DRAFT, TEST_SUITE)
-    if not success:
-        print("❌ Test failed! Sending stacktrace back to LLM:")
-        print(f"--- STACKTRACE ---\n{output.strip()}\n------------------")
-    
-    print("\n[CYCLE 2] Agent receives stacktrace, reflects, and submits a corrected draft...")
-    success, output = run_sandbox_test(SUCCESS_DRAFT, TEST_SUITE)
-    if success:
-        print("✅ Test succeeded!")
-        print(f"Output: {output.strip()}")
-        print("\n[PERSISTENCE] Saving 'parse_and_sum_hex' to local Skill Store library.")
-        
-        # Save verified skill
-        os.makedirs("contents/skills", exist_ok=True)
-        with open("contents/skills/hex_parser.py", "w") as f:
-            f.write(SUCCESS_DRAFT)
-        print("💾 Skill saved to contents/skills/hex_parser.py")
+    try:
+        parts = [p.strip() for p in args.hex.split(",") if p.strip()]
+        total = sum(int(p, 16) for p in parts)
+        print(f"Success: Parsed {len(parts)} hex values. Total Sum = {total}")
+    except Exception as e:
+        print(f"Error parsing hex string: {str(e)}")
 
 if __name__ == "__main__":
     main()
 ```
 
-If you run the simulator, it prints the complete compilation lifecycle. The agent is notified of the test failure in Cycle 1, uses the traceback feedback to correct the logic in Cycle 2, and saves the verified script to the local project store under `contents/skills/hex_parser.py`.
+#### Step 4: Configure the Skill
+If the skill requires specific API keys or variables, configure them interactively:
+```bash
+hermes skills config hex-parser
+```
+
+Once configured, the next time you type `hermes chat` and query:
+> *"Sum these hex codes for me: 0x0A, 0x14, 0x05"*
+
+The agent will query the `~/.hermes/skills` index, match the prompt to the `hex-parser` description, read the execution steps, run the script locally, and print the output!
 
 ---
 
-### Key Takeaways for Developers
+### The Self-Improving Compilation Loop
 
-When designing systems using open-weights reasoning models like **Llama 3** or **Hermes**:
+If Hermes Agent encounters a task for which it has no registered skill, the outer loop initiates a self-improvement phase:
+1.  **Drafting**: The agent writes a new Python script and a matching `SKILL.md` inside a temporary sandboxed directory.
+2.  **Validation**: The agent executes test assertions against the generated script.
+3.  **Reflection**: If the script throws an error, the agent parses the stacktrace, rewrites the code, and retries.
+4.  **Cataloging**: Once tests pass, the agent prompts the user to save the new skill to the permanent `~/.hermes/skills/` library.
 
-1.  **State Isolation is Crucial**: Never allow a self-improving agent to write code directly into the active source directories without sandboxed compilation. A single syntax error will brick the orchestrator itself.
-2.  **Assertive Prompts**: The agent should not just generate code; it should be prompted to write its own test cases. Unit tests act as the objective fitness function in self-improving loops.
-3.  **Semantic Retrieval**: As your agent writes more skills, passing all skill code in the system prompt will exhaust the context window. Maintain a local vector store containing the docstrings and functional schemas of the custom skills, and dynamically inject only the relevant tools needed for the user's specific request.
+This runtime lifecycle allows Hermes Agent to scale its own capabilities dynamically as you run tasks in your workspace.
 
 ---
 
 ### What's Next?
 
-Self-improving agents are ideal for complex, programmatic tasks, but they require significant computing overhead and sandboxing infrastructure. What if we want a modular, self-hosted agent that runs locally and connects directly to our daily messaging loops with pre-configured tools?
+Hermes Agent provides a persistent terminal assistant that compiles its own skills. However, setting up sandboxed code generation requires substantial computing overhead. What if we want a modular, self-hosted agent that runs locally with pre-configured tools and connects directly to our messaging channels?
 
-In our next post, **[The Self-Hosted AI Butler: Modular Assistance with OpenClaw](/blog/openclaw-self-hosted-ai-butler/)**, we'll explore setting up the open-source **OpenClaw** framework, configuring custom tool bundles, and deploying an autonomous assistant directly on local developer workstations!
+In our next post, **[The Self-Hosted AI Butler: Modular Assistance with OpenClaw](/blog/openclaw-self-hosted-ai-butler/)**, we'll explore setting up the open-source **OpenClaw** framework, configuring custom tool gateways, and deploying a local assistant on your developer workstation!
