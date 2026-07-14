@@ -7,7 +7,7 @@ description: "Learn how to build and host your own AI assistant with OpenClaw. C
 tags: ["ai", "agents", "openclaw", "productivity", "self-hosted"]
 ---
 
-*Autonomous AI Agents & Frameworks Series: &larr; [Nous Research's Hermes Agent: Self-Improving Autonomous Systems](/blog/hermes-agent-self-improving-systems/) (Previous) | Part 3*
+*Autonomous AI Agents & Frameworks Series: &larr; [Nous Research's Hermes Agent: Self-Improving Autonomous Systems](/blog/hermes-agent-self-improving-systems/) (Previous) | [OpenClaw in Action: Connecting WhatsApp to Automated Workflows](/blog/openclaw-whatsapp-workflows/) (Next) &rarr;*
 
 ### Prior Reading Material
 Before setting up your local AI butler, we recommend exploring the architectural patterns and learning cycles of agentic loops:
@@ -202,6 +202,6 @@ When self-hosting an AI agent with local file execution privileges, keep these s
 
 ### What's Next?
 
-OpenClaw gives us a highly customizable assistant for executing standalone tasks. However, its tool chaining is linear. If a task requires complex routing—such as querying a DB, analyzing the result, making a decision, and looping back for editing—a simple linear chain falls short.
+OpenClaw gives us a highly customizable local assistant, but how do we connect it to our daily communication channels and trigger automated backend workflows based on chat events?
 
-In our next post, **[LangChain vs. LangGraph: Moving from Chains to Cyclic State Graphs](/blog/langchain-vs-langgraph-cyclic-state-graphs/)**, we'll explore why standard chains break during complex agent coordination and how graph-based state machines provide the stability required for enterprise-grade reasoning loops!
+In our next post, **[OpenClaw in Action: Connecting WhatsApp to Automated Workflows](/blog/openclaw-whatsapp-workflows/)**, we'll walk step-by-step through setting up the OpenClaw WhatsApp gateway and writing a custom workflow skill that syncs task requests directly to your digital workspace!
