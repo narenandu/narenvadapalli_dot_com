@@ -7,7 +7,7 @@ description: "Start the Autonomous AI Agents Series. Learn about the ReAct patte
 tags: ["ai", "agents", "software-engineering", "architecture"]
 ---
 
-*Autonomous AI Agents & Frameworks Series: Part 1 | [Nous Research's Hermes Agent: Self-Improving Autonomous Systems](/blog/hermes-agent-self-improving-systems/) (Next) &rarr;*
+*Autonomous AI Agents & Frameworks Series: Part 1 | [Nous Research's Hermes Agent: Under the Hood](/blog/hermes-agent-self-improving-systems/) (Next) &rarr;*
 
 ### Prior Reading Material
 Before exploring agent loops, ensure you understand the core mechanics of model weights and stateless inference:
@@ -148,4 +148,4 @@ Developers building agentic systems typically choose between several leading fra
 
 ### What's Next?
 
-Understanding the landscape of agent loops is the first step. Our next post in this series, **Nous Research's Hermes Agent: Self-Improving Autonomous Systems**, will dive deep into how persistent memory layers and dynamic tool generation operate, tracing the boundaries of self-hosted learning loops!
+Understanding the landscape of agent loops is the first step. Our next post in this series, **[Nous Research's Hermes Agent: Under the Hood](/blog/hermes-agent-self-improving-systems/)**, will dive deep into how persistent memory layers and dynamic tool generation operate, tracing the boundaries of self-hosted learning loops!
