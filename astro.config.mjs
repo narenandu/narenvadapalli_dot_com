@@ -23,7 +23,6 @@ function remarkCustomFeatures() {
           node.value = `<div class="video-wrapper"><iframe src="https://www.youtube.com/embed/${id}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`;
         }
       }
-
       // 2. Shortcodes [row], [col], [/row], [/col]
       if (node.type === 'text' && (node.value.includes('[row]') || node.value.includes('[col]') || node.value.includes('[/row]') || node.value.includes('[/col]'))) {
         let val = node.value;
