@@ -7,12 +7,12 @@ description: "Learn how to build and host your own AI assistant with OpenClaw. C
 tags: ["ai", "agents", "openclaw", "productivity", "self-hosted"]
 ---
 
-*Autonomous AI Agents & Frameworks Series: &larr; [Nous Research's Hermes Agent: Self-Improving Autonomous Systems](/blog/hermes-agent-self-improving-systems/) (Previous) | [OpenClaw in Action: Connecting WhatsApp to Automated Workflows](/blog/openclaw-whatsapp-workflows/) (Next) &rarr;*
+*Autonomous AI Agents & Frameworks Series: &larr; [Nous Research's Hermes Agent: Under the Hood](/blog/hermes-agent-self-improving-systems/) (Previous) | [OpenClaw in Action: Connecting WhatsApp to Automated Workflows](/blog/openclaw-whatsapp-workflows/) (Next) &rarr;*
 
 ### Prior Reading Material
 Before setting up your local AI butler, we recommend exploring the architectural patterns and learning cycles of agentic loops:
 *   [The Landscape of Agentic AI: From Single-Agent Scripts to Multi-Agent Networks](/blog/landscape-of-agentic-ai/) — Tracing the ReAct pattern, context decay, and multi-agent coordination graph topologies.
-*   [Nous Research's Hermes Agent: Self-Improving Autonomous Systems](/blog/hermes-agent-self-improving-systems/) — Deep-dive into sandboxed compilers, persistent skill stores, and self-correcting code generation loops.
+*   [Nous Research's Hermes Agent: Under the Hood](/blog/hermes-agent-self-improving-systems/) — Deep-dive into sandboxed compilers, persistent skill stores, and self-correcting code generation loops.
 
 ---
 

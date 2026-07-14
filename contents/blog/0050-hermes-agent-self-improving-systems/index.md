@@ -1,5 +1,5 @@
 ---
-title: "Nous Research's Hermes Agent: Self-Improving Autonomous Systems"
+title: "Nous Research's Hermes Agent: Under the Hood"
 date: 2026-07-14
 template: blog
 image: "./cover_image.jpg"
