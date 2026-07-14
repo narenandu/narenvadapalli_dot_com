@@ -170,6 +170,23 @@ The OpenClaw engine will:
 3.  Read the `SKILL.md` instructions and execute the `python scripts/organize.py --path /Users/username/Downloads` shell command.
 4.  Capture the console stdout output and send it back to you via Telegram!
 
+#### Accessing the Gateway Dashboard
+
+While OpenClaw acts as a background service, it includes a built-in graphical administration interface—the **Gateway Dashboard** (Control UI)—to monitor running agents, inspect memory states, and manage active session logs.
+
+To launch the dashboard, run:
+```bash
+openclaw dashboard
+```
+
+This will automatically open your default web browser to:
+`http://127.0.0.1:18789/`
+
+##### Key Dashboard Features:
+*   **Session Explorer:** Trace active chat logs, prompt inputs, and token counts.
+*   **Memory Inspector:** Inspect the agent's short-term context and long-term memory registers.
+*   **Skill Hub:** Enable, disable, or modify configs for custom skills loaded from ClawHub.
+
 ---
 
 ### Features & Security Hardening
@@ -177,6 +194,7 @@ The OpenClaw engine will:
 When self-hosting an AI agent with local file execution privileges, keep these security guidelines in mind:
 
 *   **User Restriction**: Always define `allowedUserIds` in your gateway configurations. If you leave your gateway public, anyone on Telegram or Discord could send commands to delete your home directory.
+*   **Secure Dashboard Access**: Since the Gateway Dashboard provides direct shell execution rights (via administrative approvals), **never expose port 18789 directly to the public internet**. If you need remote access, route the dashboard securely using **Tailscale** (via Tailscale Funnel/Serve) or put it behind an identity-aware proxy (like Teleport or an SSH Tunnel).
 *   **Path Sandboxing**: Modify your python scripts or CLI permissions to verify that they do not operate outside specific directories (e.g. block operations in `/System`, `/etc`, or `/usr/bin`).
 *   **Minimal Execution Privileges**: Run the OpenClaw process under a dedicated non-admin user account on your local machine to limit system exposure.
 
