@@ -13,7 +13,7 @@ tags: ["ai", "agents", "langchain", "langgraph", "software-engineering"]
 Before diving into graph-based agent orchestration, we recommend reviewing the foundational posts on local agents and loop mechanics:
 *   [OpenClaw in Action: Connecting WhatsApp to Automated Workflows](/blog/openclaw-whatsapp-workflows/) — Configuring WhatsApp gateway sessions and building custom Notion sync automation skills.
 *   [The Self-Hosted AI Butler: Modular Assistance with OpenClaw](/blog/openclaw-self-hosted-ai-butler/) — Setting up local OpenClaw pipelines and registering custom skills.
-*   [Nous Research's Hermes Agent: Self-Improving Autonomous Systems](/blog/hermes-agent-self-improving-systems/) — Understanding sandboxed testing and skill-compilation loops.
+*   [Nous Research's Hermes Agent: Under the Hood](/blog/hermes-agent-self-improving-systems/) — Understanding sandboxed testing and skill-compilation loops.
 *   [The Landscape of Agentic AI: From Single-Agent Scripts to Multi-Agent Networks](/blog/landscape-of-agentic-ai/) — Reviewing the ReAct loop, context decay, and multi-agent coordination graph topologies.
 
 ---
