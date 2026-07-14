@@ -3,11 +3,11 @@ title: "The Self-Hosted AI Butler: Modular Assistance with OpenClaw"
 date: 2026-07-15
 template: blog
 image: "./cover_image.jpg"
-description: "Learn how to build and host your own AI assistant with OpenClaw. Configure the ClawHub modular skill store, register custom Python tools, and connect to chat platforms."
+description: "Learn how to build and host your own AI assistant with OpenClaw. Configure the ClawHub modular skill store, write SKILL.md files, and connect to chat platforms."
 tags: ["ai", "agents", "openclaw", "productivity", "self-hosted"]
 ---
 
-*Autonomous AI Agents & Frameworks Series: &larr; [Nous Research's Hermes Agent: Self-Improving Autonomous Systems](/blog/hermes-agent-self-improving-systems/) (Previous) | [LangChain vs. LangGraph: Moving from Chains to Cyclic State Graphs](/blog/langchain-vs-langgraph-cyclic-state-graphs/) (Next) &rarr;*
+*Autonomous AI Agents & Frameworks Series: &larr; [Nous Research's Hermes Agent: Self-Improving Autonomous Systems](/blog/hermes-agent-self-improving-systems/) (Previous) | Part 3*
 
 ### Prior Reading Material
 Before setting up your local AI butler, we recommend exploring the architectural patterns and learning cycles of agentic loops:
@@ -16,7 +16,7 @@ Before setting up your local AI butler, we recommend exploring the architectural
 
 ---
 
-Many developers want a personal AI assistant—an "AI Butler"—that runs on their local workstation, acts as an extension of their shell, and connects directly to their daily communication tools (like Telegram, Discord, or Slack). While cloud-hosted options exist, they raise privacy concerns and offer limited local file system integration.
+Many developers want a personal AI assistant—an \"AI Butler\"—that runs on their local workstation, acts as an extension of their shell, and connects directly to their daily communication tools (like Telegram, Discord, or Slack). While cloud-hosted options exist, they raise privacy concerns and offer limited local file system integration.
 
 Enter **[OpenClaw](https://github.com/openclaw/openclaw)**. OpenClaw is an open-source, self-hosted framework designed to run lightweight agent loops on local hardware. Rather than compiling its own skills on-the-fly like a self-improving agent, OpenClaw relies on a modular, developer-defined architecture: **ClawHub**.
 
@@ -26,11 +26,11 @@ In this third part of our **Autonomous AI Agents & Frameworks Series**, we will 
 
 ### OpenClaw System Architecture
 
-Unlike standard monolithic CLI wrappers, OpenClaw separates the user interface (Gateways) from the core agent execution loop and tool orchestration:
+Unlike standard monolithic CLI wrappers, OpenClaw is a Node.js-based service that separates the user interface (Gateways) from the core agent execution loop and tool orchestration:
 
 ```mermaid
 graph LR
-    User([User]) <--> Gateway[Gateways: Telegram, Discord, Web]
+    User([User]) <--> Gateway[Gateways: Telegram, Discord, Slack]
     Gateway <--> Engine[OpenClaw Core Engine]
     Engine <--> Controller[Session & State Controller]
     Controller <--> LLM[Local/Cloud LLM provider]
@@ -42,71 +42,90 @@ graph LR
 
 #### Key Architecture Components
 
-1.  **Gateways**: Connectors that translate platform-specific messages (e.g. Telegram API payloads, WebSockets) into a standardized message bus format.
-2.  **State Controller**: Maintains conversation history, token counts, and session state across multiple active chat threads.
-3.  **ClawHub**: The local skill loader. On startup, ClawHub scans the `skills/` directory, compiles the metadata schemas of all registered Python functions, and automatically formats them as system tools for the model.
+1.  **Gateways**: Node.js connectors that translate platform-specific events (e.g. Telegram webhook requests or Discord WebSocket frames) into a unified message bus format.
+2.  **State Controller**: Maintains conversation history, token usage profiles, and session state across multiple active chat threads.
+3.  **ClawHub**: The local skill loader. On startup, ClawHub scans the workspace skills directory, reads the instruction sets of all registered modules, and automatically formats them as system tools for the model.
 
 ---
 
 ### Setting Up OpenClaw Locally
 
-OpenClaw requires Python 3.10+ and a local or remote inference endpoint (such as Ollama or Anthropic/OpenAI keys). Let's set up the system on a macOS/Linux workstation.
+OpenClaw can be installed globally via npm or run from source using pnpm workspaces. Let's set up the system on a macOS/Linux workstation.
 
-#### 1. Installation & Environment Configuration
+#### 1. Installation & Configuration
 
-Clone the repository and install the dependencies:
+The simplest way to install the OpenClaw service is via npm:
 ```bash
-git clone https://github.com/openclaw/openclaw.git ~/openclaw
-cd ~/openclaw
-pip install -r requirements.txt
+npm install -g openclaw
 ```
 
-Create a configuration file `config.yaml` to specify the local LLM endpoint and enable the Telegram gateway:
-```yaml
-# config.yaml
-llm:
-  provider: "ollama"
-  model: "llama3"
-  base_url: "http://localhost:11434/v1"
+After installation, initiate the interactive setup command to configure your local or remote LLM provider (such as Ollama or Anthropic/OpenAI keys) and setup your gateway integrations:
+```bash
+openclaw setup
+```
 
-gateways:
-  telegram:
-    enabled: true
-    bot_token: "your-telegram-bot-token-here"
-    allowed_user_ids: [123456789] # Generalize to prevent unauthorized usage
-
-skills_directory: "./skills"
+This generates a configuration file in your home directory (typically `~/.openclaw/config.json`) specifying model parameters and active gateways:
+```json
+{
+  "llm": {
+    "provider": "ollama",
+    "model": "llama3",
+    "baseUrl": "http://localhost:11434/v1"
+  },
+  "gateways": {
+    "telegram": {
+      "enabled": true,
+      "botToken": "your-telegram-bot-token-here",
+      "allowedUserIds": [123456789]
+    }
+  },
+  "skillsDirectory": "~/.openclaw/workspace/skills"
+}
 ```
 
 ---
 
 ### Writing a Custom Skill: The File Organizer
 
-Let's build a practical skill for our butler: organizing downloaded files by type. The helper function below reads a target folder, categorizes files into sub-directories (like `Documents`, `Images`, and `Archives`), and returns a summary.
+In the OpenClaw ecosystem, a **Skill** is simply a directory containing a `SKILL.md` markdown file. This file provides the agent with metadata (YAML frontmatter) and plain-English instructions detailing how to perform a task.
 
-Create this skill inside the `skills/` folder of your OpenClaw setup as `skills/file_organizer.py`:
+Let's build a skill for organizing downloaded files by type. 
+
+#### Step 1: Create the Skill Directory and SKILL.md
+Create a folder named `~/.openclaw/workspace/skills/file-organizer/` and add the following `SKILL.md` file:
+
+```markdown
+---
+name: file-organizer
+description: Scans a local folder and organizes files into subdirectories based on extension.
+---
+# Task Instructions
+When the user asks to clean up or organize a specific folder (e.g. `~/Downloads` or `~/Desktop`):
+1. Resolve the folder path.
+2. Run the organization script using the shell `exec` tool:
+   `python scripts/organize.py --path [target_path]`
+3. Return the console summary of the python script run back to the user in chat.
+```
+
+#### Step 2: Write the Helper Python Script
+Create the helper script called `scripts/organize.py` that is executed by the agent's shell `exec` tool:
 
 ```python
-# skills/file_organizer.py
+# scripts/organize.py
 import os
 import shutil
+import argparse
 from pathlib import Path
 
-# OpenClaw auto-registers any function decorated with @claw_skill
-from openclaw.skills import claw_skill
-
-@claw_skill
-def organize_directory(target_path: str) -> str:
-    """
-    Scans a directory and organizes its contents into subdirectories based on file extension.
-    Useful for cleaning up messy Downloads or Desktop folders.
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--path", required=True, help="Target folder path to clean")
+    args = parser.parse_args()
     
-    Args:
-        target_path: The absolute folder path to clean (e.g. '/Users/username/Downloads').
-    """
-    path = Path(target_path)
+    path = Path(args.path)
     if not path.exists() or not path.is_dir():
-        return f"Error: The directory '{target_path}' does not exist or is not a folder."
+        print(f"Error: The directory '{args.path}' does not exist.")
+        return
         
     categories = {
         "Images": [".jpg", ".jpeg", ".png", ".gif", ".webp"],
@@ -116,49 +135,40 @@ def organize_directory(target_path: str) -> str:
     }
     
     moved_count = 0
-    errors = []
-    
     for item in path.iterdir():
         if item.is_file():
             ext = item.suffix.lower()
-            target_folder_name = "Others"
-            
-            # Find category
+            target_folder = "Others"
             for cat, extensions in categories.items():
                 if ext in extensions:
-                    target_folder_name = cat
+                    target_folder = cat
                     break
-                    
-            target_dir = path / target_folder_name
+            target_dir = path / target_folder
             os.makedirs(target_dir, exist_ok=True)
+            shutil.move(str(item), str(target_dir / item.name))
+            moved_count += 1
             
-            try:
-                shutil.move(str(item), str(target_dir / item.name))
-                moved_count += 1
-            except Exception as e:
-                errors.append(f"Failed to move {item.name}: {str(e)}")
-                
-    summary = f"Successfully organized {moved_count} files in {target_path}."
-    if errors:
-        summary += f"\nErrors encountered:\n" + "\n".join(errors)
-    return summary
+    print(f"Cleaned folder: Organized {moved_count} files in {args.path}.")
+
+if __name__ == "__main__":
+    main()
 ```
 
 #### Launching the Butler
 
-Start the OpenClaw service:
+Start the OpenClaw daemon:
 ```bash
-python main.py --config config.yaml
+openclaw start
 ```
 
-Once running, you can send a message to your Telegram bot:
+Once running, you can send a message to your configured Telegram bot:
 > *"Clean up my downloads folder at /Users/username/Downloads"*
 
 The OpenClaw engine will:
-1.  Parse the message and query ClawHub for available tools.
-2.  Recognize that `organize_directory` matches the intent.
-3.  Execute `organize_directory(target_path='/Users/username/Downloads')`.
-4.  Run the code locally, organize the files, and reply with the summary!
+1.  Parse the incoming chat text and query ClawHub for match descriptions.
+2.  Select the `file-organizer` skill based on its description matching the intent.
+3.  Read the `SKILL.md` instructions and execute the `python scripts/organize.py --path /Users/username/Downloads` shell command.
+4.  Capture the console stdout output and send it back to you via Telegram!
 
 ---
 
@@ -166,8 +176,8 @@ The OpenClaw engine will:
 
 When self-hosting an AI agent with local file execution privileges, keep these security guidelines in mind:
 
-*   **User Restriction**: Always define `allowed_user_ids` in your gateway configurations. If you leave your gateway public, anyone on Telegram or Discord could send commands to delete your home directory.
-*   **Path Sandboxing**: Modify your custom skills to verify that they do not operate outside specific directories (e.g. block operations in `/System`, `/etc`, or `/usr/bin`).
+*   **User Restriction**: Always define `allowedUserIds` in your gateway configurations. If you leave your gateway public, anyone on Telegram or Discord could send commands to delete your home directory.
+*   **Path Sandboxing**: Modify your python scripts or CLI permissions to verify that they do not operate outside specific directories (e.g. block operations in `/System`, `/etc`, or `/usr/bin`).
 *   **Minimal Execution Privileges**: Run the OpenClaw process under a dedicated non-admin user account on your local machine to limit system exposure.
 
 ---
