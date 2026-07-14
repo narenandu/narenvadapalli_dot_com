@@ -7,7 +7,7 @@ description: "Start the Autonomous AI Agents Series. Learn about the ReAct patte
 tags: ["ai", "agents", "software-engineering", "architecture"]
 ---
 
-*Autonomous AI Agents & Frameworks Series: Part 1*
+*Autonomous AI Agents & Frameworks Series: Part 1 | [Nous Research's Hermes Agent: Self-Improving Autonomous Systems](/blog/hermes-agent-self-improving-systems/) (Next) &rarr;*
 
 ### Prior Reading Material
 Before exploring agent loops, ensure you understand the core mechanics of model weights and stateless inference:
