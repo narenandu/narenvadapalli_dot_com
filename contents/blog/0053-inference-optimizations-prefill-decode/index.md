@@ -34,24 +34,26 @@ In standard attention, calculating query-key-value ($Q, K, V$) matrices requires
 **[FlashAttention](https://github.com/Dao-AILab/flash-attention)** resolves this by partitioning input matrices into blocks and loading them into fast GPU SRAM. Using online softmax scaling, it calculates attention incrementally without storing the massive intermediate attention matrices in HBM:
 
 ```mermaid
-graph TD
+graph LR
     subgraph Standard [Standard Attention: Massive HBM I/O Overhead]
-        direction LR
         S_HBM_In[HBM: Q, K, V] --> S_Reg1[GPU Register]
         S_Reg1 --> S_HBM_Mid["HBM: Attention Weights (S, P)"]
         S_HBM_Mid --> S_Reg2[GPU Register]
         S_Reg2 --> S_HBM_Out[HBM: Output]
     end
 
+    style Standard fill:#20181e,stroke:#ff5353,stroke-width:1px
+    style S_HBM_Mid fill:#381d22,stroke:#ff5353,stroke-dasharray: 3 3
+```
+
+```mermaid
+graph LR
     subgraph Flash [FlashAttention: In-SRAM Tiling & Softmax]
-        direction LR
         F_HBM_In[HBM: Q, K, V] --> F_SRAM[GPU SRAM]
         F_SRAM --> F_HBM_Out[HBM: Output]
     end
 
-    style Standard fill:#20181e,stroke:#ff5353,stroke-width:1px
     style Flash fill:#10221e,stroke:#00f2fe,stroke-width:1px
-    style S_HBM_Mid fill:#381d22,stroke:#ff5353,stroke-dasharray: 3 3
     style F_SRAM fill:#14322c,stroke:#00f2fe,stroke-width:1px
 ```
 
