@@ -35,12 +35,12 @@ In standard attention, calculating query-key-value ($Q, K, V$) matrices requires
 
 ```
 [Standard Attention]
-  HBM (Q,K,V) ──► GPU Register ──► HBM (Attention Weights) ──► GPU Register ──► HBM (Output)
-  *Massive read/write overhead*
+HBM (Q,K,V) -> GPU Register -> HBM (Weights) -> GPU Register -> HBM (Output)
+*Massive HBM read/write overhead*
 
 [FlashAttention]
-  HBM (Q,K,V) ──► GPU SRAM (Tiling & Block Softmax) ──► HBM (Output)
-  *Intermediate weights never hit HBM*
+HBM (Q,K,V) -> GPU SRAM (Tiling & Softmax) -> HBM (Output)
+*Intermediate weights never hit HBM*
 ```
 
 By avoiding HBM roundtrips, FlashAttention speeds up attention computations by 2x to 4x while remaining mathematically exact.
