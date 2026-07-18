@@ -198,6 +198,6 @@ If you are planning to roll out LLM features to production, implement this gatew
 
 ### What's Next?
 
-Optimizing the costs of single LLM queries is the baseline. But as agentic networks grow, we shift from single-model calls to networks of cooperative nodes that interact, check each other's work, and run in loops. How do standard linear chains fail in these graph-based workflows?
+Optimizing costs across existing closed APIs and local pipelines is critical. But the open-source landscape is shifting rapidly. What happens when a startup led by frontier AI pioneers releases a 975B parameter open-weights multimodal model under Apache-2.0, redefining what can be run and adapted locally?
 
-In our next post, **[LangChain vs. LangGraph: Moving from Chains to Cyclic State Graphs](/blog/langchain-vs-langgraph-cyclic-state-graphs/)**, we'll dive into the limitations of sequential chains and map how LangGraph represents agents as stateful graphs!
+In our next post, **[Thinking Machines' Inkling: Under the Hood of the 975B Parameter Open Multimodal MoE](/blog/thinking-machines-inkling-open-multimodal-moe/)**, we'll analyze Mira Murati's new open-weights model, its sparse routing mechanisms, and hardware configurations for domain adaptation!
