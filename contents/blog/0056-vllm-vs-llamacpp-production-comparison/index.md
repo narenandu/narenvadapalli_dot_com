@@ -1,11 +1,13 @@
 ---
 title: "vLLM vs. llama.cpp: Which is the Real Production King?"
-date: 2026-07-19
+date: 2026-07-20
 template: blog
 image: "./cover_image.jpg"
 description: "A deep-dive architectural comparison between vLLM and llama.cpp. Compare throughput, memory footprints, and choose the right engine for your workload."
 tags: ["ai", "infrastructure", "performance", "software-engineering"]
 ---
+
+*Series: &larr; [Thinking Machines' Inkling: Under the Hood of the 975B Parameter Open Multimodal MoE](/blog/thinking-machines-inkling-open-multimodal-moe/) (Previous) | [LangChain vs. LangGraph: Moving from Chains to Cyclic State Graphs](/blog/langchain-vs-langgraph-cyclic-state-graphs/) (Next) &rarr;*
 
 ### Prior Reading Material
 Before comparing inference engines, we recommend reading our foundational guides on inference mechanics and serving layouts:
@@ -147,3 +149,11 @@ When concurrent load is high, vLLM's ability to interleave prefill and decode ph
 2.  Your application is **low concurrency** or single-user (e.g. CLI assistant, local coding copilot).
 3.  You need to run a model that exceeds your GPU VRAM, requiring dynamic CPU offloading.
 4.  You need instant container startup times (under 1 second) for serverless deployments.
+
+---
+
+### What's Next?
+
+Running optimized models on local consumer hardware is a massive step forward for developer independence. But once you have the local model running, how do you orchestrate it to solve complex, cyclic tasks? What happens when simple linear chains aren't enough, and you need stateful multi-agent loops?
+
+In our next post, **[LangChain vs. LangGraph: Moving from Chains to Cyclic State Graphs](/blog/langchain-vs-langgraph-cyclic-state-graphs/)**, we'll explore the limitations of linear prompt pipelines and map how to model agents using state machines and cyclic graphs!
