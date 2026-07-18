@@ -1,6 +1,6 @@
 ---
 title: "LangChain vs. LangGraph: Moving from Chains to Cyclic State Graphs"
-date: 2026-07-20
+date: 2026-07-21
 template: blog
 image: "./cover_image.jpg"
 description: "Why linear chains fail at complex agentic workflows. Learn how LangGraph models agents as state machines using persistent schemas, nodes, and cyclic edges."
