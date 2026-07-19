@@ -60,9 +60,9 @@ Telegram makes bot creation incredibly simple through a built-in administrative 
 
 ### Step 3: Configuring the Gateway Settings
 
-OpenClaw manages its connections through a centralized configuration file in your home directory (typically `~/.openclaw/config.json`, which resolves to `/Users/<username>/.openclaw/config.json` on macOS). 
+OpenClaw manages its connections through a centralized configuration file in your home directory (typically `/Users/<username>/.openclaw/openclaw.json` on macOS). 
 
-To enable the Telegram gateway, open your `~/.openclaw/config.json` file and update the `gateway` block to match the structure below:
+To enable the Telegram gateway, open your `/Users/<username>/.openclaw/openclaw.json` file and update the `gateway` block to match the structure below:
 
 ```json
 {

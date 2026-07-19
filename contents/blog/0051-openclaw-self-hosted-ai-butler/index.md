@@ -64,7 +64,7 @@ After installation, initiate the interactive setup command to configure your loc
 openclaw setup
 ```
 
-This generates a configuration file in your home directory (typically `~/.openclaw/config.json`) specifying model parameters and active gateways:
+This generates a configuration file in your home directory (typically `/Users/<username>/.openclaw/openclaw.json`) specifying model parameters and active gateways:
 ```json
 {
   "llm": {

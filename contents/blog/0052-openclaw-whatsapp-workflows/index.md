@@ -29,7 +29,7 @@ In this fourth part of the **Autonomous AI Agents & Frameworks Series**, we'll w
 
 OpenClaw's WhatsApp gateway uses the open-source **Baileys** library (a pure Node.js WhatsApp Web API wrapper) to establish a local connection, eliminating the need for an expensive Meta developer account or official business API credentials.
 
-Open your main configuration file (located at `~/.openclaw/config.json`) and enable the WhatsApp gateway:
+Open your main configuration file (located at `/Users/<username>/.openclaw/openclaw.json`) and enable the WhatsApp gateway:
 
 ```json
 {
