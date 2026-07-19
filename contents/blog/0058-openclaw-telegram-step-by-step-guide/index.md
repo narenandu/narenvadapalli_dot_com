@@ -52,13 +52,17 @@ Telegram makes bot creation incredibly simple through a built-in administrative 
     Keep your token secure and store it safely...
     ```
 
+    Here is what the conversation flow with BotFather looks like in Telegram:
+
+    ![Conversation with BotFather to register a new Telegram Bot](./botfather_telegram.jpeg)
+
 ---
 
 ### Step 3: Configuring the Gateway Settings
 
-OpenClaw manages its connections through a centralized config file (typically `config.json` or `.env` inside your project root). 
+OpenClaw manages its connections through a centralized configuration file in your home directory (typically `~/.openclaw/config.json`, which resolves to `/Users/<username>/.openclaw/config.json` on macOS). 
 
-To enable the Telegram gateway, open your `config.json` file and update the `gateway` block to match the structure below:
+To enable the Telegram gateway, open your `~/.openclaw/config.json` file and update the `gateway` block to match the structure below:
 
 ```json
 {
