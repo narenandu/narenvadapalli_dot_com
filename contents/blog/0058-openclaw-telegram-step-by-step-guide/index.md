@@ -25,11 +25,15 @@ This guide provides a beginner-friendly, step-by-step walkthrough to connect Ope
 
 ### Step 1: OpenClaw Core Prerequisites
 
-Before configuring the gateway, make sure OpenClaw is installed and configured on your machine.
-1.  **Clone & Install**: Ensure you have cloned the repository and installed the Python virtual environment as detailed in [The Self-Hosted AI Butler](/blog/openclaw-self-hosted-ai-butler/).
-2.  **Verify local execution**: Make sure you can query the agent from the CLI:
+Before configuring the gateway, make sure OpenClaw is installed and set up on your machine:
+1.  **Installation**: Ensure you have installed the OpenClaw service globally via npm as detailed in [The Self-Hosted AI Butler](/blog/openclaw-self-hosted-ai-butler/):
     ```bash
-    python main.py --query "hello"
+    npm install -g openclaw
+    openclaw setup
+    ```
+2.  **Verify local execution**: Make sure you can launch a local interactive agent chat session from your CLI:
+    ```bash
+    openclaw chat
     ```
 
 If the agent responds successfully, you are ready to configure the Telegram gateway.
@@ -58,27 +62,37 @@ Telegram makes bot creation incredibly simple through a built-in administrative 
 
 ---
 
-### Step 3: Configuring the Gateway Settings
+### Step 3: Configuring the Telegram Channel
 
 OpenClaw manages its connections through a centralized configuration file in your home directory (typically `/Users/<username>/.openclaw/openclaw.json` on macOS). 
 
-To enable the Telegram gateway, open your `/Users/<username>/.openclaw/openclaw.json` file and update the `gateway` block to match the structure below:
+To configure and enable the Telegram channel, run the following CLI commands directly in your terminal:
+```bash
+openclaw channels add --channel telegram --token "123456789:ABCdefGhIJKlmNoPQRsTUVwxyZ"
+openclaw config set channels.telegram.dmPolicy allowlist
+openclaw config set channels.telegram.allowFrom '[987654321]'
+```
 
-```json
+This will automatically format your `/Users/<username>/.openclaw/openclaw.json` file under the `"channels"` block to look like this:
+
+```jsonc
 {
-  "gateway": "telegram",
-  "telegram": {
-    "bot_token": "123456789:ABCdefGhIJKlmNoPQRsTUVwxyZ",
-    "allowed_chat_ids": [
-      987654321
-    ]
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "botToken": "123456789:ABCdefGhIJKlmNoPQRsTUVwxyZ",
+      "dmPolicy": "allowlist",
+      "allowFrom": [
+        987654321 // Your Telegram numeric User ID (NOT your phone number) find it by running @userinfobot in telegram
+      ]
+    }
   }
 }
 ```
 
-#### Critical Security Rule: `allowed_chat_ids`
+#### Critical Security Rule: `allowFrom`
 > [!CAUTION]
-> Always restrict `allowed_chat_ids` to your specific user ID. If this array is left empty, *anyone* who finds your bot on Telegram can trigger shell commands, download files, or execute Python scripts on your host workstation!
+> Always restrict DMs to your specific user ID by setting `"dmPolicy": "allowlist"` and specifying your ID under `"allowFrom"`. If this is left unconfigured, *anyone* who finds your bot on Telegram can trigger shell commands, download files, or execute Python scripts on your host workstation!
 
 *Tip: You can find your specific User/Chat ID by messaging `@userinfobot` on Telegram.*
 
@@ -86,10 +100,10 @@ To enable the Telegram gateway, open your `/Users/<username>/.openclaw/openclaw.
 
 ### Step 4: Launching the Bot
 
-Once configured, starting the bot is a single-line command:
+Once configured, starting the bot in the foreground is a single-line command:
 
 ```bash
-python main.py --gateway telegram
+openclaw gateway run
 ```
 
 The terminal log will output the connection status:
