@@ -27,21 +27,16 @@ This updates Google's model portfolio, reinforcing a multi-tiered approach that 
 
 Google's current lineup is divided into four distinct tiers:
 
-```
-                  ┌──────────────────────────────┐
-                  │        Gemini 3.1 Pro        │  <-- Flagship Reasoning
-                  └──────────────┬───────────────┘
-                                 │
-                  ┌──────────────┴───────────────┐
-                  │       Gemini 3.6 Flash       │  <-- Production Workhorse
-                  └──────────────┬───────────────┘
-                                 │
-         ┌───────────────────────┴───────────────────────┐
-         ▼                                               ▼
-┌──────────────────────────────┐                ┌──────────────────────────────┐
-│    Gemini 3.5 Flash-Lite     │                │    Gemini 3.5 Flash Cyber    │
-│  (Low-Latency / Routing)     │                │    (Security / Fine-Tuned)   │
-└──────────────────────────────┘                └──────────────────────────────┘
+```mermaid
+graph TD
+    Pro["Gemini 3.1 Pro<br/>(Flagship Reasoning)"]
+    Flash["Gemini 3.6 Flash<br/>(Production Workhorse)"]
+    Lite["Gemini 3.5 Flash-Lite<br/>(Low-Latency / Routing)"]
+    Cyber["Gemini 3.5 Flash Cyber<br/>(Security / Fine-Tuned)"]
+
+    Pro --> Flash
+    Flash --> Lite
+    Flash --> Cyber
 ```
 
 ### 1. Gemini 3.1 Pro (Flagship Reasoning)
@@ -86,6 +81,37 @@ Migrating from older model families (such as **Gemini 2.5** and the now-deprecat
 1.  **Native Multimodality**: While older models processed audio and video by converting them into text transcripts or keyframe images first, the Gemini 3 family uses a single shared embedding space. It processes video and audio tracks natively, which drastically reduces ingestion costs and latency.
 2.  **Context Window Efficiency**: Gemini 3.1 Pro's 2M context window relies on linear scaling techniques that maintain high retrieval recall (the "needle-in-a-haystack" test) even when packed close to 100% capacity. Older models began losing recall once the context exceeded 100k tokens.
 3.  **Prompt Caching Support**: The Gemini 3 API natively supports context caching. For long-running developer agents, system instructions or repository context schemas remain cached in memory, cutting input token costs by up to 50% for repeating requests.
+
+---
+
+## Head-to-Head Benchmark: Gemini 3.6 Flash vs. Gemini 3.5 Flash
+
+To quantify the generational leap between **Gemini 3.5 Flash** (released in May 2026) and the new **Gemini 3.6 Flash**, Google released extensive benchmark evaluations across software engineering, machine learning automation, computer use, and token efficiency.
+
+### Key Performance & Metric Differences
+
+1. **Token Efficiency & Reduced Verbosity**:
+   On the *Artificial Analysis Index*, Gemini 3.6 Flash uses **17% fewer output tokens** on average compared to 3.5 Flash to solve the exact same tasks. On multi-turn software engineering tasks like *DeepSWE*, output token consumption decreases by up to **65%**, dramatically reducing overall API costs and latency.
+
+2. **Agentic & Software Engineering Performance**:
+   - **DeepSWE (Software Bug Resolution)**: 3.6 Flash achieves **49.0%** vs. 37.0% for 3.5 Flash, demonstrating significantly higher precision with fewer unwanted code edits and execution loops.
+   - **MLE Bench (ML Pipeline Engineering)**: 3.6 Flash scores **63.9%** vs. 49.7% for 3.5 Flash in automated machine learning task execution.
+
+3. **Computer Use & Visual Understanding**:
+   - **OSWorld-Verified**: 3.6 Flash achieves **83.0%** vs. 78.4% for 3.5 Flash when executing native GUI desktop automation tasks.
+
+4. **Knowledge Work & Reasoning**:
+   - **GDPval-AA v2**: 3.6 Flash achieves a score of **1421** vs. 1349 for 3.5 Flash in document extraction, financial data parsing, and multi-turn research synthesis.
+
+### Benchmark Breakdown Table
+
+| Evaluation Benchmark | Domain / Capabilities | Gemini 3.5 Flash | Gemini 3.6 Flash | Delta / Gain |
+| :--- | :--- | :--- | :--- | :--- |
+| **DeepSWE** | Autonomous Code Bug Fixing | 37.0% | **49.0%** | **+12.0%** |
+| **MLE Bench** | ML Model & Data Engineering | 49.7% | **63.9%** | **+14.2%** |
+| **OSWorld-Verified** | Native GUI & Computer Use | 78.4% | **83.0%** | **+4.6%** |
+| **GDPval-AA v2** | Document Analysis & Knowledge | 1349 | **1421** | **+72 pts** |
+| **Output Token Overhead** | Average Tokens per Task | 100% Baseline | **-17% (up to -65%)** | **Higher Efficiency** |
 
 ---
 

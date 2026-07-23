@@ -32,8 +32,12 @@ In this fourth part of the **Autonomous AI Agents & Frameworks Series**, we'll a
 
 A standard chain is a **Directed Acyclic Graph (DAG)**. It executes nodes sequentially and flows in one direction:
 
-```
-[User Query] ──► [Retrieve Documents] ──► [Format Prompt] ──► [LLM Inference] ──► [Output]
+```mermaid
+graph TD
+    Query["User Query"] --> Retrieve["Retrieve Documents"]
+    Retrieve --> Format["Format Prompt"]
+    Format --> LLM["LLM Inference"]
+    LLM --> Output["Output"]
 ```
 
 This model is insufficient for agentic loops because:
