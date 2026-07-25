@@ -1,6 +1,6 @@
 ---
 title: "Scale and Performance: Serving LLMs with vLLM and llm-d"
-date: 2026-07-26
+date: 2026-07-28
 template: blog
 image: "./cover_image.jpg"
 description: "A comprehensive developer guide to scaling LLM serving using vLLM and llm-d. Explore PagedAttention, continuous batching, disaggregated prefill/decode, and Kubernetes deployment scripts."
