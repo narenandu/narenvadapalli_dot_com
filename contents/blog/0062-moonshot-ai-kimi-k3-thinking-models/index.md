@@ -1,13 +1,13 @@
 ---
 title: "Under the Hood of Moonshot AI's Kimi K3: The Architecture of 3-Trillion Parameter Thinking Models"
-date: 2026-07-25
+date: 2026-07-27
 template: blog
 image: "./cover_image.jpg"
 description: "A comprehensive developer guide to Moonshot AI's Kimi K3. Comparing K3, K2.7 Code, K2.6, and K2.5 across Preserved Thinking, reasoning effort, 1M context, and API workflows."
 tags: ["ai", "models", "open-source", "thinking-models", "kimi-k3"]
 ---
 
-*Series: &larr; [Google's Gemini 3 Family: The Comprehensive Developer Guide and Model Comparison](/blog/gemini-3-model-family-comparison-guide/) (Previous)*
+*Series: &larr; [Anthropic's Claude Opus 5: Frontier Reasoning, Benchmarks, and Prompt Engineering](/blog/anthropic-claude-opus-5-architectural-guide/) (Previous) | [Scale and Performance: Serving LLMs with vLLM and llm-d](/blog/serving-llms-with-vllm-and-llm-d/) (Next) &rarr;*
 
 ### Prior Reading Material
 Before diving into Kimi K3's architecture, explore our prerequisite articles on open-weights model scaling, reasoning gateways, and local serving optimizations:
