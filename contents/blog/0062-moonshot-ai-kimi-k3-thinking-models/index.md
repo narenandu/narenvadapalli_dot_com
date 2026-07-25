@@ -1,6 +1,6 @@
 ---
 title: "Under the Hood of Moonshot AI's Kimi K3: The Architecture of 3-Trillion Parameter Thinking Models"
-date: 2026-07-27
+date: 2026-07-26
 template: blog
 image: "./cover_image.jpg"
 description: "A comprehensive developer guide to Moonshot AI's Kimi K3. Comparing K3, K2.7 Code, K2.6, and K2.5 across Preserved Thinking, reasoning effort, 1M context, and API workflows."
