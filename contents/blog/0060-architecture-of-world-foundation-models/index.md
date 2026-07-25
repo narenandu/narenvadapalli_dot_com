@@ -7,7 +7,7 @@ description: "An engineering breakdown of World Foundation Models—moving beyon
 tags: ["ai", "world-models", "robotics", "spatial-ai", "architecture", "software-engineering"]
 ---
 
-*Series: &larr; [Google's Gemini 3 Family: The Comprehensive Developer Guide and Model Comparison](/blog/gemini-3-model-family-comparison-guide/) (Previous)*
+*Series: &larr; [Google's Gemini 3 Family: The Comprehensive Developer Guide and Model Comparison](/blog/gemini-3-model-family-comparison-guide/) (Previous) | [Anthropic's Claude Opus 5](/blog/anthropic-claude-opus-5-architectural-guide/) (Next) &rarr;*
 
 ### Prior Reading Material
 Before diving into spatial architectures and world models, review our earlier posts on agentic control loops and model taxonomy:
