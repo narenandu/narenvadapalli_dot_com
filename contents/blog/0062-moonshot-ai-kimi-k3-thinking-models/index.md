@@ -30,6 +30,23 @@ In this comprehensive guide, we dive deep into the architecture of Kimi K3, comp
 
 ---
 
+### Hugging Face Model Card Summary
+
+According to the official [Hugging Face Kimi K3 Model Overview](https://huggingface.co/blog/ResterChed/kimi-k3-model-overview-mxfp4-quantization-open-wei), Kimi K3 introduces native micro-scaling quantization (MXFP4) to optimize 2.8T MoE inference memory bounds:
+
+| Specification Attribute | Model Card Detail |
+| :--- | :--- |
+| **Model Repository** | [`moonshotai/kimi-k3-open-weights`](https://huggingface.co/blog/ResterChed/kimi-k3-model-overview-mxfp4-quantization-open-wei) |
+| **Architecture Base** | Sparse Mixture-of-Experts (MoE) + Kimi Delta Attention (KDA) |
+| **Total Parameter Count** | **2,800 Billion (2.8 Trillion)** total parameters |
+| **Active Parameters per Token** | **37 Billion** active parameters (16 out of 896 experts routed) |
+| **Supported Quantizations** | **MXFP4 (Micro-Scaling 4-bit)**, FP8, BF16 |
+| **Native Context Length** | **1,000,000 tokens** (1M token native window) |
+| **Thinking Architecture** | Native Preserved Deliberation Tokens (`reasoning_content`) |
+| **License Type** | Open Weights Permissive Commercial License |
+
+---
+
 ### The Evolution of Kimi Models: From K2.5 to K3
 
 To select the optimal model for production workloads, developers must understand the feature progression across Moonshot AI's model family.
