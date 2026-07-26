@@ -25,6 +25,24 @@ In this technical guide, we trace the generational evolution from Claude 3 Opus 
 
 ---
 
+### Official Model Card Summary
+
+According to the official [Anthropic Claude Opus Model Documentation](https://www.anthropic.com/claude/opus), Claude Opus 5 represents Anthropic's peak flagship reasoning tier:
+
+| Specification Attribute | Model Card Detail |
+| :--- | :--- |
+| **Model Identifier** | [`claude-opus-5-20260725`](https://www.anthropic.com/claude/opus) |
+| **Architecture Tier** | Flagship Dense/MoE Hybrid Thinking Model |
+| **Max Context Window** | **1,000,000 tokens** (1M token context) |
+| **Max Output Tokens** | **32,768 tokens** per single API call |
+| **Thinking Budget Range** | Configurable up to **128,000 tokens** (`thinking: {"type": "enabled", "budget_tokens": ...}`) |
+| **SWE-bench Verified** | **74.8%** resolution rate (State-of-the-Art) |
+| **GPQA Diamond (Science)** | **82.3%** accuracy |
+| **LMSYS Chatbot Arena ELO** | **1425+ ELO** (#1 Flagship Position) |
+| **Deployment Mode** | Anthropic API & Managed Cloud Endpoints (AWS Bedrock / Google Cloud Vertex AI) |
+
+---
+
 ### Recent Evolution: From Opus 4.5 to Opus 5
 
 According to [Anthropic's Official Announcements](https://www.anthropic.com/claude/opus), the Opus tier has seen rapid iteration leading up to the flagship release of **Claude Opus 5**. Tracing the release lineage over recent months highlights how Anthropic systematically scaled agentic autonomy, multi-step reliability, and code synthesis:
