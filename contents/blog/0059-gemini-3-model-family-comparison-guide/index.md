@@ -7,7 +7,7 @@ description: "An in-depth guide to Google's newly expanded Gemini 3 model family
 tags: ["ai", "gemini", "llm", "google", "cloud", "engineering"]
 ---
 
-*Series: &larr; [Connecting Telegram to OpenClaw: A Complete Step-by-Step Guide](/blog/openclaw-telegram-step-by-step-guide/) (Previous)*
+*Series: &larr; [Connecting Telegram to OpenClaw: A Complete Step-by-Step Guide](/blog/openclaw-telegram-step-by-step-guide/) (Previous) | [Under the Hood of Moonshot AI's Kimi K3](/blog/moonshot-ai-kimi-k3-thinking-models/) (Next) &rarr;*
 
 ### Prior Reading Material
 Before diving into Google's latest model releases, it is helpful to establish context around model taxonomy, proxy gateway layers, and open-source agent interfaces:
