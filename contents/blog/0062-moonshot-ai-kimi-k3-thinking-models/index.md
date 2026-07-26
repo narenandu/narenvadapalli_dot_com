@@ -99,15 +99,14 @@ Kimi K3 exposes 9 distinct model capabilities as outlined in the [Kimi Model Doc
 flowchart TD
     subgraph Capabilities["Kimi K3 Model Capabilities Suite"]
         direction TB
-        C1["1. Thinking Models (Deliberation Tokens)"]
-        C2["2. Reasoning Effort (Low / Medium / High / Max)"]
-        C3["3. Multi-turn Chat (Preserved Thinking)"]
-        C4["4. Streaming (SSE Real-time Deliberation)"]
-        C5["5. JSON Mode (Structured Response Format)"]
-        C6["6. Partial Mode (Prefix Prefilling)"]
-        C7["7. Vision Input (High-Res Multimodal Image Analysis)"]
-        C8["8. Context Caching (90% Cost & Latency Reduction)"]
-        C9["9. Dynamic Tool Loading (Function Calling)"]
+        C1["1. Thinking Models (Deliberation Tokens)"] --> C2["2. Reasoning Effort (Low / Medium / High / Max)"]
+        C2 --> C3["3. Multi-turn Chat (Preserved Thinking)"]
+        C3 --> C4["4. Streaming (SSE Real-time Deliberation)"]
+        C4 --> C5["5. JSON Mode (Structured Response Format)"]
+        C5 --> C6["6. Partial Mode (Prefix Prefilling)"]
+        C6 --> C7["7. Vision Input (High-Res Multimodal Image Analysis)"]
+        C7 --> C8["8. Context Caching (90% Cost & Latency Reduction)"]
+        C8 --> C9["9. Dynamic Tool Loading (Function Calling)"]
     end
 ```
 
