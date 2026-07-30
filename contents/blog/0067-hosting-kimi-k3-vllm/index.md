@@ -13,7 +13,7 @@ tags: ["kimi-k3", "vllm", "ai-inference", "open-weights", "machine-learning", "a
 Before exploring self-hosted Kimi K3 inference, review our prerequisite deep-dives into model architecture, serving runtimes, and distributed disaggregation:
 *   [Under the Hood of Moonshot AI's Kimi K3: The Architecture of 3-Trillion Parameter Thinking Models](/blog/moonshot-ai-kimi-k3-thinking-models/) — Comprehensive architectural breakdown of Kimi K3's 2.8T MoE, KDA linear attention, and 1M context window.
 *   [Scale and Performance: Serving LLMs with vLLM and llm-d](/blog/serving-llms-with-vllm-and-llm-d/) — PagedAttention virtual memory paging and distributed prefill/decode disaggregation.
-*   [Deep-Dive: SGLang v0.5.16 Architecture and High-Throughput Inference Comparison](/blog/sglang-v0-5-16-architecture-and-inference-comparison/) — High-throughput engine benchmarks and RadixAttention tree-prefix cache reuse.
+*   [Physical AI Models: Grounding Intelligence in Space, Physics, and Robotics](/blog/physical-ai-models-grounding-in-space-and-robotics/) — Spatial 3D geometry priors, neural physics simulators, and embodied VLA control loops.
 
 ---
 
