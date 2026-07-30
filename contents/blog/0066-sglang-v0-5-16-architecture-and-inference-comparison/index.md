@@ -1,13 +1,13 @@
 ---
 title: "Deep-Dive: SGLang v0.5.16 Architecture and High-Throughput Inference Comparison"
-date: 2026-07-30
+date: 2026-07-31
 template: blog
 image: "./cover_image.jpg"
 description: "An architectural deep-dive into SGLang v0.5.16. Analyzing RadixAttention KV cache reuse, compressed FSM constrained decoding, Torch Compile CUDA graph optimizations, and multi-engine benchmarks."
 tags: ["sglang", "vllm", "ai-inference", "radix-attention", "machine-learning", "architecture"]
 ---
 
-*Series: &larr; [Physical AI Models: Grounding Intelligence in Space, Physics, and Robotics](/blog/physical-ai-models-grounding-in-space-and-robotics/) (Previous)*
+*Series: &larr; [Hosting Moonshot AI's Kimi K3 Open Weights with vLLM: High-Throughput Serving at Scale](/blog/hosting-kimi-k3-vllm/) (Previous)*
 
 ### Prior Reading Material
 Before diving into SGLang v0.5.16, review our prerequisite deep-dives on high-throughput serving, KV cache management, and model serving engines:
