@@ -7,7 +7,7 @@ description: "A technical deep-dive into Physical AI models. Exploring spatial u
 tags: ["ai", "physical-ai", "robotics", "world-models", "machine-learning", "architecture"]
 ---
 
-*Series: &larr; [The DeepSeek Architectural Inflection Point](/blog/deepseek-architectural-inflection-point/) (Previous)*
+*Series: &larr; [The DeepSeek Architectural Inflection Point](/blog/deepseek-architectural-inflection-point/) (Previous) | [Hosting Moonshot AI's Kimi K3 Open Weights with vLLM: High-Throughput Serving at Scale](/blog/hosting-kimi-k3-vllm/) (Next) &rarr;*
 
 ### Prior Reading Material
 Before exploring Physical AI models, review our prerequisite deep-dives into World Foundation Models, multimodal spatial reasoning, and distributed inference:
