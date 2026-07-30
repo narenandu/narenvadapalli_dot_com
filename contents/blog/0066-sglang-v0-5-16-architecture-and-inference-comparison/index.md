@@ -7,7 +7,7 @@ description: "An architectural deep-dive into SGLang v0.5.16. Analyzing RadixAtt
 tags: ["sglang", "vllm", "ai-inference", "radix-attention", "machine-learning", "architecture"]
 ---
 
-*Series: &larr; [Hosting Moonshot AI's Kimi K3 Open Weights with vLLM: High-Throughput Serving at Scale](/blog/hosting-kimi-k3-vllm/) (Previous)*
+*Series: &larr; [Hosting Moonshot AI's Kimi K3 Open Weights with vLLM: High-Throughput Serving at Scale](/blog/hosting-kimi-k3-vllm/) (Previous) | [Understanding Mixture-of-Experts (MoE): From Specialist Clinics to Kimi K3's 896-Expert Router](/blog/understanding-mixture-of-experts-moe/) (Next) &rarr;*
 
 ### Prior Reading Material
 Before diving into SGLang v0.5.16, review our prerequisite deep-dives on high-throughput serving, KV cache management, and model serving engines:
