@@ -46,9 +46,7 @@ function remarkCustomFeatures() {
 export default defineConfig({
   site: 'https://www.narenvadapalli.com',
   redirects: {
-    '/blog/google-analytics-to-personal-website': '/blog/google-analytics-to-gatsby-app/',
     '/blog/google-analytics-to-personal-website/': '/blog/google-analytics-to-gatsby-app/',
-    '/blog/3': '/blog/',
     '/blog/3/': '/blog/'
   },
   integrations: [react(), mdx(), sitemap()],
