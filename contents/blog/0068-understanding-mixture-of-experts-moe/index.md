@@ -1,13 +1,13 @@
 ---
 title: "Understanding Mixture-of-Experts (MoE): From Specialist Clinics to Kimi K3's 896-Expert Router"
-date: 2026-08-01
+date: 2026-07-31
 template: blog
 image: "./cover_image.jpg"
 description: "A developer-friendly guide to Mixture-of-Experts (MoE) architectures. Exploring the specialist clinic analogy, total vs active parameters, Top-K gating networks, expert collapse traps, and how Kimi K3 scales to 896 micro-experts."
 tags: ["moe", "ai-architecture", "kimi-k3", "machine-learning", "deep-learning", "llm"]
 ---
 
-*Series: &larr; [Deep-Dive: SGLang v0.5.16 Architecture and High-Throughput Inference Comparison](/blog/sglang-v0-5-16-architecture-and-inference-comparison/) (Previous)*
+*Series: &larr; [Hosting Moonshot AI's Kimi K3 Open Weights with vLLM: High-Throughput Serving at Scale](/blog/hosting-kimi-k3-vllm/) (Previous) | [Deep-Dive: SGLang v0.5.16 Architecture and High-Throughput Inference Comparison](/blog/sglang-v0-5-16-architecture-and-inference-comparison/) (Next) &rarr;*
 
 ### Prior Reading Material
 Before diving into Mixture-of-Experts routing mechanics, review our prerequisite deep-dives on model architectures and serving infrastructure:
