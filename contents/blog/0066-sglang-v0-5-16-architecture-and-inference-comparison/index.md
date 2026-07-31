@@ -1,18 +1,19 @@
 ---
 title: "Deep-Dive: SGLang v0.5.16 Architecture and High-Throughput Inference Comparison"
-date: 2026-07-31
+date: 2026-08-01
 template: blog
 image: "./cover_image.jpg"
 description: "An architectural deep-dive into SGLang v0.5.16. Analyzing RadixAttention KV cache reuse, compressed FSM constrained decoding, Torch Compile CUDA graph optimizations, and multi-engine benchmarks."
 tags: ["sglang", "vllm", "ai-inference", "radix-attention", "machine-learning", "architecture"]
 ---
 
-*Series: &larr; [Hosting Moonshot AI's Kimi K3 Open Weights with vLLM: High-Throughput Serving at Scale](/blog/hosting-kimi-k3-vllm/) (Previous) | [Understanding Mixture-of-Experts (MoE): From Specialist Clinics to Kimi K3's 896-Expert Router](/blog/understanding-mixture-of-experts-moe/) (Next) &rarr;*
+*Series: &larr; [Understanding Mixture-of-Experts (MoE): From Specialist Clinics to Kimi K3's 896-Expert Router](/blog/understanding-mixture-of-experts-moe/) (Previous)*
 
 ### Prior Reading Material
 Before diving into SGLang v0.5.16, review our prerequisite deep-dives on high-throughput serving, KV cache management, and model serving engines:
-*   [Scale and Performance: Serving LLMs with vLLM and llm-d](/blog/serving-llms-with-vllm-and-llm-d/) — PagedAttention virtual memory paging and distributed prefill/decode disaggregation.
+*   [Understanding Mixture-of-Experts (MoE): From Specialist Clinics to Kimi K3's 896-Expert Router](/blog/understanding-mixture-of-experts-moe/) — Sparse MoE gating networks, total vs active parameters, and Top-K router balancing.
 *   [Hosting Moonshot AI's Kimi K3 Open Weights with vLLM: High-Throughput Serving at Scale](/blog/hosting-kimi-k3-vllm/) — Day-0 production serving, MXFP4 MoE kernels, and DSpark speculative decoding.
+*   [Scale and Performance: Serving LLMs with vLLM and llm-d](/blog/serving-llms-with-vllm-and-llm-d/) — PagedAttention virtual memory paging and distributed prefill/decode disaggregation.
 *   [Basics of AI Inference: Prefill, Decode, and Memory Bottlenecks](/blog/basics-of-ai-inference/) — Foundational metrics covering VRAM bandwidth, TTFT, and ITL.
 *   [Inference Engine Landscape: vLLM, llama.cpp, TensorRT-LLM, and TGI](/blog/inference-engines-landscape/) — Comparative overview of modern LLM serving runtimes.
 
