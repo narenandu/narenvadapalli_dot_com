@@ -7,7 +7,7 @@ description: "An architectural deep-dive into SGLang v0.5.16. Analyzing RadixAtt
 tags: ["sglang", "vllm", "ai-inference", "radix-attention", "machine-learning", "architecture"]
 ---
 
-*Series: &larr; [Understanding Mixture-of-Experts (MoE): From Specialist Clinics to Kimi K3's 896-Expert Router](/blog/understanding-mixture-of-experts-moe/) (Previous)*
+*Series: &larr; [Understanding Mixture-of-Experts (MoE): From Specialist Clinics to Kimi K3's 896-Expert Router](/blog/understanding-mixture-of-experts-moe/) (Previous) | [Demystifying LoRA (Low-Rank Adaptation): From Training Efficiency to Multi-Adapter Inference](/blog/demystifying-lora-low-rank-adaptation/) (Next) &rarr;*
 
 ### Prior Reading Material
 Before diving into SGLang v0.5.16, review our prerequisite deep-dives on high-throughput serving, KV cache management, and model serving engines:
