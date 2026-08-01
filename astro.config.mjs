@@ -43,13 +43,41 @@ function remarkCustomFeatures() {
   };
 }
 
+// Custom Astro integration to force full browser reloads whenever contents/ files or new folders change
+function watchContentDirectory() {
+  return {
+    name: 'watch-content-directory',
+    hooks: {
+      'astro:config:setup': ({ updateConfig }) => {
+        updateConfig({
+          vite: {
+            plugins: [
+              {
+                name: 'vite-plugin-watch-contents',
+                configureServer(server) {
+                  server.watcher.add('./contents');
+                  server.watcher.on('all', (event, filePath) => {
+                    if (filePath.includes('/contents/')) {
+                      server.ws.send({ type: 'full-reload' });
+                    }
+                  });
+                }
+              }
+            ]
+          }
+        });
+      }
+    }
+  };
+}
+
 export default defineConfig({
   site: 'https://www.narenvadapalli.com',
   redirects: {
     '/blog/google-analytics-to-personal-website/': '/blog/google-analytics-to-gatsby-app/',
     '/blog/3/': '/blog/'
   },
-  integrations: [react(), mdx(), sitemap()],
+  integrations: [react(), mdx(), sitemap(), watchContentDirectory()],
   markdown: {
     remarkPlugins: [remarkCustomFeatures]
   }
