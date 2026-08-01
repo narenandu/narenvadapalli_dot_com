@@ -66,6 +66,11 @@ flowchart TD
         V1["1. Raw MXFP4 Model Weights: ~1,400 GB (1.4 TB)"] --> V2["2. 1M Context KV Cache & Activations: 280 GB - 500 GB"]
         V2 --> V3["3. Minimum Cluster Target: 8x NVIDIA B300 (2,304 GB HBM3e) or 16x H200 (2,256 GB HBM3e)"]
     end
+
+    style VRAMFootprint fill:#0f172a,stroke:#6366f1,stroke-width:2px,color:#ffffff;
+    style V1 fill:#3b2314,stroke:#ff5353,stroke-width:2px,color:#ffffff;
+    style V2 fill:#2a1b4e,stroke:#ab47bc,stroke-width:2px,color:#ffffff;
+    style V3 fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff;
 ```
 
 #### 1. The 1.4 TB Memory Weight Floor
@@ -100,6 +105,12 @@ flowchart TD
         M2 --> M3["3. Stable LatentMoE MXFP4 Kernel Dispatch (16/896 Experts)"]
         M3 --> M4["4. DSpark Block-Diffusion Speculative Verification (370 tok/s)"]
     end
+
+    style vLLMServingStack fill:#0f172a,stroke:#6366f1,stroke-width:2px,color:#ffffff;
+    style M1 fill:#2a1b4e,stroke:#ab47bc,stroke-width:2px,color:#ffffff;
+    style M2 fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff;
+    style M3 fill:#1a3d3c,stroke:#00f2fe,stroke-width:2px,color:#ffffff;
+    style M4 fill:#0f382c,stroke:#10b981,stroke-width:2px,color:#ffffff;
 ```
 
 #### 1. Hybrid KDA & Paged KV Cache Manager
@@ -118,6 +129,12 @@ flowchart TD
         H2 --> H4["Merged Scheduler & Prefill Engine"]
         H3 --> H4
     end
+
+    style HybridMemory fill:#0f172a,stroke:#6366f1,stroke-width:2px,color:#ffffff;
+    style H1 fill:#2a1b4e,stroke:#ab47bc,stroke-width:2px,color:#ffffff;
+    style H2 fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff;
+    style H3 fill:#1a3d3c,stroke:#00f2fe,stroke-width:2px,color:#ffffff;
+    style H4 fill:#0f382c,stroke:#10b981,stroke-width:2px,color:#ffffff;
 ```
 
 #### 2. DSpark Speculative Decoding (370 Tokens/sec)
@@ -131,6 +148,12 @@ flowchart TD
         D2 --> D3["Confidence Head Validation & Token Acceptance"]
         D3 --> D4["Stream Output (370 tok/s Peak Throughput)"]
     end
+
+    style DSparkLoop fill:#0f172a,stroke:#6366f1,stroke-width:2px,color:#ffffff;
+    style D1 fill:#3b2314,stroke:#ff9800,stroke-width:2px,color:#ffffff;
+    style D2 fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff;
+    style D3 fill:#1a3d3c,stroke:#00f2fe,stroke-width:2px,color:#ffffff;
+    style D4 fill:#0f382c,stroke:#10b981,stroke-width:2px,color:#ffffff;
 ```
 
 *   **Block-Diffusion Drafting**: A lightweight draft model generates 7 candidate tokens in a single parallel pass.
@@ -161,7 +184,10 @@ docker run --gpus all --ipc=host --net=host \
 
 ### Runnable Benchmark: vLLM Kimi K3 Client & Profiler
 
-Below is a runnable Python benchmark script (`scripts/kimi_k3_vllm_host.py`) using the OpenAI client SDK to connect to a local or remote vLLM Kimi K3 instance, measuring Time-to-First-Token (TTFT), Inter-Token Latency (ITL), and streaming generation speed.
+Below is a runnable Python benchmark script (`scripts/kimi_k3_vllm_host.py`) using the OpenAI client SDK to connect to a local or remote vLLM Kimi K3 instance, measuring Time-to-First-Token (TTFT), Inter-Token Latency (ITL), and streaming generation speed:
+
+<details>
+<summary><b>Click to expand runnable Python streaming benchmark script</b></summary>
 
 ```python
 #!/usr/bin/env python3
@@ -236,6 +262,8 @@ async def benchmark_kimi_k3_stream():
 if __name__ == "__main__":
     asyncio.run(benchmark_kimi_k3_stream())
 ```
+
+</details>
 
 Run the client script:
 ```bash
