@@ -250,11 +250,12 @@ With engines like **vLLM**, **SGLang**, and **S-LoRA (Punica)**:
 | **LoRA+** (Hayou et al., 2024) | Sets asymmetric learning rates: $\eta_B = \gamma \cdot \eta_A$ (where $\gamma > 1$) | Speeds up training convergence by 1.5x-2x. |
 | **AdaLoRA** (Zhang et al., 2023) | Dynamic rank allocation across Transformer layers using singular value decomposition | Allocates higher rank $r$ to important layers and lower rank to unimportant layers. |
 
----
-
 ### Runnable Python Simulation: LoRA Decomposition & Weight Merging
 
 Below is a runnable Python script (`scripts/lora_math_sim.py`) demonstrating LoRA low-rank matrix decomposition, parameter reduction calculations, and weight merging:
+
+<details>
+<summary><b>Click to expand runnable Python simulation script</b></summary>
 
 ```python
 #!/usr/bin/env python3
@@ -328,10 +329,7 @@ if __name__ == "__main__":
     run_lora_simulation()
 ```
 
-Run the simulation:
-```bash
-python3 scripts/lora_math_sim.py
-```
+</details>
 
 ---
 
