@@ -7,7 +7,7 @@ description: "A comprehensive developer guide to hosting Moonshot AI's Kimi K3 o
 tags: ["kimi-k3", "vllm", "ai-inference", "open-weights", "machine-learning", "architecture"]
 ---
 
-*Series: &larr; [Physical AI Models: Grounding Intelligence in Space, Physics, and Robotics](/blog/physical-ai-models-grounding-in-space-and-robotics/) (Previous)*
+*Series: &larr; [Physical AI Models: Grounding Intelligence in Space, Physics, and Robotics](/blog/physical-ai-models-grounding-in-space-and-robotics/) (Previous) | [Understanding Mixture-of-Experts (MoE): From Specialist Clinics to Kimi K3's 896-Expert Router](/blog/understanding-mixture-of-experts-moe/) (Next) &rarr;*
 
 ### Prior Reading Material
 Before exploring self-hosted Kimi K3 inference, review our prerequisite deep-dives into model architecture, serving runtimes, and distributed disaggregation:
