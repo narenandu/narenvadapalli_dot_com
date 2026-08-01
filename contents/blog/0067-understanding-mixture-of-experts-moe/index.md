@@ -42,6 +42,10 @@ flowchart TD
         direction TB
         D1["Call ALL 896 Doctors into room for EVERY Patient"] --> D2["Extremely Slow, Energy-Intensive & Expensive"]
     end
+
+    style DenseApproach fill:#0f172a,stroke:#6366f1,stroke-width:2px,color:#ffffff;
+    style D1 fill:#3b2314,stroke:#ff5353,stroke-width:2px,color:#ffffff;
+    style D2 fill:#2a1b4e,stroke:#ab47bc,stroke-width:2px,color:#ffffff;
 ```
 
 #### 2. The Sparse MoE Approach
@@ -57,6 +61,11 @@ flowchart TD
         M1["Smart Triage Nurse (Router) evaluates Patient Symptoms"] --> M2["Dispatches Patient ONLY to 16 Selected Specialist Doctors"]
         M2 --> M3["Fast, Highly Specialized & Compute-Efficient"]
     end
+
+    style MoEApproach fill:#0f172a,stroke:#6366f1,stroke-width:2px,color:#ffffff;
+    style M1 fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff;
+    style M2 fill:#1a3d3c,stroke:#00f2fe,stroke-width:2px,color:#ffffff;
+    style M3 fill:#0f382c,stroke:#10b981,stroke-width:2px,color:#ffffff;
 ```
 
 ---
@@ -99,6 +108,12 @@ flowchart TD
         S2 --> S3["Step 3: Normalize Top-16 Scores into Softmax Percentages"]
         S3 --> S4["Step 4: Dispatch Token to 16 Experts & Compute Weighted Average"]
     end
+
+    style TokenRoutingJourney fill:#0f172a,stroke:#6366f1,stroke-width:2px,color:#ffffff;
+    style S1 fill:#2a1b4e,stroke:#ab47bc,stroke-width:2px,color:#ffffff;
+    style S2 fill:#1a3d3c,stroke:#00f2fe,stroke-width:2px,color:#ffffff;
+    style S3 fill:#3b2314,stroke:#ff9800,stroke-width:2px,color:#ffffff;
+    style S4 fill:#0f382c,stroke:#10b981,stroke-width:2px,color:#ffffff;
 ```
 
 #### Step 1: Calculate Raw Relevance Scores
@@ -148,6 +163,9 @@ If Expert #1 becomes over-utilized, $b_1$ decreases slightly; if Expert #250 is 
 ### Runnable Python Simulation: MoE Top-$K$ Router with Bias Balancing
 
 Below is a runnable Python script (`scripts/moe_router_sim.py`) demonstrating a Top-$K$ gating router with dynamic bias load balancing:
+
+<details>
+<summary><b>Click to expand runnable Python simulation script</b></summary>
 
 ```python
 #!/usr/bin/env python3
@@ -225,6 +243,8 @@ def run_simulation():
 if __name__ == "__main__":
     run_simulation()
 ```
+
+</details>
 
 Run the simulation:
 ```bash
