@@ -17,7 +17,7 @@ Before diving into embodied AI reasoning architectures, we recommend exploring o
 
 * 🌐 [The Architectural Spectrum of World Foundation Models: Renderers, State Simulators, and Action Planners](/blog/architecture-of-world-foundation-models/) — Foundational taxonomy of neural world simulators, spatial state dynamics, and generative action planners.
 * 🤖 [Physical AI Models: Grounding Intelligence in Space, Dynamics, and Robotics](/blog/physical-ai-models-grounding-in-space-and-robotics/) — Foundational concepts of spatial grounding, world models, and spatial-temporal representations.
-* ⚡ [Demystifying LoRA (Low-Rank Adaptation): From Training Efficiency to Multi-Adapter Inference](/blog/demystifying-lora-low-rank-adaptation/) — How lightweight low-rank adapters allow multi-tenant serving across robotics runtimes.
+* ⚡ [Demystifying LoRA (Low-Rank Adaptation): From Training Efficiency to Multi-Adapter Inference](/blog/demystifying-lora-low-rank-adaptation/) — Parameter-efficient fine-tuning math ($W_0 + \frac{\alpha}{r} BA$), intrinsic rank reduction, and dynamic multi-adapter serving in LLM/VLM engines.
 * 🧠 [Understanding Mixture-of-Experts (MoE): From Specialist Clinics to Kimi K3's 896-Expert Router](/blog/understanding-mixture-of-experts-moe/) — Decoupling high-level routing networks from specialized domain experts.
 
 ---
