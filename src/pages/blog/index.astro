@@ -127,11 +127,19 @@ const allTags = Array.from(
               {post.data.image && (
                 <div class="card-thumbnail">
                   <a href={`/blog/${slug}`}>
-                    <Image 
-                      src={post.data.image} 
-                      alt={post.data.title}
-                      class="thumbnail-img"
-                    />
+                    {typeof post.data.image === 'object' ? (
+                      <Image 
+                        src={post.data.image} 
+                        alt={post.data.title}
+                        class="thumbnail-img"
+                      />
+                    ) : (
+                      <img 
+                        src={post.data.image} 
+                        alt={post.data.title}
+                        class="thumbnail-img"
+                      />
+                    )}
                   </a>
                 </div>
               )}

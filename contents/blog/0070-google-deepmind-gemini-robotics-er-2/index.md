@@ -1,8 +1,9 @@
 ---
 title: "Google DeepMind's Gemini Robotics ER 2: The High-Level Brain for Physical AI and Multi-Robot Collaboration"
 date: "2026-08-03"
+template: blog
+image: "./cover_image.jpg"
 description: "An architectural deep-dive into Google DeepMind's Gemini Robotics ER 2 announcement—exploring real-time video streaming, high-level reasoning vs low-level VLA execution, multi-robot team orchestration, and temporal moment-finding."
-coverImage: "./cover_image.jpg"
 tags: ["Robotics", "Google DeepMind", "Gemini", "Physical AI", "VLA Models", "Multi-Agent", "AI Architecture"]
 ---
 
