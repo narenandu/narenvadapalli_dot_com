@@ -7,7 +7,7 @@ description: "An architectural deep-dive into Google DeepMind's Gemini Robotics 
 tags: ["Robotics", "Google DeepMind", "Gemini", "Physical AI", "VLA Models", "Multi-Agent", "AI Architecture"]
 ---
 
-*Series: &larr; [Demystifying LoRA (Low-Rank Adaptation): From Training Efficiency to Multi-Adapter Inference](/blog/demystifying-lora-low-rank-adaptation/) (Previous)*
+*Series: &larr; [Physical AI Models: Grounding Intelligence in Space, Dynamics, and Robotics](/blog/physical-ai-models-grounding-in-space-and-robotics/) (Previous)*
 
 ---
 
