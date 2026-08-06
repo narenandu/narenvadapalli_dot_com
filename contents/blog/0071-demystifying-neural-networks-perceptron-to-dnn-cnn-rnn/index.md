@@ -432,3 +432,5 @@ In **Part 2 of the Neural Architecture Evolution Series**, we will explore:
 * How Long Short-Term Memory networks (**LSTMs**) and Gated Recurrent Units (**GRUs**) introduced memory conveyor belts and gated doors (Forget, Input, and Output gates).
 * Mathematical derivations of cell state updates ($C_t$) and gate activation vectors.
 * A zero-dependency Python simulation of an LSTM cell resolving long-range dependency decay.
+
+*Series Navigation: [Part 2: Why LSTMs Were Needed: Conquering RNN Amnesia, Memory Conveyor Belts, and Gated Doors](/blog/why-lstms-were-needed-rnn-amnesia-memory-conveyor-belts-gated-doors/) (Next) &rarr;*
