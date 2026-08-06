@@ -34,8 +34,6 @@ $$y = W_3 \left(W_2 \left(W_1 x + b_1\right) + b_2\right) + b_3 = \left(W_3 W_2 
 
 Without a mechanism to introduce non-linearity, a 100-layer deep neural network is no more powerful than a basic 1-layer linear regression model! It can only draw straight decision lines across 2D space.
 
-![Activation Functions Architecture Cover](./cover_image.jpg)
-
 ### The Origami Space-Warping Metaphor
 This is where **Activation Functions** come in. An activation function is a non-linear mathematical operation placed immediately after each matrix multiplication.
 
@@ -57,29 +55,28 @@ The following vertical workflow diagrams illustrate how activation functions pre
 flowchart TD
     direction TB
 
-    subgraph LinearStack ["Without Activation Functions (Linear Collapse)"]
-        L1["Layer 1: Z_1 = W_1 · X + b_1"]
-        L2["Layer 2: Z_2 = W_2 · Z_1 + b_2"]
-        L3["Layer 3: Z_3 = W_3 · Z_2 + b_3"]
-        COLLAPSE["Collapsed Model: Y = W_combo · X + b_combo<br/>Result: Flat Linear Decision Boundary (Cannot Solve XOR or Circles)"]
+    subgraph LinearStack ["Case 1: Without Activation Functions (Linear Collapse)"]
+        direction TB
+        L1["Layer 1 Linear Step: Z_1 = W_1 · X + b_1"]
+        L2["Layer 2 Linear Step: Z_2 = W_2 · Z_1 + b_2"]
+        L3["Layer 3 Linear Step: Z_3 = W_3 · Z_2 + b_3"]
+        COLLAPSE["Result: Collapsed Single Line (Y = W_combo · X + b_combo)<br/>Cannot separate non-linear shapes like circles or spirals"]
+
+        L1 --> L2 --> L3 --> COLLAPSE
     end
 
-    subgraph NonLinearStack ["With Activation Functions (Space Warping)"]
-        N1["Layer 1: Z_1 = W_1 · X + b_1"]
-        ACT1["Activation Step 1: A_1 = f(Z_1)<br/>(Non-Linear Space Bending)"]
-        N2["Layer 2: Z_2 = W_2 · A_1 + b_2"]
-        ACT2["Activation Step 2: A_2 = f(Z_2)<br/>(Space Warping & Origami Folding)"]
-        WARP["Warped Representation: Arbitrary Boundary<br/>Result: Universal Function Approximation (100% Accuracy)"]
+    subgraph NonLinearStack ["Case 2: With Activation Functions (Space Warping)"]
+        direction TB
+        N1["Layer 1 Matrix Step: Z_1 = W_1 · X + b_1"]
+        ACT1["Activation Step 1: A_1 = f(Z_1)<br/>(Bends and warps feature space)"]
+        N2["Layer 2 Matrix Step: Z_2 = W_2 · A_1 + b_2"]
+        ACT2["Activation Step 2: A_2 = f(Z_2)<br/>(Origami folding around decision boundary)"]
+        WARP["Result: Universal Function Approximation<br/>Enables 100% non-linear classification accuracy"]
+
+        N1 --> ACT1 --> N2 --> ACT2 --> WARP
     end
 
-    L1 --> L2
-    L2 --> L3
-    L3 --> COLLAPSE
-
-    N1 --> ACT1
-    ACT1 --> N2
-    N2 --> ACT2
-    ACT2 --> WARP
+    LinearStack --> NonLinearStack
 
     style L1 fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
     style L2 fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
@@ -101,49 +98,55 @@ flowchart TD
 flowchart TD
     direction TB
 
-    START["What Layer & Scenario are you building?"]
-    
-    Q_OUTPUT{"Is this the Output Layer?"}
-    Q_HIDDEN{"Which Hidden Layer Architecture?"}
+    START["Activation Function Decision Matrix"]
 
-    OUT_BINARY["Binary Classification (0 or 1 Probability)"]
-    OUT_MULTI["Multi-Class Classification (Logits over Vocab / Classes)"]
-    
-    HID_CNN["Deep CNN / Computer Vision / MLPs"]
-    HID_RNN["Recurrent Hidden States (RNN / LSTM / GRU)"]
-    HID_LLM["Modern Transformers & LLMs (GPT, Llama, DeepSeek)"]
+    subgraph OutputLayer ["Section 1: Output Layer Activation Selection"]
+        direction TB
+        OUT_Q["Target Output Task Type"]
+        
+        OUT_BIN["1. Binary Classification (Spam, Disease Yes/No)"]
+        SIGMOID["Use Sigmoid: σ(x) = 1 / (1 + e^-x)<br/>Bounds output strictly to (0, 1) probability"]
+        
+        OUT_MULTI["2. Multi-Class Classification (ImageNet, LLM Vocabulary)"]
+        SOFTMAX["Use Softmax: e^x_i / Σ e^x_j<br/>Normalizes logit vector to sum to 1.0 probability"]
 
-    SIGMOID["Use Sigmoid: σ(x) = 1 / (1 + e^-x)<br/>Bounds output to (0, 1) probability."]
-    SOFTMAX["Use Softmax: e^x_i / Σ e^x_j<br/>Normalizes vector to sum to 1.0."]
-    
-    RELU["Use ReLU / Leaky ReLU: max(0, x)<br/>Computational efficiency & sparse activation."]
-    TANH["Use Tanh: tanh(x)<br/>Zero-centered (-1, 1) range keeps recurrent states stable."]
-    GELU["Use GELU / SwiGLU: x · Φ(x)<br/>Smooth curvature prevents sharp gradient kinks."]
+        OUT_Q --> OUT_BIN --> SIGMOID
+        OUT_Q --> OUT_MULTI --> SOFTMAX
+    end
 
-    START --> Q_OUTPUT
-    Q_OUTPUT -- Yes --> OUT_BINARY
-    Q_OUTPUT -- Yes --> OUT_MULTI
-    Q_OUTPUT -- No (Hidden Layer) --> Q_HIDDEN
+    subgraph HiddenLayer ["Section 2: Hidden Layer Activation Selection"]
+        direction TB
+        HID_Q["Target Hidden Layer Architecture"]
+        
+        HID_CNN["1. Deep CNNs, MLPs & Computer Vision"]
+        RELU["Use ReLU / Leaky ReLU: max(0, x)<br/>High computational speed & zero gradient decay"]
+        
+        HID_RNN["2. RNN & LSTM Recurrent Hidden States"]
+        TANH["Use Tanh: tanh(x)<br/>Zero-centered (-1, 1) range keeps recurrent states stable"]
+        
+        HID_LLM["3. Modern Transformers & LLMs (GPT, Llama, DeepSeek)"]
+        GELU["Use GELU / SwiGLU: x · Φ(x)<br/>Smooth non-monotonic curvature prevents sharp gradient kinks"]
 
-    OUT_BINARY --> SIGMOID
-    OUT_MULTI --> SOFTMAX
+        HID_Q --> HID_CNN --> RELU
+        HID_Q --> HID_RNN --> TANH
+        HID_Q --> HID_LLM --> GELU
+    end
 
-    Q_HIDDEN --> HID_CNN
-    Q_HIDDEN --> HID_RNN
-    Q_HIDDEN --> HID_LLM
-
-    HID_CNN --> RELU
-    HID_RNN --> TANH
-    HID_LLM --> GELU
+    START --> OutputLayer --> HiddenLayer
 
     style START fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
-    style Q_OUTPUT fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
-    style Q_HIDDEN fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
-    
+    style OUT_Q fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
+    style OUT_BIN fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
     style SIGMOID fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
+    style OUT_MULTI fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
     style SOFTMAX fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
+
+    style HID_Q fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
+    style HID_CNN fill:#14532d,stroke:#22c55e,stroke-width:2px,color:#ffffff
     style RELU fill:#14532d,stroke:#22c55e,stroke-width:2px,color:#ffffff
+    style HID_RNN fill:#312e81,stroke:#a855f7,stroke-width:2px,color:#ffffff
     style TANH fill:#312e81,stroke:#a855f7,stroke-width:2px,color:#ffffff
+    style HID_LLM fill:#581c87,stroke:#c084fc,stroke-width:2px,color:#ffffff
     style GELU fill:#581c87,stroke:#c084fc,stroke-width:2px,color:#ffffff
 ```
 
