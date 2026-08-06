@@ -433,4 +433,14 @@ In **Part 2 of the Neural Architecture Evolution Series**, we will explore:
 * Mathematical derivations of cell state updates ($C_t$) and gate activation vectors.
 * A zero-dependency Python simulation of an LSTM cell resolving long-range dependency decay.
 
+---
+
+## 6. References & External Links
+
+* **Rosenblatt (1958)**: [The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.335.3375&rep=rep1&type=pdf) — Frank Rosenblatt's seminal paper introducing the artificial perceptron.
+* **Rumelhart, Hinton, & Williams (1986)**: [Learning representations by back-propagating errors](https://www.nature.com/articles/323533a0) — Nature paper establishing backpropagation for multi-layer networks.
+* **LeCun et al. (1998)**: [Gradient-Based Learning Applied to Document Recognition](http://yann.lecun.com/exdb/publis/pdf/lecun-98.pdf) — Yann LeCun's benchmark paper introducing Convolutional Neural Networks (LeNet-5).
+* **PyTorch Official Documentation**: [PyTorch torch.nn API Reference](https://pytorch.org/docs/stable/nn.html) — Core neural network modules, activation functions, and layer definitions.
+* **TensorFlow Official Documentation**: [TensorFlow Keras Layers Guide](https://www.tensorflow.org/api_docs/python/tf/keras/layers) — High-level building blocks for deep neural architectures.
+
 *Series Navigation: [Part 2: Why LSTMs Were Needed: Conquering RNN Amnesia, Memory Conveyor Belts, and Gated Doors](/blog/why-lstms-were-needed-rnn-amnesia-memory-conveyor-belts-gated-doors/) (Next) &rarr;*

@@ -336,6 +336,16 @@ However, LSTMs still possessed a fundamental engineering bottleneck: **sequentia
 
 In **Part 3 of our Neural Architecture Evolution Series**, we will explore **The Transformer Revolution: How Self-Attention and $Q K^T V$ Solved the GPU Parallelization Bottleneck**, tracing how Vaswani et al. replaced sequential loops with global matrix operations and birthed modern Large Language Models!
 
+---
+
+## 8. References & External Links
+
+* **Hochreiter & Schmidhuber (1997)**: [Long Short-Term Memory](https://www.bioinf.jku.at/publications/older/2604.pdf) — The original research paper published in *Neural Computation* introducing the LSTM architecture and Constant Error Carousel.
+* **Olah (2015)**: [Understanding LSTM Networks](https://colah.github.io/posts/2015-08-Understanding-LSTMs/) — Christopher Olah's seminal visual walkthrough of LSTM cell states and gated operations.
+* **Cho et al. (2014)**: [Learning Phrase Representations using RNN Encoder-Decoder](https://arxiv.org/abs/1406.1078) — Paper introducing the Gated Recurrent Unit (GRU) as a streamlined alternative to LSTMs.
+* **PyTorch Official Documentation**: [torch.nn.LSTM API Reference](https://pytorch.org/docs/stable/generated/torch.nn.LSTM.html) — Official documentation for PyTorch's multi-layer LSTM recurrent module.
+* **TensorFlow Official Documentation**: [tf.keras.layers.LSTM Guide](https://www.tensorflow.org/api_docs/python/tf/keras/layers/LSTM) — Keras API guide for implementing LSTM layers in TensorFlow.
+
 *Series Navigation:*
 * &larr; [Part 1: Demystifying Neural Networks: From Simple Perceptrons to Deep Neural Networks (DNNs), CNNs, and RNNs](/blog/demystifying-neural-networks-perceptron-to-dnn-cnn-rnn/) (Previous)
 * [Part 3: The Transformer Revolution: How Self-Attention and Q K^T V Solved the GPU Parallelization Bottleneck](/blog/transformer-revolution-self-attention-parallelization/) (Next) &rarr;
