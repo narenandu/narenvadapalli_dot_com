@@ -173,7 +173,12 @@ Given input vector $x$ and true target $y$:
 ### Step 2: Applying the Chain Rule
 To adjust weight $W_i$ using gradient descent, we must compute the partial derivative $\frac{\partial L}{\partial W_i}$. According to the **Calculus Chain Rule**, the sensitivity of the loss with respect to $W_i$ is the product of three local gradients:
 
-$$\frac{\partial L}{\partial W_i} = \underbrace{\frac{\partial L}{\partial \hat{y}}}_{\text{1. Output Error}} \cdot \underbrace{\frac{\partial \hat{y}}{\partial z}}_{\text{2. Activation Slope}} \cdot \underbrace{\frac{\partial z}{\partial W_i}}_{\text{3. Input Strength}}$$
+$$\frac{\partial L}{\partial W_i} = \left( \frac{\partial L}{\partial \hat{y}} \right) \cdot \left( \frac{\partial \hat{y}}{\partial z} \right) \cdot \left( \frac{\partial z}{\partial W_i} \right)$$
+
+Where each component represents:
+- $\frac{\partial L}{\partial \hat{y}}$ = **1. Output Error** (How far the arrow missed the target)
+- $\frac{\partial \hat{y}}{\partial z}$ = **2. Activation Slope** (Steepness of the Sigmoid curve at point $z$)
+- $\frac{\partial z}{\partial W_i}$ = **3. Input Strength** (Value of input $x_i$ feeding into weight $W_i$)
 
 Let's compute each local gradient individually:
 
@@ -189,7 +194,9 @@ Let's compute each local gradient individually:
 ### Step 3: Combining into the Full Weight Gradient
 Multiplying all three terms yields the final backpropagation equation for weight $W_i$:
 
-$$\frac{\partial L}{\partial W_i} = \underbrace{(\hat{y} - y)}_{\text{Prediction Miss}} \cdot \underbrace{\hat{y}(1 - \hat{y})}_{\text{Sigmoid Slope}} \cdot \underbrace{x_i}_{\text{Input Value}}$$
+$$\frac{\partial L}{\partial W_i} = (\hat{y} - y) \cdot \hat{y}(1 - \hat{y}) \cdot x_i$$
+
+$$\text{Weight Gradient} = (\text{Prediction Miss}) \cdot (\text{Sigmoid Slope}) \cdot (\text{Input Value})$$
 
 Similarly, for the bias scalar $b$:
 
