@@ -30,9 +30,45 @@ Imagine a 100-story skyscraper with one person standing on every floor. The pers
 
 What happens to that message by the time it reaches the top?
 
-```
-[Floor 1 Signal] ──> [Floor 2 (x1.5)] ──> [Floor 3 (x1.5)] ──> ... ──> [Floor 100: 4 x 10^17 Screech! (Exploding Gradient)]
-[Floor 1 Signal] ──> [Floor 2 (x0.8)] ──> [Floor 3 (x0.8)] ──> ... ──> [Floor 100: 2 x 10^-10 Dead Silence! (Vanishing Gradient)]
+```mermaid
+flowchart TD
+    direction TB
+
+    subgraph ExplodingScenario ["Scenario 1: Exploding Signal (Amplification factor = 1.5x per floor)"]
+        direction TB
+        E1["Floor 1: Initial Whisper (Signal = 1.0)"]
+        E2["Floor 2: Amplified Signal (1.0 × 1.5 = 1.5)"]
+        E3["Floor 3: Amplified Signal (1.5 × 1.5 = 2.25)"]
+        EDOTS["... (Passing through 100 skyscraper floors) ..."]
+        E100["Floor 100: 4 × 10^17 Decibel Screech!<br/>(Exploding Gradients / NaN Crash)"]
+
+        E1 --> E2 --> E3 --> EDOTS --> E100
+    end
+
+    subgraph VanishingScenario ["Scenario 2: Vanishing Signal (Dampening factor = 0.8x per floor)"]
+        direction TB
+        V1["Floor 1: Initial Whisper (Signal = 1.0)"]
+        V2["Floor 2: Dampened Signal (1.0 × 0.8 = 0.80)"]
+        V3["Floor 3: Dampened Signal (0.80 × 0.8 = 0.64)"]
+        VDOTS["... (Passing through 100 skyscraper floors) ..."]
+        V100["Floor 100: 2 × 10^-10 Dead Silence!<br/>(Vanishing Gradients / Zero Learning)"]
+
+        V1 --> V2 --> V3 --> VDOTS --> V100
+    end
+
+    ExplodingScenario --> VanishingScenario
+
+    style E1 fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
+    style E2 fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
+    style E3 fill:#312e81,stroke:#a855f7,stroke-width:2px,color:#ffffff
+    style EDOTS fill:#581c87,stroke:#c084fc,stroke-width:2px,color:#ffffff
+    style E100 fill:#7f1d1d,stroke:#ef4444,stroke-width:2px,color:#ffffff
+
+    style V1 fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
+    style V2 fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
+    style V3 fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
+    style VDOTS fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
+    style V100 fill:#1f2937,stroke:#9ca3af,stroke-width:2px,color:#ffffff
 ```
 
 If every person amplifies the message volume by just **$1.5\times$**, by Floor 100 the sound becomes an ear-splitting **$1.5^{100} \approx 4 \times 10^{17}$ decibel screech** (Exploding Gradients / `NaN` crashes).
