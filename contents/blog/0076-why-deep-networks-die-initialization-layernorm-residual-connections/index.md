@@ -172,6 +172,9 @@ flowchart TD
 
 ## 3. Engineering Deep-Dive: Mathematical Formulations
 
+> [!NOTE]
+> **Math in 1 Sentence:** *To keep deep networks alive, we use variance scaling to balance initial weight random noise ($\text{Var}(W) = \frac{2}{n_{\text{in}}}$), normalize output volume across feature channels ($\mu=0, \sigma=1$), and add a $+1$ identity shortcut so gradients never vanish during backpropagation.*
+
 ### 1. Kaiming (He) vs. Xavier (Glorot) Weight Initialization
 For a linear layer $z = W x + b$, we want the variance of the outputs to equal the variance of the inputs ($\text{Var}(z) = \text{Var}(x)$).
 
@@ -195,16 +198,14 @@ Given a feature vector $x \in \mathbb{R}^d$ for a single sample:
 
 $$\mu = \frac{1}{d} \sum_{i=1}^d x_i, \quad \sigma^2 = \frac{1}{d} \sum_{i=1}^d (x_i - \mu)^2$$
 
-$$\hat{x}_i = \frac{x_i - \mu}{\sqrt{\sigma^2 + \epsilon}}$$
-
-$$y_i = \gamma_i \hat{x}_i + \beta_i$$
+$$y_i = \underbrace{\gamma_i \left( \frac{x_i - \mu}{\sqrt{\sigma^2 + \epsilon}} \right)}_{\text{Standardized Channel Value}} + \underbrace{\beta_i}_{\text{Learnable Shift}}$$
 
 *(where $\gamma$ and $\beta$ are learnable scale and shift parameters).*
 
 ### RMSNorm (Root Mean Square Normalization)
 Modern LLMs (Llama 3, DeepSeek-V3) simplify LayerNorm by skipping mean tracking ($\mu=0$), achieving a 10–50% speedup:
 
-$$y_i = \frac{x_i}{\text{RMS}(x)} \cdot \gamma_i = \frac{x_i}{\sqrt{\frac{1}{d} \sum_{j=1}^d x_j^2 + \epsilon}} \cdot \gamma_i$$
+$$y_i = \frac{x_i}{\text{RMS}(x)} \cdot \gamma_i = \underbrace{\frac{x_i}{\sqrt{\frac{1}{d} \sum_{j=1}^d x_j^2 + \epsilon}}}_{\text{RMS Scaling factor}} \cdot \gamma_i$$
 
 ---
 
@@ -219,9 +220,10 @@ $$x_L = x_l + \sum_{i=l}^{L-1} F(x_i, W_i)$$
 
 When computing the backpropagation gradient of Loss $\mathcal{E}$ with respect to layer $x_l$:
 
-$$\frac{\partial \mathcal{E}}{\partial x_l} = \frac{\partial \mathcal{E}}{\partial x_L} \cdot \frac{\partial x_L}{\partial x_l} = \frac{\partial \mathcal{E}}{\partial x_L} \left( 1 + \frac{\partial}{\partial x_l} \sum_{i=l}^{L-1} F(x_i, W_i) \right)$$
+$$\frac{\partial \mathcal{E}}{\partial x_l} = \frac{\partial \mathcal{E}}{\partial x_L} \cdot \frac{\partial x_L}{\partial x_l} = \frac{\partial \mathcal{E}}{\partial x_L} \left( \underbrace{1}_{\text{Unattenuated Direct Shortcut}} + \underbrace{\frac{\partial}{\partial x_l} \sum_{i=l}^{L-1} F(x_i, W_i)}_{\text{Layer Transformations}} \right)$$
 
-Look at the term **$1$** inside the parenthesis! Even if $\frac{\partial}{\partial x_l} \sum F_i$ approaches zero, the gradient is multiplied by **$1$**, ensuring $\frac{\partial \mathcal{E}}{\partial x_l}$ **NEVER vanishes** regardless of depth!
+> [!TIP]
+> **Key Mathematical Insight:** *Notice the $\mathbf{1}$ inside the parenthesis! Even if every single layer transformation derivative $\frac{\partial}{\partial x_l} \sum F_i$ decays to absolute zero, the incoming loss gradient $\frac{\partial \mathcal{E}}{\partial x_L}$ is multiplied by $\mathbf{1}$—guaranteeing that gradient signals flow straight back to Layer 1 without vanishing!*
 
 ---
 
