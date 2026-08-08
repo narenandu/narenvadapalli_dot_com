@@ -34,35 +34,34 @@ What happens to that message by the time it reaches the top?
 flowchart TD
     direction TB
 
-    subgraph ExplodingScenario ["Scenario 1: Exploding Signal (Amplification factor = 1.5x per floor)"]
-        direction TB
-        E1["Floor 1: Initial Whisper (Signal = 1.0)"]
-        E2["Floor 2: Amplified Signal (1.0 × 1.5 = 1.5)"]
-        E3["Floor 3: Amplified Signal (1.5 × 1.5 = 2.25)"]
-        EDOTS["... (Passing through 100 skyscraper floors) ..."]
-        E100["Floor 100: 4 × 10^17 Decibel Screech!<br/>(Exploding Gradients / NaN Crash)"]
+    E1["Floor 1: Initial Whisper (Signal = 1.0)"]
+    E2["Floor 2: Amplified Signal (1.0 × 1.5 = 1.5)"]
+    E3["Floor 3: Amplified Signal (1.5 × 1.5 = 2.25)"]
+    EDOTS["... (Passing through 100 skyscraper floors) ..."]
+    E100["Floor 100: 4 × 10^17 Decibel Screech!<br/>(Exploding Gradients / NaN Crash)"]
 
-        E1 --> E2 --> E3 --> EDOTS --> E100
-    end
-
-    subgraph VanishingScenario ["Scenario 2: Vanishing Signal (Dampening factor = 0.8x per floor)"]
-        direction TB
-        V1["Floor 1: Initial Whisper (Signal = 1.0)"]
-        V2["Floor 2: Dampened Signal (1.0 × 0.8 = 0.80)"]
-        V3["Floor 3: Dampened Signal (0.80 × 0.8 = 0.64)"]
-        VDOTS["... (Passing through 100 skyscraper floors) ..."]
-        V100["Floor 100: 2 × 10^-10 Dead Silence!<br/>(Vanishing Gradients / Zero Learning)"]
-
-        V1 --> V2 --> V3 --> VDOTS --> V100
-    end
-
-    ExplodingScenario --> VanishingScenario
+    E1 --> E2 --> E3 --> EDOTS --> E100
 
     style E1 fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
     style E2 fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
     style E3 fill:#312e81,stroke:#a855f7,stroke-width:2px,color:#ffffff
     style EDOTS fill:#581c87,stroke:#c084fc,stroke-width:2px,color:#ffffff
     style E100 fill:#7f1d1d,stroke:#ef4444,stroke-width:2px,color:#ffffff
+```
+
+#### Scenario 2: Vanishing Signal (Dampening factor = 0.8x per floor)
+
+```mermaid
+flowchart TD
+    direction TB
+
+    V1["Floor 1: Initial Whisper (Signal = 1.0)"]
+    V2["Floor 2: Dampened Signal (1.0 × 0.8 = 0.80)"]
+    V3["Floor 3: Dampened Signal (0.80 × 0.8 = 0.64)"]
+    VDOTS["... (Passing through 100 skyscraper floors) ..."]
+    V100["Floor 100: 2 × 10^-10 Dead Silence!<br/>(Vanishing Gradients / Zero Learning)"]
+
+    V1 --> V2 --> V3 --> VDOTS --> V100
 
     style V1 fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
     style V2 fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
@@ -96,41 +95,40 @@ Instead of forcing every message to climb 100 flights of stairs step-by-step, Re
 
 The following vertical workflow diagrams compare dying networks with stable residual architectures:
 
-### Diagram A: Vanishing/Exploding Gradient Collapse vs. Residual Express Highway
+### Case 1: Standard Deep Network (Signal Decay / Explosion)
 
 ```mermaid
 flowchart TD
     direction TB
 
-    subgraph UnstableDeep ["Case 1: Standard Deep Network (Signal Decay / Explosion)"]
-        direction TB
-        IN_A["Layer 1 Activation (std = 1.0)"]
-        L10["Layer 10 Activation (std = 0.05 or 100.0)"]
-        L50["Layer 50 Activation (std = 0.000001 or 1e18)"]
-        DEATH["Network Collapse: Vanishing Gradients (0.0000) or Exploding NaN"]
+    IN_A["Layer 1 Activation (std = 1.0)"]
+    L10["Layer 10 Activation (std = 0.05 or 100.0)"]
+    L50["Layer 50 Activation (std = 0.000001 or 1e18)"]
+    DEATH["Network Collapse: Vanishing Gradients (0.0000) or Exploding NaN"]
 
-        IN_A --> L10 --> L50 --> DEATH
-    end
-
-    subgraph StableResNet ["Case 2: Residual Skip Connections (ResNet Express Highway)"]
-        direction TB
-        IN_B["Input Feature Map X"]
-        TRANSFORM["Layer Block Processing: F(X)"]
-        SKIP["Identity Shortcut: + X (Express Elevator)"]
-        OUT_RES["Residual Output: Y = F(X) + X<br/>(Gradients Flow Unattenuated Back to Layer 1)"]
-
-        IN_B --> TRANSFORM
-        IN_B --> SKIP
-        TRANSFORM --> SKIP
-        SKIP --> OUT_RES
-    end
-
-    UnstableDeep --> StableResNet
+    IN_A --> L10 --> L50 --> DEATH
 
     style IN_A fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
     style L10 fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
     style L50 fill:#312e81,stroke:#a855f7,stroke-width:2px,color:#ffffff
     style DEATH fill:#7f1d1d,stroke:#ef4444,stroke-width:2px,color:#ffffff
+```
+
+### Case 2: Residual Skip Connections (ResNet Express Highway)
+
+```mermaid
+flowchart TD
+    direction TB
+
+    IN_B["Input Feature Map X"]
+    TRANSFORM["Layer Block Processing: F(X)"]
+    SKIP["Identity Shortcut: + X (Express Elevator)"]
+    OUT_RES["Residual Output: Y = F(X) + X<br/>(Gradients Flow Unattenuated Back to Layer 1)"]
+
+    IN_B --> TRANSFORM
+    IN_B --> SKIP
+    TRANSFORM --> SKIP
+    SKIP --> OUT_RES
 
     style IN_B fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
     style TRANSFORM fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
