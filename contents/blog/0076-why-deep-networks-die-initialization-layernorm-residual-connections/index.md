@@ -198,14 +198,17 @@ Given a feature vector $x \in \mathbb{R}^d$ for a single sample:
 
 $$\mu = \frac{1}{d} \sum_{i=1}^d x_i, \quad \sigma^2 = \frac{1}{d} \sum_{i=1}^d (x_i - \mu)^2$$
 
-$$y_i = \underbrace{\gamma_i \left( \frac{x_i - \mu}{\sqrt{\sigma^2 + \epsilon}} \right)}_{\text{Standardized Channel Value}} + \underbrace{\beta_i}_{\text{Learnable Shift}}$$
+$$y_i = \gamma_i \cdot \hat{x}_i + \beta_i \quad \text{where } \hat{x}_i = \frac{x_i - \mu}{\sqrt{\sigma^2 + \epsilon}}$$
 
-*(where $\gamma$ and $\beta$ are learnable scale and shift parameters).*
+Where each term performs a specific role:
+- $\hat{x}_i$: **Standardized Feature Channel** (rescaled to zero mean $\mu=0$ and unit variance $\sigma^2=1$).
+- $\gamma_i$: **Learnable Gain / Scale** parameter (allows the network to restore representation capacity).
+- $\beta_i$: **Learnable Bias / Shift** parameter.
 
 ### RMSNorm (Root Mean Square Normalization)
 Modern LLMs (Llama 3, DeepSeek-V3) simplify LayerNorm by skipping mean tracking ($\mu=0$), achieving a 10–50% speedup:
 
-$$y_i = \frac{x_i}{\text{RMS}(x)} \cdot \gamma_i = \underbrace{\frac{x_i}{\sqrt{\frac{1}{d} \sum_{j=1}^d x_j^2 + \epsilon}}}_{\text{RMS Scaling factor}} \cdot \gamma_i$$
+$$y_i = \left( \frac{x_i}{\text{RMS}(x)} \right) \cdot \gamma_i = \left( \frac{x_i}{\sqrt{\frac{1}{d} \sum_{j=1}^d x_j^2 + \epsilon}} \right) \cdot \gamma_i$$
 
 ---
 
@@ -220,7 +223,7 @@ $$x_L = x_l + \sum_{i=l}^{L-1} F(x_i, W_i)$$
 
 When computing the backpropagation gradient of Loss $\mathcal{E}$ with respect to layer $x_l$:
 
-$$\frac{\partial \mathcal{E}}{\partial x_l} = \frac{\partial \mathcal{E}}{\partial x_L} \cdot \frac{\partial x_L}{\partial x_l} = \frac{\partial \mathcal{E}}{\partial x_L} \left( \underbrace{1}_{\text{Unattenuated Direct Shortcut}} + \underbrace{\frac{\partial}{\partial x_l} \sum_{i=l}^{L-1} F(x_i, W_i)}_{\text{Layer Transformations}} \right)$$
+$$\frac{\partial \mathcal{E}}{\partial x_l} = \frac{\partial \mathcal{E}}{\partial x_L} \cdot \frac{\partial x_L}{\partial x_l} = \frac{\partial \mathcal{E}}{\partial x_L} \left( 1 + \frac{\partial}{\partial x_l} \sum_{i=l}^{L-1} F(x_i, W_i) \right)$$
 
 > [!TIP]
 > **Key Mathematical Insight:** *Notice the $\mathbf{1}$ inside the parenthesis! Even if every single layer transformation derivative $\frac{\partial}{\partial x_l} \sum F_i$ decays to absolute zero, the incoming loss gradient $\frac{\partial \mathcal{E}}{\partial x_L}$ is multiplied by $\mathbf{1}$—guaranteeing that gradient signals flow straight back to Layer 1 without vanishing!*
