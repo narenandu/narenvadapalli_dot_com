@@ -31,10 +31,28 @@ The student stands at the firing line, looks at the target 50 yards away, adjust
 
 How does the student learn to hit the center on their next attempt?
 
-```
-[Inputs: Wind, Distance] ──> [Stance, Grip, Angle (Weights)] ──> [Arrow Release (Prediction)] ──> [Bullseye Miss (Loss)]
-                                                                                                        │
-[Weight Adjustments (Gradient Descent)] <── [Step-by-Step Stance Error Feedback (Backpropagation)] <────┘
+```mermaid
+flowchart TD
+    direction TB
+
+    subgraph ArcheryCycle ["The Archery Student Learning Cycle"]
+        direction TB
+        IN_ENV["1. External Inputs (Wind, Distance)"]
+        STANCE["2. Archer Stance & Grip (Weights W & Biases b)"]
+        RELEASE["3. Arrow Release (Forward Pass Prediction y_pred)"]
+        TARGET_MISS["4. Target Ring Distance (Loss L = (y_pred - y_true)^2)"]
+        COACH["5. Master Coach Analysis (Backpropagation Chain Rule)"]
+        ADJUST["6. Muscle Stance Adjustments (Gradient Descent Weight Update)"]
+
+        IN_ENV --> STANCE --> RELEASE --> TARGET_MISS --> COACH --> ADJUST
+    end
+
+    style IN_ENV fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
+    style STANCE fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
+    style RELEASE fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
+    style TARGET_MISS fill:#7f1d1d,stroke:#ef4444,stroke-width:2px,color:#ffffff
+    style COACH fill:#581c87,stroke:#c084fc,stroke-width:2px,color:#ffffff
+    style ADJUST fill:#14532d,stroke:#22c55e,stroke-width:2px,color:#ffffff
 ```
 
 This single shot contains the entire core cycle of machine learning:
