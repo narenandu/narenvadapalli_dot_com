@@ -155,6 +155,9 @@ flowchart TD
 
 Let's dissect the exact mathematical mechanics behind backpropagation for a single neuron with weight vector $W$, bias $b$, Sigmoid activation $\sigma(z)$, and Mean Squared Error loss $L$.
 
+> [!NOTE]
+> **Math in 1 Sentence:** *The calculus of backpropagation simply asks three questions in a chain: How far off was the final prediction? How steep was the activation curve when it fired? And how strong was the input signal that passed through that weight?*
+
 ### Step 1: The Forward Equations
 Given input vector $x$ and true target $y$:
 
@@ -170,7 +173,7 @@ Given input vector $x$ and true target $y$:
 ### Step 2: Applying the Chain Rule
 To adjust weight $W_i$ using gradient descent, we must compute the partial derivative $\frac{\partial L}{\partial W_i}$. According to the **Calculus Chain Rule**, the sensitivity of the loss with respect to $W_i$ is the product of three local gradients:
 
-$$\frac{\partial L}{\partial W_i} = \frac{\partial L}{\partial \hat{y}} \cdot \frac{\partial \hat{y}}{\partial z} \cdot \frac{\partial z}{\partial W_i}$$
+$$\frac{\partial L}{\partial W_i} = \underbrace{\frac{\partial L}{\partial \hat{y}}}_{\text{1. Output Error}} \cdot \underbrace{\frac{\partial \hat{y}}{\partial z}}_{\text{2. Activation Slope}} \cdot \underbrace{\frac{\partial z}{\partial W_i}}_{\text{3. Input Strength}}$$
 
 Let's compute each local gradient individually:
 
@@ -186,7 +189,7 @@ Let's compute each local gradient individually:
 ### Step 3: Combining into the Full Weight Gradient
 Multiplying all three terms yields the final backpropagation equation for weight $W_i$:
 
-$$\frac{\partial L}{\partial W_i} = (\hat{y} - y) \cdot \hat{y}(1 - \hat{y}) \cdot x_i$$
+$$\frac{\partial L}{\partial W_i} = \underbrace{(\hat{y} - y)}_{\text{Prediction Miss}} \cdot \underbrace{\hat{y}(1 - \hat{y})}_{\text{Sigmoid Slope}} \cdot \underbrace{x_i}_{\text{Input Value}}$$
 
 Similarly, for the bias scalar $b$:
 
