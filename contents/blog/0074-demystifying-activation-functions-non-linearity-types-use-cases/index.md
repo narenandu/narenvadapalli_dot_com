@@ -51,37 +51,38 @@ The following vertical workflow diagrams illustrate how activation functions pre
 
 ### Diagram A: Linear Collapse vs. Non-Linear Space Warping
 
+### Case 1: Without Activation Functions (Linear Collapse)
+
 ```mermaid
 flowchart TD
     direction TB
 
-    subgraph LinearStack ["Case 1: Without Activation Functions (Linear Collapse)"]
-        direction TB
-        L1["Layer 1 Linear Step: Z_1 = W_1 · X + b_1"]
-        L2["Layer 2 Linear Step: Z_2 = W_2 · Z_1 + b_2"]
-        L3["Layer 3 Linear Step: Z_3 = W_3 · Z_2 + b_3"]
-        COLLAPSE["Result: Collapsed Single Line (Y = W_combo · X + b_combo)<br/>Cannot separate non-linear shapes like circles or spirals"]
+    L1["Layer 1 Linear Step: Z_1 = W_1 · X + b_1"]
+    L2["Layer 2 Linear Step: Z_2 = W_2 · Z_1 + b_2"]
+    L3["Layer 3 Linear Step: Z_3 = W_3 · Z_2 + b_3"]
+    COLLAPSE["Result: Collapsed Single Line (Y = W_combo · X + b_combo)<br/>Cannot separate non-linear shapes like circles or spirals"]
 
-        L1 --> L2 --> L3 --> COLLAPSE
-    end
-
-    subgraph NonLinearStack ["Case 2: With Activation Functions (Space Warping)"]
-        direction TB
-        N1["Layer 1 Matrix Step: Z_1 = W_1 · X + b_1"]
-        ACT1["Activation Step 1: A_1 = f(Z_1)<br/>(Bends and warps feature space)"]
-        N2["Layer 2 Matrix Step: Z_2 = W_2 · A_1 + b_2"]
-        ACT2["Activation Step 2: A_2 = f(Z_2)<br/>(Origami folding around decision boundary)"]
-        WARP["Result: Universal Function Approximation<br/>Enables 100% non-linear classification accuracy"]
-
-        N1 --> ACT1 --> N2 --> ACT2 --> WARP
-    end
-
-    LinearStack --> NonLinearStack
+    L1 --> L2 --> L3 --> COLLAPSE
 
     style L1 fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
     style L2 fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
     style L3 fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
     style COLLAPSE fill:#7f1d1d,stroke:#ef4444,stroke-width:2px,color:#ffffff
+```
+
+### Case 2: With Activation Functions (Space Warping)
+
+```mermaid
+flowchart TD
+    direction TB
+
+    N1["Layer 1 Matrix Step: Z_1 = W_1 · X + b_1"]
+    ACT1["Activation Step 1: A_1 = f(Z_1)<br/>(Bends and warps feature space)"]
+    N2["Layer 2 Matrix Step: Z_2 = W_2 · A_1 + b_2"]
+    ACT2["Activation Step 2: A_2 = f(Z_2)<br/>(Origami folding around decision boundary)"]
+    WARP["Result: Universal Function Approximation<br/>Enables 100% non-linear classification accuracy"]
+
+    N1 --> ACT1 --> N2 --> ACT2 --> WARP
 
     style N1 fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
     style ACT1 fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
@@ -94,52 +95,50 @@ flowchart TD
 
 ### Diagram B: Activation Function Selection Tree by Use Case
 
+#### Section 1: Output Layer Activation Selection
+
 ```mermaid
 flowchart TD
     direction TB
 
-    START["Activation Function Decision Matrix"]
+    OUT_Q["Target Output Task Type"]
+    
+    OUT_BIN["1. Binary Classification (Spam, Disease Yes/No)"]
+    SIGMOID["Use Sigmoid: σ(x) = 1 / (1 + e^-x)<br/>Bounds output strictly to (0, 1) probability"]
+    
+    OUT_MULTI["2. Multi-Class Classification (ImageNet, LLM Vocabulary)"]
+    SOFTMAX["Use Softmax: e^x_i / Σ e^x_j<br/>Normalizes logit vector to sum to 1.0 probability"]
 
-    subgraph OutputLayer ["Section 1: Output Layer Activation Selection"]
-        direction TB
-        OUT_Q["Target Output Task Type"]
-        
-        OUT_BIN["1. Binary Classification (Spam, Disease Yes/No)"]
-        SIGMOID["Use Sigmoid: σ(x) = 1 / (1 + e^-x)<br/>Bounds output strictly to (0, 1) probability"]
-        
-        OUT_MULTI["2. Multi-Class Classification (ImageNet, LLM Vocabulary)"]
-        SOFTMAX["Use Softmax: e^x_i / Σ e^x_j<br/>Normalizes logit vector to sum to 1.0 probability"]
+    OUT_Q --> OUT_BIN --> SIGMOID
+    OUT_Q --> OUT_MULTI --> SOFTMAX
 
-        OUT_Q --> OUT_BIN --> SIGMOID
-        OUT_Q --> OUT_MULTI --> SOFTMAX
-    end
-
-    subgraph HiddenLayer ["Section 2: Hidden Layer Activation Selection"]
-        direction TB
-        HID_Q["Target Hidden Layer Architecture"]
-        
-        HID_CNN["1. Deep CNNs, MLPs & Computer Vision"]
-        RELU["Use ReLU / Leaky ReLU: max(0, x)<br/>High computational speed & zero gradient decay"]
-        
-        HID_RNN["2. RNN & LSTM Recurrent Hidden States"]
-        TANH["Use Tanh: tanh(x)<br/>Zero-centered (-1, 1) range keeps recurrent states stable"]
-        
-        HID_LLM["3. Modern Transformers & LLMs (GPT, Llama, DeepSeek)"]
-        GELU["Use GELU / SwiGLU: x · Φ(x)<br/>Smooth non-monotonic curvature prevents sharp gradient kinks"]
-
-        HID_Q --> HID_CNN --> RELU
-        HID_Q --> HID_RNN --> TANH
-        HID_Q --> HID_LLM --> GELU
-    end
-
-    START --> OutputLayer --> HiddenLayer
-
-    style START fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
     style OUT_Q fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
     style OUT_BIN fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
     style SIGMOID fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
     style OUT_MULTI fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
     style SOFTMAX fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
+```
+
+#### Section 2: Hidden Layer Activation Selection
+
+```mermaid
+flowchart TD
+    direction TB
+
+    HID_Q["Target Hidden Layer Architecture"]
+    
+    HID_CNN["1. Deep CNNs, MLPs & Computer Vision"]
+    RELU["Use ReLU / Leaky ReLU: max(0, x)<br/>High computational speed & zero gradient decay"]
+    
+    HID_RNN["2. RNN & LSTM Recurrent Hidden States"]
+    TANH["Use Tanh: tanh(x)<br/>Zero-centered (-1, 1) range keeps recurrent states stable"]
+    
+    HID_LLM["3. Modern Transformers & LLMs (GPT, Llama, DeepSeek)"]
+    GELU["Use GELU / SwiGLU: x · Φ(x)<br/>Smooth non-monotonic curvature prevents sharp gradient kinks"]
+
+    HID_Q --> HID_CNN --> RELU
+    HID_Q --> HID_RNN --> TANH
+    HID_Q --> HID_LLM --> GELU
 
     style HID_Q fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
     style HID_CNN fill:#14532d,stroke:#22c55e,stroke-width:2px,color:#ffffff
