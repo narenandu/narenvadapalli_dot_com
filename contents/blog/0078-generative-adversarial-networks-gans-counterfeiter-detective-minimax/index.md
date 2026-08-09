@@ -3,7 +3,7 @@ title: "Part 8: Generative Adversarial Networks (GANs): The Counterfeiter vs. De
 date: 2026-08-11
 template: blog
 image: "./cover_image.jpg"
-description: "A story-first guide to Generative Adversarial Networks (GANs)—explaining the Art Counterfeiter vs. Detective Metaphor, Minimax Game Theory, Mode Collapse, Wasserstein Distance (WGAN), and StyleGAN."
+description: "Step into the zero-sum game of generative AI—how a counterfeiter Generator and detective Discriminator compete to reach Nash Equilibrium and synthesize photorealistic images."
 tags: ["ai", "deep-learning", "gans", "generative-ai", "minimax", "wgan", "pytorch", "architecture"]
 ---
 
