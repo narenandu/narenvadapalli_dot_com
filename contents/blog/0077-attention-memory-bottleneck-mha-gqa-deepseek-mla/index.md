@@ -3,7 +3,7 @@ title: "Part 7: The Attention Memory Bottleneck: From Self-Attention Basics to M
 date: 2026-08-10
 template: blog
 image: "./cover_image.jpg"
-description: "A story-first guide to solving the LLM memory bottleneck—explaining the Conference Interpreter Metaphor, Key-Value (KV) Cache growth, Multi-Head Attention (MHA), Grouped-Query Attention (GQA), and DeepSeek Multi-Head Latent Attention (MLA)."
+description: "How does DeepSeek-V3 run 128K context windows with 96.5% less VRAM? Demystify Key-Value Cache growth, MHA, GQA, and low-rank Multi-Head Latent Attention (MLA)."
 tags: ["ai", "deep-learning", "transformers", "attention", "gqa", "deepseek", "mla", "kv-cache", "architecture"]
 ---
 
