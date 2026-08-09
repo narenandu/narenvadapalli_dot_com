@@ -3,7 +3,7 @@ title: "Part 6: Why Deep Networks Die: Weight Initialization (He/Xavier), LayerN
 date: 2026-08-09
 template: blog
 image: "./cover_image.jpg"
-description: "A story-first guide to deep network numerical stability—explaining the 100-Story Tower Whispering Game (Vanishing/Exploding Gradients), Tuning Guitar Strings (Xavier & He Init), Equalizer Soundboards (LayerNorm/RMSNorm), and Express Elevators (ResNet Residual Skip Connections)."
+description: "Why do 100-layer networks crash with NaNs? Learn how Xavier/Kaiming variance scaling, LayerNorm/RMSNorm, and ResNet identity shortcuts keep deep architectures alive."
 tags: ["ai", "deep-learning", "neural-networks", "resnet", "layernorm", "weight-initialization", "optimization"]
 ---
 

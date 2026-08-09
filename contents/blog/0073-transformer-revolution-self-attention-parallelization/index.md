@@ -3,7 +3,7 @@ title: "Part 3: The Transformer Revolution: How Self-Attention and Q K^T V Solve
 date: 2026-08-06
 template: blog
 image: "./cover_image.jpg"
-description: "A story-first guide to the Transformer revolution—explaining how Self-Attention, Query-Key-Value matrices, and global GPU parallelization replaced sequential RNN loops."
+description: "Unpack the breakthrough architecture behind ChatGPT—how Q K^T V self-attention and matrix parallelization eliminated sequential GPU bottlenecks."
 tags: ["ai", "deep-learning", "neural-networks", "transformer", "self-attention", "architecture"]
 ---
 
