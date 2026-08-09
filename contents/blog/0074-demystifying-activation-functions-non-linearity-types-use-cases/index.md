@@ -400,3 +400,4 @@ Without non-linear activation functions, deep neural networks collapse into flat
 
 *Series Navigation:*
 * &larr; [Part 3: The Transformer Revolution: How Self-Attention and Q K^T V Solved the GPU Parallelization Bottleneck](/blog/transformer-revolution-self-attention-parallelization/) (Previous)
+* [Part 5: Demystifying Forward Pass, Backpropagation, and Autograd: How Neural Networks Learn](/blog/demystifying-forward-pass-backpropagation-autograd/) (Next) &rarr;

@@ -46,8 +46,6 @@ To understand how an LSTM solves memory loss without getting bogged down in comp
 
 Instead of trying to memorize every conversation and data point in their head (which corresponds to the volatile hidden state $h_t$), the executive carries a dedicated **Executive Leather Notebook** sitting on a smooth **Memory Conveyor Belt**. This notebook represents the **Cell State ($C_t$)**.
 
-![LSTM Conveyor Belt Architecture](./cover_image.jpg)
-
 As new information ($x_t$) arrives at each train station, the executive does not rewrite the entire notebook from scratch. Instead, three specialized assistants—known as **Gated Doors**—stand along the conveyor belt:
 
 1. **The Forget Gate ($f_t$) [The Shredder]**: Inspects the incoming input ($x_t$) and previous summary ($h_{t-1}$), and decides which old, obsolete pages in the notebook should be erased or shredded (e.g., erasing a previous subject when a sentence transitions from *"John"* to *"Mary"*).
