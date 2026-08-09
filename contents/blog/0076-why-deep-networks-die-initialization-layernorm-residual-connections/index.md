@@ -9,7 +9,7 @@ tags: ["ai", "deep-learning", "neural-networks", "resnet", "layernorm", "weight-
 
 *Series: Neural Architecture Evolution Series (From MLPs to Transformers) - Part 6*
 
-*Series: &larr; [Part 5: Demystifying Forward Pass, Backpropagation, and Autograd: How Neural Networks Learn](/blog/demystifying-forward-pass-backpropagation-autograd/) (Previous)*
+*Series: &larr; [Part 5: Inside the Learning Engine: Forward Pass, Backpropagation, and Dynamic Autograd](/blog/inside-the-learning-engine-forward-pass-backpropagation-autograd/) (Previous)*
 
 ### Prior Reading Material
 
@@ -19,7 +19,7 @@ Before exploring numerical stability and deep network initialization, inspect th
 * [Part 2: Why LSTMs Were Needed](/blog/why-lstms-were-needed-rnn-amnesia-memory-conveyor-belts-gated-doors/) — Conquering RNN amnesia with cell states, memory conveyor belts, and gated doors.
 * [Part 3: The Transformer Revolution](/blog/transformer-revolution-self-attention-parallelization/) — How Self-Attention and Query-Key-Value matrices solved GPU parallelization.
 * [Part 4: Demystifying Activation Functions](/blog/demystifying-activation-functions-non-linearity-types-use-cases/) — Why neural networks require non-linear space warping (Sigmoid, ReLU, GELU).
-* [Part 5: Demystifying Forward Pass, Backpropagation, and Autograd](/blog/demystifying-forward-pass-backpropagation-autograd/) — How neural networks learn via loss functions, the calculus chain rule, and dynamic autograd DAGs.
+* [Part 5: Inside the Learning Engine: Forward Pass, Backpropagation, and Dynamic Autograd](/blog/inside-the-learning-engine-forward-pass-backpropagation-autograd/) — How neural networks learn via loss functions, the calculus chain rule, and dynamic autograd DAGs.
 * [What is a Model Weight? Demystifying Tensors, Matrices, and File Formats](/blog/what-is-a-model-weight/) — The linear algebra primitives behind weight matrices and tensor projections.
 
 ---
