@@ -66,6 +66,15 @@ This single shot contains the entire core cycle of machine learning:
 4. **Adjusting the Stance (Gradient Descent)**: The archer adjusts their feet, elbow, and grip by small micro-amounts in the opposite direction of the mistake ($W_{\text{new}} = W_{\text{old}} - \eta \cdot \nabla L$).
 5. **The Instant Replay Camera (Dynamic Autograd DAG)**: In modern frameworks like [PyTorch](https://pytorch.org/), every arithmetic operation executed during the forward pass is recorded by an automated "instant replay camera." When you call `loss.backward()`, PyTorch rewinds this recording in reverse order, using the **Calculus Chain Rule** to calculate exact gradients for millions of parameters automatically.
 
+### What is Autograd? (Automatic Differentiation)
+
+> **The Tape Recorder Metaphor for Autograd:**
+> Imagine trying to compute calculus derivatives by hand for a 100-layer neural network with 10 million parameters. If you change one line of code or add a new layer, you would have to spend days re-deriving thousands of calculus equations from scratch!
+>
+> **Autograd** (short for **Automatic Differentiation**) is the background tape recorder built into modern frameworks like PyTorch and TensorFlow:
+> 1. **Forward Tape Recording**: As tensors flow forward through your model, Autograd silently records every mathematical operation (`+`, `*`, `matrix multiply`, `ReLU`) into a Directed Acyclic Graph (DAG).
+> 2. **Automatic Reverse Replay**: When you execute `loss.backward()`, Autograd presses "rewind" on the tape recorder—automatically applying the calculus Chain Rule backwards step-by-step through every recorded operation to calculate exact gradients for millions of parameters in milliseconds.
+
 ---
 
 ## 2. Visualizing Learning Mechanics & Autograd Execution Graphs
