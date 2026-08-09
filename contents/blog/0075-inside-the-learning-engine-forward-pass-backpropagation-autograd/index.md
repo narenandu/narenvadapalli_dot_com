@@ -173,7 +173,6 @@ flowchart TD
 
 Let's dissect the exact mathematical mechanics behind backpropagation for a single neuron with weight vector $W$, bias $b$, Sigmoid activation $\sigma(z)$, and Mean Squared Error loss $L$.
 
-> [!NOTE]
 > **Math in 1 Sentence:** *The calculus of backpropagation simply asks three questions in a chain: How far off was the final prediction? How steep was the activation curve when it fired? And how strong was the input signal that passed through that weight?*
 
 ### Step 1: The Forward Equations
