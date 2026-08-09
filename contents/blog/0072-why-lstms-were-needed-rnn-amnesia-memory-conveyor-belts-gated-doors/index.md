@@ -3,7 +3,7 @@ title: "Part 2: Why LSTMs Were Needed: Conquering RNN Amnesia, Memory Conveyor B
 date: 2026-08-05
 template: blog
 image: "./cover_image.jpg"
-description: "A story-first guide explaining how Long Short-Term Memory (LSTM) networks conquered RNN amnesia using cell states, memory conveyor belts, and gated doors."
+description: "Discover how LSTMs and GRUs conquered RNN amnesia using constant-error memory conveyor belts and mathematical gated doors."
 tags: ["ai", "deep-learning", "neural-networks", "lstm", "rnn", "architecture"]
 ---
 
