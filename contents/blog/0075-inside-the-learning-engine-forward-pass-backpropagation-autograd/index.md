@@ -1,5 +1,5 @@
 ---
-title: "Part 5: Demystifying Forward Pass, Backpropagation, and Autograd: How Neural Networks Learn"
+title: "Part 5: Inside the Learning Engine: Forward Pass, Backpropagation, and Dynamic Autograd"
 date: 2026-08-08
 template: blog
 image: "./cover_image.jpg"
