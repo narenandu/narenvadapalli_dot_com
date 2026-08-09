@@ -3,7 +3,7 @@ title: "Part 9: The Evolutionary Arc of Computer Vision: From LeNet-5 and ResNet
 date: 2026-08-12
 template: blog
 image: "./cover_image.jpg"
-description: "A story-first guide to the evolution of computer vision—explaining the Sliding Flashlight Metaphor (LeNet-5), Residual Highways (ResNet), Modern Inverted Bottlenecks (ConvNeXt), and 3D Spatiotemporal Video Cubes."
+description: "From scanning paper bank checks in 1998 to 3D video spatial physics: trace the 30-year evolution of LeNet-5, ResNet, ConvNeXt depthwise kernels, and spatiotemporal 3D CNNs."
 tags: ["ai", "deep-learning", "computer-vision", "cnn", "resnet", "convnext", "3d-video", "spatial-ai", "architecture"]
 ---
 
