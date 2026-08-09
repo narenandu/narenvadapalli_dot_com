@@ -3,7 +3,7 @@ title: "Part 5: Inside the Learning Engine: Forward Pass, Backpropagation, and D
 date: 2026-08-08
 template: blog
 image: "./cover_image.jpg"
-description: "A story-first guide to how neural networks learn—explaining the Archery Student (Forward Pass), Target Error (Loss), Master Coach (Backprop Chain Rule), and Instant Replay (Autograd DAG)."
+description: "Peer inside PyTorch's core learning engine: how predictions flow forward, loss errors walk backward via the chain rule, and autograd DAGs record every operation."
 tags: ["ai", "deep-learning", "neural-networks", "backpropagation", "autograd", "optimization", "pytorch"]
 ---
 
