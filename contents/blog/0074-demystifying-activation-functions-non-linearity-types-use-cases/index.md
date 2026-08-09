@@ -3,7 +3,7 @@ title: "Part 4: Demystifying Activation Functions: Why Neural Networks Need Non-
 date: 2026-08-07
 template: blog
 image: "./cover_image.jpg"
-description: "A story-first guide explaining why neural networks require non-linear activation functions, how space warping works, and which activation function suits each scenario."
+description: "Why are linear models useless for complex data? Explore non-linear space warping, dead ReLU activations, GELU, and SwiGLU."
 tags: ["ai", "deep-learning", "neural-networks", "activation-functions", "relu", "gelu", "architecture"]
 ---
 

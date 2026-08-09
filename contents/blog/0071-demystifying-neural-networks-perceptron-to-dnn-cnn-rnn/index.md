@@ -3,7 +3,7 @@ title: "Part 1: Demystifying Neural Networks: From Simple Perceptrons to Deep Ne
 date: 2026-08-04
 template: blog
 image: "./cover_image.jpg"
-description: "A story-first guide to neural architecture evolution—tracing perceptrons, multi-layer perceptrons (MLPs), convolutional neural networks (CNNs), and recurrent neural networks (RNNs) before the transformer era."
+description: "Trace the origin of artificial intelligence from single-layer Perceptrons to deep feedforward networks, 2D spatial CNN filters, and sequential RNN loops."
 tags: ["ai", "deep-learning", "neural-networks", "cnn", "rnn", "architecture"]
 ---
 
