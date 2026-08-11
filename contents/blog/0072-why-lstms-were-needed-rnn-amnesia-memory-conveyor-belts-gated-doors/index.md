@@ -3,7 +3,7 @@ title: "Part 2: Why LSTMs Were Needed: Conquering RNN Amnesia, Memory Conveyor B
 date: 2026-08-05
 template: blog
 image: "./cover_image.jpg"
-description: "Discover how LSTMs and GRUs conquered RNN amnesia using constant-error memory conveyor belts and mathematical gated doors."
+description: "Why do standard RNNs suffer from total amnesia on long sequences, and how did LSTMs solve it with memory conveyor belts and gated doors?"
 tags: ["ai", "deep-learning", "neural-networks", "lstm", "rnn", "architecture"]
 ---
 

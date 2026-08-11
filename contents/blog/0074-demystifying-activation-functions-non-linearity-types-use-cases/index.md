@@ -3,7 +3,7 @@ title: "Part 4: Demystifying Activation Functions: Why Neural Networks Need Non-
 date: 2026-08-07
 template: blog
 image: "./cover_image.jpg"
-description: "Why are linear models useless for complex data? Explore non-linear space warping, dead ReLU activations, GELU, and SwiGLU."
+description: "Why are linear models completely useless for complex real-world data, and how do activation functions like ReLU, GELU, and SwiGLU warp space?"
 tags: ["ai", "deep-learning", "neural-networks", "activation-functions", "relu", "gelu", "architecture"]
 ---
 

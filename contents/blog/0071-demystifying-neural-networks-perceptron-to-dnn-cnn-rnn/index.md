@@ -3,7 +3,7 @@ title: "Part 1: Demystifying Neural Networks: From Simple Perceptrons to Deep Ne
 date: 2026-08-04
 template: blog
 image: "./cover_image.jpg"
-description: "Trace the origin of artificial intelligence from single-layer Perceptrons to deep feedforward networks, 2D spatial CNN filters, and sequential RNN loops."
+description: "How did AI evolve from single-layer perceptrons to deep feedforward networks, 2D spatial CNN filters, and sequential RNN loops?"
 tags: ["ai", "deep-learning", "neural-networks", "cnn", "rnn", "architecture"]
 ---
 
