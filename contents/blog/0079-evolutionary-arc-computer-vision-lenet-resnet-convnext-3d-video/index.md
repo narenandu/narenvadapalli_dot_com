@@ -3,7 +3,7 @@ title: "Part 9: The Evolutionary Arc of Computer Vision: From LeNet-5 and ResNet
 date: 2026-08-12
 template: blog
 image: "./cover_image.jpg"
-description: "From scanning paper bank checks in 1998 to 3D video spatial physics: trace the 30-year evolution of LeNet-5, ResNet, ConvNeXt depthwise kernels, and spatiotemporal 3D CNNs."
+description: "How did computer vision evolve from reading bank check zip codes in 1998 to 3D video spatial physics in physical AI and robotics?"
 tags: ["ai", "deep-learning", "computer-vision", "cnn", "resnet", "convnext", "3d-video", "spatial-ai", "architecture"]
 ---
 
