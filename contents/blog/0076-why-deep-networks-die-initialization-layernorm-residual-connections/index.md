@@ -3,7 +3,7 @@ title: "Part 6: Why Deep Networks Die: Weight Initialization (He/Xavier), LayerN
 date: 2026-08-09
 template: blog
 image: "./cover_image.jpg"
-description: "Why do 100-layer networks crash with NaNs? Learn how Xavier/Kaiming variance scaling, LayerNorm/RMSNorm, and ResNet identity shortcuts keep deep architectures alive."
+description: "Why can't you train a 100-layer neural network without it blowing up or learning nothing, and how do ResNet shortcuts and LayerNorm keep it alive?"
 tags: ["ai", "deep-learning", "neural-networks", "resnet", "layernorm", "weight-initialization", "optimization"]
 ---
 

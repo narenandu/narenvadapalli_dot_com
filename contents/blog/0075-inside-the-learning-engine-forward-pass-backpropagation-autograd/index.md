@@ -3,7 +3,7 @@ title: "Part 5: Inside the Learning Engine: Forward Pass, Backpropagation, and D
 date: 2026-08-08
 template: blog
 image: "./cover_image.jpg"
-description: "Peer inside PyTorch's core learning engine: how predictions flow forward, loss errors walk backward via the chain rule, and autograd DAGs record every operation."
+description: "How do neural networks actually learn—how do predictions flow forward, loss errors walk backward via the chain rule, and autograd record every operation?"
 tags: ["ai", "deep-learning", "neural-networks", "backpropagation", "autograd", "optimization", "pytorch"]
 ---
 
