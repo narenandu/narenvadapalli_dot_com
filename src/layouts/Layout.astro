@@ -87,6 +87,16 @@ const socialLinks = [
         const checkKaTeX = setInterval(function() {
           if (typeof renderMathInElement !== 'undefined') {
             clearInterval(checkKaTeX);
+
+            // Heal any Remark <em> / <strong> tag corruption inside $$...$$ display math blocks
+            document.querySelectorAll('p, li, blockquote, div').forEach(function(el) {
+              if (el.innerHTML.includes('$$')) {
+                el.innerHTML = el.innerHTML.replace(/\$\$([\s\S]*?)\$\$/g, function(match, p1) {
+                  return '$$' + p1.replace(/<\/?em>/gi, '_').replace(/<\/?strong>/gi, '**') + '$$';
+                });
+              }
+            });
+
             renderMathInElement(document.body, {
               delimiters: [
                 {left: '$$', right: '$$', display: true},
