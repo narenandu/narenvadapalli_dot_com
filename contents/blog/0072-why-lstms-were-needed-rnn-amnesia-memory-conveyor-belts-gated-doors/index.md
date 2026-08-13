@@ -62,67 +62,62 @@ The following vertical workflow diagram illustrates the internal signal routing 
 
 ```mermaid
 flowchart TD
-    direction TB
-    
-    subgraph Inputs ["Input Tensors (Step t)"]
+    subgraph Inputs ["Stage 1: Input Tensors (Step t)"]
+        direction TD
         XT["Current Input Token (x_t)"]
         HT_PREV["Previous Hidden State (h_t-1)"]
         CT_PREV["Previous Cell State (C_t-1)"]
     end
 
-    subgraph Gates ["The Gated Doors Layer"]
-        FG["1. Forget Gate (f_t)<br/>f_t = sigmoid(W_f · [h_t-1, x_t] + b_f)"]
-        IG["2. Input Gate (i_t)<br/>i_t = sigmoid(W_i · [h_t-1, x_t] + b_i)"]
-        C_CAND["Candidate Update (C~_t)<br/>C~_t = tanh(W_c · [h_t-1, x_t] + b_c)"]
-        OG["3. Output Gate (o_t)<br/>o_t = sigmoid(W_o · [h_t-1, x_t] + b_o)"]
-    end
-
-    subgraph ConveyorBelt ["Cell State Conveyor Belt (C_t)"]
-        ERASE["Elementwise Multiply: f_t ⊙ C_t-1<br/>(Shredding Obsolete Info)"]
-        WRITE["Elementwise Add: (f_t ⊙ C_t-1) + (i_t ⊙ C~_t)<br/>(Writing New Info)"]
-        CT_NEXT["Updated Cell State (C_t)"]
-    end
-
-    subgraph OutputState ["Hidden Output Vector (h_t)"]
-        FILTER["Elementwise Filter: o_t ⊙ tanh(C_t)"]
-        HT_NEXT["Current Hidden State (h_t)"]
-    end
-
-    XT --> FG
-    XT --> IG
-    XT --> C_CAND
-    XT --> OG
-    
-    HT_PREV --> FG
-    HT_PREV --> IG
-    HT_PREV --> C_CAND
-    HT_PREV --> OG
-
-    CT_PREV --> ERASE
-    FG --> ERASE
-    
-    ERASE --> WRITE
-    IG --> WRITE
-    C_CAND --> WRITE
-    
-    WRITE --> CT_NEXT
-    CT_NEXT --> FILTER
-    OG --> FILTER
-    FILTER --> HT_NEXT
-
     style XT fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
     style HT_PREV fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
     style CT_PREV fill:#0f172a,stroke:#eab308,stroke-width:2px,color:#ffffff
-    
+```
+
+```mermaid
+flowchart TD
+    subgraph Gates ["Stage 2: The Gated Doors Layer"]
+        direction TD
+        FG["Forget Gate (f_t)<br/>f_t = sigmoid(W_f · [h_t-1, x_t] + b_f)"]
+        IG["Input Gate (i_t)<br/>i_t = sigmoid(W_i · [h_t-1, x_t] + b_i)"]
+        C_CAND["Candidate Update (C~_t)<br/>C~_t = tanh(W_c · [h_t-1, x_t] + b_c)"]
+        OG["Output Gate (o_t)<br/>o_t = sigmoid(W_o · [h_t-1, x_t] + b_o)"]
+        
+        FG --> IG --> C_CAND --> OG
+    end
+
     style FG fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
     style IG fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
     style C_CAND fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
     style OG fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
-    
+```
+
+```mermaid
+flowchart TD
+    subgraph ConveyorBelt ["Stage 3: Cell State Conveyor Belt (C_t)"]
+        direction TD
+        ERASE["Elementwise Multiply: f_t ⊙ C_t-1<br/>(Shredding Obsolete Info)"]
+        WRITE["Elementwise Add: (f_t ⊙ C_t-1) + (i_t ⊙ C~_t)<br/>(Writing New Info)"]
+        CT_NEXT["Updated Cell State (C_t)"]
+
+        ERASE --> WRITE --> CT_NEXT
+    end
+
     style ERASE fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
     style WRITE fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
     style CT_NEXT fill:#14532d,stroke:#22c55e,stroke-width:2px,color:#ffffff
-    
+```
+
+```mermaid
+flowchart TD
+    subgraph OutputState ["Stage 4: Hidden Output Vector (h_t)"]
+        direction TD
+        FILTER["Elementwise Filter: o_t ⊙ tanh(C_t)"]
+        HT_NEXT["Current Hidden State (h_t)"]
+
+        FILTER --> HT_NEXT
+    end
+
     style FILTER fill:#312e81,stroke:#a855f7,stroke-width:2px,color:#ffffff
     style HT_NEXT fill:#581c87,stroke:#c084fc,stroke-width:2px,color:#ffffff
 ```

@@ -52,24 +52,24 @@ flowchart TD
         R1["Robot Arm: Executes local motor joint moves without global situational awareness or progress tracking"]
     end
 
-    subgraph GeminiER2Architecture["Gemini Robotics ER 2 (Decoupled Cognitive Architecture)"]
-        direction TB
-        ATC["Air Traffic Controller: Gemini Robotics ER 2 High-Level Brain (Processes continuous live video, tracks progress, calls APIs, detects safety hazards)"]
-        
-        subgraph Fleet["Execution Ground Fleet (Low-Level Control)"]
-            direction TB
-            VLA1["Apptronik Apollo 2 Humanoid (VLA Model Handoff)"]
-            VLA2["Boston Dynamics Spot Quadruped (ROS / Navigation API)"]
-            VLA3["Franka FR3 Duo Robotic Arm (Micro Manipulator VLA)"]
-            VLA1 ~~~ VLA2 ~~~ VLA3
-        end
+    style TraditionalRobotics fill:#1e141a,stroke:#ff5353,stroke-width:2px,color:#ffffff;
+    style R1 fill:#3b2314,stroke:#ff5353,stroke-width:2px,color:#ffffff;
+```
 
-        ATC --> Fleet
+```mermaid
+flowchart TD
+    ATC["Air Traffic Controller: Gemini Robotics ER 2 High-Level Brain (Processes continuous live video, tracks progress, calls APIs, detects safety hazards)"]
+    
+    subgraph Fleet["Execution Ground Fleet (Low-Level Control)"]
+        direction TB
+        VLA1["Apptronik Apollo 2 Humanoid (VLA Model Handoff)"]
+        VLA2["Boston Dynamics Spot Quadruped (ROS / Navigation API)"]
+        VLA3["Franka FR3 Duo Robotic Arm (Micro Manipulator VLA)"]
+        VLA1 --> VLA2 --> VLA3
     end
 
-    TraditionalRobotics --> GeminiER2Architecture
+    ATC --> Fleet
 
-    style R1 fill:#3b2314,stroke:#ff5353,stroke-width:2px,color:#ffffff;
     style ATC fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff;
     style Fleet fill:#0f172a,stroke:#6366f1,stroke-width:2px,color:#ffffff;
     style VLA1 fill:#2a1b4e,stroke:#ab47bc,stroke-width:2px,color:#ffffff;
@@ -98,20 +98,22 @@ flowchart TD
         S2 --> S3["Execute Small Step"] --> S4["Freeze Again & Repeat"]
     end
 
+    style ER16Loop fill:#3b2314,stroke:#ff5353,stroke-width:2px,color:#ffffff;
+    style S1 fill:#2a1b4e,stroke:#ab47bc,stroke-width:2px,color:#ffffff;
+    style S2 fill:#3b2314,stroke:#ff9800,stroke-width:2px,color:#ffffff;
+    style S3 fill:#1a3d3c,stroke:#00f2fe,stroke-width:2px,color:#ffffff;
+    style S4 fill:#3b2314,stroke:#ff5353,stroke-width:2px,color:#ffffff;
+```
+
+```mermaid
+flowchart TD
     subgraph ER2Loop["Gemini Robotics ER 2: Real-Time Streaming (Gemini Live API)"]
         direction TB
         L1["Continuous 30 FPS Video & Audio Stream"] --> L2["Sub-Second Parallel Reasoning (0.96s Latency)"]
         L2 --> L3["Fluid Multi-Step Execution & Real-Time Progress Tracking"]
     end
 
-    ER16Loop --> ER2Loop
-
-    style ER16Loop fill:#3b2314,stroke:#ff5353,stroke-width:2px,color:#ffffff;
     style ER2Loop fill:#0f382c,stroke:#10b981,stroke-width:2px,color:#ffffff;
-    style S1 fill:#2a1b4e,stroke:#ab47bc,stroke-width:2px,color:#ffffff;
-    style S2 fill:#3b2314,stroke:#ff9800,stroke-width:2px,color:#ffffff;
-    style S3 fill:#1a3d3c,stroke:#00f2fe,stroke-width:2px,color:#ffffff;
-    style S4 fill:#3b2314,stroke:#ff5353,stroke-width:2px,color:#ffffff;
     style L1 fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff;
     style L2 fill:#1d2b3a,stroke:#3b82f6,stroke-width:2px,color:#ffffff;
     style L3 fill:#0f382c,stroke:#10b981,stroke-width:2px,color:#ffffff;

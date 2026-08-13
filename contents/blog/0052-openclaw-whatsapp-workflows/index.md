@@ -49,7 +49,6 @@ Open your main configuration file (located at `~/.openclaw/config.json`) and ena
 }
 ```
 
-> [!IMPORTANT]  
 > **Security Checklist:** Always populate the `allowedPhoneNumbers` array with your specific country code and phone number (e.g. `"15551234567"`). If you leave this empty, anyone who discovers your bot's number can send execution triggers to your workstation.
 
 ---

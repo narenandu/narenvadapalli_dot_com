@@ -66,13 +66,17 @@ The following vertical workflow diagrams illustrate the internal architecture of
 
 ```mermaid
 flowchart TD
-    direction TB
-
-    subgraph Inputs ["Input Token Matrix (X)"]
+    subgraph Inputs ["Stage 1: Input Token Matrix (X)"]
         X_TOKENS["Input Matrix X<br/>Shape: (N_seq x d_model)"]
     end
 
-    subgraph Projections ["Linear Weight Projections"]
+    style X_TOKENS fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
+```
+
+```mermaid
+flowchart TD
+    subgraph Projections ["Stage 2: Linear Weight Projections"]
+        direction TD
         WQ["Query Weight Matrix (W_Q)"]
         WK["Key Weight Matrix (W_K)"]
         WV["Value Weight Matrix (W_V)"]
@@ -80,53 +84,48 @@ flowchart TD
         Q_MAT["Query Matrix (Q = X · W_Q)<br/>Shape: (N x d_k)"]
         K_MAT["Key Matrix (K = X · W_K)<br/>Shape: (N x d_k)"]
         V_MAT["Value Matrix (V = X · W_V)<br/>Shape: (N x d_v)"]
+
+        WQ --> Q_MAT
+        WK --> K_MAT
+        WV --> V_MAT
     end
 
-    subgraph AttentionCore ["Scaled Dot-Product Attention Core"]
+    style WQ fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
+    style WK fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
+    style WV fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
+    style Q_MAT fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
+    style K_MAT fill:#0d2b45,stroke:#a855f7,stroke-width:2px,color:#ffffff
+    style V_MAT fill:#0d2b45,stroke:#eab308,stroke-width:2px,color:#ffffff
+```
+
+```mermaid
+flowchart TD
+    subgraph AttentionCore ["Stage 3: Scaled Dot-Product Attention Core"]
+        direction TD
         QK_PROD["Matrix Multiply: Q · K^T<br/>Raw Compatibility Scores (N x N)"]
         SCALE["Scale Factor: Divide by √d_k<br/>Prevents Softmax Gradient Saturation"]
         SOFTMAX["Softmax Row-wise<br/>Attention Weight Matrix A (N x N)"]
         V_PROD["Matrix Multiply: A · V<br/>Context-Aware Representation (N x d_v)"]
+
+        QK_PROD --> SCALE --> SOFTMAX --> V_PROD
     end
 
-    subgraph MultiHead ["Multi-Head Projection"]
-        CONCAT["Concatenate Heads<br/>Concat(head_1, ..., head_h)"]
-        WO_PROJ["Output Projection Matrix (W_O)<br/>Final Output (N x d_model)"]
-    end
-
-    X_TOKENS --> WQ
-    X_TOKENS --> WK
-    X_TOKENS --> WV
-
-    WQ --> Q_MAT
-    WK --> K_MAT
-    WV --> V_MAT
-
-    Q_MAT --> QK_PROD
-    K_MAT --> QK_PROD
-    
-    QK_PROD --> SCALE
-    SCALE --> SOFTMAX
-    SOFTMAX --> V_PROD
-    V_MAT --> V_PROD
-
-    V_PROD --> CONCAT
-    CONCAT --> WO_PROJ
-
-    style X_TOKENS fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
-    style WQ fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
-    style WK fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
-    style WV fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
-    
-    style Q_MAT fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
-    style K_MAT fill:#0d2b45,stroke:#a855f7,stroke-width:2px,color:#ffffff
-    style V_MAT fill:#0d2b45,stroke:#eab308,stroke-width:2px,color:#ffffff
-    
     style QK_PROD fill:#312e81,stroke:#818cf8,stroke-width:2px,color:#ffffff
     style SCALE fill:#312e81,stroke:#818cf8,stroke-width:2px,color:#ffffff
     style SOFTMAX fill:#312e81,stroke:#818cf8,stroke-width:2px,color:#ffffff
     style V_PROD fill:#14532d,stroke:#22c55e,stroke-width:2px,color:#ffffff
-    
+```
+
+```mermaid
+flowchart TD
+    subgraph MultiHead ["Stage 4: Multi-Head Output Projection"]
+        direction TD
+        CONCAT["Concatenate Heads<br/>Concat(head_1, ..., head_h)"]
+        WO_PROJ["Output Projection Matrix (W_O)<br/>Final Output (N x d_model)"]
+
+        CONCAT --> WO_PROJ
+    end
+
     style CONCAT fill:#581c87,stroke:#c084fc,stroke-width:2px,color:#ffffff
     style WO_PROJ fill:#581c87,stroke:#c084fc,stroke-width:2px,color:#ffffff
 ```
@@ -135,13 +134,17 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    direction TB
-
-    subgraph InputStage ["Input Token Embeddings"]
+    subgraph InputStage ["Stage 1: Input Token Embeddings"]
         TOKEN_EMB["Token Embeddings + Positional Encodings (RoPE / Sinusoidal)"]
     end
 
-    subgraph TransformerBlock ["Transformer Block Layer"]
+    style TOKEN_EMB fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
+```
+
+```mermaid
+flowchart TD
+    subgraph TransformerBlock ["Stage 2: Transformer Block Layer"]
+        direction TD
         LN1["Layer Normalization (LayerNorm / RMSNorm)"]
         MHSA["Multi-Head Self-Attention (MHA / GQA / MHA)"]
         RES1["Residual Connection (+ Input)"]
@@ -149,33 +152,24 @@ flowchart TD
         LN2["Layer Normalization (LayerNorm / RMSNorm)"]
         FFN["Feed-Forward Network (MLP / SwiGLU)<br/>FFN(x) = max(0, x W_1 + b_1) W_2 + b_2"]
         RES2["Residual Connection (+ Attention Output)"]
+
+        LN1 --> MHSA --> RES1 --> LN2 --> FFN --> RES2
     end
 
-    subgraph OutputStage ["Output Representations"]
-        BLOCK_OUT["Next Layer Input / Logits Projection"]
-    end
-
-    TOKEN_EMB --> LN1
-    TOKEN_EMB --> RES1
-    
-    LN1 --> MHSA
-    MHSA --> RES1
-    
-    RES1 --> LN2
-    RES1 --> RES2
-    
-    LN2 --> FFN
-    FFN --> RES2
-    
-    RES2 --> BLOCK_OUT
-
-    style TOKEN_EMB fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
     style LN1 fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
     style MHSA fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
     style RES1 fill:#14532d,stroke:#22c55e,stroke-width:2px,color:#ffffff
     style LN2 fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
     style FFN fill:#312e81,stroke:#a855f7,stroke-width:2px,color:#ffffff
     style RES2 fill:#14532d,stroke:#22c55e,stroke-width:2px,color:#ffffff
+```
+
+```mermaid
+flowchart TD
+    subgraph OutputStage ["Stage 3: Output Representations"]
+        BLOCK_OUT["Next Layer Input / Logits Projection"]
+    end
+
     style BLOCK_OUT fill:#581c87,stroke:#c084fc,stroke-width:2px,color:#ffffff
 ```
 
@@ -187,11 +181,11 @@ Let's dissect the core mathematical equations that power PyTorch's `nn.Multihead
 
 ### Scaled Dot-Product Attention Formula
 
-Given an input matrix $X \in \mathbb{R}^{N \times d_{\text{model}}}$, where $N$ is sequence length and $d_{\text{model}}$ is hidden dimension, we project $X$ into Query ($Q$), Key ($K$), and Value ($V$) matrices:
+Given an input matrix $X \in \mathbb{R}^{N \times d_{\mathrm{model}}}$, where $N$ is sequence length and $d_{\mathrm{model}}$ is hidden dimension, we project $X$ into Query ($Q$), Key ($K$), and Value ($V$) matrices:
 
 $$Q = X W_Q, \quad K = X W_K, \quad V = X W_V$$
 
-Where $W_Q, W_K \in \mathbb{R}^{d_{\text{model}} \times d_k}$ and $W_V \in \mathbb{R}^{d_{\text{model}} \times d_v}$.
+Where $W_Q, W_K \in \mathbb{R}^{d_{\mathrm{model}} \times d_k}$ and $W_V \in \mathbb{R}^{d_{\mathrm{model}} \times d_v}$.
 
 The attention weights and context output are computed as:
 

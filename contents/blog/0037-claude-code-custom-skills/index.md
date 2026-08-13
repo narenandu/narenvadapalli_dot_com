@@ -34,7 +34,7 @@ Custom skills are saved locally in your repository configuration directory. They
                  └── SKILL.md   <-- Skill instructions
 ```
 
-> [!NOTE]
+> **Note:**
 > While Claude Code natively looks for custom skills in the `.claude/skills/` directory, the Antigravity CLI uses the `.agents/skills/` directory for its custom skills. Keep this distinction in mind depending on which tool you are configuring.
 
 *   **YAML Frontmatter**: Contains a `name` and a `description`. Claude Code automatically scans these descriptions. When a user prompt matches the description, the CLI loads the skill.

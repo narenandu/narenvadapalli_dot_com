@@ -53,31 +53,30 @@ The following vertical workflow diagrams contrast how Key-Value vectors are stor
 
 ### Case 1: Multi-Head Attention (MHA) vs. Grouped-Query Attention (GQA)
 
+#### Case 1A: Standard Multi-Head Attention (MHA) - Heavy Memory
+
 ```mermaid
 flowchart TD
-    direction TB
+    Q_MHA["64 Independent Query Heads (Q_1 to Q_64)"]
+    KV_MHA["64 Independent Key-Value Pairs (K_1..64, V_1..64)"]
+    MEM_MHA["KV Cache Footprint @ 128K Context: 320.0 GB VRAM"]
 
-    subgraph MHA_Layout ["Case 1: Standard Multi-Head Attention (MHA) - Heavy Memory"]
-        direction TB
-        Q_MHA["64 Independent Query Heads (Q_1 to Q_64)"]
-        KV_MHA["64 Independent Key-Value Pairs (K_1..64, V_1..64)"]
-        MEM_MHA["KV Cache Footprint @ 128K Context: 320.0 GB VRAM"]
-
-        Q_MHA --> KV_MHA --> MEM_MHA
-    end
-
-    subgraph GQA_Layout ["Case 2: Grouped-Query Attention (GQA) - 8x Shared Heads"]
-        direction TB
-        Q_GQA["64 Query Heads (Grouped into 8 Teams of 8)"]
-        KV_GQA["8 Shared Key-Value Pairs (K_1..8, V_1..8)"]
-        MEM_GQA["KV Cache Footprint @ 128K Context: 40.0 GB VRAM (87.5% Savings)"]
-
-        Q_GQA --> KV_GQA --> MEM_GQA
-    end
+    Q_MHA --> KV_MHA --> MEM_MHA
 
     style Q_MHA fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
     style KV_MHA fill:#7f1d1d,stroke:#ef4444,stroke-width:2px,color:#ffffff
     style MEM_MHA fill:#7f1d1d,stroke:#ef4444,stroke-width:2px,color:#ffffff
+```
+
+#### Case 1B: Grouped-Query Attention (GQA) - 8x Shared Heads
+
+```mermaid
+flowchart TD
+    Q_GQA["64 Query Heads (Grouped into 8 Teams of 8)"]
+    KV_GQA["8 Shared Key-Value Pairs (K_1..8, V_1..8)"]
+    MEM_GQA["KV Cache Footprint @ 128K Context: 40.0 GB VRAM (87.5% Savings)"]
+
+    Q_GQA --> KV_GQA --> MEM_GQA
 
     style Q_GQA fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
     style KV_GQA fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff

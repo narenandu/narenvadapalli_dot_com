@@ -27,35 +27,31 @@ Let's trace the journey of an AI model from raw numerical weights to a productio
 
 Before diving into code and math, here is a high-level conceptual flow showing how raw data becomes a trained model, which is then frozen and served:
 
+### Case 1: Training Phase (Stateful & Compute-Heavy)
+
 ```mermaid
-graph TD
-    %% Training Phase
-    subgraph Training ["Phase 1: Training (Stateful & Compute-Heavy)"]
-        A[Raw Training Data] --> B[Forward Pass]
-        B --> C[Calculate Loss / Error]
-        C --> D[Backpropagation / Gradients]
-        D --> E[Update Weights]
-        E -->|Epoch Loop| B
-    end
-
-    %% Transition
-    E -->|Freeze & Export| F[Frozen Model Weights]
-
-    %% Serving/Inference Phase
-    subgraph Inference ["Phase 2: Inference (Stateless & Latency-Critical)"]
-        G[User Query / Input] --> H[Load Frozen Weights]
-        H --> I[Forward Pass Only]
-        I --> J[Generate Prediction / Token]
-        J --> K[API Response]
-    end
+flowchart TD
+    A[Raw Training Data] --> B[Forward Pass]
+    B --> C[Calculate Loss / Error]
+    C --> D[Backpropagation / Gradients]
+    D --> E[Update Weights]
+    E -->|Epoch Loop| B
 
     classDef training fill:#2a1f3d,stroke:#a15eff,stroke-width:2px;
-    classDef inference fill:#1a3d3c,stroke:#00f2fe,stroke-width:2px;
-    classDef weights fill:#111520,stroke:#3b4252,stroke-width:2px;
-    
     class B,C,D,E training;
+```
+
+### Case 2: Inference Phase (Stateless & Latency-Critical)
+
+```mermaid
+flowchart TD
+    G[User Query / Input] --> H[Load Frozen Weights]
+    H --> I[Forward Pass Only]
+    I --> J[Generate Prediction / Token]
+    J --> K[API Response]
+
+    classDef inference fill:#1a3d3c,stroke:#00f2fe,stroke-width:2px;
     class H,I,J,K inference;
-    class F weights;
 ```
 
 ---

@@ -53,10 +53,8 @@ The following vertical workflow diagrams illustrate how activation functions pre
 
 ```mermaid
 flowchart TD
-    direction TB
-
     subgraph LinearStack ["Case 1: Without Activation Functions (Linear Collapse)"]
-        direction TB
+        direction TD
         L1["Layer 1 Linear Step: Z_1 = W_1 · X + b_1"]
         L2["Layer 2 Linear Step: Z_2 = W_2 · Z_1 + b_2"]
         L3["Layer 3 Linear Step: Z_3 = W_3 · Z_2 + b_3"]
@@ -65,8 +63,16 @@ flowchart TD
         L1 --> L2 --> L3 --> COLLAPSE
     end
 
+    style L1 fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
+    style L2 fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
+    style L3 fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
+    style COLLAPSE fill:#7f1d1d,stroke:#ef4444,stroke-width:2px,color:#ffffff
+```
+
+```mermaid
+flowchart TD
     subgraph NonLinearStack ["Case 2: With Activation Functions (Space Warping)"]
-        direction TB
+        direction TD
         N1["Layer 1 Matrix Step: Z_1 = W_1 · X + b_1"]
         ACT1["Activation Step 1: A_1 = f(Z_1)<br/>(Bends and warps feature space)"]
         N2["Layer 2 Matrix Step: Z_2 = W_2 · A_1 + b_2"]
@@ -75,13 +81,6 @@ flowchart TD
 
         N1 --> ACT1 --> N2 --> ACT2 --> WARP
     end
-
-    LinearStack --> NonLinearStack
-
-    style L1 fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
-    style L2 fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
-    style L3 fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
-    style COLLAPSE fill:#7f1d1d,stroke:#ef4444,stroke-width:2px,color:#ffffff
 
     style N1 fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
     style ACT1 fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
@@ -96,12 +95,8 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    direction TB
-
-    START["Activation Function Decision Matrix"]
-
     subgraph OutputLayer ["Section 1: Output Layer Activation Selection"]
-        direction TB
+        direction TD
         OUT_Q["Target Output Task Type"]
         
         OUT_BIN["1. Binary Classification (Spam, Disease Yes/No)"]
@@ -114,8 +109,17 @@ flowchart TD
         OUT_Q --> OUT_MULTI --> SOFTMAX
     end
 
+    style OUT_Q fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
+    style OUT_BIN fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
+    style SIGMOID fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
+    style OUT_MULTI fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
+    style SOFTMAX fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
+```
+
+```mermaid
+flowchart TD
     subgraph HiddenLayer ["Section 2: Hidden Layer Activation Selection"]
-        direction TB
+        direction TD
         HID_Q["Target Hidden Layer Architecture"]
         
         HID_CNN["1. Deep CNNs, MLPs & Computer Vision"]
@@ -131,15 +135,6 @@ flowchart TD
         HID_Q --> HID_RNN --> TANH
         HID_Q --> HID_LLM --> GELU
     end
-
-    START --> OutputLayer --> HiddenLayer
-
-    style START fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
-    style OUT_Q fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
-    style OUT_BIN fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
-    style SIGMOID fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
-    style OUT_MULTI fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
-    style SOFTMAX fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
 
     style HID_Q fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
     style HID_CNN fill:#14532d,stroke:#22c55e,stroke-width:2px,color:#ffffff
@@ -217,7 +212,7 @@ Let's break down each major activation function, its intuitive mental model, mat
 ### 7. Softmax (The Multi-Choice Election)
 * **Analogy**: A democratic election tally where every candidate receives a percentage vote, and all percentages sum up to exactly $100\%$.
 * **Formula**: $\operatorname{Softmax}(z_i) = \frac{e^{z_i}}{\sum_{j=1}^K e^{z_j}}$
-* **Output Range**: $(0, 1)$ such that $\sum_{i=1}^K \text{Softmax}(z_i) = 1.0$.
+* **Output Range**: $(0, 1)$ such that $\sum_{i=1}^K \operatorname{Softmax}(z_i) = 1.0$.
 * **Primary Use Case / Scenario**: Output layer of **Multi-Class Classification** (e.g., ImageNet 1,000-class vision models) and **LLM Next-Token Vocabulary Logits** (e.g., selecting 1 token out of 128,000 vocabulary items).
 * **Why It Suits This Scenario**: Exponentiating raw logits makes the highest score stand out while normalizing all output scores into a strict multinomial probability distribution.
 

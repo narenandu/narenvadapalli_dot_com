@@ -67,9 +67,9 @@ Below is a technical comparison of the active Gemini 3 family models:
 
 | Model Tier | Context Window | Latency Profile | Cost (Input / Output per 1M) | Primary Strengths |
 | :--- | :--- | :--- | :--- | :--- |
-| **Gemini 3.1 Pro** | 2,000,000 | Moderate (500ms - 1.2s TTFT) | \$7.00 / \$21.00 | Math, complex codebases, multi-turn reasoning |
-| **Gemini 3.6 Flash** | 1,000,000 | Fast (150ms - 300ms TTFT) | \$0.075 / \$0.30 | Multimodal chat, general-purpose coding |
-| **Gemini 3.5 Flash-Lite** | 500,000 | Ultra-Fast (<100ms TTFT) | \$0.03 / \$0.12 | Classification, semantic routing, text scrubbing |
+| **Gemini 3.1 Pro** | 2,000,000 | Moderate (500ms - 1.2s TTFT) | $7.00 / $21.00 | Math, complex codebases, multi-turn reasoning |
+| **Gemini 3.6 Flash** | 1,000,000 | Fast (150ms - 300ms TTFT) | $0.075 / $0.30 | Multimodal chat, general-purpose coding |
+| **Gemini 3.5 Flash-Lite** | 500,000 | Ultra-Fast (<100ms TTFT) | $0.03 / $0.12 | Classification, semantic routing, text scrubbing |
 | **Gemini 3.5 Flash Cyber** | 1,000,000 | Fast (150ms - 300ms TTFT) | Custom Pilot Pricing | Vulnerability auditing, security patch drafting |
 
 ---

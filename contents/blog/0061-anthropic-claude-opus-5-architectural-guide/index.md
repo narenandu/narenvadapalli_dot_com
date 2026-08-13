@@ -50,26 +50,36 @@ According to [Anthropic's Official Announcements](https://www.anthropic.com/clau
 ```mermaid
 flowchart TD
     subgraph O45["Claude Opus 4.5 (Nov 24, 2025)"]
-        direction TB
         A1["Computer Use & Enterprise Workflows"] --> A2["1M Token Context Baseline"]
     end
+```
+
+```mermaid
+flowchart TD
     subgraph O46["Claude Opus 4.6 (Feb 5, 2026)"]
-        direction TB
         B1["Agentic Reliability & Precision"] --> B2["Extended Thinking Up to 32k Tokens"]
     end
+```
+
+```mermaid
+flowchart TD
     subgraph O47["Claude Opus 4.7 (Apr 16, 2026)"]
-        direction TB
         C1["Multimodal Vision & Multi-Step Work"] --> C2["Thorough Knowledge Work Reasoning"]
     end
+```
+
+```mermaid
+flowchart TD
     subgraph O48["Claude Opus 4.8 (May 28, 2026)"]
-        direction TB
         D1["Long-Horizon Task Autonomy"] --> D2["Extended Thinking Up to 64k Tokens"]
     end
+```
+
+```mermaid
+flowchart TD
     subgraph O5["Claude Opus 5 (July 2026)"]
-        direction TB
         E1["Major Step-Change Flagship"] --> E2["128k Extended Thinking & 74.8% SWE-bench"]
     end
-    O45 --> O46 --> O47 --> O48 --> O5
 ```
 
 #### Recent Opus Release Capability Matrix

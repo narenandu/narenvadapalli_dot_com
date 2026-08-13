@@ -91,7 +91,7 @@ This will automatically format your `/Users/<username>/.openclaw/openclaw.json` 
 ```
 
 #### Critical Security Rule: `allowFrom`
-> [!CAUTION]
+> **Caution:**
 > Always restrict DMs to your specific user ID by setting `"dmPolicy": "allowlist"` and specifying your ID under `"allowFrom"`. If this is left unconfigured, *anyone* who finds your bot on Telegram can trigger shell commands, download files, or execute Python scripts on your host workstation!
 
 *Tip: You can find your specific User/Chat ID by messaging `@userinfobot` on Telegram.*

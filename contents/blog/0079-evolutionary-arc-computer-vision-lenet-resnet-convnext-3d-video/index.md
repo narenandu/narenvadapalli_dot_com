@@ -128,7 +128,7 @@ $$(I * K)(i, j) = \sum_{m=-a}^a \sum_{n=-b}^b I(i-m, j-n) \cdot K(m, n)$$
 
 Where $a = \frac{k_h - 1}{2}$ and $b = \frac{k_w - 1}{2}$.
 
-For multi-channel feature maps ($C_{\text{in}} \to C_{\text{out}}$), total floating point operations (FLOPs) scale as:
+For multi-channel feature maps ($C_{\mathrm{in}} \to C_{\mathrm{out}}$), total floating point operations (FLOPs) scale as:
 
 $$\text{FLOPs (2D Conv)} = 2 \cdot H \cdot W \cdot C_{\text{in}} \cdot C_{\text{out}} \cdot K_h \cdot K_w$$
 
