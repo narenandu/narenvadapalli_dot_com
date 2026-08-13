@@ -54,38 +54,37 @@ The following vertical workflow diagrams contrast how spatial and temporal featu
 
 ### Case 1: ResNet Residual Block vs. ConvNeXt Modernized Inverted Bottleneck
 
+#### Path 1: Standard ResNet Residual Block (2015)
+
 ```mermaid
 flowchart TD
-    direction TB
+    R_IN["1. Input Feature Map X"]
+    R_CONV1["2. 1x1 Conv (Bottleneck Compress) + BatchNorm + ReLU"]
+    R_CONV2["3. 3x3 Spatial Conv + BatchNorm + ReLU"]
+    R_CONV3["4. 1x1 Conv (Expand) + BatchNorm"]
+    R_ADD["5. Identity Addition (+ X) + Final ReLU"]
 
-    subgraph ResNet_Block ["Case 1: Standard ResNet Residual Block (2015)"]
-        direction TB
-        R_IN["1. Input Feature Map X"]
-        R_CONV1["2. 1x1 Conv (Bottleneck Compress) + BatchNorm + ReLU"]
-        R_CONV2["3. 3x3 Spatial Conv + BatchNorm + ReLU"]
-        R_CONV3["4. 1x1 Conv (Expand) + BatchNorm"]
-        R_ADD["5. Identity Addition (+ X) + Final ReLU"]
-
-        R_IN --> R_CONV1 --> R_CONV2 --> R_CONV3 --> R_ADD
-    end
-
-    subgraph ConvNeXt_Block ["Case 2: ConvNeXt Inverted Bottleneck Block (2022)"]
-        direction TB
-        C_IN["1. Input Feature Map X"]
-        C_DW["2. 7x7 Depthwise Conv (Large Spatial Receptive Field)"]
-        C_LN["3. LayerNorm (Channel Normalization)"]
-        C_PW1["4. 1x1 Pointwise Conv (Expand 4x Channels) + GELU"]
-        C_PW2["5. 1x1 Pointwise Conv (Compress back to original channels)"]
-        C_ADD["6. Identity Addition (+ X)"]
-
-        C_IN --> C_DW --> C_LN --> C_PW1 --> C_PW2 --> C_ADD
-    end
+    R_IN --> R_CONV1 --> R_CONV2 --> R_CONV3 --> R_ADD
 
     style R_IN fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
     style R_CONV1 fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
     style R_CONV2 fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
     style R_CONV3 fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
     style R_ADD fill:#14532d,stroke:#22c55e,stroke-width:2px,color:#ffffff
+```
+
+#### Path 2: ConvNeXt Inverted Bottleneck Block (2022)
+
+```mermaid
+flowchart TD
+    C_IN["1. Input Feature Map X"]
+    C_DW["2. 7x7 Depthwise Conv (Large Spatial Receptive Field)"]
+    C_LN["3. LayerNorm (Channel Normalization)"]
+    C_PW1["4. 1x1 Pointwise Conv (Expand 4x Channels) + GELU"]
+    C_PW2["5. 1x1 Pointwise Conv (Compress back to original channels)"]
+    C_ADD["6. Identity Addition (+ X)"]
+
+    C_IN --> C_DW --> C_LN --> C_PW1 --> C_PW2 --> C_ADD
 
     style C_IN fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
     style C_DW fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
@@ -101,8 +100,6 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    direction TB
-
     VIDEO_IN["1. Input Video Clip (T Frames x H Height x W Width x C Channels)"]
     CONV3D["2. 3D Spatiotemporal Convolution Kernel (K_T x K_H x K_W)<br/>Scans across spatial pixels and consecutive temporal frames simultaneously"]
     FEAT3D["3. 3D Feature Map (Motion Trajectories + Spatial Geometry)"]
@@ -131,9 +128,9 @@ $$(I * K)(i, j) = \sum_{m=-a}^a \sum_{n=-b}^b I(i-m, j-n) \cdot K(m, n)$$
 
 Where $a = \frac{k_h - 1}{2}$ and $b = \frac{k_w - 1}{2}$.
 
-For multi-channel feature maps ($C_{\text{in}} \to C_{\text{out}}$), total floating point operations (FLOPs) scale as:
+For multi-channel feature maps ($C\_{\text{in}} \to C\_{\text{out}}$), total floating point operations (FLOPs) scale as:
 
-$$\text{FLOPs}_{\text{2D Conv}} = 2 \cdot H \cdot W \cdot C_{\text{in}} \cdot C_{\text{out}} \cdot K_h \cdot K_w$$
+$$\text{FLOPs}\_{\text{2D Conv}} = 2 \cdot H \cdot W \cdot C\_{\text{in}} \cdot C\_{\text{out}} \cdot K\_h \cdot K\_w$$
 
 ---
 
@@ -142,15 +139,15 @@ Standard 2D convolution performs spatial filtering and channel mixing simultaneo
 
 1. **Depthwise Convolution** (Spatial Filtering per Channel):
    Applies a single $K_h \times K_w$ kernel per input channel independently:
-   $$\text{FLOPs}_{\text{Depthwise}} = 2 \cdot H \cdot W \cdot C_{\text{in}} \cdot K_h \cdot K_w$$
+   $$\text{FLOPs}\_{\text{Depthwise}} = 2 \cdot H \cdot W \cdot C\_{\text{in}} \cdot K\_h \cdot K\_w$$
 
 2. **Pointwise Convolution** (Channel Mixing):
    Applies a $1 \times 1$ kernel to mix cross-channel representations:
-   $$\text{FLOPs}_{\text{Pointwise}} = 2 \cdot H \cdot W \cdot C_{\text{in}} \cdot C_{\text{out}}$$
+   $$\text{FLOPs}\_{\text{Pointwise}} = 2 \cdot H \cdot W \cdot C\_{\text{in}} \cdot C\_{\text{out}}$$
 
 Total FLOPs reduction compared to standard convolution:
 
-$$\text{Efficiency Ratio} = \frac{\text{FLOPs}_{\text{Depthwise}} + \text{FLOPs}_{\text{Pointwise}}}{\text{FLOPs}_{\text{Standard 2D}}} = \frac{1}{C_{\text{out}}} + \frac{1}{K_h \cdot K_w}$$
+$$\text{Efficiency Ratio} = \frac{\text{FLOPs}\_{\text{Depthwise}} + \text{FLOPs}\_{\text{Pointwise}}}{\text{FLOPs}\_{\text{Standard 2D}}} = \frac{1}{C\_{\text{out}}} + \frac{1}{K\_h \cdot K\_w}$$
 
 Using a $7 \times 7$ ConvNeXt depthwise kernel cuts spatial calculation FLOPs by **over 85%**!
 
