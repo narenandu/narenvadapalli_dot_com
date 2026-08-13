@@ -63,7 +63,7 @@ This single shot contains the entire core cycle of machine learning:
    > *"Your arrow landed left because your release hand twitched by 10%, which happened because your elbow angle was off by 20%, which was caused by your foot stance leaning 70% too far back."*
    
    By isolating exactly how much each individual muscle adjustment contributed to the total miss, the coach calculates the exact correction needed for every single joint.
-4. **Adjusting the Stance (Gradient Descent)**: The archer adjusts their feet, elbow, and grip by small micro-amounts in the opposite direction of the mistake ($W_{\text{new}} = W_{\text{old}} - \eta \cdot \nabla L$).
+4. **Adjusting the Stance (Gradient Descent)**: The archer adjusts their feet, elbow, and grip by small micro-amounts in the opposite direction of the mistake ($W_{new} = W_{old} - \eta \cdot \nabla L$).
 5. **The Instant Replay Camera (Dynamic Autograd DAG)**: In modern frameworks like [PyTorch](https://pytorch.org/), every arithmetic operation executed during the forward pass is recorded by an automated "instant replay camera." When you call `loss.backward()`, PyTorch rewinds this recording in reverse order, using the **Calculus Chain Rule** to calculate exact gradients for millions of parameters automatically.
 
 ### What is Autograd? (Automatic Differentiation)
@@ -83,36 +83,33 @@ The following vertical workflow diagrams illustrate how information flows forwar
 
 ### Diagram A: Forward Pass vs. Backpropagation Reverse Flow
 
+#### Phase 1: The Forward Pass (Prediction)
+
 ```mermaid
 flowchart TD
-    direction TB
+    X_IN["Input Features (X)"]
+    WEIGHTS["Weight Projection: Z = W · X + b"]
+    ACTIVATION["Activation Function: A = σ(Z)<br/>(Produces Output Prediction y_pred)"]
+    LOSS_CALC["Loss Calculation: L = (y_pred - y_true)^2<br/>(Measures Bullseye Error Distance)"]
 
-    subgraph ForwardPass ["Phase 1: The Forward Pass (Prediction)"]
-        direction TB
-        X_IN["Input Features (X)"]
-        WEIGHTS["Weight Projection: Z = W · X + b"]
-        ACTIVATION["Activation Function: A = σ(Z)<br/>(Produces Output Prediction y_pred)"]
-        LOSS_CALC["Loss Calculation: L = (y_pred - y_true)^2<br/>(Measures Bullseye Error Distance)"]
-
-        X_IN --> WEIGHTS --> ACTIVATION --> LOSS_CALC
-    end
-
-    subgraph BackwardPass ["Phase 2: The Backward Pass (Backpropagation & Learning)"]
-        direction TB
-        GRAD_LOSS["1. Loss Gradient: ∂L / ∂y_pred<br/>(How much prediction error occurred)"]
-        GRAD_ACT["2. Activation Gradient: ∂y_pred / ∂Z<br/>(How much activation slope contributed)"]
-        GRAD_WEIGHT["3. Weight Gradient: ∂Z / ∂W = X<br/>(Calculus Chain Rule: ∂L/∂W = ∂L/∂y · ∂y/∂Z · ∂Z/∂W)"]
-        OPT_STEP["4. Optimizer Step: W_new = W_old - η · ∂L/∂W<br/>(Adjusts Weights via Gradient Descent)"]
-
-        GRAD_LOSS --> GRAD_ACT --> GRAD_WEIGHT --> OPT_STEP
-    end
-
-    ForwardPass --> BackwardPass
+    X_IN --> WEIGHTS --> ACTIVATION --> LOSS_CALC
 
     style X_IN fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
     style WEIGHTS fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
     style ACTIVATION fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
     style LOSS_CALC fill:#7f1d1d,stroke:#ef4444,stroke-width:2px,color:#ffffff
+```
+
+#### Phase 2: The Backward Pass (Backpropagation & Learning)
+
+```mermaid
+flowchart TD
+    GRAD_LOSS["1. Loss Gradient: ∂L / ∂y_pred<br/>(How much prediction error occurred)"]
+    GRAD_ACT["2. Activation Gradient: ∂y_pred / ∂Z<br/>(How much activation slope contributed)"]
+    GRAD_WEIGHT["3. Weight Gradient: ∂Z / ∂W = X<br/>(Calculus Chain Rule: ∂L/∂W = ∂L/∂y · ∂y/∂Z · ∂Z/∂W)"]
+    OPT_STEP["4. Optimizer Step: W_new = W_old - η · ∂L/∂W<br/>(Adjusts Weights via Gradient Descent)"]
+
+    GRAD_LOSS --> GRAD_ACT --> GRAD_WEIGHT --> OPT_STEP
 
     style GRAD_LOSS fill:#312e81,stroke:#a855f7,stroke-width:2px,color:#ffffff
     style GRAD_ACT fill:#312e81,stroke:#a855f7,stroke-width:2px,color:#ffffff
@@ -124,52 +121,50 @@ flowchart TD
 
 ### Diagram B: Dynamic Autograd Computation Graph (PyTorch DAG)
 
+#### Stage 1: Leaf Tensors & Computed Operation Nodes (Forward Tape)
+
 ```mermaid
 flowchart TD
-    direction TB
-
     START_DAG["PyTorch Autograd Tape (Dynamic Computation Graph)"]
+    T_X["Input Tensor X (requires_grad=False)"]
+    T_W["Weight Tensor W (requires_grad=True)"]
+    T_B["Bias Tensor b (requires_grad=True)"]
+    
+    OP_MUL["Multiply Node (*)<br/>Forward: Z_raw = W · X"]
+    OP_ADD["Add Node (+)<br/>Forward: Z = Z_raw + b"]
+    OP_SIG["Sigmoid Node (σ)<br/>Forward: y_pred = σ(Z)"]
+    OP_MSE["Loss Node (MSE)<br/>Forward: L = (y_pred - y_true)^2"]
 
-    subgraph Nodes ["Leaf Tensors & Computed Operation Nodes"]
-        direction TB
-        T_X["Input Tensor X (requires_grad=False)"]
-        T_W["Weight Tensor W (requires_grad=True)"]
-        T_B["Bias Tensor b (requires_grad=True)"]
-        
-        OP_MUL["Multiply Node (*)<br/>Forward: Z_raw = W · X"]
-        OP_ADD["Add Node (+)<br/>Forward: Z = Z_raw + b"]
-        OP_SIG["Sigmoid Node (σ)<br/>Forward: y_pred = σ(Z)"]
-        OP_MSE["Loss Node (MSE)<br/>Forward: L = (y_pred - y_true)^2"]
-
-        T_X --> OP_MUL
-        T_W --> OP_MUL
-        OP_MUL --> OP_ADD
-        T_B --> OP_ADD
-        OP_ADD --> OP_SIG
-        OP_SIG --> OP_MSE
-    end
-
-    subgraph BackwardExecution ["Topological Reverse Pass: loss.backward()"]
-        direction TB
-        EXEC["Traverse Graph in Reverse Order<br/>Execute _backward() callbacks on each node"]
-        UPDATE_W["W.grad += ∂L / ∂W"]
-        UPDATE_B["b.grad += ∂L / ∂b"]
-
-        EXEC --> UPDATE_W
-        EXEC --> UPDATE_B
-    end
-
-    START_DAG --> Nodes --> BackwardExecution
+    START_DAG --> T_X
+    START_DAG --> T_W
+    START_DAG --> T_B
+    T_X --> OP_MUL
+    T_W --> OP_MUL
+    OP_MUL --> OP_ADD
+    T_B --> OP_ADD
+    OP_ADD --> OP_SIG
+    OP_SIG --> OP_MSE
 
     style START_DAG fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
     style T_X fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
     style T_W fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
     style T_B fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
-    
     style OP_MUL fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
     style OP_ADD fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
     style OP_SIG fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
     style OP_MSE fill:#7f1d1d,stroke:#ef4444,stroke-width:2px,color:#ffffff
+```
+
+#### Stage 2: Topological Reverse Pass (loss.backward())
+
+```mermaid
+flowchart TD
+    EXEC["Traverse Graph in Reverse Order<br/>Execute _backward() callbacks on each node"]
+    UPDATE_W["W.grad += ∂L / ∂W"]
+    UPDATE_B["b.grad += ∂L / ∂b"]
+
+    EXEC --> UPDATE_W
+    EXEC --> UPDATE_B
 
     style EXEC fill:#581c87,stroke:#c084fc,stroke-width:2px,color:#ffffff
     style UPDATE_W fill:#14532d,stroke:#22c55e,stroke-width:2px,color:#ffffff

@@ -53,7 +53,7 @@ In a standard dense transformer (like Llama-3-70B), every single input token is 
 Here is how the token routing path operates sequentially within the Inkling MoE FFN layer:
 
 ```mermaid
-graph LR
+flowchart TD
     subgraph Token Routing [Token Routing and Expert Activation]
         T_In[Input Token] --> G_Router[Gating Router]
         G_Router -->|Top-K Selection| E_Active[Active Experts: 41B params]

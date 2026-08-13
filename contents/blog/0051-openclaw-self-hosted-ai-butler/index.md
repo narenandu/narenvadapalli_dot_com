@@ -29,7 +29,7 @@ In this third part of our **Autonomous AI Agents & Frameworks Series**, we will 
 Unlike standard monolithic CLI wrappers, OpenClaw is a Node.js-based service that separates the user interface (Gateways) from the core agent execution loop and tool orchestration:
 
 ```mermaid
-graph LR
+flowchart TD
     User([User]) <--> Gateway[Gateways: Telegram, Discord, Slack]
     Gateway <--> Engine[OpenClaw Core Engine]
     Engine <--> Controller[Session & State Controller]

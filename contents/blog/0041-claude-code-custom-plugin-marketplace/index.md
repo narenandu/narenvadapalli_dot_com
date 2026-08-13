@@ -155,7 +155,7 @@ git remote add origin git@github.com:username/corporate-claude-plugins.git
 git push -u origin main
 ```
 
-> [!NOTE]
+> **Note:**
 > **Private Repositories**: If your marketplace contains proprietary tooling, you can host it in a private GitHub repository. Claude Code uses your workstation’s local SSH agent and Git credentials to clone and update plugins, making authentication completely seamless.
 
 #### 2. Installing the Marketplace

@@ -85,29 +85,12 @@ flowchart TD
     classDef cnn3 fill:#0F172A,stroke:#F59E0B,stroke-width:2px,color:#F8FAFC;
     classDef cnn4 fill:#0F172A,stroke:#10B981,stroke-width:2px,color:#F8FAFC;
 
-    subgraph InputImage["1. Input Spatial Grid (Image)"]
-        direction TB
-        Img["Raw Pixels: 2D/3D Matrix"]:::cnn1
-    end
+    Img["1. Input Spatial Grid (Image): Raw Pixels 2D/3D Matrix"]:::cnn1
+    F1["2. Convolutional Filter (Sliding Window): Edge Detector Kernel (3x3 Matrix)"]:::cnn2
+    FMap["3. Extracted Feature Map: Low-Level Spatial Features (Edges & Textures)"]:::cnn3
+    Pool["4. Pooling Subsampling: Max-Pooling (Dimensionality Reduction)"]:::cnn4
 
-    subgraph FeatureFilter["2. Convolutional Filter (Sliding Window)"]
-        direction TB
-        F1["Edge Detector Kernel (3x3 Matrix)"]:::cnn2
-    end
-
-    subgraph FeatureMap["3. Extracted Feature Map"]
-        direction TB
-        FMap["Low-Level Spatial Features: Edges & Textures"]:::cnn3
-    end
-
-    subgraph PoolingLayer["4. Pooling Subsampling"]
-        direction TB
-        Pool["Max-Pooling: Dimensionality Reduction"]:::cnn4
-    end
-
-    InputImage --> FeatureFilter
-    FeatureFilter --> FeatureMap
-    FeatureMap --> PoolingLayer
+    Img --> F1 --> FMap --> Pool
 ```
 
 How CNNs view the world:
@@ -128,26 +111,14 @@ flowchart TD
     classDef rnn2 fill:#0F172A,stroke:#F43F5E,stroke-width:2px,color:#F8FAFC;
     classDef rnn3 fill:#0F172A,stroke:#10B981,stroke-width:2px,color:#F8FAFC;
 
-    subgraph InputSequence["Sequence Step t"]
-        direction TB
-        Xt["Current Input Token: x_t"]:::rnn1
-    end
-
-    subgraph HiddenMemory["RNN Cell Memory State"]
-        direction TB
-        HtPrev["Previous State Memory: h_{t-1}"]:::rnn2
-        HtCurr["Updated State Memory: h_t"]:::rnn2
-    end
-
-    subgraph OutputStep["Prediction Output"]
-        direction TB
-        Yt["Next Token Prediction: y_t"]:::rnn3
-    end
+    Xt["1. Sequence Input Step t: Current Input Token x_t"]:::rnn1
+    HtPrev["2. Previous Memory State: h_{t-1}"]:::rnn2
+    HtCurr["3. Updated Memory State: h_t"]:::rnn2
+    Yt["4. Output Prediction: y_t"]:::rnn3
 
     Xt --> HtCurr
     HtPrev --> HtCurr
     HtCurr --> Yt
-    HtCurr --> HtPrev
 ```
 
 An RNN works like reading a book with a running diary:

@@ -32,28 +32,38 @@ In this deep-dive, we trace DeepSeek's evolutionary lineage, analyze its core ar
 ```mermaid
 flowchart TD
     subgraph Origin["Late 2023: Foundation"]
-        direction TB
         A1["DeepSeek-LLM (67B Base/Instruct)"] --> A2["Dense Baseline Architecture"]
     end
+```
+
+```mermaid
+flowchart TD
     subgraph Specialization["Early-Mid 2024: Domain & Alignment"]
-        direction TB
         B1["DeepSeek-Coder & DeepSeek-Math"] --> B2["Introduction of GRPO Alignment"]
     end
+```
+
+```mermaid
+flowchart TD
     subgraph V2["May 2024: Architectural Breakthroughs"]
-        direction TB
         C1["DeepSeek-V2"] --> C2["Multi-Head Latent Attention (MLA)"]
         C1 --> C3["DeepSeekMoE (Fine-Grained + Shared Experts)"]
     end
+```
+
+```mermaid
+flowchart TD
     subgraph V3["December 2024: Massive Scaling"]
-        direction TB
         D1["DeepSeek-V3 (671B MoE / 37B Active)"] --> D2["Auxiliary-Loss-Free Load Balancing"]
         D1 --> D3["Multi-Token Prediction (MTP) & DualPipe FP8"]
     end
+```
+
+```mermaid
+flowchart TD
     subgraph R1["January 2025: The Reasoning Shift"]
-        direction TB
         E1["DeepSeek-R1-Zero (Pure Cold-Start RL)"] --> E2["DeepSeek-R1 (SFT + RL) & Distilled Models (1.5B - 70B)"]
     end
-    Origin --> Specialization --> V2 --> V3 --> R1
 ```
 
 #### Detailed Model Generation Matrix
@@ -82,14 +92,16 @@ During generation, the model only stores the compressed latent vector $c_t^{KV}$
 ```mermaid
 flowchart TD
     subgraph StandardMHA["Standard MHA / GQA KV Cache"]
-        direction TB
         M1["Key Vector (Dim = 4096)"]
         M2["Value Vector (Dim = 4096)"]
         M1 --> M3["High VRAM Footprint (Gigabytes per Session)"]
         M2 --> M3
     end
+```
+
+```mermaid
+flowchart TD
     subgraph DeepSeekMLA["DeepSeek Multi-Head Latent Attention (MLA)"]
-        direction TB
         L1["Low-Rank Projection Matrix (W_DKV)"] --> L2["Compressed Latent Vector (Dim = 512)"]
         L2 --> L3["On-the-Fly Key/Value Reconstruction + Decoupled RoPE"]
         L3 --> L4["93% Reduction in VRAM Memory Footprint"]

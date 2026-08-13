@@ -35,7 +35,7 @@ Imagine a Master Chef ($W_0$) who has spent 30 years mastering fundamental culin
 
 #### The Traditional (Full Fine-Tuning) Approach
 Suppose a restaurant wants the Master Chef to specialize in **Authentic Japanese Sushi**.
-* **The Method**: You perform brain surgery on the Chef to re-wire every single neuron in their brain ($W_{\text{new}} = W_0 + \Delta W$).
+* **The Method**: You perform brain surgery on the Chef to re-wire every single neuron in their brain ($W_{\mathrm{new}} = W_0 + \Delta W$).
 * **The Problem**: Brain surgery is ridiculously expensive (1.4 TB VRAM), risks ruining the Chef's core culinary instincts (*catastrophic forgetting*), and if you want the Chef to make **Neapolitan Pizza** tomorrow, you have to perform brain surgery all over again!
 
 #### The LoRA Approach: Transparent Recipe Overlays
@@ -235,7 +235,7 @@ In enterprise platforms, serving separate 70B model instances for 50 different c
 
 With engines like **vLLM**, **SGLang**, and **S-LoRA (Punica)**:
 1. **Single Base Model**: A single base model ($W_0$) is loaded once into GPU VRAM.
-2. **Dynamic CUDA Batching**: When Request #1 (Customer: Legal) arrives, the CUDA kernel multiplies $W_0 x + \frac{\alpha}{r} B_{\text{legal}} A_{\text{legal}} x$. When Request #2 (Customer: Code) arrives in the same batch, it applies $B_{\text{code}} A_{\text{code}}$.
+2. **Dynamic CUDA Batching**: When Request #1 (Customer: Legal) arrives, the CUDA kernel multiplies $W_0 x + \frac{\alpha}{r} B_{\mathrm{legal}} A_{\mathrm{legal}} x$. When Request #2 (Customer: Code) arrives in the same batch, it applies $B_{\mathrm{code}} A_{\mathrm{code}}$.
 3. **Multi-Tenant Serving**: You can serve **100+ fine-tuned domain adapters simultaneously** on a single GPU server with 99% lower infrastructure cost!
 
 ---
@@ -336,5 +336,5 @@ if __name__ == "__main__":
 ### Key Takeaways
 
 1.  **Massive Compute Efficiency**: LoRA freezes base weights ($W_0$) and trains low-rank matrices $A$ and $B$, cutting trainable parameters by 99.6% and optimizer VRAM by 99%.
-2.  **Zero-Latency Weight Merging**: For single-task serving, folding $W_{\text{merged}} = W_0 + \frac{\alpha}{r} (B A)$ eliminates adapter overhead during inference.
+2.  **Zero-Latency Weight Merging**: For single-task serving, folding $W_{\mathrm{merged}} = W_0 + \frac{\alpha}{r} (B A)$ eliminates adapter overhead during inference.
 3.  **Multi-Tenant Serving**: Runtimes like vLLM and SGLang leverage LoRA to serve hundreds of domain-specific fine-tuned adapters on a single base model instance.

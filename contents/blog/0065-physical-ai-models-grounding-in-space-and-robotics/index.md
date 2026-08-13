@@ -69,18 +69,22 @@ flowchart TD
 ```mermaid
 flowchart TD
     subgraph Layer1["Layer 1: Spatial Perception & 3D Geometry"]
-        direction TB
         A1["RGB-D Cameras & LiDAR Scans"] --> A2["3D Gaussian Splatting / Occupancy Grids"]
     end
+```
+
+```mermaid
+flowchart TD
     subgraph Layer2["Layer 2: Physics Priors & State Simulation"]
-        direction TB
         B1["Neural Physics Engine"] --> B2["Collision & Force Dynamics Prediction"]
     end
+```
+
+```mermaid
+flowchart TD
     subgraph Layer3["Layer 3: Embodied VLA Action Execution"]
-        direction TB
         C1["Vision-Language-Action (VLA) Model"] --> C2["End-Effector Trajectory & Joint Angle Velocities"]
     end
-    Layer1 --> Layer2 --> Layer3
 ```
 
 #### Layer 1: Spatial Perception & 3D Geometry

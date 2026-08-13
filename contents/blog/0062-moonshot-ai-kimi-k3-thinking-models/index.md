@@ -21,7 +21,6 @@ The landscape of artificial intelligence is experiencing a fundamental architect
 
 [Moonshot AI](https://platform.kimi.ai/) has emerged at the forefront of this paradigm shift with the release of **Kimi K3**, a flagship 2.8-trillion parameter Mixture-of-Experts (MoE) model. 
 
-> [!IMPORTANT]
 > **Release Timeline Distinction**: Kimi K3 became available on hosted API platforms on **July 16th, 2026**. Its official **open-weights weights release** is scheduled for **July 27th, 2026**, allowing organizations to host and serve Kimi K3 on private cloud infrastructure.
 
 Kimi K3 introduces groundbreaking features such as **Preserved Thinking** across multi-turn conversations, configurable **Reasoning Effort**, and a native **1-million token context window**.
@@ -54,26 +53,33 @@ To select the optimal model for production workloads, developers must understand
 ```mermaid
 flowchart TD
     subgraph K25["Kimi K2.5"]
-        direction TB
         A1["General Purpose"] --> A2["Thinking: On by Default"]
         A2 --> A3["Preserved Thinking: ❌"]
     end
+```
+
+```mermaid
+flowchart TD
     subgraph K26["Kimi K2.6"]
-        direction TB
         B1["General Purpose"] --> B2["Thinking: Optional"]
         B2 --> B3["Preserved Thinking: Supported"]
     end
+```
+
+```mermaid
+flowchart TD
     subgraph K27["Kimi K2.7 Code"]
-        direction TB
         C1["Code Focused"] --> C2["Thinking: Always On"]
         C2 --> C3["Preserved Thinking: Always On"]
     end
+```
+
+```mermaid
+flowchart TD
     subgraph K3["Kimi K3 Flagship"]
-        direction TB
         D1["3T-Class MoE (16/896)"] --> D2["Reasoning Effort: Low/Medium/High/Max"]
         D2 --> D3["Preserved Thinking: Always On"]
     end
-    K25 --> K26 --> K27 --> K3
 ```
 
 #### Detailed Model Capability Matrix

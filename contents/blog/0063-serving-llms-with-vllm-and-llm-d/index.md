@@ -41,6 +41,10 @@ flowchart TD
         N2 --> N3["Internal VRAM Fragmentation (60-80% Wasted)"]
         N3 --> N4["Request-Level Batching (Stalls Short Requests)"]
     end
+```
+
+```mermaid
+flowchart TD
     subgraph vLLM["vLLM Engine (Dynamic PagedAttention)"]
         V1["Request Arrives (256 Tokens)"] --> V2["Allocate Non-Contiguous 16-Token Physical Blocks"]
         V2 --> V3["Zero External Memory Fragmentation (< 4% Waste)"]
@@ -83,21 +87,21 @@ While vLLM optimizes single-node worker performance, enterprise production workl
 
 ```mermaid
 flowchart TD
-    ClientReq["Incoming Client HTTP/gRPC Requests"] --> Router["llm-d Intelligent Router / Load Balancer"]
-    
-    subgraph PrefillPool["Prefill Worker Pool (Compute-Heavy)"]
-        P1["vLLM Prefill Node 1 (High FP8/FP16 TFLOPS)"]
-        P2["vLLM Prefill Node 2 (High FP8/FP16 TFLOPS)"]
+    subgraph PrefillPhase["Phase 1: Prefill Worker Pool (Compute-Heavy)"]
+        ClientReq["Incoming Client HTTP/gRPC Requests"] --> Router["llm-d Intelligent Router / Load Balancer"]
+        Router -- "Send Prompt (Compute Matrix Mult)" --> P1["vLLM Prefill Node 1 (High FP8/FP16 TFLOPS)"]
+        Router -- "Send Prompt (Compute Matrix Mult)" --> P2["vLLM Prefill Node 2 (High FP8/FP16 TFLOPS)"]
     end
-    
-    subgraph DecodePool["Decode Worker Pool (Memory-Bandwidth Heavy)"]
-        D1["vLLM Decode Node 1 (High HBM3e Bandwidth)"]
-        D2["vLLM Decode Node 2 (High HBM3e Bandwidth)"]
+```
+
+```mermaid
+flowchart TD
+    subgraph DecodePhase["Phase 2: Decode Worker Pool (Memory-Bandwidth Heavy)"]
+        POut["Prefill KV Cache State"] -- "Transfer KV Cache via RDMA / InfiniBand" --> D1["vLLM Decode Node 1 (High HBM3e Bandwidth)"]
+        POut -- "Transfer KV Cache via RDMA / InfiniBand" --> D2["vLLM Decode Node 2 (High HBM3e Bandwidth)"]
+        D1 -- "Stream Tokens" --> ClientOut["Client Response Stream"]
+        D2 -- "Stream Tokens" --> ClientOut
     end
-    
-    Router -- "1. Send Prompt (O(N^2) Matrix Mult)" --> PrefillPool
-    PrefillPool -- "2. Transfer KV Cache via RDMA / InfiniBand" --> DecodePool
-    Router -- "3. Stream Generated Tokens to Client" --> DecodePool
 ```
 
 #### 1. Prefill and Decode (PD) Disaggregation
