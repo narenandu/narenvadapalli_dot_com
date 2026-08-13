@@ -94,16 +94,18 @@ flowchart TD
 
 ## 3. Engineering Deep-Dive: Minimax Loss & Stability Advances
 
-> **Math in 1 Sentence:** *GAN training is a zero-sum two-player Minimax game ($\min\_G \max\_D V(D, G)$) where the Discriminator maximizes its ability to classify real vs fake samples while the Generator minimizes the Discriminator's probability of detecting synthetic samples.*
+> **Math in 1 Sentence:** *GAN training is a zero-sum two-player Minimax game ($\min_G \max_D V(D, G)$) where the Discriminator maximizes its ability to classify real vs fake samples while the Generator minimizes the Discriminator's probability of detecting synthetic samples.*
 
 ### 1. The Formal Minimax Game Objective Function
 The core mathematical objective introduced by Ian Goodfellow is formulated as:
 
-$$\min\_G \max\_D V(D, G) = \mathbb{E}\_{x \sim p_{\text{data}}(x)} [\log D(x)] + \mathbb{E}\_{z \sim p\_z(z)} [\log(1 - D(G(z)))]$$
+$$
+\min_G \max_D V(D, G) = \mathbb{E}_{x \sim p_{\text{data}}(x)} [\log D(x)] + \mathbb{E}_{z \sim p_z(z)} [\log(1 - D(G(z)))]
+$$
 
 Where each term performs a specific role in game theory:
-- $\mathbb{E}\_{x \sim p_{\text{data}}(x)} [\log D(x)]$: **Real Sample Reward** (Discriminator wants $D(x) \to 1$, so $\log(1) = 0$).
-- $\mathbb{E}\_{z \sim p\_z(z)} [\log(1 - D(G(z)))]$: **Fake Sample Penalty** (Discriminator wants $D(G(z)) \to 0$, so $\log(1) = 0$).
+- $\mathbb{E}_{x \sim p(x)} [\log D(x)]$: **Real Sample Reward** (Discriminator wants $D(x) \to 1$, so $\log(1) = 0$).
+- $\mathbb{E}_{z \sim p(z)} [\log(1 - D(G(z)))]$: **Fake Sample Penalty** (Discriminator wants $D(G(z)) \to 0$, so $\log(1) = 0$).
 - **Generator Optimization**: The Generator ($G$) seeks to minimize $V(D, G)$, driving $D(G(z)) \to 1$ so $\log(1 - 1) \to -\infty$.
 
 ---
@@ -124,15 +126,21 @@ Where each term performs a specific role in game theory:
 ### 3. Wasserstein GAN (WGAN) & Earth Mover's Distance
 To eliminate mode collapse and unstable gradient dynamics, **Wasserstein GAN (WGAN)** replaces Jensen-Shannon divergence with the **Earth Mover's (Wasserstein-1) Distance**:
 
-$$W(p\_r, p\_g) = \inf\_{\gamma \in \Pi(p\_r, p\_g)} \mathbb{E}\_{(x, y) \sim \gamma} [\|x - y\|]$$
+$$
+W(p_r, p_g) = \inf_{\gamma \in \Pi(p_r, p_g)} \mathbb{E}_{(x, y) \sim \gamma} [\|x - y\|]
+$$
 
 With the Kantorovich-Rubinstein duality, the WGAN Critic objective becomes:
 
-$$\max\_{w \in \mathcal{W}} \mathbb{E}\_{x \sim p\_r}[f\_w(x)] - \mathbb{E}\_{z \sim p\_z}[f\_w(G\_\theta(z))]$$
+$$
+\max_{w \in \mathcal{W}} \mathbb{E}_{x \sim p_r}[f_w(x)] - \mathbb{E}_{z \sim p_z}[f_w(G_\theta(z))]
+$$
 
 Subject to a 1-Lipschitz continuity constraint enforced via **Gradient Penalty (WGAN-GP)**:
 
-$$\mathcal{L}\_{GP} = \mathbb{E}\_{\hat{x}} \left[ \left( \|\nabla\_{\hat{x}} D(\hat{x})\|\_2 - 1 \right)^2 \right]$$
+$$
+\mathcal{L}_{\text{GP}} = \mathbb{E}_{\hat{x}} \left[ \left( \|\nabla_{\hat{x}} D(\hat{x})\|_2 - 1 \right)^2 \right]
+$$
 
 ---
 
