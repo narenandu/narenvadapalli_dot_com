@@ -128,9 +128,9 @@ $$(I * K)(i, j) = \sum_{m=-a}^a \sum_{n=-b}^b I(i-m, j-n) \cdot K(m, n)$$
 
 Where $a = \frac{k_h - 1}{2}$ and $b = \frac{k_w - 1}{2}$.
 
-For multi-channel feature maps ($C\_{\text{in}} \to C\_{\text{out}}$), total floating point operations (FLOPs) scale as:
+For multi-channel feature maps ($C_{\text{in}} \to C_{\text{out}}$), total floating point operations (FLOPs) scale as:
 
-$$\text{FLOPs}\_{\text{2D Conv}} = 2 \cdot H \cdot W \cdot C\_{\text{in}} \cdot C\_{\text{out}} \cdot K\_h \cdot K\_w$$
+$$\text{FLOPs (2D Conv)} = 2 \cdot H \cdot W \cdot C_{\text{in}} \cdot C_{\text{out}} \cdot K_h \cdot K_w$$
 
 ---
 
@@ -139,15 +139,17 @@ Standard 2D convolution performs spatial filtering and channel mixing simultaneo
 
 1. **Depthwise Convolution** (Spatial Filtering per Channel):
    Applies a single $K_h \times K_w$ kernel per input channel independently:
-   $$\text{FLOPs}\_{\text{Depthwise}} = 2 \cdot H \cdot W \cdot C\_{\text{in}} \cdot K\_h \cdot K\_w$$
+
+$$\text{FLOPs (Depthwise)} = 2 \cdot H \cdot W \cdot C_{\text{in}} \cdot K_h \cdot K_w$$
 
 2. **Pointwise Convolution** (Channel Mixing):
    Applies a $1 \times 1$ kernel to mix cross-channel representations:
-   $$\text{FLOPs}\_{\text{Pointwise}} = 2 \cdot H \cdot W \cdot C\_{\text{in}} \cdot C\_{\text{out}}$$
+
+$$\text{FLOPs (Pointwise)} = 2 \cdot H \cdot W \cdot C_{\text{in}} \cdot C_{\text{out}}$$
 
 Total FLOPs reduction compared to standard convolution:
 
-$$\text{Efficiency Ratio} = \frac{\text{FLOPs}\_{\text{Depthwise}} + \text{FLOPs}\_{\text{Pointwise}}}{\text{FLOPs}\_{\text{Standard 2D}}} = \frac{1}{C\_{\text{out}}} + \frac{1}{K\_h \cdot K\_w}$$
+$$\text{Efficiency Ratio} = \frac{\text{FLOPs (Depthwise)} + \text{FLOPs (Pointwise)}}{\text{FLOPs (Standard 2D)}} = \frac{1}{C_{\text{out}}} + \frac{1}{K_h \cdot K_w}$$
 
 Using a $7 \times 7$ ConvNeXt depthwise kernel cuts spatial calculation FLOPs by **over 85%**!
 
