@@ -51,38 +51,18 @@ The following vertical workflow diagrams illustrate how the Generator and Discri
 
 ### Case 1: Discriminator vs. Generator Dual Backpropagation Loops
 
+#### Path 1: Discriminator Training Path (Detective Update)
+
 ```mermaid
 flowchart TD
-    direction TB
+    REAL_DATA["1. Real Ground-Truth Data x ~ P_data"]
+    DISC_REAL["2. Discriminator Real Pass D(x)<br/>Target: Output 1.0"]
+    DISC_FAKE["3. Discriminator Fake Pass D(G(z))<br/>Target: Output 0.0"]
+    DISC_LOSS["4. Binary Cross-Entropy Loss L_D"]
+    DISC_BACKPROP["5. Backpropagate Gradients into D<br/>Update Discriminator Weights W_d"]
 
-    subgraph GenPath ["Generator Training Path (Counterfeiter Update)"]
-        direction TB
-        NOISE["1. Random Latent Vector z ~ N(0, 1)"]
-        GEN["2. Generator Network G(z)<br/>Transforms Noise into Synthetic Sample x_fake"]
-        DISC_EVAL["3. Discriminator Evaluation D(G(z))"]
-        GEN_LOSS["4. Generator Loss: Maximize log(D(G(z)))<br/>(Trick Detective into outputting 1.0)"]
-        GEN_BACKPROP["5. Backpropagate Gradients through D into G<br/>Update Generator Weights W_g"]
-
-        NOISE --> GEN --> DISC_EVAL --> GEN_LOSS --> GEN_BACKPROP
-    end
-
-    subgraph DiscPath ["Discriminator Training Path (Detective Update)"]
-        direction TB
-        REAL_DATA["1. Real Ground-Truth Data x ~ P_data"]
-        DISC_REAL["2. Discriminator Real Pass D(x)<br/>Target: Output 1.0"]
-        DISC_FAKE["3. Discriminator Fake Pass D(G(z))<br/>Target: Output 0.0"]
-        DISC_LOSS["4. Binary Cross-Entropy Loss L_D"]
-        DISC_BACKPROP["5. Backpropagate Gradients into D<br/>Update Discriminator Weights W_d"]
-
-        REAL_DATA --> DISC_REAL --> DISC_LOSS
-        DISC_FAKE --> DISC_LOSS --> DISC_BACKPROP
-    end
-
-    style NOISE fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
-    style GEN fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
-    style DISC_EVAL fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
-    style GEN_LOSS fill:#581c87,stroke:#c084fc,stroke-width:2px,color:#ffffff
-    style GEN_BACKPROP fill:#14532d,stroke:#22c55e,stroke-width:2px,color:#ffffff
+    REAL_DATA --> DISC_REAL --> DISC_LOSS
+    DISC_FAKE --> DISC_LOSS --> DISC_BACKPROP
 
     style REAL_DATA fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
     style DISC_REAL fill:#14532d,stroke:#22c55e,stroke-width:2px,color:#ffffff
@@ -91,20 +71,39 @@ flowchart TD
     style DISC_BACKPROP fill:#14532d,stroke:#22c55e,stroke-width:2px,color:#ffffff
 ```
 
+#### Path 2: Generator Training Path (Counterfeiter Update)
+
+```mermaid
+flowchart TD
+    NOISE["1. Random Latent Vector z ~ N(0, 1)"]
+    GEN["2. Generator Network G(z)<br/>Transforms Noise into Synthetic Sample x_fake"]
+    DISC_EVAL["3. Discriminator Evaluation D(G(z))"]
+    GEN_LOSS["4. Generator Loss: Maximize log(D(G(z)))<br/>(Trick Detective into outputting 1.0)"]
+    GEN_BACKPROP["5. Backpropagate Gradients through D into G<br/>Update Generator Weights W_g"]
+
+    NOISE --> GEN --> DISC_EVAL --> GEN_LOSS --> GEN_BACKPROP
+
+    style NOISE fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#ffffff
+    style GEN fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#ffffff
+    style DISC_EVAL fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
+    style GEN_LOSS fill:#581c87,stroke:#c084fc,stroke-width:2px,color:#ffffff
+    style GEN_BACKPROP fill:#14532d,stroke:#22c55e,stroke-width:2px,color:#ffffff
+```
+
 ---
 
 ## 3. Engineering Deep-Dive: Minimax Loss & Stability Advances
 
-> **Math in 1 Sentence:** *GAN training is a zero-sum two-player Minimax game ($\min_G \max_D V(D, G)$) where the Discriminator maximizes its ability to classify real vs fake samples while the Generator minimizes the Discriminator's probability of detecting synthetic samples.*
+> **Math in 1 Sentence:** *GAN training is a zero-sum two-player Minimax game ($\min\_G \max\_D V(D, G)$) where the Discriminator maximizes its ability to classify real vs fake samples while the Generator minimizes the Discriminator's probability of detecting synthetic samples.*
 
 ### 1. The Formal Minimax Game Objective Function
 The core mathematical objective introduced by Ian Goodfellow is formulated as:
 
-$$\min_{G} \max_{D} V(D, G) = \mathbb{E}_{x \sim p_{data}(x)} [\log D(x)] + \mathbb{E}_{z \sim p_z(z)} [\log(1 - D(G(z)))]$$
+$$\min\_G \max\_D V(D, G) = \mathbb{E}\_{x \sim p_{\text{data}}(x)} [\log D(x)] + \mathbb{E}\_{z \sim p\_z(z)} [\log(1 - D(G(z)))]$$
 
 Where each term performs a specific role in game theory:
-- $\mathbb{E}_{x \sim p_{data}(x)} [\log D(x)]$: **Real Sample Reward** (Discriminator wants $D(x) \to 1$, so $\log(1) = 0$).
-- $\mathbb{E}_{z \sim p_z(z)} [\log(1 - D(G(z)))]$: **Fake Sample Penalty** (Discriminator wants $D(G(z)) \to 0$, so $\log(1) = 0$).
+- $\mathbb{E}\_{x \sim p_{\text{data}}(x)} [\log D(x)]$: **Real Sample Reward** (Discriminator wants $D(x) \to 1$, so $\log(1) = 0$).
+- $\mathbb{E}\_{z \sim p\_z(z)} [\log(1 - D(G(z)))]$: **Fake Sample Penalty** (Discriminator wants $D(G(z)) \to 0$, so $\log(1) = 0$).
 - **Generator Optimization**: The Generator ($G$) seeks to minimize $V(D, G)$, driving $D(G(z)) \to 1$ so $\log(1 - 1) \to -\infty$.
 
 ---
@@ -125,15 +124,15 @@ Where each term performs a specific role in game theory:
 ### 3. Wasserstein GAN (WGAN) & Earth Mover's Distance
 To eliminate mode collapse and unstable gradient dynamics, **Wasserstein GAN (WGAN)** replaces Jensen-Shannon divergence with the **Earth Mover's (Wasserstein-1) Distance**:
 
-$$W(p_r, p_g) = \inf_{\gamma \in \Pi(p_r, p_g)} \mathbb{E}_{(x, y) \sim \gamma} [\|x - y\|]$$
+$$W(p\_r, p\_g) = \inf\_{\gamma \in \Pi(p\_r, p\_g)} \mathbb{E}\_{(x, y) \sim \gamma} [\|x - y\|]$$
 
 With the Kantorovich-Rubinstein duality, the WGAN Critic objective becomes:
 
-$$\max_{w \in \mathcal{W}} \mathbb{E}_{x \sim p_r}[f_w(x)] - \mathbb{E}_{z \sim p_z}[f_w(G_\theta(z))]$$
+$$\max\_{w \in \mathcal{W}} \mathbb{E}\_{x \sim p\_r}[f\_w(x)] - \mathbb{E}\_{z \sim p\_z}[f\_w(G\_\theta(z))]$$
 
 Subject to a 1-Lipschitz continuity constraint enforced via **Gradient Penalty (WGAN-GP)**:
 
-$$\mathcal{L}_{GP} = \mathbb{E}_{\hat{x}} \left[ \left( \|\nabla_{\hat{x}} D(\hat{x})\|_2 - 1 \right)^2 \right]$$
+$$\mathcal{L}\_{GP} = \mathbb{E}\_{\hat{x}} \left[ \left( \|\nabla\_{\hat{x}} D(\hat{x})\|\_2 - 1 \right)^2 \right]$$
 
 ---
 
