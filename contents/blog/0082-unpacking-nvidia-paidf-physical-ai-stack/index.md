@@ -21,14 +21,19 @@ Before exploring NVIDIA's end-to-end framework for Physical AI and synthetic dat
 
 ## 1. Official Framework & Ecosystem Summary
 
-NVIDIA introduced the **Physical AI Data Factory (PAIDF)** as an end-to-end architectural stack and data generation engine designed to overcome the fundamental bottleneck in physical AI: the scarcity of high-quality, physical-world training data. While digital LLMs train on trillions of web tokens, physical robots operate in continuous 3D environments where teleoperated real-world demonstration data is slow, expensive, and unsafe to collect at scale.
+NVIDIA's overarching Physical AI architecture spans Jensen Huang's foundational **3-Computer Stack**:
+1. **Computer 1 (AI Training & Upstream Data Generation)**: Accelerated computing clusters (DGX / HGX) generating and processing petabytes of physical trajectories.
+2. **Computer 2 (Simulation & Digital Twin Testing)**: Omniverse-powered clusters (OVX / Isaac Sim) executing parallelized multi-agent physics simulations.
+3. **Computer 3 (Edge Robotic Brain & Execution)**: Embedded edge SoCs (NVIDIA Jetson Thor) running sub-50ms closed-loop Vision-Language-Action (VLA) inference.
 
-PAIDF solves this data bottleneck by creating a continuous **Digital Twin Flywheel**. It combines generative world foundation models (**NVIDIA Cosmos**), physics-driven spatial simulators (**NVIDIA Isaac Sim** & **Omniverse Replicator**), humanoid foundation models (**Project GR00T**), and edge real-time runtimes (**NVIDIA Jetson Thor** & **Isaac ROS**).
+At the very core of this 3-computer system sits the **NVIDIA Physical AI Data Factory (PAIDF) Blueprint**—an open reference architecture announced by NVIDIA to overcome the fundamental bottleneck in robotics: the scarcity of high-quality, physical-world training data. While digital LLMs train on trillions of web tokens, physical robots operate in continuous 3D environments where teleoperated real-world demonstration data is slow, expensive, and unsafe to collect at scale.
+
+PAIDF treats **compute as training data**, establishing a continuous **Digital Twin Flywheel**. It combines generative world foundation models (**NVIDIA Cosmos**), physics-driven spatial simulators (**NVIDIA Isaac Sim** & **Omniverse Replicator**), humanoid foundation models (**Project GR00T**), and edge real-time runtimes (**NVIDIA Jetson Thor** & **Isaac ROS**).
 
 | Feature / Metric | Specification & Industrial Reference Link |
 | :--- | :--- |
-| **Framework Name** | **NVIDIA Physical AI Data Factory (PAIDF)** |
-| **Official Ecosystem Portal** | [NVIDIA Physical AI Developer Portal](https://developer.nvidia.com/physical-ai) |
+| **Architectural Blueprint** | [NVIDIA Physical AI Data Factory (PAIDF) Blueprint](https://developer.nvidia.com/physical-ai) |
+| **Physical AI Architecture** | [NVIDIA 3-Computer Architecture for Physical AI](https://blogs.nvidia.com/blog/what-is-physical-ai/) |
 | **World Foundation Models** | [NVIDIA Cosmos World Foundation Models](https://www.nvidia.com/en-us/ai/cosmos/) |
 | **Physics & Sensor Simulation** | [NVIDIA Isaac Sim & Omniverse Replicator](https://developer.nvidia.com/isaac/sim) |
 | **Humanoid Foundation Model** | [NVIDIA Project GR00T (VLA)](https://developer.nvidia.com/project-gr00t) |
@@ -43,11 +48,11 @@ To understand why NVIDIA built PAIDF, consider the **Flight Simulator Metaphor**
 
 No commercial airline pilot earns their license by flying real passenger jets for thousands of hours through dangerous mid-air engine failures. Instead, pilots spend 99% of their training inside photorealistic, physics-calibrated flight simulators. The simulator exposes the pilot to millions of extreme edge cases—heavy turbulence, instrument failure, gale-force crosswinds—in a fraction of the time, with zero physical risk and zero hardware degradation.
 
-Physical AI demands the exact same approach. A humanoid robot deployed in a factory cannot afford to drop expensive equipment or collide with human co-workers millions of times while learning how to grasp a fragile object. PAIDF functions as an automated industrial flight simulator and data factory operating across three tightly connected layers:
+Physical AI demands the exact same approach. A humanoid robot deployed in a factory cannot afford to drop expensive equipment or collide with human co-workers millions of times while learning how to grasp a fragile object. PAIDF functions as an automated industrial flight simulator and data factory operating across the **3-Computer Physical AI Stack**:
 
-1. **The Synthetic World Generator (NVIDIA Cosmos & Isaac Sim)**: Generating photorealistic 3D spatial scenes, multi-angle camera streams, depth maps, and synthetic trajectories with physics dynamics.
-2. **The Physical Foundation Model Trainer (Project GR00T & VLA Models)**: Tokenizing visual observations and spatial goal prompts into unified Vision-Language-Action (VLA) representations to train generalized robot policies.
-3. **The Real-Time Edge Runtime (Jetson Thor & Isaac ROS)**: Deploying compiled policies onto low-power edge silicon to execute sub-50ms closed-loop perception and motor control.
+1. **Upstream Data Factory & World Generation (Computer 1 & 2 - DGX/OVX, Cosmos, Isaac Sim)**: Generating photorealistic 3D spatial scenes, multi-angle camera streams, depth maps, and synthetic trajectories with physics dynamics and domain randomization.
+2. **Physical Foundation Model Training (Project GR00T & VLA Models)**: Tokenizing visual observations and spatial goal prompts into unified Vision-Language-Action (VLA) representations to train generalized robot policies.
+3. **The Real-Time Edge Runtime (Computer 3 - Jetson Thor & Isaac ROS)**: Deploying compiled policies onto low-power edge silicon to execute sub-50ms closed-loop perception and motor control.
 
 ```mermaid
 flowchart TD
@@ -93,13 +98,13 @@ At the heart of PAIDF is **NVIDIA Cosmos**, a world foundation model designed sp
 
 When coupled with **Isaac Sim** (built on Universal Scene Description / USD and PhysX 5), PAIDF generates synthetic data streams featuring **Domain Randomization (DR)**. By continuously varying surface friction coefficients ($\mu$), lighting vectors ($L$), object textures, and camera intrinsics during batch simulation, the model avoids overfitting to specific simulation environments.
 
-$$\mathcal{L}_{\text{sim2real}}(\theta) = \mathbb{E}_{(s, a) \sim \mathcal{D}_{\text{sim}}(\xi)} \left[ \mathcal{L}_{\text{task}}(\pi_\theta(s), a) \right] + \lambda \mathcal{L}_{\text{domain\_randomization}}(\theta, \xi)$$
+$$\mathcal{L}_{\mathrm{sim2real}}(\theta) = \mathbb{E}_{(s, a) \sim \mathcal{D}_{\mathrm{sim}}(\xi)} \left[ \mathcal{L}_{\mathrm{task}}(\pi_\theta(s), a) \right] + \lambda \mathcal{L}_{\mathrm{DR}}(\theta, \xi)$$
 
 Where:
 - $\pi_\theta(s)$ is the policy parameterized by weights $\theta$ operating on state $s$.
 - $\xi \sim P(\Xi)$ represents the domain randomization parameter distribution (friction, mass, camera noise).
-- $\mathcal{L}_{\text{task}}$ evaluates task completion (e.g. grasping accuracy or trajectory tracking error).
-- $\mathcal{L}_{\text{domain\_randomization}}$ penalizes representations sensitive to synthetic distribution shifts.
+- $\mathcal{L}_{\mathrm{task}}$ evaluates task completion (e.g. grasping accuracy or trajectory tracking error).
+- $\mathcal{L}_{\mathrm{DR}}$ penalizes representations sensitive to synthetic distribution shifts.
 
 ```mermaid
 flowchart TD
@@ -133,17 +138,17 @@ Where $\epsilon_\theta$ is the neural network estimating score noise conditioned
 
 ### 4.3 Real-Time Edge Latency Budget on Jetson Thor
 
-When executing VLA policies on physical hardware, real-time stability demands strict latency bounds. The closed-loop perception-to-action delay ($T_{\text{total}}$) must remain below $50\text{ms}$ ($20\text{Hz}$ control frequency):
+When executing VLA policies on physical hardware, real-time stability demands strict latency bounds. The closed-loop perception-to-action delay ($T_{\mathrm{total}}$) must remain below $50\text{ ms}$ ($20\text{ Hz}$ control frequency):
 
-$$T_{\text{total}} = T_{\text{capture}} + T_{\text{isaac\_ros\_vslam}} + T_{\text{vla\_inference}} + T_{\text{motor\_actuation}} \le 50\text{ms}$$
+$$T_{\mathrm{total}} = T_{\mathrm{capture}} + T_{\mathrm{vslam}} + T_{\mathrm{vla}} + T_{\mathrm{actuation}} \le 50\text{ ms}$$
 
 | Processing Phase | Hardware Accelerator | Typical Latency Budget |
 | :--- | :--- | :--- |
-| **Sensor Capture & Pre-Processing** | Jetson Thor Image Signal Processor (ISP) | $5\text{ms}$ |
-| **Visual SLAM & Stereo Depth** | Isaac ROS Accelerators (NVDEC / CUDA) | $8\text{ms}$ |
-| **VLA Policy Inference (GR00T)** | TensorRT FP8 Engine (Blackwell Tensor Cores) | $25\text{ms}$ |
-| **ROS 2 Motor Control Execution** | CAN / EtherCAT Bus Controller | $4\text{ms}$ |
-| **Total Closed-Loop Delay** | **Jetson Thor Unified SoC** | **$42\text{ms}$ (< 50ms Limit)** |
+| **Sensor Capture & Pre-Processing** | Jetson Thor Image Signal Processor (ISP) | $5\text{ ms}$ |
+| **Visual SLAM & Stereo Depth** | Isaac ROS Accelerators (NVDEC / CUDA) | $8\text{ ms}$ |
+| **VLA Policy Inference (GR00T)** | TensorRT FP8 Engine (Blackwell Tensor Cores) | $25\text{ ms}$ |
+| **ROS 2 Motor Control Execution** | CAN / EtherCAT Bus Controller | $4\text{ ms}$ |
+| **Total Closed-Loop Delay** | **Jetson Thor Unified SoC** | **$42\text{ ms}$ (< 50ms Limit)** |
 
 ---
 
@@ -349,4 +354,4 @@ NVIDIA's **Physical AI Data Factory (PAIDF)** provides the infrastructure bluepr
 2. **Unified Vision-Language-Action Models**: Project GR00T tokenizes multimodal visual inputs and natural language goal prompts into continuous action sequences, using diffusion action heads to model complex manipulation trajectories.
 3. **Sub-50ms Edge Execution**: Through TensorRT compilation and Isaac ROS acceleration libraries, PAIDF models deploy directly onto Jetson Thor hardware, executing closed-loop perception and motor control under strict real-time control limits.
 
-In **Part 2** of our NVIDIA PAIDF Ecosystem Series, we will inspect **Alpamayo, Isaac, and GR00T**, dissecting their underlying network architectures, joint torque representations, and multi-robot sim-to-real transfer pipelines.
+In **Part 2** of our NVIDIA Physical AI & Robotics Ecosystem Series, we will perform a deep-dive into **NVIDIA Cosmos**, dissecting its world foundation model architecture, physics-conditioned video generation, and continuous latent tokenizers.
