@@ -1,5 +1,5 @@
 ---
-title: "Part 1: Demystifying the NVIDIA Physical AI Data Factory (PAIDF) Stack"
+title: "Part 1: Unpacking the NVIDIA Physical AI Data Factory (PAIDF) Stack"
 date: 2026-08-15
 template: blog
 image: "./cover_image.jpg"
