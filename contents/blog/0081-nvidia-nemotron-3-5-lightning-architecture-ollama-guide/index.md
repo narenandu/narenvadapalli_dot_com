@@ -7,7 +7,7 @@ description: "How NVIDIA's Nemotron 3.5 Lightning achieves 3B active parameter s
 tags: ["ai", "nvidia", "nemotron", "moe", "ollama", "local-llm", "agentic-ai", "architecture"]
 ---
 
-*Series: &larr; [Frontier MoE Deep-Dive: Analyzing Alibaba's Qwen 3.8 Flagship Architecture, Performance, and Token Pricing](/blog/analyzing-alibabas-qwen-3-8-flagship-moe-model/) (Previous)*
+*Series: &larr; [Frontier MoE Deep-Dive: Analyzing Alibaba's Qwen 3.8 Flagship Architecture, Performance, and Token Pricing](/blog/analyzing-alibabas-qwen-3-8-flagship-moe-model/) (Previous) | [Part 1: Demystifying the NVIDIA PAIDF Stack](/blog/demystifying-nvidia-paidf-physical-ai-stack/) (Next) &rarr;*
 
 ### Prior Reading Material
 
