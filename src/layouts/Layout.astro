@@ -88,11 +88,16 @@ const socialLinks = [
           if (typeof renderMathInElement !== 'undefined') {
             clearInterval(checkKaTeX);
 
-            // Heal any Remark <em> / <strong> tag corruption inside $$...$$ display math blocks
-            document.querySelectorAll('p, li, blockquote, div').forEach(function(el) {
-              if (el.innerHTML.includes('$$')) {
+            // Heal any Remark <em> / <strong> tag corruption inside $$...$$ and $...$ math blocks
+            document.querySelectorAll('p, li, blockquote, div, span').forEach(function(el) {
+              if (el.children.length > 0 && (el.innerHTML.includes('$$') || el.innerHTML.includes('$'))) {
+                // Heal display math
                 el.innerHTML = el.innerHTML.replace(/\$\$([\s\S]*?)\$\$/g, function(match, p1) {
                   return '$$' + p1.replace(/<\/?em>/gi, '_').replace(/<\/?strong>/gi, '**') + '$$';
+                });
+                // Heal inline math
+                el.innerHTML = el.innerHTML.replace(/(?<!\$)\$([^\$\n]+)\$(?!\$)/g, function(match, p1) {
+                  return '$' + p1.replace(/<\/?em>/gi, '_').replace(/<\/?strong>/gi, '**') + '$';
                 });
               }
             });
