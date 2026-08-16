@@ -37,7 +37,7 @@ PAIDF treats **compute as training data**, establishing a continuous **Digital T
 | **World Foundation Models** | [NVIDIA Cosmos World Foundation Models](https://www.nvidia.com/en-us/ai/cosmos/) |
 | **Physics & Sensor Simulation** | [NVIDIA Isaac Sim & Omniverse Replicator](https://developer.nvidia.com/isaac/sim) |
 | **Humanoid Foundation Model** | [NVIDIA Project GR00T (VLA)](https://developer.nvidia.com/project-gr00t) |
-| **Edge Compute Platform** | [NVIDIA Jetson Thor (Blackwell Architecture)](https://developer.nvidia.com/embedded/jetson-thor) |
+| **Edge Compute Platform** | [NVIDIA Jetson Thor (Blackwell Architecture)](https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-thor/) |
 | **Real-Time Edge ROS Runtimes** | [NVIDIA Isaac ROS Acceleration Libraries](https://developer.nvidia.com/isaac/ros) |
 
 ---
