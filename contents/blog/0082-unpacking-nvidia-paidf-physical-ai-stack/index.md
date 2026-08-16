@@ -7,7 +7,7 @@ description: "An architectural deep-dive into NVIDIA's Physical AI Data Factory 
 tags: ["ai", "nvidia", "physical-ai", "paidf", "robotics", "isaac-sim", "cosmos", "vla", "architecture"]
 ---
 
-*Series: &larr; [NVIDIA Nemotron 3.5 Lightning Deep-Dive: 30B MoE Architecture, 3B Active Params, and Local Ollama Execution](/blog/nvidia-nemotron-3-5-lightning-architecture-ollama-guide/) (Previous)*
+*Series: &larr; [NVIDIA Nemotron 3.5 Lightning Deep-Dive: 30B MoE Architecture, 3B Active Params, and Local Ollama Execution](/blog/nvidia-nemotron-3-5-lightning-architecture-ollama-guide/) (Previous) | [Part 2: Inside NVIDIA Cosmos: World Foundation Models for Physical Commonsense & Video Trajectories](/blog/inside-nvidia-cosmos-world-foundation-models/) (Next) &rarr;*
 
 ### Prior Reading Material
 
@@ -37,7 +37,7 @@ PAIDF treats **compute as training data**, establishing a continuous **Digital T
 | **World Foundation Models** | [NVIDIA Cosmos World Foundation Models](https://www.nvidia.com/en-us/ai/cosmos/) |
 | **Physics & Sensor Simulation** | [NVIDIA Isaac Sim & Omniverse Replicator](https://developer.nvidia.com/isaac/sim) |
 | **Humanoid Foundation Model** | [NVIDIA Project GR00T (VLA)](https://developer.nvidia.com/project-gr00t) |
-| **Edge Compute Platform** | [NVIDIA Jetson Thor (Blackwell Architecture)](https://developer.nvidia.com/embedded/jetson-thor) |
+| **Edge Compute Platform** | [NVIDIA Jetson Thor (Blackwell Architecture)](https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-thor/) |
 | **Real-Time Edge ROS Runtimes** | [NVIDIA Isaac ROS Acceleration Libraries](https://developer.nvidia.com/isaac/ros) |
 
 ---
