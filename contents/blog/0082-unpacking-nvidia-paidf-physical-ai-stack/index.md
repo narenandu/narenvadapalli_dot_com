@@ -7,7 +7,7 @@ description: "An architectural deep-dive into NVIDIA's Physical AI Data Factory 
 tags: ["ai", "nvidia", "physical-ai", "paidf", "robotics", "isaac-sim", "cosmos", "vla", "architecture"]
 ---
 
-*Series: &larr; [NVIDIA Nemotron 3.5 Lightning Deep-Dive: 30B MoE Architecture, 3B Active Params, and Local Ollama Execution](/blog/nvidia-nemotron-3-5-lightning-architecture-ollama-guide/) (Previous)*
+*Series: &larr; [NVIDIA Nemotron 3.5 Lightning Deep-Dive: 30B MoE Architecture, 3B Active Params, and Local Ollama Execution](/blog/nvidia-nemotron-3-5-lightning-architecture-ollama-guide/) (Previous) | [Part 2: Inside NVIDIA Cosmos: World Foundation Models for Physical Commonsense & Video Trajectories](/blog/inside-nvidia-cosmos-world-foundation-models/) (Next) &rarr;*
 
 ### Prior Reading Material
 
