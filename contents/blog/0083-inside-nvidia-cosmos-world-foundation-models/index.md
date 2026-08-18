@@ -7,7 +7,7 @@ description: "A deep architectural dive into NVIDIA Cosmos world foundation mode
 tags: ["ai", "nvidia", "cosmos", "world-models", "physical-ai", "robotics", "diffusion", "transformers", "architecture"]
 ---
 
-*Series: &larr; [Part 1: Unpacking the NVIDIA Physical AI Data Factory (PAIDF) Stack](/blog/unpacking-nvidia-paidf-physical-ai-stack/) (Previous)*
+*Series: &larr; [Part 1: Unpacking the NVIDIA Physical AI Data Factory (PAIDF) Stack](/blog/unpacking-nvidia-paidf-physical-ai-stack/) (Previous) | [Part 3: Unlocking NVIDIA Omniverse: Architecture, OpenUSD, RTX Rendering, and the Industrial Metaverse Ecosystem](/blog/unlocking-nvidia-omniverse-architecture/) (Next) &rarr;*
 
 ### Prior Reading Material
 
