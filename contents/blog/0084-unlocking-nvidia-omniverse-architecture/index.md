@@ -31,7 +31,10 @@ To eliminate this data silo, NVIDIA built **NVIDIA Omniverse**: an extensible co
 
 | Platform Component | Technical Role & Official Developer Link |
 | :--- | :--- |
-| **Core Platform** | [NVIDIA Omniverse Developer Hub](https://developer.nvidia.com/omniverse) |
+| **Core Platform Hub** | [NVIDIA Omniverse Developer Portal](https://developer.nvidia.com/omniverse) |
+| **Omniverse Libraries** | [Modular Open-Source & Accelerated Libraries](https://developer.nvidia.com/omniverse) (`ovrtx`, `ovstage`, `ovphysics`) |
+| **AI Agent Skills** | [NVIDIA-Verified Agent Skills](https://github.com/NVIDIA/skills) (CAD-to-SimReady, Scene Optimization, Neural Reconstruction) |
+| **Experimental Blueprints** | [NVIDIA Omniverse Labs](https://nvidia-omniverse.github.io/omniverse-labs/) (Reference patterns & physical AI samples) |
 | **Data Standard** | [OpenUSD (Universal Scene Description)](https://openusd.org/) & [Alliance for OpenUSD (AOUSD)](https://aousd.org/) |
 | **Collaboration Engine** | [Omniverse Nucleus Live Synchronization](https://docs.omniverse.nvidia.com/nucleus/latest/index.html) |
 | **Graphics Engine** | [Omniverse RTX Real-Time Ray & Path Tracing Renderer](https://developer.nvidia.com/rtx) |
@@ -258,7 +261,47 @@ if __name__ == "__main__":
 
 ---
 
-## 6. Real-World Industrial Metaverse Ecosystems
+## 6. Omniverse Libraries, Agent Toolkit, and AI Agent Skills
+
+In modern physical AI engineering, Omniverse has evolved beyond a monolithic desktop GUI into a suite of **modular, agent-callable libraries and microservices** integrated into the **NVIDIA Agent Toolkit**.
+
+Rather than requiring developers to load full interactive viewports, software developers and autonomous AI coding agents can embed standalone C++ and Python libraries directly into their existing application runtimes:
+
+### 1. Modular Omniverse Libraries
+- **`ovstage`**: A shared, headless runtime for querying, traversing, and mutating OpenUSD scene graph data with zero graphical overhead.
+- **`ovrtx`**: An accelerated ray-tracing and optical sensor simulation library capable of rendering camera, LiDAR, and radar sensor frustums on demand.
+- **`ovphysics`**: A GPU-vectorized PhysX 5 dynamics engine executing multi-body collision and rigid-body calculations headlessly inside automated CI/CD pipelines.
+
+### 2. NVIDIA-Verified AI Agent Skills
+Through the [NVIDIA Skills Repository](https://github.com/NVIDIA/skills), autonomous AI agents can invoke verified physical AI skills to orchestrate complex 3D asset preparation and simulation workflows:
+
+1. **CAD-to-SimReady Skill**: AI agents inspect raw incoming CAD files (STEP, IGES, JT), repair surface normal defects, generate convex collision hulls, assign physical mass properties and friction materials, and output validated **SimReady OpenUSD** assets.
+2. **Neural Scene Reconstruction Skill**: Agents ingest sparse real-world sensor captures and reconstruct photorealistic, geometrically accurate 3D USD environments for autonomous vehicle and robotics training.
+3. **Scene Optimization & Validation Skill**: Automated agents inspect massive factory-scale USD stages, identify rendering performance bottlenecks (overly dense polygon meshes, uncompressed textures), and apply level-of-detail (LOD) hierarchies automatically.
+
+```mermaid
+flowchart TD
+    A["Autonomous AI Agent / Developer Prompt"] --> B["NVIDIA Agent Toolkit & Skills Router"]
+    B --> C1["CAD-to-SimReady Skill<br/>Converts CAD to physically calibrated OpenUSD"]
+    B --> C2["Scene Optimization Skill<br/>Applies LODs & cleans mesh geometry"]
+    B --> C3["Sensor Simulation Skill (ovrtx)<br/>Generates synthetic LiDAR & RGB streams"]
+    C1 --> D["Headless ovstage USD Runtime"]
+    C2 --> D
+    C3 --> D
+    D --> E["Simulation-Ready Physical Twin (SimReady USD)"]
+
+    style A fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
+    style B fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
+    style C1 fill:#1e293b,stroke:#38bdf8,stroke-width:2px,color:#ffffff
+    style C2 fill:#1e293b,stroke:#38bdf8,stroke-width:2px,color:#ffffff
+    style C3 fill:#1e293b,stroke:#38bdf8,stroke-width:2px,color:#ffffff
+    style D fill:#0f172a,stroke:#a855f7,stroke-width:2px,color:#ffffff
+    style E fill:#0f2b1d,stroke:#10b981,stroke-width:2px,color:#ffffff
+```
+
+---
+
+## 7. Real-World Industrial Metaverse Ecosystems
 
 Omniverse powers factory-scale digital twins across leading global enterprises:
 
@@ -268,12 +311,13 @@ Omniverse powers factory-scale digital twins across leading global enterprises:
 
 ---
 
-## 7. Summary & Architectural Takeaways
+## 8. Summary & Architectural Takeaways
 
 NVIDIA **Omniverse** serves as the foundational operating layer for the industrial metaverse and physical AI:
 
 1. **OpenUSD Data Standardization**: By leveraging OpenUSD as the universal 3D scene representation, Omniverse eliminates file conversion bottlenecks, enabling non-destructive layering across multi-software engineering pipelines.
 2. **Nucleus Real-Time Synchronization**: The Nucleus pub/sub delta engine enables synchronized multi-user collaboration across globally distributed teams with minimal network overhead.
-3. **Physically Accurate Compute**: Combining hardware-accelerated RTX path tracing with GPU-parallelized PhysX 5 dynamics provides the exact physical ground-truth required for synthetic data generation.
+3. **Agent-Callable Modular Libraries**: With `ovstage`, `ovrtx`, and AI Agent Skills (CAD-to-SimReady), Omniverse enables autonomous AI agents to automate 3D scene assembly and physical simulation pipelines programmatically.
+4. **Physically Accurate Compute**: Combining hardware-accelerated RTX path tracing with GPU-parallelized PhysX 5 dynamics provides the exact physical ground-truth required for synthetic data generation.
 
 In **Part 4** of our series, we will build directly on Omniverse to explore **NVIDIA Isaac Sim & Omniverse Replicator**, detailing GPU physics dynamics, synthetic sensor pipelines, and automated domain randomization.
