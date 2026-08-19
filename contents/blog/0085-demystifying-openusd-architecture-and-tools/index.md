@@ -120,6 +120,8 @@ Inside `usdview`:
 - **Hydra Render Delegate Switcher**: Switch between OpenGL Storm (`HdStorm`) and ray-tracing delegates.
 - **Embedded Python Interpreter**: Press `Ctrl + \`` (or `Cmd + \``) to open an in-process interactive Python terminal targeting the live stage (`usdviewApi.stage`).
 
+![Pixar usdview Interactive Interface](./usdview_screenshot.jpeg)
+
 ### 4.2 NVIDIA Omniverse Viewers & CAD-to-SimReady Pipelines
 For photorealistic RTX path tracing and physical simulation validation:
 1. **Omniverse USD Composer**: A full-featured spatial development application supporting physics inspection, lighting adjustment, and live-sync multi-user sessions.
