@@ -38,7 +38,8 @@ To solve both bottlenecks, NVIDIA developed **Isaac Sim** (powered by Omniverse 
 | **Synthetic Data Engine** | [NVIDIA Omniverse Replicator](https://developer.nvidia.com/omniverse/replicator) |
 | **GPU Physics Engine** | [NVIDIA PhysX 5](https://github.com/NVIDIAGameWorks/PhysX) (GPU rigid bodies, deformables, cloth, fluids) |
 | **Reinforcement Learning** | [Isaac Lab / Isaac Gym](https://isaac-sim.github.io/IsaacLab/) (Massively parallel GPU-vectorized RL environments) |
-| **Sim2Real Transfer Research** | [NVIDIA Sim2Real Developer Deep-Dives](https://developer.nvidia.com/blog/tag/sim2real/) & [GPU-Accelerated TriFinger Dexterous Transfer](https://developer.nvidia.com/blog/transferring-dexterous-manipulation-from-gpu-simulation-to-a-remote-real-world-trifinger-task/) |
+| **Robotics Sim2Real Research** | [NVIDIA Sim2Real Developer Deep-Dives](https://developer.nvidia.com/blog/tag/sim2real/) & [GPU-Accelerated TriFinger Dexterous Transfer](https://developer.nvidia.com/blog/transferring-dexterous-manipulation-from-gpu-simulation-to-a-remote-real-world-trifinger-task/) |
+| **Autonomous Vehicle Sim2Real** | [Sim2Real-AD: VLM-Guided RL for Real-World Autonomous Driving](https://arxiv.org/abs/2604.03497) (Zero-shot physical vehicle deployment) |
 | **ROS Integration** | [Isaac ROS & ROS 2 Bridge](https://developer.nvidia.com/isaac/ros) (Zero-copy NITROS transport) |
 | **Containerized Deployment** | [NGC Isaac Sim Container](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/isaac-sim) (`nvcr.io/nvidia/isaac-sim:...`) |
 
@@ -106,10 +107,18 @@ As documented in [NVIDIA Developer Sim2Real Research](https://developer.nvidia.c
 | **Domain Randomization (DR)** | Deliberately perturbing simulator physics and optics across wide distributions $P(\Xi)$ so real-world parameters become an in-distribution interpolation. | Generalist humanoid locomotion, bin-picking, and dexterous manipulation. | Overly wide randomization can yield conservative, sub-optimal policies. |
 | **Domain Adaptation & Sim2Real GANs** | Using neural translation networks (CycleGAN, contrastive feature alignment) to map real sensor observations into the simulation domain (or vice-versa). | Optical camera perception and semantic segmentation pipelines. | High computational overhead; susceptible to hallucinated visual features. |
 
-### Case Study: High-Throughput Sim2Real on TriFinger Dexterous Manipulation
+### Case Study 1: High-Throughput Sim2Real on TriFinger Dexterous Manipulation
 In landmark NVIDIA research ([Transferring Dexterous Manipulation from GPU Simulation to Remote TriFinger Hardware](https://developer.nvidia.com/blog/transferring-dexterous-manipulation-from-gpu-simulation-to-a-remote-real-world-trifinger-task/)), researchers trained a dexterous cube-manipulation policy in Isaac Gym across thousands of parallel environments collecting over **100,000 samples per second** on a single GPU.
 
 By applying comprehensive domain randomization across both **environment dynamics** (friction, mass, joint damping) and **proprioceptive observation noise** (delay buffers, encoder jitter), the policy transferred directly to physical robotic hands in a zero-shot fashion, winning 1st place in the Real Robot Challenge.
+
+### Case Study 2: Autonomous Driving Sim2Real (Sim2Real-AD)
+The principles of Sim2Real extend far beyond stationary robotic arms and humanoids to safety-critical **Autonomous Vehicles (AVs)**. In recent landmark research ([Sim2Real-AD: A Modular Sim-to-Real Framework for Deploying VLM-Guided Reinforcement Learning in Real-World Autonomous Driving](https://arxiv.org/abs/2604.03497)), researchers demonstrated how simulation-trained reinforcement learning policies transfer zero-shot onto full-scale physical vehicles (Ford E-Transit).
+
+Sim2Real for autonomous driving decomposes the transfer challenge into modular architectural bridges:
+1. **Geometric Observation Bridge (GOB)**: Transforms monocular front-view camera streams into simulator-compatible Bird's-Eye-View (BEV) representations, insulating the driving policy from photorealistic domain shifts.
+2. **Physics-Aware Action Mapping (PAM)**: Translates normalized simulation throttle/steering actions into platform-agnostic longitudinal and lateral physical vehicle dynamics (accounting for tire slip, vehicle inertia, and actuator lag).
+3. **Two-Phase Progressive Training (TPT)**: Decouples observation-space domain randomization from action-space control stabilization, achieving over **90% car-following** and **80% obstacle avoidance** success rates on physical streets without a single real-world training crash.
 
 ```mermaid
 flowchart TD
@@ -117,9 +126,11 @@ flowchart TD
     B --> C["Sim2Real Perturbation Engine"]
     C --> C1["Physical Dynamics Randomization<br/>Mass m ~ N(m0, σ²), Friction μ ~ U(0.1, 1.5), Motor Damping"]
     C --> C2["Perceptual & Sensor Noise Injection<br/>Camera Latency (10-50ms), Jitter, Motion Blur"]
-    C1 --> D["Vectorized Policy Optimization (PPO / VLA Decoders)"]
+    C1 --> D["Vectorized Policy Optimization (PPO / VLA / VLM-RL)"]
     C2 --> D
-    D --> E["Zero-Shot Sim-to-Real Hardware Deployment<br/>Physical TriFinger / Humanoid / Autonomous Mobile Robot"]
+    D --> E["Zero-Shot Sim-to-Real Hardware Deployment"]
+    E --> E1["Robotics: Physical TriFinger & Humanoids"]
+    E --> E2["Autonomous Vehicles: Full-Scale Drive by Wire"]
 
     style A fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
     style B fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
@@ -128,6 +139,8 @@ flowchart TD
     style C2 fill:#1e293b,stroke:#38bdf8,stroke-width:2px,color:#ffffff
     style D fill:#0f172a,stroke:#a855f7,stroke-width:2px,color:#ffffff
     style E fill:#0f2b1d,stroke:#10b981,stroke-width:2px,color:#ffffff
+    style E1 fill:#0f2b1d,stroke:#10b981,stroke-width:2px,color:#ffffff
+    style E2 fill:#0f2b1d,stroke:#10b981,stroke-width:2px,color:#ffffff
 ```
 
 ---
