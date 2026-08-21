@@ -38,7 +38,7 @@ To overcome this, NVIDIA introduced **Project GR00T** (Generalist Robot 00 Techn
 | Component | Technical Role & Official Developer Link |
 | :--- | :--- |
 | **Foundation Model Hub** | [NVIDIA Project GR00T Humanoid Model](https://developer.nvidia.com/project-gr00t) |
-| **Physical AI Architecture** | [NVIDIA Embodied AI & Humanoid Ecosystem](https://www.nvidia.com/en-us/robotics/) |
+| **Physical AI Architecture** | [NVIDIA Embodied AI & Humanoid Ecosystem](https://www.nvidia.com/en-us/industries/robotics/) |
 | **Simulation & Imitation** | [NVIDIA Isaac Lab Teleoperation & Demonstration Tools](https://isaac-sim.github.io/IsaacLab/) |
 | **Edge Hardware Target** | [NVIDIA Jetson Thor (Blackwell Architecture)](https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-thor/) |
 | **Real-Time Edge Runtime** | [NVIDIA Isaac ROS Acceleration](https://developer.nvidia.com/isaac/ros) |
