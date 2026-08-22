@@ -28,7 +28,8 @@ Before exploring in-vehicle foundation models and autonomous drive actuation, in
 
 | Specification / Dimension | Details & Technical Parameters |
 | :--- | :--- |
-| **System-on-Chip (SoC)** | [NVIDIA DRIVE Thor](https://www.nvidia.com/en-us/autonomous-machines/drive-thor/) (Centralized Blackwell Automotive SoC) |
+| **System-on-Chip (SoC)** | [NVIDIA DRIVE Thor / AGX](https://developer.nvidia.com/drive/agx) (Centralized Blackwell Automotive SoC) |
+| **Reference Architecture** | [NVIDIA DRIVE Hyperion Platform](https://www.nvidia.com/en-us/solutions/autonomous-vehicles/in-vehicle-computing/) ([Global Robotaxi Reference Suite](https://nvidianews.nvidia.com/news/nvidia-drive-hyperion-becomes-the-global-platform-for-a-robotaxi-ready-world)) |
 | **Compute Performance** | 1,000 to 2,000 TFLOPS (FP8 / FP4 Tensor Cores with Gen 5 NVLink-C2C) |
 | **Foundation Model Stack** | **Alpamayo Foundation Models** (End-to-End Multimodal Vision-World-Trajectory Transformer) |
 | **Perception Paradigm** | Surround-View 360° Multi-Camera Bird's-Eye-View (BEV) Transformer Fusion + Deformable Cross-Attention |
@@ -206,7 +207,16 @@ flowchart TD
    - **Fail-Operational**: If one camera or compute cluster experiences a degraded frame rate, the system seamlessly transitions to backup radar/camera streams without stopping the car.
    - **Fail-Safe**: If the primary neural model outputs a trajectory that breaches physical clearance invariants, the independent ASIL-D Safety Island overrides the planner and executes a smooth, deterministic lane-centering stop.
 
+### NVIDIA DRIVE Hyperion: The Robotaxi-Ready Sensor & In-Vehicle Compute Platform
+
+To transition autonomous architectures from prototype rigs to mass-manufactured commercial fleets, NVIDIA developed the [DRIVE Hyperion Platform](https://www.nvidia.com/en-us/solutions/autonomous-vehicles/in-vehicle-computing/) as a production-grade, [globally standardized reference architecture](https://nvidianews.nvidia.com/news/nvidia-drive-hyperion-becomes-the-global-platform-for-a-robotaxi-ready-world):
+
+* **Standardized 360° Sensor Suite**: Integrates 12 exterior cameras, 9 millimeter-wave radars, 1 front/roof solid-state LiDAR, and 12 ultrasonic sensors into a unified, time-synchronized hardware topology.
+* **Dual-SoC Redundant Compute**: Pairs dual centralized DRIVE Thor / Orin computing modules with isolated power supplies and CAN/Ethernet networks to eliminate single-point hardware failures.
+* **Safety-Certified Data Pipelines**: Standardizes sensor data deserialization (GMSL2 / FPD-Link), camera calibration protocols, and real-time sensor ingestion directly into the Alpamayo BEV transformer models.
+
 ---
+
 
 ## 5. Engineering Deep-Dive: Mathematical Formulations
 
