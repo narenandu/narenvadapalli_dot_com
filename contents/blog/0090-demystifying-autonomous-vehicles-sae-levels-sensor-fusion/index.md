@@ -169,18 +169,20 @@ No single sensor is sufficient for safety-critical autonomous mobility. Each mod
 
 ```mermaid
 flowchart TD
-    subgraph Modalities["Multimodal Sensor Complementarity Matrix"]
+    subgraph SensorSuite["Multimodal 360° Sensor Ingestion Topology"]
         direction TB
-        C1["Camera: Rich Semantic Color, Lane Markings & Sign OCR"]
-        R1["Radar: Direct Doppler Velocity & Robust Rain/Fog Penetration"]
-        L1["LiDAR: Millimeter 3D Spatial Geometry & Depth Invariance"]
-        U1["Ultrasonic: Short-Range Parking Proximity Detections (< 3m)"]
+        C1["1. Optical Cameras (400-700 nm)<br/>• Rich semantic RGB color, traffic signals & lane marking OCR<br/>• High angular resolution; vulnerable to glare and dense fog"]
+        C1 --> R1["2. 77 GHz Millimeter-Wave Radar<br/>• Direct radial Doppler velocity measurement<br/>• Robust penetration through heavy rain, snow, mist & night darkness"]
+        R1 --> L1["3. 3D Time-of-Flight LiDAR (905 / 1550 nm)<br/>• Millimeter-accurate 3D point clouds & geometric occupancy<br/>• Complete day/night lighting invariance"]
+        L1 --> U1["4. Ultrasonic Transducers<br/>• Short-range proximity detection (< 3m) for tight parking maneuvers"]
+        U1 --> F1["Centralized Multi-Sensor Kalman & BEV Transformer Fusion Engine"]
     end
-    style Modalities fill:#0f172a,stroke:#00e5ff,stroke-width:2px,color:#ffffff
+    style SensorSuite fill:#0f172a,stroke:#00e5ff,stroke-width:2px,color:#ffffff
     style C1 fill:#0d2b45,stroke:#00e5ff,stroke-width:1px,color:#ffffff
     style R1 fill:#1e1b4b,stroke:#818cf8,stroke-width:1px,color:#ffffff
     style L1 fill:#1a3d3c,stroke:#10b981,stroke-width:1px,color:#ffffff
-    style U1 fill:#0f382c,stroke:#10b981,stroke-width:1px,color:#ffffff
+    style U1 fill:#1e293b,stroke:#f59e0b,stroke-width:1px,color:#ffffff
+    style F1 fill:#0f382c,stroke:#10b981,stroke-width:2px,color:#ffffff
 ```
 
 ### Sensor Physics Comparison
