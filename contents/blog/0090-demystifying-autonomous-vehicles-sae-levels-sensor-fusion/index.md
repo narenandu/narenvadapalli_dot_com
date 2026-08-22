@@ -31,7 +31,7 @@ Before exploring autonomous vehicle foundations and multi-sensor fusion paradigm
 | :--- | :--- | :--- |
 | **1. Training Computer** | [NVIDIA DGX Platform](https://www.nvidia.com/en-us/data-center/dgx-platform/) | Large-scale foundation model pre-training, [Cosmos Curate](https://github.com/nvidia-cosmos/cosmos-curate) fleet data indexing, and [Alpamayo VLA model](https://www.nvidia.com/en-us/solutions/autonomous-vehicles/alpamayo/) training. |
 | **2. Simulation Computer** | [NVIDIA Omniverse on RTX PRO Servers](https://www.nvidia.com/en-us/solutions/autonomous-vehicles/simulation/) | [NuRec neural reconstruction](https://www.nvidia.com/en-us/omniverse/), generative edge-case world rollouts, and [AlpaSim closed-loop benchmarking](https://www.nvidia.com/en-us/solutions/autonomous-vehicles/simulation/). |
-| **3. In-Vehicle Computer** | [NVIDIA DRIVE AGX / DRIVE Thor](https://developer.nvidia.com/drive/agx) | Real-time 360° sensor ingestion, [DRIVE Hyperion platform](https://www.nvidia.com/en-us/solutions/autonomous-vehicles/in-vehicle-computing/), BEV transformer fusion, and ASIL-D safety arbitration. |
+| **3. In-Vehicle Computer** | [NVIDIA DRIVE AGX / DRIVE Thor](https://developer.nvidia.com/drive/agx) | Real-time 360° sensor ingestion, [DRIVE Hyperion platform](https://www.nvidia.com/en-us/solutions/autonomous-vehicles/drive-hyperion/), BEV transformer fusion, and ASIL-D safety arbitration. |
 
 ---
 
@@ -125,7 +125,7 @@ flowchart TD
 
 1. **Training Computer (NVIDIA DGX)**: The supercomputer brain in the cloud where petabytes of real-world fleet data are filtered by **Cosmos Curate**, indexing rare edge cases (e.g., a mattress falling off a truck) and training multi-billion parameter foundation models.
 2. **Simulation Computer (NVIDIA Omniverse on RTX PRO)**: The virtual proving ground where **Omniverse NuRec** reconstructs real routes into photorealistic digital twins, while **Cosmos** injects hazardous weather variations to stress-test driving policies across billions of virtual miles in **AlpaSim**.
-3. **In-Vehicle Computer (NVIDIA DRIVE Thor / Hyperion)**: The edge supercomputer inside the car, running neural perception and ASIL-D safety sentinels with sub-25ms latency.
+3. **In-Vehicle Computer (NVIDIA DRIVE Thor & [DRIVE Hyperion](https://www.nvidia.com/en-us/solutions/autonomous-vehicles/drive-hyperion/))**: The production-ready reference architecture integrating standardized 360° sensor suites (exterior cameras, radars, LiDARs, ultrasonics) and redundant compute into an ISO 26262 ASIL-D certified platform. Combined with [NVIDIA Halos](https://www.nvidia.com/en-us/ai-trust-center/halos/autonomous-vehicles/) safety validation, it executes real-time neural perception and emergency fallback actuation in under 25 milliseconds.
 
 ---
 
