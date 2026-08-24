@@ -40,7 +40,16 @@ const formattedDate = post.data.date
           <a href="/">Home</a> / <a href="/blog">Blog</a> / <span class="active">{post.data.title}</span>
         </div>
         <h1>{post.data.title}</h1>
-        {formattedDate && <div class="blog-date">{formattedDate}</div>}
+        <div class="blog-meta-bar">
+          {formattedDate && <span class="blog-date">{formattedDate}</span>}
+          {post.data.tags && post.data.tags.length > 0 && (
+            <div class="blog-tags">
+              {post.data.tags.map(tag => (
+                <a href={`/blog?tag=${encodeURIComponent(tag)}`} class="card-badge tag-link">{tag}</a>
+              ))}
+            </div>
+          )}
+        </div>
         {post.data.description && <p class="blog-description">{post.data.description}</p>}
       </div>
     </div>
@@ -72,6 +81,16 @@ const formattedDate = post.data.date
         )}
         
         <div class="blog-footer">
+          {post.data.tags && post.data.tags.length > 0 && (
+            <div class="blog-footer-tags">
+              <span class="tags-label">Tags:</span>
+              <div class="blog-tags">
+                {post.data.tags.map(tag => (
+                  <a href={`/blog?tag=${encodeURIComponent(tag)}`} class="card-badge tag-link">{tag}</a>
+                ))}
+              </div>
+            </div>
+          )}
           <a href="/blog" class="btn btn-secondary">
             &larr; Back to Blog
           </a>
@@ -112,14 +131,52 @@ const formattedDate = post.data.date
     color: var(--text-primary);
   }
   
+  .blog-meta-bar {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
   .blog-date {
     font-family: var(--font-display);
     color: var(--teal-accent);
     font-weight: 500;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0;
     font-size: 1rem;
   }
-  
+
+  .blog-tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .card-badge.tag-link {
+    background: rgba(139, 92, 246, 0.15);
+    color: var(--accent-color);
+    padding: 0.25rem 0.65rem;
+    border-radius: 20px;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    font-weight: 600;
+    font-size: 0.8rem;
+    font-family: var(--font-display), sans-serif;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .card-badge.tag-link:hover {
+    background: var(--accent-color);
+    color: #ffffff;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
+    transform: translateY(-1px);
+  }
+
   .blog-description {
     font-size: 1.2rem;
     color: var(--text-secondary);
@@ -156,11 +213,32 @@ const formattedDate = post.data.date
     background: rgba(17, 21, 32, 0.7);
     border: 1px solid var(--glass-border);
   }
-  
+
   .blog-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
     margin-top: 3rem;
     padding-top: 2rem;
     border-top: 1px solid var(--border-color);
+  }
+
+  .blog-footer-tags {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .tags-label {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
   
   /* Markdown Specific overrides */
