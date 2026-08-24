@@ -205,8 +205,6 @@ const allTags = Array.from(
 
             var filterStatus = document.getElementById('filterStatus');
             var activeFiltersList = document.getElementById('activeFiltersList');
-            var clearFilterBtn = document.getElementById('clearFilterBtn');
-            var blogGrid = document.querySelector('.blog-grid');
             var cards = Array.from(document.querySelectorAll('.blog-list-card'));
             
             var yearFilter = document.getElementById('yearFilter');
@@ -427,11 +425,16 @@ const allTags = Array.from(
               }
             }
 
-            // Delegated click handler for Pagination
-            function handlePaginationClick(e) {
+            // Global Click Delegation
+            document.addEventListener('click', function(e) {
               var target = e.target;
+              if (!target) return;
+
+              // 1. Page Number button
               var pageBtn = target.closest('.page-number-btn');
               if (pageBtn) {
+                e.preventDefault();
+                e.stopPropagation();
                 var page = parseInt(pageBtn.getAttribute('data-page'), 10);
                 if (!isNaN(page)) {
                   goToPage(page);
@@ -439,40 +442,62 @@ const allTags = Array.from(
                 return;
               }
 
-              if (target.closest('#prevPageBtn') || target.closest('#prevPageBtnTop')) {
+              // 2. Previous page buttons
+              var prevBtn = target.closest('#prevPageBtn, #prevPageBtnTop');
+              if (prevBtn) {
+                e.preventDefault();
+                e.stopPropagation();
                 goToPage(currentPage - 1);
                 return;
               }
 
-              if (target.closest('#nextPageBtn') || target.closest('#nextPageBtnTop')) {
+              // 3. Next page buttons
+              var nextBtn = target.closest('#nextPageBtn, #nextPageBtnTop');
+              if (nextBtn) {
+                e.preventDefault();
+                e.stopPropagation();
                 goToPage(currentPage + 1);
                 return;
               }
-            }
 
-            if (paginationContainer) {
-              paginationContainer.addEventListener('click', handlePaginationClick);
-            }
-            if (paginationContainerTop) {
-              paginationContainerTop.addEventListener('click', handlePaginationClick);
-            }
+              // 4. Tag badges on cards
+              var tagBtn = target.closest('.tag-button');
+              if (tagBtn) {
+                e.preventDefault();
+                e.stopPropagation();
+                var tag = tagBtn.getAttribute('data-tag');
+                var nextTag = (activeTag && tag && activeTag.toLowerCase() === tag.toLowerCase()) ? null : tag;
+                setFilterState(nextTag, activeYear, activeMonth !== null ? activeMonth.toString() : null);
+                var container = document.querySelector('.blog-list-container');
+                if (container) container.scrollIntoView({ behavior: 'smooth' });
+                return;
+              }
 
-            // Delegated click handler for tag buttons in the card grid
-            if (blogGrid) {
-              blogGrid.addEventListener('click', function(e) {
-                var tagBtn = e.target.closest('.tag-button');
-                if (tagBtn) {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  var tag = tagBtn.getAttribute('data-tag');
-                  var nextTag = (activeTag && tag && activeTag.toLowerCase() === tag.toLowerCase()) ? null : tag;
-                  setFilterState(nextTag, activeYear, activeMonth !== null ? activeMonth.toString() : null);
-                  var container = document.querySelector('.blog-list-container');
-                  if (container) container.scrollIntoView({ behavior: 'smooth' });
+              // 5. Individual clear filter pills
+              var pillBtn = target.closest('.pill-clear-btn');
+              if (pillBtn) {
+                e.preventDefault();
+                e.stopPropagation();
+                var filterType = pillBtn.getAttribute('data-type');
+                if (filterType === 'tag') {
+                  setFilterState(null, activeYear, activeMonth !== null ? activeMonth.toString() : null);
+                } else if (filterType === 'date') {
+                  setFilterState(activeTag, null, null);
                 }
-              });
-            }
+                return;
+              }
 
+              // 6. Clear all button
+              var clearBtn = target.closest('#clearFilterBtn');
+              if (clearBtn) {
+                e.preventDefault();
+                e.stopPropagation();
+                setFilterState(null, null, null);
+                return;
+              }
+            });
+
+            // Date select change listeners
             if (yearFilter) {
               yearFilter.addEventListener('change', function() {
                 var yearVal = yearFilter.value;
@@ -492,26 +517,6 @@ const allTags = Array.from(
                 } else {
                   setFilterState(activeTag, activeYear, monthVal);
                 }
-              });
-            }
-
-            if (filterStatus) {
-              filterStatus.addEventListener('click', function(e) {
-                var pillBtn = e.target.closest('.pill-clear-btn');
-                if (pillBtn) {
-                  var filterType = pillBtn.getAttribute('data-type');
-                  if (filterType === 'tag') {
-                    setFilterState(null, activeYear, activeMonth !== null ? activeMonth.toString() : null);
-                  } else if (filterType === 'date') {
-                    setFilterState(activeTag, null, null);
-                  }
-                }
-              });
-            }
-
-            if (clearFilterBtn) {
-              clearFilterBtn.addEventListener('click', function() {
-                setFilterState(null, null, null);
               });
             }
 
