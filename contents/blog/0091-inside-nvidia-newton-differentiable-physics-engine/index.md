@@ -1,6 +1,6 @@
 ---
 title: "Part 10: Inside NVIDIA Newton: Open-Source Differentiable Physics for Generalist Robotics"
-date: 2026-08-25
+date: 2026-08-24
 template: blog
 image: "./cover_image.jpg"
 description: "Explore NVIDIA Newton, the open-source differentiable physics engine co-developed with Google DeepMind and Disney Research for robot learning."
