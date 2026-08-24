@@ -1,6 +1,6 @@
 ---
 title: "Part 8: Silicon at the Edge: NVIDIA Jetson Thor Architecture & Isaac ROS Acceleration"
-date: 2026-08-23
+date: 2026-08-22
 template: blog
 image: "./cover_image.jpg"
 description: "Explore NVIDIA Jetson Thor edge computing, Blackwell 800 TFLOPS architecture, NITROS zero-copy IPC, and Isaac ROS sub-50ms humanoid reflexes."
