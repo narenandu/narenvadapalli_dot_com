@@ -195,6 +195,9 @@ const allTags = Array.from(
       <script is:inline>
         (function() {
           function initBlogFilters() {
+            if (window.__blogFiltersInitialized) return;
+            window.__blogFiltersInitialized = true;
+
             var ITEMS_PER_PAGE = 10;
             var currentPage = 1;
             var activeTag = null;
@@ -370,36 +373,61 @@ const allTags = Array.from(
                       btn.className = 'page-number-btn' + (i === currentPage ? ' active-page' : '');
                       btn.setAttribute('data-page', i.toString());
                       btn.textContent = i.toString();
+                      btn.onclick = (function(p) {
+                        return function(e) {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          goToPage(p);
+                        };
+                      })(i);
                       container.appendChild(btn);
                     }
                   }
                 });
+
+                if (prevPageBtn) {
+                  prevPageBtn.onclick = function(e) { e.preventDefault(); e.stopPropagation(); goToPage(currentPage - 1); };
+                }
+                if (prevPageBtnTop) {
+                  prevPageBtnTop.onclick = function(e) { e.preventDefault(); e.stopPropagation(); goToPage(currentPage - 1); };
+                }
+                if (nextPageBtn) {
+                  nextPageBtn.onclick = function(e) { e.preventDefault(); e.stopPropagation(); goToPage(currentPage + 1); };
+                }
+                if (nextPageBtnTop) {
+                  nextPageBtnTop.onclick = function(e) { e.preventDefault(); e.stopPropagation(); goToPage(currentPage + 1); };
+                }
               }
             }
 
             function updateURL() {
-              var url = new URL(window.location.href);
-              if (activeTag) {
-                url.searchParams.set('tag', activeTag);
-              } else {
-                url.searchParams.delete('tag');
+              try {
+                if (window.location.protocol === 'file:') return;
+                var url = new URL(window.location.href);
+                if (activeTag) {
+                  url.searchParams.set('tag', activeTag);
+                } else {
+                  url.searchParams.delete('tag');
+                }
+                if (activeYear) {
+                  url.searchParams.set('year', activeYear);
+                } else {
+                  url.searchParams.delete('year');
+                }
+                if (activeMonth !== null) {
+                  url.searchParams.set('month', activeMonth.toString());
+                } else {
+                  url.searchParams.delete('month');
+                }
+                if (currentPage > 1) {
+                  url.searchParams.set('page', currentPage.toString());
+                } else {
+                  url.searchParams.delete('page');
+                }
+                window.history.pushState({}, '', url.toString());
+              } catch (e) {
+                // Ignore history update errors in local file preview environments
               }
-              if (activeYear) {
-                url.searchParams.set('year', activeYear);
-              } else {
-                url.searchParams.delete('year');
-              }
-              if (activeMonth !== null) {
-                url.searchParams.set('month', activeMonth.toString());
-              } else {
-                url.searchParams.delete('month');
-              }
-              if (currentPage > 1) {
-                url.searchParams.set('page', currentPage.toString());
-              } else {
-                url.searchParams.delete('page');
-              }
-              window.history.pushState({}, '', url.toString());
             }
 
             function setFilterState(tag, year, month) {
@@ -424,6 +452,13 @@ const allTags = Array.from(
                 }
               }
             }
+
+            window.blogFilter = {
+              goToPage: goToPage,
+              setFilterState: setFilterState,
+              updateView: updateView,
+              loadFromURL: loadFromURL
+            };
 
             // Global Click Delegation
             document.addEventListener('click', function(e) {
@@ -540,11 +575,14 @@ const allTags = Array.from(
             loadFromURL();
           }
 
-          if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initBlogFilters);
-          } else {
+          if (document.readyState === 'interactive' || document.readyState === 'complete') {
             initBlogFilters();
+          } else {
+            document.addEventListener('DOMContentLoaded', initBlogFilters);
+            setTimeout(initBlogFilters, 20);
           }
+          // Direct execution since all DOM nodes precede this inline script
+          initBlogFilters();
         })();
       </script>
     </div>
