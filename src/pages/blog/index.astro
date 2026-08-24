@@ -299,6 +299,17 @@ const allTags = Array.from(
     border-radius: 20px;
     border: 1px solid rgba(139, 92, 246, 0.3);
     font-weight: 600;
+    font-size: 0.75rem;
+    font-family: var(--font-display), sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .card-badge:hover {
+    background: rgba(139, 92, 246, 0.35);
+    border-color: var(--accent-color);
+    color: #ffffff;
+    transform: translateY(-1px);
   }
 
   .blog-list-card h2 {
@@ -453,9 +464,10 @@ const allTags = Array.from(
 
   /* Active tag button styling */
   .tag-button.active-tag {
-    background: var(--accent-color);
-    color: var(--bg-primary);
-    border-color: var(--accent-color);
+    background: var(--accent-color) !important;
+    color: #ffffff !important;
+    border-color: var(--accent-color) !important;
+    box-shadow: 0 0 12px rgba(139, 92, 246, 0.45);
   }
 
   /* Calendar Filter Container (Snug & Centered) */
@@ -732,7 +744,7 @@ const allTags = Array.from(
       if (activeTag) {
         const tagPill = document.createElement('span');
         tagPill.className = 'filter-pill';
-        tagPill.innerHTML = `Tag: #${activeTag} <button class="pill-clear-btn" data-type="tag" aria-label="Clear tag filter">&times;</button>`;
+        tagPill.innerHTML = `Tag: #${activeTag} (${matchingCards.length} ${matchingCards.length === 1 ? 'post' : 'posts'}) <button class="pill-clear-btn" data-type="tag" aria-label="Clear tag filter">&times;</button>`;
         activeFiltersList.appendChild(tagPill);
       }
       
@@ -740,7 +752,7 @@ const allTags = Array.from(
         const datePill = document.createElement('span');
         datePill.className = 'filter-pill';
         const dateDesc = activeMonth !== null ? `${MONTH_NAMES[activeMonth]} ${activeYear}` : activeYear;
-        datePill.innerHTML = `Date: ${dateDesc} <button class="pill-clear-btn" data-type="date" aria-label="Clear date filter">&times;</button>`;
+        datePill.innerHTML = `Date: ${dateDesc} (${matchingCards.length} ${matchingCards.length === 1 ? 'post' : 'posts'}) <button class="pill-clear-btn" data-type="date" aria-label="Clear date filter">&times;</button>`;
         activeFiltersList.appendChild(datePill);
       }
     }
@@ -751,7 +763,17 @@ const allTags = Array.from(
       if (filterStatus) filterStatus.style.display = 'none';
     }
 
-    // 6. Update Pagination UI
+    // 6. Update Tag Buttons Active Highlight
+    tagButtons.forEach(btn => {
+      const tag = btn.getAttribute('data-tag');
+      if (activeTag && tag && tag.toLowerCase() === activeTag.toLowerCase()) {
+        btn.classList.add('active-tag');
+      } else {
+        btn.classList.remove('active-tag');
+      }
+    });
+
+    // 7. Update Pagination UI
     if (totalPages <= 1) {
       if (paginationContainer) paginationContainer.style.display = 'none';
       if (paginationContainerTop) paginationContainerTop.style.display = 'none';
@@ -832,7 +854,9 @@ const allTags = Array.from(
       e.preventDefault();
       e.stopPropagation();
       const tag = btn.getAttribute('data-tag');
-      setFilterState(tag, activeYear, activeMonth !== null ? activeMonth.toString() : null);
+      // Toggle off if already active, otherwise activate
+      const nextTag = (activeTag && tag && activeTag.toLowerCase() === tag.toLowerCase()) ? null : tag;
+      setFilterState(nextTag, activeYear, activeMonth !== null ? activeMonth.toString() : null);
       const container = document.querySelector('.blog-list-container');
       if (container) container.scrollIntoView({ behavior: 'smooth' });
     });
