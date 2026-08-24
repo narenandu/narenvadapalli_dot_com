@@ -1,6 +1,6 @@
 ---
 title: "Part 9: Demystifying Autonomous Vehicles: The 3-Computer Architecture, SAE Autonomy Levels, and the Sensor Fusion Triad"
-date: 2026-08-24
+date: 2026-08-23
 template: blog
 image: "./cover_image.jpg"
 description: "Explore the 3-computer AV architecture, SAE Levels 0 to 5, the Perception-Planning-Control triad, and multimodal Camera-Radar-LiDAR sensor fusion."
