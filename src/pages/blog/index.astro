@@ -206,35 +206,27 @@ const allTags = Array.from(
             var filterStatus = document.getElementById('filterStatus');
             var activeFiltersList = document.getElementById('activeFiltersList');
             var clearFilterBtn = document.getElementById('clearFilterBtn');
+            var blogGrid = document.querySelector('.blog-grid');
             var cards = Array.from(document.querySelectorAll('.blog-list-card'));
             
-            // Tag badges inside cards
-            var tagButtons = document.querySelectorAll('.tag-button');
-            
-            // Date selects
             var yearFilter = document.getElementById('yearFilter');
             var monthFilter = document.getElementById('monthFilter');
             
-            // Pagination (Bottom)
             var paginationContainer = document.getElementById('paginationContainer');
             var pageNumbersContainer = document.getElementById('pageNumbersContainer');
             var prevPageBtn = document.getElementById('prevPageBtn');
             var nextPageBtn = document.getElementById('nextPageBtn');
             
-            // Pagination (Top)
             var paginationContainerTop = document.getElementById('paginationContainerTop');
             var pageNumbersContainerTop = document.getElementById('pageNumbersContainerTop');
             var prevPageBtnTop = document.getElementById('prevPageBtnTop');
             var nextPageBtnTop = document.getElementById('nextPageBtnTop');
 
-            // Retrieve archive structure from DOM
             var archiveDataEl = document.getElementById('archiveData');
             var archiveList = archiveDataEl ? JSON.parse(archiveDataEl.getAttribute('data-archive') || '[]') : [];
 
-            function updateView() {
-              // 1. Filter matching cards based on Tag, Year, and Month
-              var matchingCards = cards.filter(function(card) {
-                // Tag filter
+            function getMatchingCards() {
+              return cards.filter(function(card) {
                 if (activeTag) {
                   var tagsAttr = card.getAttribute('data-tags');
                   var tags = tagsAttr ? tagsAttr.split(',').map(function(t) { return t.trim().toLowerCase(); }) : [];
@@ -243,7 +235,6 @@ const allTags = Array.from(
                   }
                 }
 
-                // Date filter
                 if (activeYear) {
                   var dateAttr = card.getAttribute('data-date');
                   if (dateAttr) {
@@ -266,15 +257,16 @@ const allTags = Array.from(
 
                 return true;
               });
+            }
 
-              // 2. Paginate matching cards
+            function updateView() {
+              var matchingCards = getMatchingCards();
               var totalPages = Math.ceil(matchingCards.length / ITEMS_PER_PAGE) || 1;
               
-              // Clamp currentPage
               if (currentPage < 1) currentPage = 1;
               if (currentPage > totalPages) currentPage = totalPages;
 
-              // 3. Show/hide cards based on pagination slot
+              // Show / hide cards based on current page
               cards.forEach(function(card) {
                 card.style.display = 'none';
                 card.classList.remove('hidden-card');
@@ -290,7 +282,7 @@ const allTags = Array.from(
                 }
               });
 
-              // 4. Update Date selectors state & enabled status
+              // Update Date selects
               if (yearFilter) {
                 yearFilter.value = activeYear || 'all';
               }
@@ -300,7 +292,6 @@ const allTags = Array.from(
                   monthFilter.disabled = false;
                   monthFilter.value = activeMonth !== null ? activeMonth.toString() : 'all';
                   
-                  // Disable month options that have no articles for the selected year
                   var selectedYearData = archiveList.find(function(item) { return item.year === parseInt(activeYear, 10); });
                   var validMonths = selectedYearData ? selectedYearData.months : [];
                   
@@ -321,7 +312,7 @@ const allTags = Array.from(
                 }
               }
 
-              // 5. Update Filter Info Status Box with individual pills
+              // Update Active Filters List
               if (activeFiltersList) {
                 activeFiltersList.innerHTML = '';
                 
@@ -349,8 +340,9 @@ const allTags = Array.from(
                 if (filterStatus) filterStatus.style.display = 'none';
               }
 
-              // 6. Update Tag Buttons Active Highlight
-              tagButtons.forEach(function(btn) {
+              // Update Tag buttons glow
+              var allTagButtons = document.querySelectorAll('.tag-button');
+              allTagButtons.forEach(function(btn) {
                 var tag = btn.getAttribute('data-tag');
                 if (activeTag && tag && tag.toLowerCase() === activeTag.toLowerCase()) {
                   btn.classList.add('active-tag');
@@ -359,7 +351,7 @@ const allTags = Array.from(
                 }
               });
 
-              // 7. Update Pagination UI
+              // Update Pagination controls
               if (totalPages <= 1) {
                 if (paginationContainer) paginationContainer.style.display = 'none';
                 if (paginationContainerTop) paginationContainerTop.style.display = 'none';
@@ -372,28 +364,15 @@ const allTags = Array.from(
                 if (nextPageBtn) nextPageBtn.disabled = currentPage === totalPages;
                 if (nextPageBtnTop) nextPageBtnTop.disabled = currentPage === totalPages;
 
-                [
-                  { container: pageNumbersContainer },
-                  { container: pageNumbersContainerTop }
-                ].forEach(function(item) {
-                  if (item.container) {
-                    item.container.innerHTML = '';
+                [pageNumbersContainer, pageNumbersContainerTop].forEach(function(container) {
+                  if (container) {
+                    container.innerHTML = '';
                     for (var i = 1; i <= totalPages; i++) {
-                      (function(pageIdx) {
-                        var btn = document.createElement('button');
-                        btn.className = 'page-number-btn' + (pageIdx === currentPage ? ' active-page' : '');
-                        btn.textContent = pageIdx.toString();
-                        btn.addEventListener('click', function() {
-                          currentPage = pageIdx;
-                          updateURL();
-                          updateView();
-                          var scrollTarget = document.querySelector('.blog-list-container');
-                          if (scrollTarget) {
-                            scrollTarget.scrollIntoView({ behavior: 'smooth' });
-                          }
-                        });
-                        item.container.appendChild(btn);
-                      })(i);
+                      var btn = document.createElement('button');
+                      btn.className = 'page-number-btn' + (i === currentPage ? ' active-page' : '');
+                      btn.setAttribute('data-page', i.toString());
+                      btn.textContent = i.toString();
+                      container.appendChild(btn);
                     }
                   }
                 });
@@ -422,7 +401,7 @@ const allTags = Array.from(
               } else {
                 url.searchParams.delete('page');
               }
-              window.history.replaceState({}, '', url.toString());
+              window.history.pushState({}, '', url.toString());
             }
 
             function setFilterState(tag, year, month) {
@@ -434,18 +413,65 @@ const allTags = Array.from(
               updateView();
             }
 
-            // Event Listeners for inline article tag badges
-            tagButtons.forEach(function(btn) {
-              btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                var tag = btn.getAttribute('data-tag');
-                var nextTag = (activeTag && tag && activeTag.toLowerCase() === tag.toLowerCase()) ? null : tag;
-                setFilterState(nextTag, activeYear, activeMonth !== null ? activeMonth.toString() : null);
-                var container = document.querySelector('.blog-list-container');
-                if (container) container.scrollIntoView({ behavior: 'smooth' });
+            function goToPage(page) {
+              var matchingCards = getMatchingCards();
+              var totalPages = Math.ceil(matchingCards.length / ITEMS_PER_PAGE) || 1;
+              if (page >= 1 && page <= totalPages && page !== currentPage) {
+                currentPage = page;
+                updateURL();
+                updateView();
+                var scrollTarget = document.querySelector('.blog-list-container');
+                if (scrollTarget) {
+                  scrollTarget.scrollIntoView({ behavior: 'smooth' });
+                }
+              }
+            }
+
+            // Delegated click handler for Pagination
+            function handlePaginationClick(e) {
+              var target = e.target;
+              var pageBtn = target.closest('.page-number-btn');
+              if (pageBtn) {
+                var page = parseInt(pageBtn.getAttribute('data-page'), 10);
+                if (!isNaN(page)) {
+                  goToPage(page);
+                }
+                return;
+              }
+
+              if (target.closest('#prevPageBtn') || target.closest('#prevPageBtnTop')) {
+                goToPage(currentPage - 1);
+                return;
+              }
+
+              if (target.closest('#nextPageBtn') || target.closest('#nextPageBtnTop')) {
+                goToPage(currentPage + 1);
+                return;
+              }
+            }
+
+            if (paginationContainer) {
+              paginationContainer.addEventListener('click', handlePaginationClick);
+            }
+            if (paginationContainerTop) {
+              paginationContainerTop.addEventListener('click', handlePaginationClick);
+            }
+
+            // Delegated click handler for tag buttons in the card grid
+            if (blogGrid) {
+              blogGrid.addEventListener('click', function(e) {
+                var tagBtn = e.target.closest('.tag-button');
+                if (tagBtn) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  var tag = tagBtn.getAttribute('data-tag');
+                  var nextTag = (activeTag && tag && activeTag.toLowerCase() === tag.toLowerCase()) ? null : tag;
+                  setFilterState(nextTag, activeYear, activeMonth !== null ? activeMonth.toString() : null);
+                  var container = document.querySelector('.blog-list-container');
+                  if (container) container.scrollIntoView({ behavior: 'smooth' });
+                }
               });
-            });
+            }
 
             if (yearFilter) {
               yearFilter.addEventListener('change', function() {
@@ -471,8 +497,7 @@ const allTags = Array.from(
 
             if (filterStatus) {
               filterStatus.addEventListener('click', function(e) {
-                var target = e.target;
-                var pillBtn = target.closest('.pill-clear-btn');
+                var pillBtn = e.target.closest('.pill-clear-btn');
                 if (pillBtn) {
                   var filterType = pillBtn.getAttribute('data-type');
                   if (filterType === 'tag') {
@@ -490,65 +515,24 @@ const allTags = Array.from(
               });
             }
 
-            var handlePrevPage = function() {
-              if (currentPage > 1) {
-                currentPage--;
-                updateURL();
-                updateView();
-                var container = document.querySelector('.blog-list-container');
-                if (container) container.scrollIntoView({ behavior: 'smooth' });
-              }
-            };
-
-            var handleNextPage = function() {
-              var matchingCards = cards.filter(function(card) {
-                if (activeTag) {
-                  var tagsAttr = card.getAttribute('data-tags');
-                  var tags = tagsAttr ? tagsAttr.split(',').map(function(t) { return t.trim().toLowerCase(); }) : [];
-                  if (!tags.includes(activeTag.toLowerCase())) return false;
-                }
-                if (activeYear) {
-                  var dateAttr = card.getAttribute('data-date');
-                  if (dateAttr) {
-                    var date = new Date(dateAttr);
-                    if (date.getUTCFullYear() !== parseInt(activeYear, 10)) return false;
-                    if (activeMonth !== null && date.getUTCMonth() !== activeMonth) return false;
-                  } else {
-                    return false;
-                  }
-                }
-                return true;
-              });
-              var totalPages = Math.ceil(matchingCards.length / ITEMS_PER_PAGE) || 1;
+            function loadFromURL() {
+              var params = new URLSearchParams(window.location.search);
+              var tagParam = params.get('tag');
+              var yearParam = params.get('year');
+              var monthParam = params.get('month');
+              var pageParam = params.get('page');
               
-              if (currentPage < totalPages) {
-                currentPage++;
-                updateURL();
-                updateView();
-                var container = document.querySelector('.blog-list-container');
-                if (container) container.scrollIntoView({ behavior: 'smooth' });
-              }
-            };
+              activeTag = tagParam ? tagParam.toLowerCase().trim() : null;
+              activeYear = yearParam || null;
+              activeMonth = monthParam ? parseInt(monthParam, 10) : null;
+              currentPage = pageParam ? parseInt(pageParam, 10) : 1;
 
-            if (prevPageBtn) prevPageBtn.addEventListener('click', handlePrevPage);
-            if (prevPageBtnTop) prevPageBtnTop.addEventListener('click', handlePrevPage);
+              updateView();
+            }
 
-            if (nextPageBtn) nextPageBtn.addEventListener('click', handleNextPage);
-            if (nextPageBtnTop) nextPageBtnTop.addEventListener('click', handleNextPage);
+            window.addEventListener('popstate', loadFromURL);
 
-            // Load state from URL parameters
-            var params = new URLSearchParams(window.location.search);
-            var tagParam = params.get('tag');
-            var yearParam = params.get('year');
-            var monthParam = params.get('month');
-            var pageParam = params.get('page');
-            
-            if (tagParam) activeTag = tagParam.toLowerCase().trim();
-            if (yearParam) activeYear = yearParam;
-            if (monthParam) activeMonth = parseInt(monthParam, 10);
-            if (pageParam) currentPage = parseInt(pageParam, 10) || 1;
-
-            updateView();
+            loadFromURL();
           }
 
           if (document.readyState === 'loading') {
