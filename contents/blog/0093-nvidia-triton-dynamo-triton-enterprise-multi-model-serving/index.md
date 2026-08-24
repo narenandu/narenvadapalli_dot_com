@@ -1,6 +1,6 @@
 ---
 title: "Part 13: NVIDIA Triton (Dynamo-Triton): Enterprise Multi-Model Serving Architecture"
-date: 2026-08-27
+date: 2026-08-26
 template: blog
 image: "./cover_image.jpg"
 description: "Explore NVIDIA Triton (Dynamo-Triton), the multi-framework inference server powering concurrent model pipelines and dynamic batching."
