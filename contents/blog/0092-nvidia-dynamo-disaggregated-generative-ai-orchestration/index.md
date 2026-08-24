@@ -1,6 +1,6 @@
 ---
 title: "Part 12: NVIDIA Dynamo: Data Center-Scale Disaggregated Generative AI Orchestration"
-date: 2026-08-26
+date: 2026-08-25
 template: blog
 image: "./cover_image.jpg"
 description: "Explore NVIDIA Dynamo, the distributed inference orchestration platform separating prefill and decode across clusters with smart KV routing."
