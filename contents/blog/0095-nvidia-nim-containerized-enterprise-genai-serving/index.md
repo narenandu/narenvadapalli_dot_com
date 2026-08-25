@@ -1,5 +1,5 @@
 ---
-title: "Part 15: NVIDIA NIM: Containerized Enterprise GenAI Serving Architecture"
+title: "NVIDIA NIM: Containerized Enterprise GenAI Serving Architecture"
 date: 2026-08-28
 template: blog
 image: "./cover_image.jpg"
