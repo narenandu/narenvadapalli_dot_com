@@ -1,5 +1,5 @@
 ---
-title: "Part 14: dynamo-vllm: High-Throughput Distributed PagedAttention at Scale"
+title: "dynamo-vllm: High-Throughput Distributed PagedAttention at Scale"
 date: 2026-08-27
 template: blog
 image: "./cover_image.jpg"
