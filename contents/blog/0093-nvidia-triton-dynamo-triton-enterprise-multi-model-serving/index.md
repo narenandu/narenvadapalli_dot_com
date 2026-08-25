@@ -1,5 +1,5 @@
 ---
-title: "Part 13: NVIDIA Triton (Dynamo-Triton): Enterprise Multi-Model Serving Architecture"
+title: "NVIDIA Triton (Dynamo-Triton): Enterprise Multi-Model Serving Architecture"
 date: 2026-08-26
 template: blog
 image: "./cover_image.jpg"
