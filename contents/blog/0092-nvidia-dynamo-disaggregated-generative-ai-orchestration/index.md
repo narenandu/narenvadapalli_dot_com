@@ -1,5 +1,5 @@
 ---
-title: "Part 12: NVIDIA Dynamo: Data Center-Scale Disaggregated Generative AI Orchestration"
+title: "NVIDIA Dynamo: Data Center-Scale Disaggregated Generative AI Orchestration"
 date: 2026-08-25
 template: blog
 image: "./cover_image.jpg"
