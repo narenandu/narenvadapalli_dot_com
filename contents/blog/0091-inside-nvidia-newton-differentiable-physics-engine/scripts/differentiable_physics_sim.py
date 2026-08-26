@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NVIDIA Newton Differentiable Physics & Analytical Gradient Optimization Simulator
+Newton Differentiable Physics & Analytical Gradient Optimization Simulator
 ================================================================================
 A standalone, zero-dependency Python simulation demonstrating:
 1. Differentiable Rigid Body & Articulation Dynamics (Forward & Backward Gradients).
@@ -146,7 +146,7 @@ def simulate_blackbox_rl_episodes(target_angle: float = math.pi / 2.0, steps: in
 def run_newton_physics_benchmark():
     random.seed(42)
     print("=" * 85)
-    print("NVIDIA NEWTON DIFFERENTIABLE PHYSICS & GRADIENT OPTIMIZATION BENCHMARK")
+    print("NEWTON DIFFERENTIABLE PHYSICS & GRADIENT OPTIMIZATION BENCHMARK")
     print("=" * 85)
     print("Task: Swivel robotic manipulator from 0° (hanging) to 90° (horizontal hold)")
     print("Method: Analytical Jacobian Backpropagation through Time (BPTT) in NVIDIA Warp/Newton")
@@ -166,11 +166,11 @@ def run_newton_physics_benchmark():
     rl_history = simulate_blackbox_rl_episodes(target_angle=math.pi / 2.0, steps=50, episodes=500)
     print(f"{'Method':<30} | {'Evaluations / Iterations':<26} | {'Final Error (deg)'} | {'Convergence Rate'}")
     print("-" * 85)
-    print(f"{'NVIDIA Newton (Differentiable)':<30} | {'25 Epochs (25 Passes)':<26} | {newton_history[-1]['final_error_deg']:>6.2f}°           | ⚡ Instant (Analytical)")
+    print(f"{'Newton (Differentiable)':<30} | {'25 Epochs (25 Passes)':<26} | {newton_history[-1]['final_error_deg']:>6.2f}°           | ⚡ Instant (Analytical)")
     print(f"{'Black-Box RL (Episode Search)':<30} | {'500 Episodes (500 Passes)':<26} | {rl_history[-1]['error_deg']:>6.2f}°           | 🐢 20x Slower Sample Rate")
 
     print("\n[3] KEY ARCHITECTURAL TAKEAWAYS:")
-    print("  • NVIDIA Newton eliminates trial-and-error policy iteration by propagating exact analytical")
+    print("  • Newton eliminates trial-and-error policy iteration by propagating exact analytical")
     print("    dynamics gradients (∂L/∂u) across multi-joint rigid body and contact manifolds.")
     print("  • Built on NVIDIA Warp (CUDA spatial computing) and co-developed under Linux Foundation")
     print("    with Google DeepMind and Disney Research for production generalist robotics.")

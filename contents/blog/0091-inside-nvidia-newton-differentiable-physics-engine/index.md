@@ -1,9 +1,9 @@
 ---
-title: "Part 10: Inside NVIDIA Newton: Open-Source Differentiable Physics for Generalist Robotics"
+title: "Inside Newton: Open-Source Differentiable Physics for Generalist Robotics"
 date: 2026-08-24
 template: blog
 image: "./cover_image.jpg"
-description: "Explore NVIDIA Newton, the open-source differentiable physics engine co-developed with Google DeepMind and Disney Research for robot learning."
+description: "Explore Newton, the open-source differentiable physics engine co-developed by NVIDIA, Google DeepMind, and Disney Research for robot learning."
 tags: ["nvidia", "physical-ai", "robotics", "newton", "differentiable-physics", "openusd", "warp", "isaac-lab", "reinforcement-learning"]
 ---
 
@@ -24,7 +24,7 @@ Before exploring differentiable physics solvers and contact manifold optimizatio
 
 ---
 
-### NVIDIA Newton Open-Source Physics Platform Summary
+### Newton Open-Source Physics Platform Summary
 
 | Specification / Dimension | Details & Technical Parameters |
 | :--- | :--- |
@@ -35,7 +35,7 @@ Before exploring differentiable physics solvers and contact manifold optimizatio
 | **Simulation Paradigms** | Differentiable Analytical Dynamics, Multi-Solver Architecture (MuJoCo-Warp, XPBD, Articulation Trees) |
 | **Target Workloads** | Contact-Rich Manipulation, Bipedal Locomotion, Differentiable Reinforcement Learning & System Identification |
 | **Ecosystem Integration** | [NVIDIA Isaac Lab](https://isaac-sim.github.io/IsaacLab/) and [Isaac Sim](https://developer.nvidia.com/isaac-sim) reinforcement learning pipelines |
-| **Video Deep-Dive** | [NVIDIA Newton Architecture Walkthrough](https://youtu.be/ElIyRboR1A8) |
+| **Video Deep-Dive** | [Newton Architecture Walkthrough](https://youtu.be/ElIyRboR1A8) |
 
 ---
 
@@ -62,7 +62,7 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    subgraph DifferentiableNewton["2. NVIDIA Newton Differentiable Physics"]
+    subgraph DifferentiableNewton["2. Newton Differentiable Physics"]
         direction TB
         N1["Robotic Action Torque Applied to Articulated Link"] --> N2["NVIDIA Warp Analytical Differentiable Physics Step"]
         N2 --> N3["Exact Analytical Jacobians: Gradient Flows Back Through Time"]
@@ -75,7 +75,7 @@ flowchart TD
     style N4 fill:#0f382c,stroke:#10b981,stroke-width:1px,color:#ffffff
 ```
 
-Now imagine the acrobat looking into a **Mathematical Mirror**: **NVIDIA Newton**. 
+Now imagine the acrobat looking into a **Mathematical Mirror**: **Newton**. 
 
 Because Newton's physics equations are **fully differentiable**, every collision, contact friction impulse, and joint articulation provides exact mathematical derivatives:
 
@@ -95,7 +95,7 @@ flowchart TD
         direction TB
         G1["Game Physics: Position-Based Hacks, Clamped Contacts & Visual Plausibility"]
         G1 --> G2["Sim-to-Real Failure: Robots Slip, Drop Fragile Objects & Tip Over"]
-        G2 --> R1["NVIDIA Newton: Energy-Conserving Solvers, Exact Friction Cones & Differentiability"]
+        G2 --> R1["Newton: Energy-Conserving Solvers, Exact Friction Cones & Differentiability"]
         R1 --> R2["Zero Sim-to-Real Gap: Physical Accuracy Matches Real-World Hardware"]
     end
     style GameVsRobotics fill:#0f172a,stroke:#00e5ff,stroke-width:2px,color:#ffffff
@@ -113,13 +113,13 @@ To solve this, **NVIDIA, Google DeepMind, and Disney Research** united under the
 
 ---
 
-## 3. The NVIDIA Newton Architecture
+## 3. The Newton Architecture
 
 Newton is designed around three foundational architectural pillars:
 
 ```mermaid
 flowchart TD
-    subgraph NewtonStack["NVIDIA Newton Architectural Stack"]
+    subgraph NewtonStack["Newton Architectural Stack"]
         direction TB
         W1["1. Compute Backend: NVIDIA Warp (Python-to-CUDA Spatial JIT)"]
         W1 --> M1["2. Multi-Solver Core: MuJoCo-Warp, XPBD & Articulation Solvers"]
@@ -197,7 +197,7 @@ Where:
 * $J_c(q) \in \mathbb{R}^{3k \times n}$: Contact Jacobian mapping joint velocities to Cartesian contact points.
 * $\lambda_c \in \mathbb{R}^{3k}$: Contact reaction forces.
 
-In NVIDIA Newton, the forward state transition $s_{t+1} = f(s_t, \tau_t)$ is evaluated numerically. The analytical Jacobian matrices $\frac{\partial s_{t+1}}{\partial s_t}$ and $\frac{\partial s_{t+1}}{\partial \tau_t}$ are computed via automatic differentiation.
+In Newton, the forward state transition $s_{t+1} = f(s_t, \tau_t)$ is evaluated numerically. The analytical Jacobian matrices $\frac{\partial s_{t+1}}{\partial s_t}$ and $\frac{\partial s_{t+1}}{\partial \tau_t}$ are computed via automatic differentiation.
 
 ---
 
@@ -238,7 +238,7 @@ The zero-dependency Python script below implements a differentiable forward and 
 ```python
 #!/usr/bin/env python3
 """
-NVIDIA Newton Differentiable Physics & Analytical Gradient Optimization Simulator
+Newton Differentiable Physics & Analytical Gradient Optimization Simulator
 ================================================================================
 A standalone, zero-dependency Python simulation demonstrating:
 1. Differentiable Rigid Body & Articulation Dynamics (Forward & Backward Gradients).
@@ -384,7 +384,7 @@ def simulate_blackbox_rl_episodes(target_angle: float = math.pi / 2.0, steps: in
 def run_newton_physics_benchmark():
     random.seed(42)
     print("=" * 85)
-    print("NVIDIA NEWTON DIFFERENTIABLE PHYSICS & GRADIENT OPTIMIZATION BENCHMARK")
+    print("NEWTON DIFFERENTIABLE PHYSICS & GRADIENT OPTIMIZATION BENCHMARK")
     print("=" * 85)
     print("Task: Swivel robotic manipulator from 0° (hanging) to 90° (horizontal hold)")
     print("Method: Analytical Jacobian Backpropagation through Time (BPTT) in NVIDIA Warp/Newton")
@@ -404,11 +404,11 @@ def run_newton_physics_benchmark():
     rl_history = simulate_blackbox_rl_episodes(target_angle=math.pi / 2.0, steps=50, episodes=500)
     print(f"{'Method':<30} | {'Evaluations / Iterations':<26} | {'Final Error (deg)'} | {'Convergence Rate'}")
     print("-" * 85)
-    print(f"{'NVIDIA Newton (Differentiable)':<30} | {'25 Epochs (25 Passes)':<26} | {newton_history[-1]['final_error_deg']:>6.2f}°           | ⚡ Instant (Analytical)")
+    print(f"{'Newton (Differentiable)':<30} | {'25 Epochs (25 Passes)':<26} | {newton_history[-1]['final_error_deg']:>6.2f}°           | ⚡ Instant (Analytical)")
     print(f"{'Black-Box RL (Episode Search)':<30} | {'500 Episodes (500 Passes)':<26} | {rl_history[-1]['error_deg']:>6.2f}°           | 🐢 20x Slower Sample Rate")
 
     print("\n[3] KEY ARCHITECTURAL TAKEAWAYS:")
-    print("  • NVIDIA Newton eliminates trial-and-error policy iteration by propagating exact analytical")
+    print("  • Newton eliminates trial-and-error policy iteration by propagating exact analytical")
     print("    dynamics gradients (∂L/∂u) across multi-joint rigid body and contact manifolds.")
     print("  • Built on NVIDIA Warp (CUDA spatial computing) and co-developed under Linux Foundation")
     print("    with Google DeepMind and Disney Research for production generalist robotics.")
