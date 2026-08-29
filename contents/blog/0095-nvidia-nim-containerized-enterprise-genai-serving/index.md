@@ -147,9 +147,13 @@ The total pod initialization time $T_{\text{init}}$ for an LLM container with we
 
 $$T_{\text{init}} = T_{\text{boot}} + T_{\text{weights}} + T_{\text{warmup}}$$
 
-Where weight staging time $T_{\text{weights}}$ depends on the storage tier:
+For cold container initialization from a remote registry:
 
-$$T_{\text{weights}} = \begin{cases} \dfrac{S_{\text{weights}}}{\text{BW}_{\text{WAN}}} + \dfrac{S_{\text{weights}}}{\text{BW}_{\text{NVMe-Write}}} & \text{(Cold Remote Registry Download)} \\[8pt] \dfrac{S_{\text{weights}}}{\text{BW}_{\text{NVMe-Read}}} & \text{(Warm PVC Mount)} \end{cases}$$
+$$T_{\text{weights, Cold}} = \frac{S_{\text{weights}}}{\text{BW}_{\text{WAN}}} + \frac{S_{\text{weights}}}{\text{BW}_{\text{NVMe-Write}}}$$
+
+For warm container initialization using local PVC cache:
+
+$$T_{\text{weights, Warm}} = \frac{S_{\text{weights}}}{\text{BW}_{\text{NVMe-Read}}}$$
 
 For a 70B parameter model ($S_{\text{weights}} = 70\ \text{GB}$ in FP8):
 * Remote download ($1\ \text{Gbps}$ pipe): $T_{\text{weights}} \approx 560\ \text{s} + 23\ \text{s} = 583\ \text{s}$ ($\approx 9.7\ \text{minutes}$).
