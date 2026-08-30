@@ -9,7 +9,7 @@ tags: ["nvidia", "physical-ai", "robotics", "newton", "differentiable-physics", 
 
 *Series: NVIDIA Physical AI & Robotics Ecosystem Series - Part 10*
 
-*Series: &larr; [Part 9: Demystifying Autonomous Vehicles: The 3-Computer Architecture, SAE Autonomy Levels, and the Sensor Fusion Triad](/blog/demystifying-autonomous-vehicles-sae-levels-sensor-fusion/) (Previous)*
+*Series: &larr; [Part 9: Demystifying Autonomous Vehicles: The 3-Computer Architecture, SAE Autonomy Levels, and the Sensor Fusion Triad](/blog/demystifying-autonomous-vehicles-sae-levels-sensor-fusion/) (Previous) | [Part 11: NVIDIA Drive Cosmos & Cosmos-Drive-Dreams: Scalable Synthetic Driving Data Generation with World Foundation Models](/blog/nvidia-drive-cosmos-cosmos-drive-dreams-world-foundation-models/) (Next) &rarr;*
 
 ### Prior Reading Material
 
