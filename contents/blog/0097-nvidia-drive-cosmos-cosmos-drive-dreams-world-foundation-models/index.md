@@ -10,6 +10,7 @@ tags: ["nvidia", "physical-ai", "autonomous-vehicles", "cosmos", "world-models",
 *Series: NVIDIA Physical AI & Robotics Ecosystem Series - Part 11*
 
 *Series: &larr; [Part 10: Inside Newton: Open-Source Differentiable Physics for Generalist Robotics](/blog/inside-nvidia-newton-differentiable-physics-engine/) (Previous)*
+*Series: [Part 12: Demystifying NeRFs: Volumetric Rendering & Implicit Coordinate Networks](/blog/demystifying-nerfs-volumetric-rendering-implicit-coordinate-networks/) (Next) &rarr;*
 
 ### Prior Reading Material
 
@@ -423,3 +424,10 @@ The emergence of **NVIDIA Drive Cosmos** and **Cosmos-Drive-Dreams** marks a fun
 1. **Escaping the Physical Fleet Bottleneck**: Autonomous vehicle development is no longer gated by the millions of redundant physical miles driven by sensor cars. World foundation models allow engineers to programmatically synthesize hazardous, long-tail edge cases on demand.
 2. **Deterministic Geometric Grounding**: By combining vectorized HD maps, 3D bounding box trajectories, and epipolar cross-attention constraints, Cosmos-Drive-Dreams avoids the hallucination and geometric warping common in unconditioned generative models.
 3. **Closing the Sim-to-Real Safety Gap**: Downstream perception models trained on Cosmos-Drive-Dreams augmented datasets demonstrate up to **+40% mAP improvements** on challenging corner cases (such as nocturnal rain, blinding snow, and sudden road obstacles), dramatically accelerating the deployment of safe Level 3 and Level 4 autonomous systems.
+
+---
+
+### Series Navigation
+
+*Series: &larr; [Part 10: Inside Newton: Open-Source Differentiable Physics for Generalist Robotics](/blog/inside-nvidia-newton-differentiable-physics-engine/) (Previous)* | *[Demystifying Neural Rendering: From NeRFs (Neural Radiance Fields) to 3D Gaussian Splatting](/blog/demystifying-neural-rendering-nerf-to-3d-gaussian-splatting/) (Next) &rarr;*
+
