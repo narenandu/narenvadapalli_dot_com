@@ -1,0 +1,52 @@
+name: Deploy to AWS Amplify
+
+on:
+  # 1. Trigger when a PR is merged into main
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+
+  # 2. Trigger on direct pushes to main when website code or blog content changes
+  # (Skips builds when pushing purely submodule updates or repo documentation)
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+      - 'contents/**'
+      - 'public/**'
+      - 'astro.config.mjs'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'amplify.yml'
+
+  # 3. Allow manual triggering from GitHub Actions tab anytime
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    # Trigger if: manual dispatch, direct push to main (matching paths above), or PR merged
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      github.event_name == 'push' ||
+      (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger AWS Amplify Webhook
+        run: |
+          if [ -z "$AMPLIFY_WEBHOOK_URL" ]; then
+            echo "::error::AMPLIFY_WEBHOOK_URL secret is not set in GitHub repository settings."
+            exit 1
+          fi
+          echo "Triggering AWS Amplify build for main branch..."
+          response=$(curl -s -w "%{http_code}" -o /dev/null -X POST -d {} "$AMPLIFY_WEBHOOK_URL")
+          if [ "$response" -eq 200 ] || [ "$response" -eq 204 ]; then
+            echo "✅ AWS Amplify build successfully triggered (HTTP $response)."
+          else
+            echo "::error::Failed to trigger AWS Amplify build (HTTP $response)."
+            exit 1
+          fi
+        env:
+          AMPLIFY_WEBHOOK_URL: ${{ secrets.AMPLIFY_WEBHOOK_URL }}
