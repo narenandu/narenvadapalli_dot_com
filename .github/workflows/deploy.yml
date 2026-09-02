@@ -41,8 +41,8 @@ jobs:
             exit 1
           fi
           echo "Triggering AWS Amplify build for main branch..."
-          response=$(curl -s -w "%{http_code}" -o /dev/null -X POST -d {} "$AMPLIFY_WEBHOOK_URL")
-          if [ "$response" -eq 200 ] || [ "$response" -eq 204 ]; then
+          response=$(curl -s -w "%{http_code}" -o /dev/null -X POST -d '{}' -H "Content-Type:application/json" "$AMPLIFY_WEBHOOK_URL")
+          if [ "$response" -ge 200 ] && [ "$response" -lt 300 ]; then
             echo "✅ AWS Amplify build successfully triggered (HTTP $response)."
           else
             echo "::error::Failed to trigger AWS Amplify build (HTTP $response)."
