@@ -9,7 +9,7 @@ tags: ["nvidia", "ai-inference", "nim", "kserve", "kubernetes", "tensorrt-llm", 
 
 *Series: AI Inference Deep-Dive Series - Part 15*
 
-*Series: &larr; [Part 14: dynamo-vllm: High-Throughput Distributed PagedAttention at Scale](/blog/dynamo-vllm-high-throughput-distributed-pagedattention/) (Previous)*
+*Series: &larr; [Part 14: dynamo-vllm: High-Throughput Distributed PagedAttention at Scale](/blog/dynamo-vllm-high-throughput-distributed-pagedattention/) (Previous) | [Part 16: Disaggregated Inference: Separating Prefill and Decode Nodes at Scale](/blog/disaggregated-inference-separating-prefill-decode-scale/) (Next) &rarr;*
 
 ### Prior Reading Material
 
