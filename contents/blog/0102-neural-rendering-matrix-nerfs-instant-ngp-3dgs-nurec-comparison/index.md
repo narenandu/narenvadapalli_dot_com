@@ -1,6 +1,6 @@
 ---
 title: "The Neural Rendering Matrix: Comparing NeRFs, Instant-NGP, 3D Gaussian Splatting, and NuRec"
-date: 2026-09-04
+date: 2026-09-06
 template: blog
 image: "./cover_image.jpg"
 description: "An exhaustive architectural, mathematical, and benchmark comparison across NeRFs, Instant-NGP, 3D Gaussian Splatting, and NVIDIA NuRec."
