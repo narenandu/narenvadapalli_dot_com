@@ -1,6 +1,6 @@
 ---
 title: "Multi-Agent Choreography: Building Cooperative Graph Networks with LangGraph"
-date: 2026-09-05
+date: 2026-09-07
 template: blog
 image: "./cover_image.jpg"
 description: "Master multi-agent choreography in LangGraph. Build stateful, cooperative networks with specialized nodes, cyclic feedback, and reducer channels."
