@@ -49,23 +49,26 @@ Rather than maintaining completely separate foundation models for commercial ent
 ```mermaid
 flowchart TD
     A["Single Shared Foundation Intelligence: Claude 5.1 Base Weights"] --> B["Claude Fable 5.1 (Production Enterprise Persona)"]
-    A --> C["Claude Mythos 5.1 (Project Glasswing Research Persona)"]
-    
     B --> B1["Production-Grade Safety Classifier Layer"]
-    B --> B2["95% False-Positive Reduction on Benign Cyber/Bio Code"]
-    B --> B3["Public Availability: Claude Platform, AWS Bedrock, GitHub Copilot"]
-    
-    C --> C1["Unrestricted Scientific & Defensive Probing Mode"]
-    C2["Strict Vetting: Project Glasswing Trusted Partner Program"]
-    C --> C2
-    C --> C3["Target Use: Zero-Day Discovery & Biodefense Vulnerability Analysis"]
+    B1 --> B2["95% False-Positive Reduction on Benign Cyber/Bio Code"]
+    B2 --> B3["Public Availability: Claude Platform, AWS Bedrock, GitHub Copilot"]
     
     style A fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
     style B fill:#064e3b,stroke:#34d399,stroke-width:2px,color:#ffffff
-    style C fill:#3b0764,stroke:#e879f9,stroke-width:2px,color:#ffffff
     style B1 fill:#0f172a,stroke:#38bdf8,stroke-width:1px,color:#ffffff
     style B2 fill:#0f172a,stroke:#38bdf8,stroke-width:1px,color:#ffffff
     style B3 fill:#0f172a,stroke:#38bdf8,stroke-width:1px,color:#ffffff
+```
+
+```mermaid
+flowchart TD
+    A["Single Shared Foundation Intelligence: Claude 5.1 Base Weights"] --> C["Claude Mythos 5.1 (Project Glasswing Research Persona)"]
+    C --> C1["Unrestricted Scientific & Defensive Probing Mode"]
+    C1 --> C2["Strict Vetting: Project Glasswing Trusted Partner Program"]
+    C2 --> C3["Target Use: Zero-Day Discovery & Biodefense Vulnerability Analysis"]
+    
+    style A fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
+    style C fill:#3b0764,stroke:#e879f9,stroke-width:2px,color:#ffffff
     style C1 fill:#0f172a,stroke:#38bdf8,stroke-width:1px,color:#ffffff
     style C2 fill:#0f172a,stroke:#38bdf8,stroke-width:1px,color:#ffffff
     style C3 fill:#0f172a,stroke:#38bdf8,stroke-width:1px,color:#ffffff
@@ -127,21 +130,28 @@ Anthropic introduced a **75% price reduction for prompt cache reads**:
 ```mermaid
 flowchart TD
     T1["Turn 1: Initial Repository Ingestion (200,000 Tokens)"] --> T2["Write to Prompt Cache: $10.00 / 1M ($2.00 Base Cost)"]
-    
-    T2 --> T3["Turns 2 through 50: Autonomous Tool Turns (49 Subsequent Turns)"]
-    
-    T3 --> T4["Legacy Caching ($1.00 / 1M) -> 49 x $0.20 = $9.80"]
-    T3 --> T5["Fable 5.1 Caching ($0.25 / 1M) -> 49 x $0.05 = $2.45"]
-    
-    T4 --> T6["Legacy Total Cost: $11.80"]
-    T5 --> T7["Fable 5.1 Total Cost: $4.45 (62% Real-World Cost Savings)"]
+    T2 --> T3["Turns 2 through 50: Autonomous Tool Loops (49 Subsequent Turns)"]
+    T3 --> T4["Legacy Caching at $1.00 / 1M: 49 x $0.20 = $9.80"]
+    T4 --> T6["Legacy Workflow Total Cost: $11.80"]
     
     style T1 fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
     style T2 fill:#0f172a,stroke:#38bdf8,stroke-width:1px,color:#ffffff
     style T3 fill:#1e293b,stroke:#94a3b8,stroke-width:1px,color:#ffffff
     style T4 fill:#3b0764,stroke:#e879f9,stroke-width:1px,color:#ffffff
-    style T5 fill:#064e3b,stroke:#34d399,stroke-width:2px,color:#ffffff
     style T6 fill:#1e293b,stroke:#94a3b8,stroke-width:1px,color:#ffffff
+```
+
+```mermaid
+flowchart TD
+    T1["Turn 1: Initial Repository Ingestion (200,000 Tokens)"] --> T2["Write to Prompt Cache: $10.00 / 1M ($2.00 Base Cost)"]
+    T2 --> T3["Turns 2 through 50: Autonomous Tool Loops (49 Subsequent Turns)"]
+    T3 --> T5["Fable 5.1 Caching at $0.25 / 1M: 49 x $0.05 = $2.45"]
+    T5 --> T7["Fable 5.1 Workflow Total Cost: $4.45 (62% Real-World Cost Savings)"]
+    
+    style T1 fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
+    style T2 fill:#0f172a,stroke:#38bdf8,stroke-width:1px,color:#ffffff
+    style T3 fill:#1e293b,stroke:#94a3b8,stroke-width:1px,color:#ffffff
+    style T5 fill:#064e3b,stroke:#34d399,stroke-width:2px,color:#ffffff
     style T7 fill:#064e3b,stroke:#34d399,stroke-width:2px,color:#ffffff
 ```
 
