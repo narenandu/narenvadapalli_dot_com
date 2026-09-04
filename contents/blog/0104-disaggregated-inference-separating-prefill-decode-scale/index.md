@@ -1,6 +1,6 @@
 ---
 title: "Disaggregated Inference: Separating Prefill and Decode Nodes at Scale"
-date: 2026-09-06
+date: 2026-09-08
 template: blog
 image: "./cover_image.jpg"
 description: "Scale LLM serving with disaggregated inference. Decouple compute-heavy prefill from memory-bound decode nodes to eliminate TTFT/TPOT interference."
