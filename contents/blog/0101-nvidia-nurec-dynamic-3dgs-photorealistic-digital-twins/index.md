@@ -1,6 +1,6 @@
 ---
 title: "NVIDIA NuRec & Dynamic 3DGS: Photorealistic Digital Twins for Robotics & AV Simulation"
-date: 2026-09-03
+date: 2026-09-05
 template: blog
 image: "./cover_image.jpg"
 description: "Explore NVIDIA NuRec: turning drive logs into interactive 3D Gaussian digital twins with dynamic actor decomposition and cross-carline virtual sensor rig adaptation."
