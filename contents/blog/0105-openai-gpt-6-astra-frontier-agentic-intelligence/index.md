@@ -47,22 +47,26 @@ Where previous model generations excelled at predictive next-token text completi
 ```mermaid
 flowchart TD
     A["The Generational Shift: Language Prediction to Agentic Execution"] --> B["Legacy Era: GPT-4 & GPT-5.6 Sol"]
-    A --> C["Frontier Era: GPT-6 Astra"]
-    
     B --> B1["Autoregressive Next-Token Probability"]
-    B --> B2["Stateless Single-Turn Context Windows"]
-    B --> B3["Brittle Long-Horizon Planning (High Error Accumulation)"]
-    
-    C --> C1["Persistent State Reasoning: Provider Adapter Harness"]
-    C --> C2["Native Test-Time Search & Self-Correction Verification DAGs"]
-    C --> C3["Autonomous Tool & Binary Reverse-Engineering Loops"]
+    B1 --> B2["Stateless Single-Turn Context Windows"]
+    B2 --> B3["Brittle Long-Horizon Planning (High Error Accumulation)"]
     
     style A fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
     style B fill:#1e293b,stroke:#94a3b8,stroke-width:1px,color:#ffffff
-    style C fill:#064e3b,stroke:#34d399,stroke-width:2px,color:#ffffff
     style B1 fill:#0f172a,stroke:#38bdf8,stroke-width:1px,color:#ffffff
     style B2 fill:#0f172a,stroke:#38bdf8,stroke-width:1px,color:#ffffff
     style B3 fill:#3b0764,stroke:#e879f9,stroke-width:2px,color:#ffffff
+```
+
+```mermaid
+flowchart TD
+    A["The Generational Shift: Language Prediction to Agentic Execution"] --> C["Frontier Era: GPT-6 Astra"]
+    C --> C1["Persistent State Reasoning: Provider Adapter Harness"]
+    C1 --> C2["Native Test-Time Search & Self-Correction Verification DAGs"]
+    C2 --> C3["Autonomous Tool & Binary Reverse-Engineering Loops"]
+    
+    style A fill:#0d2b45,stroke:#00e5ff,stroke-width:2px,color:#ffffff
+    style C fill:#064e3b,stroke:#34d399,stroke-width:2px,color:#ffffff
     style C1 fill:#0f172a,stroke:#38bdf8,stroke-width:1px,color:#ffffff
     style C2 fill:#0f172a,stroke:#38bdf8,stroke-width:1px,color:#ffffff
     style C3 fill:#064e3b,stroke:#34d399,stroke-width:2px,color:#ffffff
