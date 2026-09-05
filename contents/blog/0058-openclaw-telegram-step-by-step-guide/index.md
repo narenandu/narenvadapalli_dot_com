@@ -7,7 +7,7 @@ description: "Learn how to connect OpenClaw to Telegram from scratch. A beginner
 tags: ["ai", "agents", "open-source", "automation", "telegram"]
 ---
 
-*Series: &larr; [LangChain vs. LangGraph: Moving from Chains to Cyclic State Graphs](/blog/langchain-vs-langgraph-cyclic-state-graphs/) (Previous)*
+*Series: &larr; [LangChain vs. LangGraph: Moving from Chains to Cyclic State Graphs](/blog/langchain-vs-langgraph-cyclic-state-graphs/) (Previous) | [Multi-Agent Choreography: Building Cooperative Graph Networks with LangGraph](/blog/multi-agent-choreography-langgraph-cooperative-networks/) (Next) &rarr;*
 
 ### Prior Reading Material
 Before connecting messaging gateways, ensure you have set up the core OpenClaw repository and understand how skills and workflows are structured:
